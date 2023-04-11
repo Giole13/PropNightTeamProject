@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,21 +13,28 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
-    Vector3 velocity;
-    bool IsGrounded;
-    // Update is called once per frame
+    
+    private Vector3 velocity;
+    private bool IsGrounded;
+    private PlayerInput _playerInput;
+
+    private void Start()
+    {
+        _playerInput= GetComponent<PlayerInput>();
+    }
     void Update()
     {
+        
         IsGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if(IsGrounded && velocity.y <0)
         {
             velocity.y = -2f;
         }
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = _playerInput.MoveX;
+        float z = _playerInput.MoveZ;
         
-        Vector3 move = transform.right* x + transform.forward *z;
+        Vector3 move = transform.right * x + transform.forward * z;
         if (Input.GetKey(KeyCode.LeftShift))
         {
             controller.Move(move * speed * 2 * Time.deltaTime);

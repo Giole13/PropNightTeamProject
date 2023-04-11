@@ -4,22 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-<<<<<<< HEAD
-    path: Assets/Scenes/HyungJun/00.Init.unity
-    guid: a07ec222309e5e640b95a03903c33318
-  - enabled: 1
-    path: Assets/Scenes/HyungJun/01.Lobby.unity
-    guid: ba30004e9a9e2654696d5fba0186185f
-  - enabled: 1
-    path: Assets/Scenes/HyungJun/02.InGame.unity
-    guid: 876c466db72e1ae4ea6fb76926b0b046
-  - enabled: 1
-    path: Assets/Scenes/HyungJun/03.Result.unity
-    guid: 6227742221f378645a787b4c0c98af87
-=======
-    path: Assets/Scenes/Nanju/KillerScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
->>>>>>> 761056153e7cbf6d1e497b41f23ef0aeb5784bbe
+  m_Scenes: []
   m_configObjects: {}

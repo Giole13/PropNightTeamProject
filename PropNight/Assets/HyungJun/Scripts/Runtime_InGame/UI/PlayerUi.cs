@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerUi : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject PlayerInteractionUI = default;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +20,5 @@ public class PlayerUi : MonoBehaviour
     {
 
     }
+
 }

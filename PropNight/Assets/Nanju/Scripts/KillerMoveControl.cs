@@ -20,7 +20,7 @@ public class KillerMoveControl : MonoBehaviour
         KillerMove();
     }
 
-
+    // 살인마 이동
     public void KillerMove()
     {
         float xMove = Input.GetAxis("Horizontal");
@@ -30,5 +30,21 @@ public class KillerMoveControl : MonoBehaviour
     }
 
 
+
+
+
+
+    // 충돌 처리
+    private void OnCollisionEnter(Collision other)
+    {
+        // 오브젝트 충돌 처리
+        if (other.gameObject.CompareTag("Object"))
+        {
+            //  공격하기
+        }
+        // 맵 충돌 처리
+
+
+    }
 
 }

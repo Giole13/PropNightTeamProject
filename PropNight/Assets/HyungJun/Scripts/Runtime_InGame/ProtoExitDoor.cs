@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// using Photon.Pun;
 
-public class LobbyManager : MonoBehaviour
+public class ProtoExitDoor : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -17,11 +16,11 @@ public class LobbyManager : MonoBehaviour
 
     }
 
-    public void ClickLoginBtn()
+    private void OnCollisionEnter(Collision other)
     {
-        // GioleFunc.LoadScene("02.InGame");
-        Gfunc.LoadScene("02.InGame");
+        if (other.transform.tag == "Player")
+        {
+            Gfunc.LoadScene("03.Result");
+        }
     }
-
-
 }

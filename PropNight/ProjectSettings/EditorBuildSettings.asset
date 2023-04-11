@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/HyungJun/01.Lobby.unity
+    guid: ba30004e9a9e2654696d5fba0186185f
+  - enabled: 1
+    path: Assets/Scenes/HyungJun/02.InGame.unity
+    guid: 876c466db72e1ae4ea6fb76926b0b046
   m_configObjects: {}

@@ -1,28 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
-    public float speed = 10f;
-    public float gravity = -9.18f;
-    public float JumpHeight = 3f;
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
-    public LayerMask groundMask;
 
-    Vector3 velocity;
-    bool IsGrounded;
-    // Update is called once per frame
-    void Update()
+    private PlayerInput _playerInput;
+    private Rigidbody _playerRigidBody;
+
+    public float jumpForce;
+
+    private void Start()
     {
-        IsGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        _playerInput= GetComponent<PlayerInput>();
+        _playerRigidBody = GetComponent<Rigidbody>(); 
+    }
+    void FixedUpdate()
+    {
+        Move();
+        Jump();
+    }
 
+<<<<<<< HEAD
         if (IsGrounded && velocity.y < 0)
+=======
+    private void Move()
+    {
+        Vector3 moveDistance = _playerInput.MoveX*transform.right * Time.deltaTime + _playerInput.MoveZ*transform.forward * Time.deltaTime;
+        Debug.Log(moveDistance);
+        _playerRigidBody.MovePosition(_playerRigidBody.position + moveDistance);
+    }
+    private void Jump()
+    {
+        if(Input.GetKeyDown(KeyCode.Space)) 
+>>>>>>> a0327af4c4911765f703b183040c3049136c4c55
         {
-            velocity.y = -2f;
+            if(Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 2))
+            {
+                _playerRigidBody.AddForce(transform.up * jumpForce);
+            }
         }
+<<<<<<< HEAD
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -44,5 +64,7 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+=======
+>>>>>>> a0327af4c4911765f703b183040c3049136c4c55
     }
 }

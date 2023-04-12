@@ -2327,6 +2327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exitPortalScript: {fileID: 329937510}
+  IsFixDone: 0
 --- !u!65 &508792353
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2501,6 +2502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exitPortalScript: {fileID: 329937510}
+  IsFixDone: 0
 --- !u!1 &534224479
 GameObject:
   m_ObjectHideFlags: 0
@@ -3520,6 +3522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exitPortalScript: {fileID: 329937510}
+  IsFixDone: 0
 --- !u!65 &855916142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5115,7 +5118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1179899394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5852,7 +5855,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1399850330}
   - component: {fileID: 1399850335}
-  - component: {fileID: 1399850334}
   - component: {fileID: 1399850333}
   - component: {fileID: 1399850332}
   - component: {fileID: 1399850336}
@@ -5926,14 +5928,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &1399850334
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399850329}
-  m_Enabled: 1
 --- !u!20 &1399850335
 Camera:
   m_ObjectHideFlags: 0
@@ -6564,6 +6558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exitPortalScript: {fileID: 329937510}
+  IsFixDone: 0
 --- !u!65 &1533114389
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7423,6 +7418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exitPortalScript: {fileID: 329937510}
+  IsFixDone: 0
 --- !u!65 &1737594824
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8565,7 +8561,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2029380606}
   - component: {fileID: 2029380605}
-  - component: {fileID: 2029380604}
   - component: {fileID: 2029380603}
   - component: {fileID: 2029380601}
   - component: {fileID: 2029380602}
@@ -8636,14 +8631,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &2029380604
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029380600}
-  m_Enabled: 1
 --- !u!20 &2029380605
 Camera:
   m_ObjectHideFlags: 0

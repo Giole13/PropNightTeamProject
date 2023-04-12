@@ -7,10 +7,10 @@ public class MouseLook : MonoBehaviour
 {
     public float mouseSensitivity = 100f;
     public Transform playerBody;
-
-    private float maxDistance = 300f;
-    private RaycastHit hit;
-    private float xRotation = 0f;
+    public GameObject Obj;
+    private float _maxDistance = 300f;
+    private RaycastHit _hit;
+    private float _xRotation = 0f;
     private PlayerInput _playerInput;
     // Start is called before the first frame update
     void Start()
@@ -22,18 +22,22 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out _hit, _maxDistance))
         {
-            Debug.Log("hit point : " + hit.point + ", distance : " + hit.distance + ", name : " + hit.collider.name);
-            Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
+            Obj = _hit.transform.gameObject;
         }
+        else
+        {
+            Obj = null;
+        }
+
         float mouseX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
         float mouseY = _playerInput.RotateY * mouseSensitivity * Time.deltaTime;
-        
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        transform.localRotation = Quaternion.Euler(xRotation*5, 0f, 0f);
+        _xRotation -= mouseY;
+        _xRotation = Mathf.Clamp(_xRotation, -70f, 40f);
+
+        transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX*5);
     }
 }

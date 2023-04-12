@@ -12,3 +12,4 @@ public interface IInteraction
     // 상호작용을 껐을 때
     public void OffInteraction();
 }
+

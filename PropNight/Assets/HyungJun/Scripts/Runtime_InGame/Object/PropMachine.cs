@@ -13,7 +13,7 @@ public class PropMachine : MonoBehaviour, IInteraction
 
     private float _currentFixGauge = 0f;
     private bool IsFixing = false;
-    private bool IsFixDone = false;
+    public bool IsFixDone = false;
     private void Awake()
     {
         _currentFixGauge = 0f;
@@ -21,21 +21,21 @@ public class PropMachine : MonoBehaviour, IInteraction
 
     #region 프로토타입 버전
     // 플레이어와 충돌하면 플레이어 상호작용 UI 팝업 & 상호작용 게이지 상승
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.transform.tag == "Player" && !IsFixDone)
-        {
-            OnInteraction();
-        }
-    }
+    // private void OnCollisionEnter(Collision other)
+    // {
+    //     if (other.transform.tag == "Player" && !IsFixDone)
+    //     {
+    //         OnInteraction();
+    //     }
+    // }
 
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.transform.tag == "Player" && !IsFixDone)
-        {
-            OffInteraction();
-        }
-    }
+    // private void OnCollisionExit(Collision other)
+    // {
+    //     if (other.transform.tag == "Player" && !IsFixDone)
+    //     {
+    //         OffInteraction();
+    //     }
+    // }
 
 
     // 플레이어 상호작용 UI 활성화 및 게이지 증가

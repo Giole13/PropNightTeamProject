@@ -10,68 +10,100 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput _playerInput;
     private Rigidbody _playerRigidBody;
     private bool IsJump;
-    private bool IsFixPropMachine = false;
-    private bool IsMovePossible = true;
+    private bool IsDoSomething = false;
+    public bool IsMovePossible = true;
+    public bool IsPlayerNotChange = true;
     public MouseLook Look;
     public float Speed;
-    public float jumpForce;
+    public float JumpForce;
+
+    public float DashGauge;
     public GameObject Object;
 
     private void Start()
     {
-        _playerInput= GetComponent<PlayerInput>();
-        _playerRigidBody = GetComponent<Rigidbody>(); 
+        _playerInput = GetComponent<PlayerInput>();
+        _playerRigidBody = GetComponent<Rigidbody>();
     }
     private void Update()
     {
-        if(IsMovePossible)
+        if (IsMovePossible)
         {
             Move();
-            Jump(); 
+            Jump();
         }
         LeftClick();
         RightClick();
+
+        if (!IsMovePossible)
+        {
+            if (Object.GetComponent<PropMachine>().IsFixDone)
+            {
+                IsMovePossible = true;
+            }
+        }
     }
 
     private void Move()
     {
-        Vector3 moveDistance = _playerInput.MoveX*transform.right * Speed * Time.deltaTime + _playerInput.MoveZ*transform.forward * Speed * Time.deltaTime;
-        _playerRigidBody.MovePosition(_playerRigidBody.position + moveDistance);
+        Vector3 moveDistance = _playerInput.MoveX * transform.right * Speed * Time.deltaTime + _playerInput.MoveZ * transform.forward * Speed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _playerRigidBody.MovePosition(_playerRigidBody.position + (2 * moveDistance));
+        }
+        else
+        {
+            _playerRigidBody.MovePosition(_playerRigidBody.position + moveDistance);
+        }
+
+
     }
     private void Jump()
     {
-        if(_playerInput.Jump && !IsJump) 
+        if (_playerInput.Jump && !IsJump)
         {
-            _playerRigidBody.AddForce(transform.up * jumpForce,ForceMode.Impulse);
+            _playerRigidBody.AddForce(transform.up * JumpForce, ForceMode.Impulse);
             IsJump = true;
         }
     }
 
     private void LeftClick()
     {
-        if(_playerInput.LeftClick)
+        if (!IsPlayerNotChange)
         {
-            if(Look.Obj.tag == "PropMachine" && Look.ObjDistance <5)
+            return;
+        }
+
+        if (_playerInput.LeftClick)
+        {
+            // { 무언가를 해야한다.
+            if (!IsDoSomething)
             {
-                Object = Look.Obj;
-                IsFixPropMachine = true;
-                IsMovePossible = false;
-                Object.GetComponent<IInteraction>().OnInteraction();
+                // { 프롭머신을 고친다.
+                if (Look.Obj.tag == "PropMachine" && Look.ObjDistance < 1)
+                {
+                    Object = Look.Obj;
+                    IsDoSomething = true;
+                    IsMovePossible = false;
+                    Object.GetComponent<IInteraction>().OnInteraction();
+                }
+                // } 프롭머신을 고친다.
             }
+            // } 무언가를 해야한다.
+            // { 무언가 하던거를 그만한다.
+            else
+            {
+                IsDoSomething = false;
+                IsMovePossible = true;
+                Object.GetComponent<IInteraction>().OffInteraction();
+            }
+            // } 무언가 하던거를 그만한다.
         }
     }
 
     private void RightClick()
     {
-        if(_playerInput.RightClick)
-        {
-            if(IsFixPropMachine)
-            {
-                IsFixPropMachine = false;
-                IsMovePossible = true;
-                Object.GetComponent<IInteraction>().OffInteraction();
-            }
-        }
+
     }
 
     void OnCollisionEnter(Collision collision)

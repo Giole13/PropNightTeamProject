@@ -8,6 +8,7 @@ public class MouseLook : MonoBehaviour
     public float mouseSensitivity = 100f;
     public Transform playerBody;
     public GameObject Obj;
+
     public float ObjDistance;
     private float _maxDistance = 300f;
     private RaycastHit _hit;
@@ -17,7 +18,7 @@ public class MouseLook : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        _playerInput= GetComponent<PlayerInput>();
+        _playerInput = GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
@@ -50,6 +51,6 @@ public class MouseLook : MonoBehaviour
         _xRotation = Mathf.Clamp(_xRotation, -70f, 40f);
 
         transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouseX*5);
+        playerBody.Rotate(Vector3.up * mouseX * 5);
     }
 }

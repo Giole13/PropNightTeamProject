@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Change
+  - PropMachine
   layers:
   - Default
   - TransparentFX

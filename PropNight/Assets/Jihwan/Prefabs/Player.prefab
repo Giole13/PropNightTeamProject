@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c1af3c830085b429747df88f2fe90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsMovePossible: 1
   Look: {fileID: 5254400920080584799}
   Speed: 2.5
   jumpForce: 5
@@ -232,6 +233,7 @@ MonoBehaviour:
   mouseSensitivity: 100
   playerBody: {fileID: 5254400919653176949}
   Obj: {fileID: 0}
+  Player: {fileID: 5254400919653176946}
   ObjDistance: 0
 --- !u!114 &5254400920080584784
 MonoBehaviour:

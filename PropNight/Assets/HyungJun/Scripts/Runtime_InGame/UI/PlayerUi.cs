@@ -14,7 +14,6 @@ public class PlayerUi : MonoBehaviour
     }
 
 
-
     public GameObject InteractionInfo = default;
     private Image _interactionGaugeBarImage = default;
     private TMP_Text _infomationTxt = default;

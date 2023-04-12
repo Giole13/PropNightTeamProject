@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class PropMachine : MonoBehaviour, IInteraction
 {
-    private float _maxFixGauge = 100f;
+    // 몇개를 수리했는지 알려주는 변수
+    public static byte s_fixPropMachine = 0;
+    private float _maxFixGauge = 1f;
+
+    [SerializeField]
+    private ProtoExitPortal _exitPortalScript = default;
 
     private float _currentFixGauge = 0f;
     private bool IsFixing = false;
+    private bool IsFixDone = false;
     private void Awake()
     {
         _currentFixGauge = 0f;
@@ -17,7 +23,7 @@ public class PropMachine : MonoBehaviour, IInteraction
     // 플레이어와 충돌하면 플레이어 상호작용 UI 팝업 & 상호작용 게이지 상승
     private void OnCollisionEnter(Collision other)
     {
-        if (other.transform.tag == "Player")
+        if (other.transform.tag == "Player" && !IsFixDone)
         {
             OnInteraction();
         }
@@ -25,7 +31,7 @@ public class PropMachine : MonoBehaviour, IInteraction
 
     private void OnCollisionExit(Collision other)
     {
-        if (other.transform.tag == "Player")
+        if (other.transform.tag == "Player" && !IsFixDone)
         {
             OffInteraction();
         }
@@ -56,13 +62,29 @@ public class PropMachine : MonoBehaviour, IInteraction
     // 프롭머신을 수리하는 코루틴
     private IEnumerator RaiseFixGauge()
     {
-        while (IsFixing)
+        while (IsFixing && !IsFixDone)
         {
             yield return new WaitForSecondsRealtime(0.01f);
             _currentFixGauge += 0.01f;
             PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
-            if (_maxFixGauge <= _currentFixGauge) { yield break; }
+            if (_maxFixGauge <= _currentFixGauge)
+            {
+                OffInteraction();
+                IsFixDone = true;
+                ++s_fixPropMachine;
+                GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black);
+                if (5 == s_fixPropMachine) { _exitPortalScript.DoorOpen(); }
+
+
+                yield break;
+            }
         }
     }       // RaiseFixGauge()
+
+    // private void ExitPortalOpen()
+    // {
+
+    // }
+
     #endregion 프로토타입 버전
 }       // class PropMachine

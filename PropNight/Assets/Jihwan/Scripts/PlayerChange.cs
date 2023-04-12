@@ -9,9 +9,15 @@ public class PlayerChange : MonoBehaviour
     public GameObject ChangeObj;
     public GameObject Player;
 
+    private PlayerInput _playerInput;
+
+    private void Start()
+    {
+        _playerInput = GetComponent<PlayerInput>();
+    }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(_playerInput.LeftClick)
         {
             if(Look.Obj == null)
             {
@@ -31,7 +37,7 @@ public class PlayerChange : MonoBehaviour
             ChangeObj.transform.localPosition = Vector3.zero;
             Player.SetActive(false);
         }
-        if(Input.GetMouseButtonDown(1))
+        if(_playerInput.RightClick)
         {
             if(Player.activeSelf)
             {

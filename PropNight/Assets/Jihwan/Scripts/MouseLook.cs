@@ -8,6 +8,7 @@ public class MouseLook : MonoBehaviour
     public float mouseSensitivity = 100f;
     public Transform playerBody;
     public GameObject Obj;
+    public float ObjDistance;
     private float _maxDistance = 300f;
     private RaycastHit _hit;
     private float _xRotation = 0f;
@@ -25,11 +26,22 @@ public class MouseLook : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out _hit, _maxDistance))
         {
             Obj = _hit.transform.gameObject;
+            ObjDistance = _hit.distance;
         }
         else
         {
             Obj = null;
         }
+        // if(Physics.Raycast(transform.position, transform.forward, out _hit, 3))
+        // {
+        //     if(_hit.transform.tag == "PropMachine")
+        //     {
+        //         if(_playerInput.LeftClick)
+        //         {
+        //             _hit.transform.gameObject.GetComponent<IInteraction>().OnInteraction();
+        //         }
+        //     }
+        // }
 
         float mouseX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
         float mouseY = _playerInput.RotateY * mouseSensitivity * Time.deltaTime;

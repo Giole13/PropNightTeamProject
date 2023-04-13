@@ -11,17 +11,17 @@ public class PlayerChange : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            if(Look.Obj == null)
+            if (Look.Obj == null)
             {
                 return;
             }
-            if(Look.Obj.tag != "Change") 
+            if (Look.Obj.tag != "Change")
             {
                 return;
             }
-            if(ChangeObj != null)
+            if (ChangeObj != null)
             {
                 Destroy(ChangeObj);
             }
@@ -31,11 +31,11 @@ public class PlayerChange : MonoBehaviour
             ChangeObj.transform.localPosition = Vector3.zero;
             Player.SetActive(false);
         }
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
-            if(Player.activeSelf)
+            if (Player.activeSelf)
             {
-                return; 
+                return;
             }
 
             Destroy(ChangeObj);
@@ -43,5 +43,5 @@ public class PlayerChange : MonoBehaviour
             Player.SetActive(true);
         }
     }
-    
+
 }

@@ -79,6 +79,11 @@ public class PlayerMovement : MonoBehaviour
             // { 무언가를 해야한다.
             if (!IsDoSomething)
             {
+                if (Look.Obj == null)
+                {
+                    return;
+                }
+
                 // { 프롭머신을 고친다.
                 if (Look.Obj.tag == "PropMachine" && Look.ObjDistance < 1)
                 {

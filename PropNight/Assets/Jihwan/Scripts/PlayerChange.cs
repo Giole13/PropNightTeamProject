@@ -9,6 +9,7 @@ public class PlayerChange : MonoBehaviour
     public GameObject ChangeObj;
     public GameObject Player;
 
+
     private PlayerMovement _playerMovement;
     private PlayerInput _playerInput;
 

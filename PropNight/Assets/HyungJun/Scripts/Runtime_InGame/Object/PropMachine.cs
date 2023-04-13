@@ -39,7 +39,7 @@ public class PropMachine : MonoBehaviour, IInteraction
 
 
     // 플레이어 상호작용 UI 활성화 및 게이지 증가
-    public void OnInteraction()
+    public void OnInteraction(GameObject obj)
     {
         // 수치 초기화 후 켜주기
         PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
@@ -53,7 +53,7 @@ public class PropMachine : MonoBehaviour, IInteraction
     }
 
     // 플레이어 상호작용 UI 비 활성화 및 게이지 증가 정지
-    public void OffInteraction()
+    public void OffInteraction(GameObject obj)
     {
         PlayerUi.s_instance.InteractionInfo.SetActive(false);
         IsFixing = false;
@@ -69,7 +69,7 @@ public class PropMachine : MonoBehaviour, IInteraction
             PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
             if (_maxFixGauge <= _currentFixGauge)
             {
-                OffInteraction();
+                OffInteraction(gameObject);
                 IsFixDone = true;
                 ++s_fixPropMachine;
                 GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black);

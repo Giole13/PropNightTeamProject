@@ -4,28 +4,58 @@ using UnityEngine;
 
 public class KillerAttack : MonoBehaviour
 {
+    private BoxCollider AxeCollier;
+    private bool IsLeftMouseClick = false;
     // Start is called before the first frame update
     void Start()
     {
-
+        AxeCollier = GetComponent<BoxCollider>();
+        // 초기화
+        this.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
+        MouseButton();
 
     }
 
-    // 살인마 충돌 체크
-    private void OnCollisionEnter(Collision other)
+
+    // 무기 충돌 체크
+    private void OnCollisionStay(Collision other)
     {
         // 플레이어 충돌처리
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.tag == "Player" && IsLeftMouseClick)
         {
-            //  공격하기
+            Debug.Log("충돌했어");
+            Debug.Log("사라졌다");
+            //  Axe 가 사라진다.
+            this.gameObject.SetActive(false);
+
+
+
         }
+    }
 
 
+    // 마우스 왼쪽 클릭시 Axe 사라진다.
+    public void MouseButton()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(AttackTime());
+
+
+        }
+    }
+
+
+    private IEnumerator AttackTime()
+    {
+        IsLeftMouseClick = true;
+        yield return new WaitForSeconds(0.5f);
+        IsLeftMouseClick = false;
     }
 
 

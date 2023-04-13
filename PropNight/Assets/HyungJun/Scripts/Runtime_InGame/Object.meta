@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:PropNight/Assets/Horror_Axe.meta
+guid: 1f563694ee900f84c9d47237e7ef129b
+========
 guid: 0100f03d4a79b324898f083defa0dd59
+>>>>>>>> origin/Dev:PropNight/Assets/HyungJun/Scripts/Runtime_InGame/Object.meta
 folderAsset: yes
+timeCreated: 1513701086
+licenseType: Store
 DefaultImporter:
   externalObjects: {}
   userData: 

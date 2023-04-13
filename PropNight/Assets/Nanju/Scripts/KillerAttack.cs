@@ -17,7 +17,7 @@ public class KillerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MouseButton();
+        MouseLeftButton();
 
     }
 
@@ -28,19 +28,14 @@ public class KillerAttack : MonoBehaviour
         // 플레이어 충돌처리
         if (other.gameObject.tag == "Player" && IsLeftMouseClick)
         {
-            Debug.Log("충돌했어");
-            Debug.Log("사라졌다");
             //  Axe 가 사라진다.
             this.gameObject.SetActive(false);
-
-
-
         }
     }
 
 
-    // 마우스 왼쪽 클릭시 Axe 사라진다.
-    public void MouseButton()
+    // 마우스 왼쪽 클릭시 
+    public void MouseLeftButton()
     {
         if (Input.GetMouseButtonDown(0))
         {

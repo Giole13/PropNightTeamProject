@@ -8,6 +8,7 @@ TagManager:
   - Change
   - PropMachine
   - Object
+  - Killer
   layers:
   - Default
   - TransparentFX

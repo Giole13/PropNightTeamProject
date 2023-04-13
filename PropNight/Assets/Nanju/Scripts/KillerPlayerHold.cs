@@ -9,7 +9,7 @@ public class KillerPlayerHold : MonoBehaviour
 
     // 플레이어 위치값 변경해주기위함
     // 플레이어가 원래 있던 위치
-    Vector3 PlayerStartPosition = new Vector3(0, 0.5f, 5);
+    Vector3 PlayerStartPosition = new Vector3(0, 1, 5);
     Vector3 PlayerHoldPosition = new Vector3(0, 3, 5);
 
     // Start is called before the first frame update
@@ -41,6 +41,7 @@ public class KillerPlayerHold : MonoBehaviour
             Player.transform.position = Vector3.MoveTowards(PlayerStartPosition, PlayerHoldPosition, 1);
 
             // 플레이어 오브젝트가 살인마 자식으로 오게 하기
+            Player.transform.SetParent(gameObject.transform);
 
 
         }

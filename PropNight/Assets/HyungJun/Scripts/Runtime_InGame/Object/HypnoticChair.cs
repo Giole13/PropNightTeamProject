@@ -23,6 +23,8 @@ public class HypnoticChair : MonoBehaviour, IInteraction
     {
         IsCountStart = true;
 
+        obj.transform.SetParent(transform);
+
         PlayerObj = obj;
         _chairState = HypnoticChairState.WORKING;
         // GetComponent<Collider>().isTrigger = true;

@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _playerRigidBody;
     private bool IsJump;
     private bool IsDoSomething = false;
+    private int JumpCount;
+    
     public bool IsMovePossible = true;
     public bool IsPlayerNotChange = true;
     public MouseLook Look;
@@ -22,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        JumpCount = 0;
         _playerInput = GetComponent<PlayerInput>();
         _playerRigidBody = GetComponent<Rigidbody>();
     }
@@ -60,10 +63,25 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump()
     {
-        if (_playerInput.Jump && !IsJump)
+        if(IsPlayerNotChange)
         {
-            _playerRigidBody.AddForce(transform.up * JumpForce, ForceMode.Impulse);
-            IsJump = true;
+            if (_playerInput.Jump && !IsJump)
+            {
+                _playerRigidBody.AddForce(transform.up * JumpForce, ForceMode.Impulse);
+                IsJump = true;
+            }
+        }
+        else
+        {
+            if (_playerInput.Jump && !IsJump)
+            {
+                JumpCount++;
+                _playerRigidBody.AddForce(transform.up * JumpForce, ForceMode.Impulse);
+                if(JumpCount > 1)
+                {
+                    IsJump = true;
+                }
+            }
         }
     }
 
@@ -114,5 +132,6 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         IsJump = false;
+        JumpCount = 0;
     }
 }

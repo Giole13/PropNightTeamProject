@@ -8,7 +8,9 @@ public class ThirdViewCam : MonoBehaviour
     private float _yRotation;
     private PlayerInput _playerInput;
 
+    public PlayerChange ChangeObj;
     public GameObject GameObj;
+    public GameObject PlayerObj;
     public PlayerMovement Player;
     public float mouseSensitivity;
     void Start()
@@ -32,7 +34,9 @@ public class ThirdViewCam : MonoBehaviour
 
             _xRotation = Mathf.Clamp(_xRotation, -70f, 40f);
 
-            GameObj.transform.localRotation = Quaternion.Euler(_xRotation, _yRotation, 0f);
+            GameObj.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+            ChangeObj.ChangeObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f);
+            PlayerObj.transform.localRotation = Quaternion.Euler(0f, _yRotation, 0f);
 
         }
     }

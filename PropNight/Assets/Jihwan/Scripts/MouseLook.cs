@@ -11,6 +11,7 @@ public class MouseLook : MonoBehaviour
     public GameObject Obj;
     public float ObjDistance;
     public PlayerMovement Player;
+
     private float _maxDistance = 300f;
     private RaycastHit _hit;
     private float _xRotation = 0f;

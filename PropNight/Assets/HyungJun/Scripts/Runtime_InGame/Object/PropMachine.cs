@@ -41,22 +41,31 @@ public class PropMachine : MonoBehaviour, IInteraction
     // 플레이어 상호작용 UI 활성화 및 게이지 증가
     public void OnInteraction(GameObject obj)
     {
-        // 수치 초기화 후 켜주기
-        PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
-        PlayerUi.s_instance.SetInterationTxt("프롭머신 수리하는 중");
+        // 플레이어가 프롭머신을 작동하면
+        if (obj.tag == "Player")
+        {
+            // 수치 초기화 후 켜주기
+            PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
+            PlayerUi.s_instance.SetInterationTxt("프롭머신 수리하는 중");
 
-        PlayerUi.s_instance.InteractionInfo.SetActive(true);
+            PlayerUi.s_instance.InteractionInfo.SetActive(true);
 
-
-        IsFixing = true;
-        StartCoroutine(RaiseFixGauge());
+            IsFixing = true;
+            StartCoroutine(RaiseFixGauge());
+        }
+        // 킬러라면 프롭머신의 수리 진행도를 줄여주는 함수 작성
+        // else if(obj.tag == "")
     }
 
     // 플레이어 상호작용 UI 비 활성화 및 게이지 증가 정지
     public void OffInteraction(GameObject obj)
     {
-        PlayerUi.s_instance.InteractionInfo.SetActive(false);
-        IsFixing = false;
+        if (obj.tag == "Player")
+        {
+            PlayerUi.s_instance.InteractionInfo.SetActive(false);
+            IsFixing = false;
+        }
+        // else if (obj.tag == "")
     }
 
     // 프롭머신을 수리하는 코루틴

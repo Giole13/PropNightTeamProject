@@ -2194,7 +2194,7 @@ GameObject:
   - component: {fileID: 479010145}
   m_Layer: 0
   m_Name: HypnoticChair
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2228,7 +2228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6293755241fd6bd40bdb7e1c26393a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerObj: {fileID: 0}
 --- !u!65 &479010145
 BoxCollider:
   m_ObjectHideFlags: 0

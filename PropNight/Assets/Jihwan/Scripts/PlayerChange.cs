@@ -20,6 +20,13 @@ public class PlayerChange : MonoBehaviour
     }
     private void Update()
     {
+
+        if (!_playerMovement.IsplayerCanChange)
+        {
+            return;
+        }
+
+
         if (_playerInput.LeftClick)
         {
             if (Look.Obj == null)

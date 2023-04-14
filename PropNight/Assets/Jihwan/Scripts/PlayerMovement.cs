@@ -4,24 +4,29 @@ using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDamage
 {
 
     private PlayerInput _playerInput;
     private Rigidbody _playerRigidBody;
     private bool IsJump;
     private bool IsDoSomething = false;
+    private int JumpCount;
+
+    public bool IsplayerCanChange = true;
     public bool IsMovePossible = true;
     public bool IsPlayerNotChange = true;
     public MouseLook Look;
+    public PlayerChange Change;
     public float Speed;
     public float JumpForce;
-
     public float DashGauge;
+    public float HP;
     public GameObject Object;
 
     private void Start()
     {
+        JumpCount = 0;
         _playerInput = GetComponent<PlayerInput>();
         _playerRigidBody = GetComponent<Rigidbody>();
     }
@@ -60,10 +65,25 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump()
     {
-        if (_playerInput.Jump && !IsJump)
+        if (IsPlayerNotChange)
         {
-            _playerRigidBody.AddForce(transform.up * JumpForce, ForceMode.Impulse);
-            IsJump = true;
+            if (_playerInput.Jump && !IsJump)
+            {
+                _playerRigidBody.AddForce(transform.up * JumpForce, ForceMode.Impulse);
+                IsJump = true;
+            }
+        }
+        else
+        {
+            if (_playerInput.Jump && !IsJump)
+            {
+                JumpCount++;
+                _playerRigidBody.AddForce(transform.up * JumpForce, ForceMode.Impulse);
+                if (JumpCount > 1)
+                {
+                    IsJump = true;
+                }
+            }
         }
     }
 
@@ -110,9 +130,29 @@ public class PlayerMovement : MonoBehaviour
     {
 
     }
+    public void GetDamage(GameObject obj)
+    {
+        HP--;
+        if (HP < 0)
+        {
+            FallDown();
+        }
+    }
 
     void OnCollisionEnter(Collision collision)
     {
         IsJump = false;
+        JumpCount = 0;
+    }
+
+    private void FallDown()
+    {
+        if (!IsPlayerNotChange)
+        {
+            Destroy(Change.ChangeObj);
+            Change.Player.SetActive(true);
+        }
+        IsplayerCanChange = false;
+        transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
     }
 }

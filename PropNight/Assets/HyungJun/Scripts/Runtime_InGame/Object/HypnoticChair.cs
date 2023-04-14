@@ -91,18 +91,18 @@ public class HypnoticChair : MonoBehaviour, IInteraction
 
     // }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        // Debug.Log($"{other.transform.name}여기는 콜리젼 땅!");
-        if (other.transform.tag == "Player" && _chairState == HypnoticChairState.IDLE)
-        {
-            OnInteraction(other.gameObject);
-        }
-        else if (other.transform.tag == "Player" && _chairState == HypnoticChairState.WORKING)
-        {
-            OffInteraction(other.gameObject);
-        }
-    }
+    // private void OnCollisionEnter(Collision other)
+    // {
+    //     // Debug.Log($"{other.transform.name}여기는 콜리젼 땅!");
+    //     if (other.transform.tag == "Player" && _chairState == HypnoticChairState.IDLE)
+    //     {
+    //         OnInteraction(other.gameObject);
+    //     }
+    //     else if (other.transform.tag == "Player" && _chairState == HypnoticChairState.WORKING)
+    //     {
+    //         OffInteraction(other.gameObject);
+    //     }
+    // }
 
     // private void OnTriggerEnter(Collider other)
     // {

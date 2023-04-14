@@ -5,3 +5,5 @@ using UnityEngine;
 public enum ObjectSize { SMALL, MIDDLE, BIG };
 
 public enum PlayerStatus { NORMAL, FALLDOWN, CAUGHT, DIE };
+
+public enum KillerState { IDLE, PLAYERHOLD };

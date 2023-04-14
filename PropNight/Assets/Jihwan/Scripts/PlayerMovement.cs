@@ -169,6 +169,6 @@ public class PlayerMovement : MonoBehaviour, IDamage
     public void Hold()
     {
         _playerRigidBody.useGravity = false;
-        Player.GetComponent<Collider>().enabled = false;
+        Player.GetComponent<CapsuleCollider>().enabled = false;
     }
 }

@@ -23,13 +23,15 @@ public class KillerAttack : MonoBehaviour
 
 
     // 무기 충돌 체크
-    private void OnCollisionStay(Collision other)
+    private void OnTriggerStay(Collider other)
     {
+
         // 플레이어 충돌처리
         if (other.gameObject.tag == "Player" && IsLeftMouseClick)
         {
             //  Axe 가 사라진다.
-            this.gameObject.SetActive(false);
+            // this.gameObject.SetActive(false);
+            other.transform.parent.GetComponent<IDamage>().GetDamage(gameObject);
         }
     }
 

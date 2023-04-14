@@ -27,21 +27,23 @@ public class KillerPlayerHold : MonoBehaviour
 
 
     // 플레이어인 확인하기
-    private void OnCollisionStay(Collision other)
+    private void OnTriggerStay(Collider other)
     {
         // tag가 Player 인것을 찾고 대입하기
-        Player = GameObject.FindWithTag("Player");
         // 플레이어 충돌처리
-        if (other.gameObject.tag == "Player" && IsRightMouseClick)
+        if (other.CompareTag("Player") && IsRightMouseClick)
         {
-            // Debug.Log("플레이어야");
-
             Debug.Log("들었어");
-            // 플레이어 위치값 변경하기(들기)
-            Player.transform.position = Vector3.MoveTowards(PlayerStartPosition, PlayerHoldPosition, 1);
+            Player = GameObject.FindWithTag("Player");
+            // Debug.Log("플레이어야");
 
             // 플레이어 오브젝트가 살인마 자식으로 오게 하기
             Player.transform.SetParent(gameObject.transform);
+
+
+            // 플레이어 위치값 변경하기(들기)
+            Player.transform.position = Vector3.MoveTowards(PlayerStartPosition, PlayerHoldPosition, 1);
+
 
 
         }

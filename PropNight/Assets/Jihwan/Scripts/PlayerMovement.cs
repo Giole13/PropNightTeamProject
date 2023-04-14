@@ -153,6 +153,6 @@ public class PlayerMovement : MonoBehaviour, IDamage
             Change.Player.SetActive(true);
         }
         IsplayerCanChange = false;
-        transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
+        transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
     }
 }

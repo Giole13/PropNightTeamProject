@@ -11,26 +11,27 @@ public class MouseLook : MonoBehaviour
     public GameObject Obj;
     public float ObjDistance;
     public PlayerMovement Player;
+    public CinemachineVirtualCamera VirtualCamera;
 
     private float _maxDistance = 300f;
     private RaycastHit _hit;
     private float _xRotation = 0f;
     private PlayerInput _playerInput;
-    private CinemachineVirtualCamera _virtualCamera;
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         _playerInput = GetComponent<PlayerInput>();
-        _virtualCamera = GetComponent<CinemachineVirtualCamera>();
+        VirtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Player.IsPlayerNotChange)
+
+        if (Player.IsPlayerNotChange && Player.IsMovePossible)
         {
-            _virtualCamera.Priority = 11;
+            VirtualCamera.Priority = 11;
             if (Physics.Raycast(transform.position, transform.forward, out _hit, _maxDistance))
             {
                 Obj = _hit.transform.gameObject;
@@ -50,12 +51,13 @@ public class MouseLook : MonoBehaviour
 
             transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
             playerBody.Rotate(Vector3.up * mouseX * 5);
+
         }
         else
         {
-            _virtualCamera.Priority = 9;
+            VirtualCamera.Priority = 9;
         }
-        
+
 
     }
 }

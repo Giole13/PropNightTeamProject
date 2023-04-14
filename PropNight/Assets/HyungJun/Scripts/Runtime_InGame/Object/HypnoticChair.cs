@@ -37,7 +37,11 @@ public class HypnoticChair : MonoBehaviour, IInteraction
         PlayerObj.GetComponent<PlayerChange>().enabled = false;
         PlayerObj.transform.position = transform.position + new Vector3(0, 2f, 0);
 
-        foreach (Transform _obj in transform) { _obj.GetComponent<Renderer>().material.SetColor("_BaseColor", Color.black); }
+        foreach (Transform _obj in transform)
+        {
+            Renderer objRenderer = _obj.GetComponent<Renderer>();
+            if (objRenderer != null) { objRenderer.material.SetColor("_BaseColor", Color.black); }
+        }
 
         StartCoroutine(PlayerExecutionCountStart());
     }
@@ -55,7 +59,11 @@ public class HypnoticChair : MonoBehaviour, IInteraction
         PlayerObj.GetComponent<PlayerMovement>().enabled = true;
         PlayerObj.GetComponent<PlayerChange>().enabled = true;
         PlayerObj.transform.position = transform.position + new Vector3(3f, 0, 0);
-        foreach (Transform _obj in transform) { _obj.GetComponent<Renderer>().material.SetColor("_BaseColor", Color.white); }
+        foreach (Transform _obj in transform)
+        {
+            Renderer objRenderer = _obj.GetComponent<Renderer>();
+            if (objRenderer != null) { objRenderer.material.SetColor("_BaseColor", Color.white); }
+        }
 
         PlayerObj = default;
     }

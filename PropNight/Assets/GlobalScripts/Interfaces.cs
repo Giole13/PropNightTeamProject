@@ -13,4 +13,9 @@ public interface IInteraction
     public void OffInteraction(GameObject obj);
 }
 
+public interface IDamage
+{
+    public void GetDamage(GameObject obj);
+
+}
 

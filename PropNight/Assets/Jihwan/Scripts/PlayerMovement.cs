@@ -16,8 +16,10 @@ public class PlayerMovement : MonoBehaviour, IDamage
     public bool IsplayerCanChange = true;
     public bool IsMovePossible = true;
     public bool IsPlayerNotChange = true;
+    public PlayerStatus Status = PlayerStatus.NORMAL;
     public MouseLook Look;
     public PlayerChange Change;
+    public GameObject Player;
     public float Speed;
     public float JumpForce;
     public float DashGauge;
@@ -44,6 +46,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
         {
             if (Object.GetComponent<PropMachine>().IsFixDone)
             {
+
                 IsMovePossible = true;
             }
         }
@@ -152,7 +155,20 @@ public class PlayerMovement : MonoBehaviour, IDamage
             Destroy(Change.ChangeObj);
             Change.Player.SetActive(true);
         }
+        Status = PlayerStatus.FALLDOWN;
         IsplayerCanChange = false;
-        transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
+        transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+    }
+
+    public void SitOnChair()
+    {
+        Status = PlayerStatus.CAUGHT;
+        IsMovePossible = false;
+        IsplayerCanChange = false;
+    }
+    public void Hold()
+    {
+        _playerRigidBody.useGravity = false;
+        Player.GetComponent<Collider>().enabled = false;
     }
 }

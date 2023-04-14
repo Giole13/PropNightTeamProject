@@ -15,13 +15,13 @@ public class ThirdViewCam : MonoBehaviour
     public float mouseSensitivity;
     void Start()
     {
-        _playerInput = GetComponent<PlayerInput>();    
+        _playerInput = GetComponent<PlayerInput>();
     }
 
-    
+
     void Update()
     {
-        if(Player.IsPlayerNotChange)
+        if (Player.IsPlayerNotChange && Player.IsMovePossible)
         {
 
         }
@@ -35,7 +35,11 @@ public class ThirdViewCam : MonoBehaviour
             _xRotation = Mathf.Clamp(_xRotation, -70f, 40f);
 
             GameObj.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-            ChangeObj.ChangeObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f);
+            if (!Player.IsPlayerNotChange)
+            {
+                ChangeObj.ChangeObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f);
+            }
+
             PlayerObj.transform.localRotation = Quaternion.Euler(0f, _yRotation, 0f);
 
         }

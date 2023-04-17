@@ -8,7 +8,7 @@ public class HypnoticChair : MonoBehaviour, IInteraction
     {
         IDLE, WORKING
     }
-    private HypnoticChairState _chairState = HypnoticChairState.IDLE;
+    private HypnoticChairState _chairState;
 
     // 처형까지의 시간 ##################### - 중요함
     private float _maxExecutionTime = 100f;
@@ -19,6 +19,11 @@ public class HypnoticChair : MonoBehaviour, IInteraction
 
     private GameObject PlayerObj = default;
 
+
+    private void Awake()
+    {
+        _chairState = HypnoticChairState.IDLE;
+    }
     public void OnInteraction(GameObject obj)
     {
         foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black); }

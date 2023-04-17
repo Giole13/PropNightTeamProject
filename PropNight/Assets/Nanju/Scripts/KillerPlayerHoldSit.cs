@@ -15,6 +15,11 @@ public class KillerPlayerHoldSit : MonoBehaviour
 
     private PlayerMovement _playerMovementScript = default;
 
+    // Laycast를 불러와서 사용하기
+    public KillerCameraMove LookCamera;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,58 +30,25 @@ public class KillerPlayerHoldSit : MonoBehaviour
     void Update()
     {
         MouseRightButton();
-        // PlayerCheck();
+        RightClick();
     }
-    // Laycast 로 플레이어 확인하기
-    // public void PlayerCheck()
-    // {
-    //     Ray ray = new Ray(transform.position, transform.forward);
-    //     RaycastHit hitData;
 
 
-    //     if (Physics.Raycast(ray, out hitData))
-    //     {
-    //         if (IsRightMouseClick)
-    //         {
 
 
-    //             _playerMovementScript = hitData.transform.parent.GetComponent<PlayerMovement>();
-    //             if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)
-    //             {
-    //                 _killerState = KillerState.PLAYERHOLD;
-
-    //                 Player = GameObject.FindWithTag("Player");
-
-    //                 // 플레이어 오브젝트가 살인마 자식으로 오게 하기
-    //                 Player.transform.SetParent(gameObject.transform);
-    //                 // 플레이어 상태 바꾸기
-    //                 Player.GetComponent<PlayerMovement>().Hold();
-    //                 // 플레이어 위치값 변경하기(들기)
-    //                 Player.transform.position = HoldPlayerPosition.position;
-
-    //             }
-    //         }
-    //         // 플레이어 최면의자에 앉히기
-    //         else if (CompareTag("Object") && _killerState == KillerState.PLAYERHOLD)
-    //         {
-    //             Player.GetComponent<PlayerMovement>().SitOnChair();
-    //             transform.GetComponent<IInteraction>().OnInteraction(Player);
-    //         }
-    //     }
-
-    // }
-
-    // 플레이어인 확인하기
-    private void OnTriggerStay(Collider other)
+    // 오른쪽 마우스를 클릭시
+    private void RightClick()
     {
-        // 오른쪽 마우스를 클릭
         if (IsRightMouseClick)
         {
-            // Player 이름인 tag 찾기 
-            if (other.CompareTag("Player"))
+            // 플레이어 들기
+            if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 1)
             {
+                Debug.Log("맞았어");
                 // 플레이어 스크립트 가져오기
-                _playerMovementScript = other.transform.parent.GetComponent<PlayerMovement>();
+                _playerMovementScript = gameObject.transform.parent.GetComponent<PlayerMovement>();
+
+                // 플레이어의 상태가 쓰러진 상태이면
                 if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)
                 {
                     _killerState = KillerState.PLAYERHOLD;
@@ -91,15 +63,52 @@ public class KillerPlayerHoldSit : MonoBehaviour
                 }
             }
             // 플레이어 최면의자에 앉히기
-            else if (other.CompareTag("Object") && _killerState == KillerState.PLAYERHOLD)
+            else if (CompareTag("Object") && _killerState == KillerState.PLAYERHOLD)
             {
                 Player.GetComponent<PlayerMovement>().SitOnChair();
-                other.transform.GetComponent<IInteraction>().OnInteraction(Player);
+                transform.GetComponent<IInteraction>().OnInteraction(Player);
             }
 
         }
-
     }
+    // // 플레이어인 확인하기
+    // private void OnTriggerStay(Collider other)
+    // {
+    //     // 오른쪽 마우스를 클릭
+    //     if (IsRightMouseClick)
+    //     {
+    //         // Player 이름인 tag 찾기 
+    //         if (other.CompareTag("Player"))
+    //         {
+    //             // 플레이어 스크립트 가져오기
+    //             _playerMovementScript = other.transform.parent.GetComponent<PlayerMovement>();
+    //             if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)
+    //             {
+    //                 _killerState = KillerState.PLAYERHOLD;
+    //                 Player = GameObject.FindWithTag("Player");
+    //                 // 플레이어 오브젝트가 살인마 자식으로 오게 하기
+    //                 Player.transform.SetParent(gameObject.transform);
+    //                 // 플레이어 상태 바꾸기
+    //                 Player.GetComponent<PlayerMovement>().Hold();
+    //                 // 플레이어 위치값 변경하기(들기)
+    //                 Player.transform.position = HoldPlayerPosition.position;
+
+    //             }
+    //         }
+    //         // 플레이어 최면의자에 앉히기
+    //         else if (other.CompareTag("Object") && _killerState == KillerState.PLAYERHOLD)
+    //         {
+    //             Player.GetComponent<PlayerMovement>().SitOnChair();
+    //             other.transform.GetComponent<IInteraction>().OnInteraction(Player);
+    //         }
+
+    //     }
+    //     else
+    //     {
+    //         /*Do noting*/
+    //     }
+
+    // }
 
     // 마우스 오른쪽 클릭시 
     public void MouseRightButton()
@@ -121,6 +130,4 @@ public class KillerPlayerHoldSit : MonoBehaviour
         IsRightMouseClick = false;
     }
 
-
-    // IInteraction.OnInteraction(플레이어);
 }

@@ -25,9 +25,46 @@ public class KillerPlayerHoldSit : MonoBehaviour
     void Update()
     {
         MouseRightButton();
-
+        // PlayerCheck();
     }
+    // Laycast 로 플레이어 확인하기
+    // public void PlayerCheck()
+    // {
+    //     Ray ray = new Ray(transform.position, transform.forward);
+    //     RaycastHit hitData;
 
+
+    //     if (Physics.Raycast(ray, out hitData))
+    //     {
+    //         if (IsRightMouseClick)
+    //         {
+
+
+    //             _playerMovementScript = hitData.transform.parent.GetComponent<PlayerMovement>();
+    //             if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)
+    //             {
+    //                 _killerState = KillerState.PLAYERHOLD;
+
+    //                 Player = GameObject.FindWithTag("Player");
+
+    //                 // 플레이어 오브젝트가 살인마 자식으로 오게 하기
+    //                 Player.transform.SetParent(gameObject.transform);
+    //                 // 플레이어 상태 바꾸기
+    //                 Player.GetComponent<PlayerMovement>().Hold();
+    //                 // 플레이어 위치값 변경하기(들기)
+    //                 Player.transform.position = HoldPlayerPosition.position;
+
+    //             }
+    //         }
+    //         // 플레이어 최면의자에 앉히기
+    //         else if (CompareTag("Object") && _killerState == KillerState.PLAYERHOLD)
+    //         {
+    //             Player.GetComponent<PlayerMovement>().SitOnChair();
+    //             transform.GetComponent<IInteraction>().OnInteraction(Player);
+    //         }
+    //     }
+
+    // }
 
     // 플레이어인 확인하기
     private void OnTriggerStay(Collider other)
@@ -69,8 +106,6 @@ public class KillerPlayerHoldSit : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            // IsRightMouseClick = true;
-            // IsRightMouseClick = false;
 
             // 플레이어 들고 있는 시간 코루틴 실행
             StartCoroutine(HoldTime());

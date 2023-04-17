@@ -1238,7 +1238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChangeObj: {fileID: 0}
   GameObj: {fileID: 1369914049}
-  PlayerObj: {fileID: 0}
+  PlayerObj: {fileID: 392519262}
   Player: {fileID: 392519265}
   mouseSensitivity: 100
 --- !u!114 &1083446681

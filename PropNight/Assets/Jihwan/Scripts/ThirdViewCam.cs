@@ -21,11 +21,15 @@ public class ThirdViewCam : MonoBehaviour
 
     void Update()
     {
+        if (Player.Status != PlayerStatus.NORMAL)
+        {
+            return;
+        }
         if (Player.IsPlayerNotChange && Player.IsMovePossible)
         {
             float RotateX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
             _yRotation -= RotateX;
-            PlayerObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f);
+            PlayerObj.transform.localRotation = Quaternion.Euler(PlayerObj.transform.localRotation.x, -_yRotation, 0f);
         }
         else
         {
@@ -42,7 +46,7 @@ public class ThirdViewCam : MonoBehaviour
                 ChangeObj.ChangeObj.transform.localRotation = Quaternion.Euler(0f, _yRotation, 0f);
             }
 
-            PlayerObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f);
+            PlayerObj.transform.localRotation = Quaternion.Euler(PlayerObj.transform.localRotation.x, -_yRotation, 0f);
 
         }
     }

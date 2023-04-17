@@ -51,7 +51,7 @@ public class KillerAttack : MonoBehaviour
     private IEnumerator AttackTime()
     {
         IsLeftMouseClick = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return null;
         IsLeftMouseClick = false;
     }
 

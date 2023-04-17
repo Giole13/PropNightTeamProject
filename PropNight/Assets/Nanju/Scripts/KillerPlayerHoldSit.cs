@@ -25,7 +25,7 @@ public class KillerPlayerHoldSit : MonoBehaviour
     void Update()
     {
         MouseRightButton();
-        // PlayerHold();
+
     }
 
 
@@ -53,6 +53,7 @@ public class KillerPlayerHoldSit : MonoBehaviour
 
                 }
             }
+            // 플레이어 최면의자에 앉히기
             else if (other.CompareTag("Object") && _killerState == KillerState.PLAYERHOLD)
             {
                 Player.GetComponent<PlayerMovement>().SitOnChair();

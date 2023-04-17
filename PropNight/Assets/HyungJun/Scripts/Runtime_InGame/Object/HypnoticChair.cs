@@ -34,7 +34,7 @@ public class HypnoticChair : MonoBehaviour, IInteraction
         playerRigid.velocity = Vector3.zero;
         // PlayerObj.gameObject.GetComponent<PlayerInput>().enabled = false;
         PlayerObj.GetComponent<PlayerInput>().enabled = false;
-        PlayerObj.GetComponent<PlayerMovement>().enabled = false;
+        PlayerObj.GetComponent<PlayerMovement>().SitOnChair();
         PlayerObj.GetComponent<PlayerChange>().enabled = false;
         PlayerObj.transform.position = transform.position + new Vector3(0, 2f, 0);
 

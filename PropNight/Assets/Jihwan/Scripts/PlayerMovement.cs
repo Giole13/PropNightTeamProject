@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
         Status = PlayerStatus.CAUGHT;
         IsMovePossible = false;
         IsplayerCanChange = false;
-        transform.localRotation = Quaternion.Euler(-90f, 0f, 0f);
+        transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
     }
     public void Hold()
     {

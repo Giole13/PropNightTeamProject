@@ -26,12 +26,17 @@ public class InGameController : MonoBehaviour
     void Update()
     {
         UiTime();
+
     }
 
     #region 게임 시간
     public void UiTime()
     {
         uiMaxTime -= Time.deltaTime;
+        if (600f < uiMaxTime)
+        {
+            uiMaxTime = 600f;
+        }
         if (60f <= uiMaxTime)
         {
             uiTimeMin = (int)uiMaxTime / 60;
@@ -60,7 +65,7 @@ public class InGameController : MonoBehaviour
     {
         uiPropMachineCount++;
         //카운트 올라갈시 시간 10분으로 초기화
-        uiMaxTime = 600f;
+        uiMaxTime += 120f;
 
         if (uiPropMachineCount < 5)
         {

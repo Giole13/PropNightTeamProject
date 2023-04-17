@@ -8,14 +8,14 @@ public class TextCount : MonoBehaviour
 
     public void PlusCount()
     {
-        inGameController = transform.parent.parent.parent.gameObject;
+        inGameController = transform.parent.parent.parent.parent.gameObject;
 
         inGameController.GetComponent<InGameController>().UiPropMachineCount();
     }
 
     public void LivePlayer()
     {
-        inGameController = transform.parent.parent.parent.gameObject;
+        inGameController = transform.parent.parent.parent.parent.gameObject;
         inGameController.GetComponent<InGameController>().uiLivePlayerCount = 1;
 
 

@@ -157,7 +157,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
         }
         Status = PlayerStatus.FALLDOWN;
         IsplayerCanChange = false;
-        transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        transform.localRotation = Quaternion.Euler(90f, transform.localRotation.y, 0f);
     }
 
     public void SitOnChair()
@@ -165,10 +165,13 @@ public class PlayerMovement : MonoBehaviour, IDamage
         Status = PlayerStatus.CAUGHT;
         IsMovePossible = false;
         IsplayerCanChange = false;
+        transform.localRotation = Quaternion.Euler(-90f, 0f, 0f);
     }
     public void Hold()
     {
         _playerRigidBody.useGravity = false;
         Player.GetComponent<CapsuleCollider>().enabled = false;
     }
+
+
 }

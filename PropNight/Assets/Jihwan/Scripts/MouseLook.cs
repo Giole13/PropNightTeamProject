@@ -50,7 +50,7 @@ public class MouseLook : MonoBehaviour
             _xRotation = Mathf.Clamp(_xRotation, -70f, 40f);
 
             transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-            playerBody.Rotate(Vector3.up * mouseX * 5);
+            playerBody.Rotate(Vector3.down * mouseX * 5);
 
         }
         else

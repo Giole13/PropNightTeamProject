@@ -23,7 +23,9 @@ public class ThirdViewCam : MonoBehaviour
     {
         if (Player.IsPlayerNotChange && Player.IsMovePossible)
         {
-
+            float RotateX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
+            _yRotation -= RotateX;
+            PlayerObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f);
         }
         else
         {
@@ -37,10 +39,10 @@ public class ThirdViewCam : MonoBehaviour
             GameObj.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
             if (!Player.IsPlayerNotChange)
             {
-                ChangeObj.ChangeObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f);
+                ChangeObj.ChangeObj.transform.localRotation = Quaternion.Euler(0f, _yRotation, 0f);
             }
 
-            PlayerObj.transform.localRotation = Quaternion.Euler(0f, _yRotation, 0f);
+            PlayerObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f);
 
         }
     }

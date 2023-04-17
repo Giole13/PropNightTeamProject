@@ -226,7 +226,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 47824967759800963}
-  - {fileID: 47824969690990667}
   - {fileID: 47824969133890664}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -326,9 +325,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 47824969690990667}
   - {fileID: 47824969340275798}
   m_Father: {fileID: 47824968966947193}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &47824969161399892
 GameObject:
@@ -451,14 +451,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47824969340275796}
-  m_LocalRotation: {x: 0.37009698, y: -0.16683984, z: 0.06775146, w: 0.9113739}
+  m_LocalRotation: {x: 0.370097, y: -0.16683987, z: 0.06775148, w: 0.9113739}
   m_LocalPosition: {x: 1.61, y: 6.42, z: -4.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 47824968134270086}
   m_Father: {fileID: 47824969133890664}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &47824969340275797
 MonoBehaviour:
@@ -513,6 +513,7 @@ MonoBehaviour:
   ChangeObj: {fileID: 47824968966947194}
   GameObj: {fileID: 47824969133890671}
   PlayerObj: {fileID: 47824968966947196}
+  FirstCam: {fileID: 47824969133890664}
   Player: {fileID: 47824968966947198}
   mouseSensitivity: 200
 --- !u!114 &47824969340275792
@@ -559,8 +560,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 47824969161399893}
-  m_Father: {fileID: 47824968966947193}
-  m_RootOrder: 1
+  m_Father: {fileID: 47824969133890664}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &47824969690990708
 MonoBehaviour:

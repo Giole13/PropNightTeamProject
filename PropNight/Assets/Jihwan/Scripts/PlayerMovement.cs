@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
     private bool IsDoSomething = false;
     private int JumpCount;
 
+    public Animator Animator;
     public bool IsplayerCanChange = true;
     public bool IsMovePossible = true;
     public bool IsPlayerNotChange = true;
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
         JumpCount = 0;
         _playerInput = GetComponent<PlayerInput>();
         _playerRigidBody = GetComponent<Rigidbody>();
+        Animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -51,14 +53,17 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
             if (Object.GetComponent<PropMachine>().IsFixDone)
             {
-
+                Object.GetComponent<IInteraction>().OffInteraction(gameObject);
                 IsMovePossible = true;
+                IsDoSomething = false;
             }
         }
     }
 
     private void Move()
     {
+        float horizontalMove = _playerInput.MoveX;
+        float vertical = _playerInput.MoveZ;
         Vector3 moveDistance = _playerInput.MoveX * transform.right * Speed * Time.deltaTime + _playerInput.MoveZ * transform.forward * Speed * Time.deltaTime;
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -68,7 +73,9 @@ public class PlayerMovement : MonoBehaviour, IDamage
         {
             _playerRigidBody.MovePosition(_playerRigidBody.position + moveDistance);
         }
-
+        Animator.SetFloat("Vertical", vertical, 0.1f, Time.deltaTime);
+        Animator.SetFloat("Horizontal", horizontalMove, 0.1f, Time.deltaTime);
+        Animator.SetFloat("WalkSpeed", Speed);
 
     }
     private void Jump()

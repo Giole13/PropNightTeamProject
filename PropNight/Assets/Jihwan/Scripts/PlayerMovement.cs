@@ -44,6 +44,11 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
         if (!IsMovePossible)
         {
+            if (Object == null)
+            {
+                return;
+            }
+
             if (Object.GetComponent<PropMachine>().IsFixDone)
             {
 

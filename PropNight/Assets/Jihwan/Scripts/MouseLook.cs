@@ -43,14 +43,14 @@ public class MouseLook : MonoBehaviour
             }
 
 
-            float mouseX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
-            float mouseY = _playerInput.RotateY * mouseSensitivity * Time.deltaTime;
+            // float mouseX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
+            // float mouseY = _playerInput.RotateY * mouseSensitivity * Time.deltaTime;
 
-            _xRotation -= mouseY;
-            _xRotation = Mathf.Clamp(_xRotation, -70f, 40f);
+            // _xRotation -= mouseY;
+            // _xRotation = Mathf.Clamp(_xRotation, -70f, 40f);
 
-            transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-            playerBody.Rotate(Vector3.down * mouseX * 5);
+            // transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+            // playerBody.Rotate(Vector3.down * mouseX * 5);
 
         }
         else

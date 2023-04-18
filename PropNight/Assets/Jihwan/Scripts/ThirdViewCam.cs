@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using Photon.Pun;
 
-public class ThirdViewCam : MonoBehaviour
+
+public class ThirdViewCam : MonoBehaviourPun
 {
     private float _xRotation;
     private float _yRotation;
@@ -15,6 +18,7 @@ public class ThirdViewCam : MonoBehaviour
     public Transform FirstCam;
     public PlayerMovement Player;
     public float mouseSensitivity;
+    public CinemachineVirtualCamera VirtualCamera;
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -23,6 +27,8 @@ public class ThirdViewCam : MonoBehaviour
 
     void Update()
     {
+        if (!photonView.IsMine) { return; }
+
         if (Player.Status != PlayerStatus.NORMAL)
         {
             return;
@@ -72,11 +78,6 @@ public class ThirdViewCam : MonoBehaviour
             //     return;
             // }
             //{ 플레이어가 작업중일 경우
-
-
-
-
-
         }
         //} 3인칭 시점
     }

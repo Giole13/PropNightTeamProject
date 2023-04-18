@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using Photon.Pun;
 
-public class MouseLook : MonoBehaviour
+public class MouseLook : MonoBehaviourPun
 {
     public float mouseSensitivity = 100f;
     public Transform playerBody;
@@ -28,10 +29,11 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!photonView.IsMine) { return; }
 
         if (Player.IsPlayerNotChange && Player.IsMovePossible)
         {
-            VirtualCamera.Priority = 11;
+            VirtualCamera.Priority = 12;
             if (Physics.Raycast(transform.position, transform.forward, out _hit, _maxDistance))
             {
                 Obj = _hit.transform.gameObject;

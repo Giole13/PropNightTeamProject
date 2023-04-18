@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput : MonoBehaviourPun
 {
     public float MoveX { get; private set; }
     public float MoveZ { get; private set; }
@@ -11,13 +12,15 @@ public class PlayerInput : MonoBehaviour
     public bool Jump { get; private set; }
     public bool LeftClick { get; private set; }
 
-    public bool RightClick {get; private set; }
+    public bool RightClick { get; private set; }
 
     // Update is called once per frame
     void Update()
     {
+        if (!photonView.IsMine) { return; }
+
         MoveX = Input.GetAxis("Horizontal");
-        MoveZ = Input.GetAxis("Vertical");  
+        MoveZ = Input.GetAxis("Vertical");
 
         RotateX = Input.GetAxis("Mouse X");
         RotateY = Input.GetAxis("Mouse Y");

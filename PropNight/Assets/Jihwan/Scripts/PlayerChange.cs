@@ -20,6 +20,13 @@ public class PlayerChange : MonoBehaviour
     }
     private void Update()
     {
+
+        if (!_playerMovement.IsplayerCanChange)
+        {
+            return;
+        }
+
+
         if (_playerInput.LeftClick)
         {
             if (Look.Obj == null)
@@ -39,6 +46,7 @@ public class PlayerChange : MonoBehaviour
             ChangeObj.transform.SetParent(transform, true);
             ChangeObj.transform.localPosition = Vector3.zero;
             Player.SetActive(false);
+            transform.position += new Vector3(0f, ChangeObj.transform.position.y + 1, 0f);
         }
         if (_playerInput.RightClick)
         {

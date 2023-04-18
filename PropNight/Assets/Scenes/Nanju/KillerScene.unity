@@ -762,7 +762,6 @@ GameObject:
   - component: {fileID: 432789874}
   - component: {fileID: 432789877}
   - component: {fileID: 432789878}
-  - component: {fileID: 432789880}
   - component: {fileID: 432789881}
   - component: {fileID: 432789882}
   m_Layer: 12
@@ -871,19 +870,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &432789880
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 432789872}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 1}
 --- !u!143 &432789881
 CharacterController:
   m_ObjectHideFlags: 0
@@ -916,6 +902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HoldPlayerPosition: {fileID: 1977523374}
   Player: {fileID: 392519262}
+  _killerState: 0
   LookCamera: {fileID: 330585548}
 --- !u!1 &458642907
 GameObject:
@@ -1840,9 +1827,9 @@ GameObject:
   - component: {fileID: 8798868290272007778}
   - component: {fileID: 8798868290272007773}
   - component: {fileID: 8798868290272007772}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HypnoticChair
-  m_TagString: Object
+  m_TagString: HypnoticChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

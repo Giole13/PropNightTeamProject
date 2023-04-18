@@ -70,16 +70,13 @@ public class KillerCameraMove : MonoBehaviour
     public void RaycastCheck()
     {
         if (Physics.Raycast(transform.position, transform.forward, out _hit,
-                 _maxDistance, LayerMask.GetMask("Player")))
+                 _maxDistance))
         {
-            Debug.Log(_hit.transform.name);
             // 충돌 대상
-            // Debug.Log(_hit);
             Obj = _hit.transform.gameObject;
             // 충돌 범위
             ObjDistance = _hit.distance;
         }
-        // Debug.Log(Obj);
 
     }
 }

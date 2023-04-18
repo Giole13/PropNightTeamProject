@@ -38,13 +38,13 @@ public class ThirdViewCam : MonoBehaviour
         if (Player.IsPlayerNotChange && Player.IsMovePossible)
         {
 
-            // float RotateX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
-            // _yRotation -= RotateX;
-            // PlayerObj.transform.localRotation = Quaternion.Euler(PlayerObj.transform.localRotation.x, -_yRotation, 0f);
+            float RotateX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
+            _yRotation -= RotateX;
+            PlayerObj.transform.localRotation = Quaternion.Euler(PlayerObj.transform.localRotation.x, -_yRotation, 0f);
 
             // 2023-04-18 / HyungJun / Debug를 위한 주석처리 -> 주석 해제해도 무방
-            // FirstCam.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-            // PlayerObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f); ;
+            FirstCam.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+            PlayerObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f);
         }
         //} 1인칭 시점
 

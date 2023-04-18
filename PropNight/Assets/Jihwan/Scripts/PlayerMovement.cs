@@ -73,9 +73,10 @@ public class PlayerMovement : MonoBehaviour, IDamage
         {
             _playerRigidBody.MovePosition(_playerRigidBody.position + moveDistance);
         }
-        Animator.SetFloat("Vertical", vertical, 0.1f, Time.deltaTime);
-        Animator.SetFloat("Horizontal", horizontalMove, 0.1f, Time.deltaTime);
-        Animator.SetFloat("WalkSpeed", Speed);
+        // 2023-04-18 / HyungJun / 디버그를 위한 주석처리 -> 주석 해제 해도 무방
+        // Animator.SetFloat("Vertical", vertical, 0.1f, Time.deltaTime);
+        // Animator.SetFloat("Horizontal", horizontalMove, 0.1f, Time.deltaTime);
+        // Animator.SetFloat("WalkSpeed", Speed);
 
     }
     private void Jump()

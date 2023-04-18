@@ -42,11 +42,11 @@ public class KillerPlayerHoldSit : MonoBehaviour
         if (IsRightMouseClick)
         {
             // 플레이어 들기
-            if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 1)
+            if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 2f)
             {
                 Debug.Log("맞았어");
                 // 플레이어 스크립트 가져오기
-                _playerMovementScript = gameObject.transform.parent.GetComponent<PlayerMovement>();
+                _playerMovementScript = gameObject.transform.GetComponent<PlayerMovement>();
 
                 // 플레이어의 상태가 쓰러진 상태이면
                 if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)

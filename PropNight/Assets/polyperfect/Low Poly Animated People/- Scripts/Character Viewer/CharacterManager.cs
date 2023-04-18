@@ -191,8 +191,8 @@ public class CharacterManager : MonoBehaviour
     Material textMaterial;
     void SelectTile(SkinnedMeshRenderer skinnedMeshRenderer)
     {
-        if(previous != null)
-        StopCoroutine(previous);
+        if (previous != null)
+            StopCoroutine(previous);
 
         if (previousCharacter != null)
             previousCharacter.gameObject.SetActive(false);

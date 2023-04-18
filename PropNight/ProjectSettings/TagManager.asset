@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Object
   - HyponticChair
+=======
+  - Change
+>>>>>>> 67b31d54fff491b861133afe06c43120674dcdda
   - PropMachine
   layers:
   - Default
@@ -14,7 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

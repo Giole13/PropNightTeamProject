@@ -8,6 +8,7 @@ public class ThirdViewCam : MonoBehaviour
     private float _yRotation;
     private PlayerInput _playerInput;
 
+
     public PlayerChange ChangeObj;
     public GameObject GameObj;
     public GameObject PlayerObj;
@@ -61,7 +62,7 @@ public class ThirdViewCam : MonoBehaviour
             if (!Player.IsMovePossible)
             {
                 Debug.Log("!!");
-                FirstCam.transform.localRotation = Quaternion.Euler(_xRotation, _yRotation, 0f);
+                FirstCam.localRotation = Quaternion.Euler(_xRotation, 180 - _yRotation, 0f);
             }
             //} 플레이어가 오브젝트로 변신한 경우
             //{ 플레이어가 작업중일 경우

@@ -35,16 +35,8 @@ public class MouseLook : MonoBehaviourPun
         {
 
             FirstVirtualCamera.Priority = 12;
-            if (Physics.Raycast(transform.position, transform.forward, out _hit, _maxDistance))
-            {
-                Obj = _hit.transform.gameObject;
-                ObjDistance = _hit.distance;
-            }
-            else
-            {
-                Obj = null;
-            }
 
+            photonView.RPC("Search", RpcTarget.All);
 
             // float mouseX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
             // float mouseY = _playerInput.RotateY * mouseSensitivity * Time.deltaTime;
@@ -63,5 +55,18 @@ public class MouseLook : MonoBehaviourPun
         }
 
 
+    }
+    [PunRPC]
+    public void Search()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out _hit, _maxDistance))
+        {
+            Obj = _hit.transform.gameObject;
+            ObjDistance = _hit.distance;
+        }
+        else
+        {
+            Obj = null;
+        }
     }
 }

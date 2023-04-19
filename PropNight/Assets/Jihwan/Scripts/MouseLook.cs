@@ -12,7 +12,7 @@ public class MouseLook : MonoBehaviourPun
     public GameObject Obj;
     public float ObjDistance;
     public PlayerMovement Player;
-    public CinemachineVirtualCamera VirtualCamera;
+    public CinemachineVirtualCamera FirstVirtualCamera;
 
     private float _maxDistance = 300f;
     private RaycastHit _hit;
@@ -23,7 +23,7 @@ public class MouseLook : MonoBehaviourPun
     {
         Cursor.lockState = CursorLockMode.Locked;
         _playerInput = GetComponent<PlayerInput>();
-        VirtualCamera = GetComponent<CinemachineVirtualCamera>();
+        FirstVirtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
     // Update is called once per frame
@@ -33,7 +33,8 @@ public class MouseLook : MonoBehaviourPun
 
         if (Player.IsPlayerNotChange && Player.IsMovePossible)
         {
-            VirtualCamera.Priority = 12;
+
+            FirstVirtualCamera.Priority = 12;
             if (Physics.Raycast(transform.position, transform.forward, out _hit, _maxDistance))
             {
                 Obj = _hit.transform.gameObject;
@@ -57,7 +58,8 @@ public class MouseLook : MonoBehaviourPun
         }
         else
         {
-            VirtualCamera.Priority = 9;
+            FirstVirtualCamera.Priority = 11;
+
         }
 
 

@@ -69,8 +69,8 @@ public class PlayerMovement : MonoBehaviour, IDamage
         Vector3 moveDistance = _playerInput.MoveX * transform.right * Speed * Time.deltaTime + _playerInput.MoveZ * transform.forward * Speed * Time.deltaTime;
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            _playerRigidBody.MovePosition(_playerRigidBody.position + (2 * moveDistance));
-            AniSpeed = 2;
+            _playerRigidBody.MovePosition(_playerRigidBody.position + (2f * moveDistance));
+            AniSpeed = 1.5f;
         }
         else
         {
@@ -129,6 +129,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
                 if (Look.Obj.tag == "PropMachine" && Look.ObjDistance < 1)
                 {
                     Object = Look.Obj;
+                    Debug.Log(Object.name);
                     IsDoSomething = true;
                     IsMovePossible = false;
                     Object.GetComponent<IInteraction>().OnInteraction(gameObject);
@@ -165,9 +166,13 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
     void OnCollisionEnter(Collision collision)
     {
-        Animator.SetBool("IsGround", false);
-        IsJump = false;
-        JumpCount = 0;
+        if (IsJump)
+        {
+            Animator.SetBool("IsGround", false);
+            IsJump = false;
+            JumpCount = 0;
+        }
+
     }   // 생존자가 땅에 닿음
 
     private void FallDown()

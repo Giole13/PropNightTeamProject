@@ -22,6 +22,7 @@ public class ThirdViewCam : MonoBehaviourPun
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
+        VirtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
 
@@ -43,7 +44,7 @@ public class ThirdViewCam : MonoBehaviourPun
         //{ 1인칭 시점
         if (Player.IsPlayerNotChange && Player.IsMovePossible)
         {
-
+            VirtualCamera.Priority = 11;
             float RotateX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
             _yRotation -= RotateX;
             PlayerObj.transform.localRotation = Quaternion.Euler(PlayerObj.transform.localRotation.x, -_yRotation, 0f);
@@ -57,7 +58,7 @@ public class ThirdViewCam : MonoBehaviourPun
         //{ 3인칭 시점
         else
         {
-
+            VirtualCamera.Priority = 12;
             FirstCam.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
             //{ 플레이어가 오브젝트로 변신한 경우
             if (!Player.IsPlayerNotChange)

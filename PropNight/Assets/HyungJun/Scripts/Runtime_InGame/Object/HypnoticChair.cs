@@ -38,7 +38,6 @@ public class HypnoticChair : MonoBehaviour, IInteraction
         PlayerObj.GetComponent<PlayerChange>().enabled = false;
         PlayerObj.transform.position = transform.position + new Vector3(0, 2f, 0);
 
-
         StartCoroutine(PlayerExecutionCountStart());
     }
 

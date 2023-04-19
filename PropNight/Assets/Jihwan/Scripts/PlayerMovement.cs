@@ -135,7 +135,8 @@ public class PlayerMovement : MonoBehaviour, IDamage
                     Debug.Log(Object.name);
                     IsDoSomething = true;
                     IsMovePossible = false;
-                    //Object.GetComponent<IInteraction>().OnInteraction(gameObject);
+                    // 2023-04-19 / HyungJun / 실험을 위한 주석 해제
+                    Object.GetComponent<IInteraction>().OnInteraction(gameObject);
                     Animator.SetTrigger("IsFixMachine");
                 }
                 // } 프롭머신을 고친다.
@@ -146,7 +147,8 @@ public class PlayerMovement : MonoBehaviour, IDamage
             {
                 IsDoSomething = false;
                 IsMovePossible = true;
-                //Object.GetComponent<IInteraction>().OffInteraction(gameObject);
+                // 2023-04-19 / HyungJun / 실험을 위한 주석 해제
+                Object.GetComponent<IInteraction>().OffInteraction(gameObject);
                 Animator.SetTrigger("IsStop");
             }
             // } 무언가 하던거를 그만한다.

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PropMachine : MonoBehaviour, IInteraction
 {
@@ -14,6 +15,12 @@ public class PropMachine : MonoBehaviour, IInteraction
     private float _currentFixGauge = 0f;
     private bool IsFixing = false;
     public bool IsFixDone = false;
+
+    public bool IsBreakPossible { get; private set; } = false;
+
+    [SerializeField]
+    private Image _fixGaugeImage;
+
     private void Awake()
     {
         _currentFixGauge = 0f;
@@ -41,8 +48,9 @@ public class PropMachine : MonoBehaviour, IInteraction
     // 플레이어 상호작용 UI 활성화 및 게이지 증가
     public void OnInteraction(GameObject obj)
     {
+        // if()
         // 플레이어가 프롭머신을 작동하면
-        if (obj.tag == "Player")
+        if (obj.tag == "Player" && !IsFixDone)
         {
             // 수치 초기화 후 켜주기
             PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
@@ -51,10 +59,13 @@ public class PropMachine : MonoBehaviour, IInteraction
             PlayerUi.s_instance.InteractionInfo.SetActive(true);
 
             IsFixing = true;
-            StartCoroutine(RaiseFixGauge());
+            StartCoroutine(RaiseFixGauge(obj));
         }
         // 킬러라면 프롭머신의 수리 진행도를 줄여주는 함수 작성
-        // else if(obj.tag == "")
+        else if (obj.tag == "Killer" && !IsFixDone)
+        {
+            StartCoroutine(FallDownFixGauge());
+        }
     }
 
     // 플레이어 상호작용 UI 비 활성화 및 게이지 증가 정지
@@ -69,17 +80,20 @@ public class PropMachine : MonoBehaviour, IInteraction
     }
 
     // 프롭머신을 수리하는 코루틴
-    private IEnumerator RaiseFixGauge()
+    private IEnumerator RaiseFixGauge(GameObject obj)
     {
         while (IsFixing && !IsFixDone)
         {
+            IsBreakPossible = true;
             yield return new WaitForSecondsRealtime(0.01f);
             _currentFixGauge += 0.01f;
             PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
+            _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
             if (_maxFixGauge <= _currentFixGauge)
             {
                 // 수리 완료시 실행 하는 함수
-                OffInteraction(gameObject);
+                OffInteraction(obj);
+                IsBreakPossible = false;
                 IsFixDone = true;
                 ++s_fixPropMachine;
                 GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black);
@@ -90,6 +104,20 @@ public class PropMachine : MonoBehaviour, IInteraction
         }
     }       // RaiseFixGauge()
 
+
+    private IEnumerator FallDownFixGauge()
+    {
+        while (IsBreakPossible)
+        {
+            yield return new WaitForSeconds(0.01f);
+            _currentFixGauge -= 0.001f;
+            _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
+            if (_currentFixGauge <= 0)
+            {
+                yield break;
+            }
+        }
+    }
     // private void ExitPortalOpen()
     // {
 

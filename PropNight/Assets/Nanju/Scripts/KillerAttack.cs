@@ -29,8 +29,7 @@ public class KillerAttack : MonoBehaviour
         // 플레이어 충돌처리
         if (other.gameObject.tag == "Player" && IsLeftMouseClick)
         {
-            //  Axe 가 사라진다.
-            // this.gameObject.SetActive(false);
+            Debug.Log("!!");
             other.transform.parent.GetComponent<IDamage>().GetDamage(gameObject);
         }
     }

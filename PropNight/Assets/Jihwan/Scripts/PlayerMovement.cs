@@ -194,7 +194,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
         Status = PlayerStatus.CAUGHT;
         IsMovePossible = false;
         IsplayerCanChange = false;
-        transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        Player.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
     }   // 생존자가 최면의자에 앉혀짐
     public void Hold()
     {

@@ -10,6 +10,8 @@ public class KillerPlayerHoldSit : MonoBehaviour
     private bool IsRightMouseClick = false;
     // 플레이어 알기
     public GameObject Player;
+    // 카메라 알기
+    public GameObject Camera;
 
     [SerializeField]
     private KillerState _killerState = KillerState.IDLE;
@@ -42,8 +44,8 @@ public class KillerPlayerHoldSit : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-  
-            if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 3f)
+
+            if (LookCamera.Obj.tag == "Player" /*&& LookCamera.ObjDistance < 3f*/)
             {
 
                 // 플레이어 스크립트 가져오기
@@ -53,13 +55,15 @@ public class KillerPlayerHoldSit : MonoBehaviour
                 if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)
                 {
                     _killerState = KillerState.PLAYERHOLD;
-                    Player = GameObject.FindWithTag("Player");
+                    Player = LookCamera.Obj;
                     // 플레이어 오브젝트가 살인마 자식으로 오게 하기
                     Player.transform.SetParent(gameObject.transform);
                     // 플레이어 상태 바꾸기
                     Player.GetComponent<PlayerMovement>().Hold();
                     // 플레이어 위치값 변경하기(들기)
                     Player.transform.position = HoldPlayerPosition.position;
+                    // 카메라 3인칭 되게 하기
+                    Camera.transform.SetParent(null);
 
                 }
             }

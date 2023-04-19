@@ -28,8 +28,6 @@ public class KillerCameraMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ObjCheck =
-        Debug.Log(LayerMask.GetMask("Player"));
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -38,7 +36,7 @@ public class KillerCameraMove : MonoBehaviour
     {
         RaycastCheck();
 
-        // 카메라 360도 움직임
+        // 카메라 360도 움직임 (1인칭)
 
         // mouseSensitivity : 마우스 움직임에 따라 변경될 unity 내부의 사전 프로그래밍된 축
         // Time.deltaTime :  현재 프레임 속도와 독립적으로 회전하는지 확인하기 위함, 
@@ -53,7 +51,6 @@ public class KillerCameraMove : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         // 회전 축 지정   
-
         // Vector3.up : 중심으로 회전
         killerBody.Rotate(Vector3.up * mouseX);
     }
@@ -76,6 +73,8 @@ public class KillerCameraMove : MonoBehaviour
             Obj = _hit.transform.gameObject;
             // 충돌 범위
             ObjDistance = _hit.distance;
+            Debug.Log(Obj + "dsaf");
+
         }
 
     }

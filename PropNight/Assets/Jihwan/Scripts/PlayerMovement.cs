@@ -36,10 +36,12 @@ public class PlayerMovement : MonoBehaviour, IDamage
     }
     private void Update()
     {
+
         if (IsMovePossible)
         {
             Move();
             Jump();
+
         }
         LeftClick();
         RightClick();
@@ -53,7 +55,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
             if (Object.GetComponent<PropMachine>().IsFixDone)
             {
-                Object.GetComponent<IInteraction>().OffInteraction(gameObject);
+                //Object.GetComponent<IInteraction>().OffInteraction(gameObject);
                 IsMovePossible = true;
                 IsDoSomething = false;
                 Animator.SetTrigger("IsStop");
@@ -82,6 +84,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
         Animator.SetFloat("WalkSpeed", Speed);
 
     }   // 이동
+
     private void Jump()
     {
         if (IsPlayerNotChange)
@@ -132,7 +135,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
                     Debug.Log(Object.name);
                     IsDoSomething = true;
                     IsMovePossible = false;
-                    Object.GetComponent<IInteraction>().OnInteraction(gameObject);
+                    //Object.GetComponent<IInteraction>().OnInteraction(gameObject);
                     Animator.SetTrigger("IsFixMachine");
                 }
                 // } 프롭머신을 고친다.
@@ -143,7 +146,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
             {
                 IsDoSomething = false;
                 IsMovePossible = true;
-                Object.GetComponent<IInteraction>().OffInteraction(gameObject);
+                //Object.GetComponent<IInteraction>().OffInteraction(gameObject);
                 Animator.SetTrigger("IsStop");
             }
             // } 무언가 하던거를 그만한다.

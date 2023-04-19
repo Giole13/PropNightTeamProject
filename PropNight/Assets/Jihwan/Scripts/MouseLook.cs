@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using Photon.Pun;
 
-public class MouseLook : MonoBehaviour
+public class MouseLook : MonoBehaviourPun
 {
     public float mouseSensitivity = 100f;
     public Transform playerBody;
     public GameObject Obj;
     public float ObjDistance;
     public PlayerMovement Player;
-    public CinemachineVirtualCamera VirtualCamera;
+    public CinemachineVirtualCamera FirstVirtualCamera;
 
     private float _maxDistance = 300f;
     private RaycastHit _hit;
@@ -22,16 +23,18 @@ public class MouseLook : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         _playerInput = GetComponent<PlayerInput>();
-        VirtualCamera = GetComponent<CinemachineVirtualCamera>();
+        FirstVirtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!photonView.IsMine) { return; }
 
         if (Player.IsPlayerNotChange && Player.IsMovePossible)
         {
-            VirtualCamera.Priority = 11;
+
+            FirstVirtualCamera.Priority = 12;
             if (Physics.Raycast(transform.position, transform.forward, out _hit, _maxDistance))
             {
                 Obj = _hit.transform.gameObject;
@@ -43,19 +46,20 @@ public class MouseLook : MonoBehaviour
             }
 
 
-            float mouseX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
-            float mouseY = _playerInput.RotateY * mouseSensitivity * Time.deltaTime;
+            // float mouseX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
+            // float mouseY = _playerInput.RotateY * mouseSensitivity * Time.deltaTime;
 
-            _xRotation -= mouseY;
-            _xRotation = Mathf.Clamp(_xRotation, -70f, 40f);
+            // _xRotation -= mouseY;
+            // _xRotation = Mathf.Clamp(_xRotation, -70f, 40f);
 
-            transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-            playerBody.Rotate(Vector3.down * mouseX * 5);
+            // transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+            // playerBody.Rotate(Vector3.down * mouseX * 5);
 
         }
         else
         {
-            VirtualCamera.Priority = 9;
+            FirstVirtualCamera.Priority = 11;
+
         }
 
 

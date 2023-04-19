@@ -1,0 +1,713 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!1 &5364505109834819379
+=======
+--- !u!1 &3624309265792849509
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  - component: {fileID: 5364505109834819376}
+  m_Layer: 12
+  m_Name: HoldPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5364505109834819376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5364505109834819379}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8, y: 0.704, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 5364505111377584873}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5364505111377584878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5364505111377584873}
+  - component: {fileID: 5364505111377584877}
+  - component: {fileID: 5364505111377584876}
+  - component: {fileID: 5364505111377584875}
+  - component: {fileID: 5364505111377584872}
+  - component: {fileID: 5364505111377584870}
+  - component: {fileID: 5364505111377584871}
+  - component: {fileID: 5364505111377584868}
+=======
+  - component: {fileID: 3624309265792849506}
+  - component: {fileID: 3624309265792849510}
+  - component: {fileID: 3624309265792849511}
+  - component: {fileID: 3624309265792849504}
+  - component: {fileID: 3624309265792849507}
+  - component: {fileID: 3624309265792849517}
+  - component: {fileID: 3624309265792849516}
+  - component: {fileID: 3624309265792849519}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_Layer: 12
+  m_Name: Killer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!4 &5364505111377584873
+=======
+--- !u!4 &3624309265792849506
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111377584878}
+=======
+  m_GameObject: {fileID: 3624309265792849509}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  - {fileID: 5364505111472254548}
+  - {fileID: 5364505111007784979}
+  - {fileID: 5364505109834819376}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5364505111377584877
+=======
+  - {fileID: 3624309265893874399}
+  - {fileID: 3624309265959879832}
+  - {fileID: 3624309266395435963}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3624309265792849510
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111377584878}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5364505111377584876
+=======
+  m_GameObject: {fileID: 3624309265792849509}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &3624309265792849511
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111377584878}
+=======
+  m_GameObject: {fileID: 3624309265792849509}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!54 &5364505111377584875
+=======
+--- !u!54 &3624309265792849504
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111377584878}
+=======
+  m_GameObject: {fileID: 3624309265792849509}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!114 &5364505111377584872
+=======
+--- !u!114 &3624309265792849507
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111377584878}
+=======
+  m_GameObject: {fileID: 3624309265792849509}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6f1df351cfa9340a22901ef9f720ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
+  JumpForce: 10
+  IsGround: 1
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!65 &5364505111377584870
+=======
+--- !u!65 &3624309265792849517
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111377584878}
+=======
+  m_GameObject: {fileID: 3624309265792849509}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 1}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!143 &5364505111377584871
+=======
+--- !u!143 &3624309265792849516
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111377584878}
+=======
+  m_GameObject: {fileID: 3624309265792849509}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!114 &5364505111377584868
+=======
+--- !u!114 &3624309265792849519
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111377584878}
+=======
+  m_GameObject: {fileID: 3624309265792849509}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee02edf9323d8664bbfd5555a1620d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  HoldPlayerPosition: {fileID: 5364505109834819376}
+  Player: {fileID: 0}
+--- !u!1 &5364505111472254553
+=======
+  HoldPlayerPosition: {fileID: 3624309266395435963}
+  Player: {fileID: 0}
+--- !u!1 &3624309265893874386
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  - component: {fileID: 5364505111472254548}
+  - component: {fileID: 5364505111472254551}
+  - component: {fileID: 5364505111472254550}
+  - component: {fileID: 5364505111472254549}
+  - component: {fileID: 5364505111472254546}
+=======
+  - component: {fileID: 3624309265893874399}
+  - component: {fileID: 3624309265893874396}
+  - component: {fileID: 3624309265893874397}
+  - component: {fileID: 3624309265893874398}
+  - component: {fileID: 3624309265893874393}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!4 &5364505111472254548
+=======
+--- !u!4 &3624309265893874399
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111472254553}
+=======
+  m_GameObject: {fileID: 3624309265893874386}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_Father: {fileID: 5364505111377584873}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &5364505111472254551
+=======
+  m_Father: {fileID: 3624309265792849506}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &3624309265893874396
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111472254553}
+=======
+  m_GameObject: {fileID: 3624309265893874386}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!81 &5364505111472254550
+=======
+--- !u!81 &3624309265893874397
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111472254553}
+  m_Enabled: 1
+--- !u!114 &5364505111472254549
+=======
+  m_GameObject: {fileID: 3624309265893874386}
+  m_Enabled: 1
+--- !u!114 &3624309265893874398
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111472254553}
+=======
+  m_GameObject: {fileID: 3624309265893874386}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!114 &5364505111472254546
+=======
+--- !u!114 &3624309265893874393
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111472254553}
+=======
+  m_GameObject: {fileID: 3624309265893874386}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc6902d7e489954f82154e610ea9adc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 100
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  killerBody: {fileID: 5364505111377584873}
+--- !u!1001 &5364505111007914641
+=======
+  killerBody: {fileID: 3624309265792849506}
+--- !u!1 &3624309266395435960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3624309266395435963}
+  m_Layer: 12
+  m_Name: HoldPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3624309266395435963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624309266395435960}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8, y: 0.704, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 3624309265792849506}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3624309265960017434
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+    m_TransformParent: {fileID: 5364505111377584873}
+=======
+    m_TransformParent: {fileID: 3624309265792849506}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+    m_Modifications:
+    - target: {fileID: 100000, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_Name
+      value: Axe
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_Name
+      value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.199
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.058
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a974e37f7e308b14fa7e7026bce9d354, type: 3}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!4 &5364505111007784979 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354,
+    type: 3}
+  m_PrefabInstance: {fileID: 5364505111007914641}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5364505111007947825 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: a974e37f7e308b14fa7e7026bce9d354,
+    type: 3}
+  m_PrefabInstance: {fileID: 5364505111007914641}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &5364505111007914633
+=======
+--- !u!4 &3624309265959879832 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400002, guid: a974e37f7e308b14fa7e7026bce9d354,
+    type: 3}
+  m_PrefabInstance: {fileID: 3624309265960017434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3624309265960114362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: a974e37f7e308b14fa7e7026bce9d354,
+    type: 3}
+  m_PrefabInstance: {fileID: 3624309265960017434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &3624309265960017410
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111007947825}
+=======
+  m_GameObject: {fileID: 3624309265960114362}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!65 &5364505111007914636
+=======
+--- !u!65 &3624309265960017415
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111007947825}
+=======
+  m_GameObject: {fileID: 3624309265960114362}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 22.294603, z: 5.7140017}
+  m_Center: {x: 27, y: -0.40399987, z: -0.117100984}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+--- !u!114 &5364505111007914634
+=======
+--- !u!114 &3624309265960017409
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:PropNight/Assets/Resources/Prefabs/Nanju/Killer.prefab
+  m_GameObject: {fileID: 5364505111007947825}
+=======
+  m_GameObject: {fileID: 3624309265960114362}
+>>>>>>> a0e054e19b701cd0ad2f12ff0cc82aeabdf7696b:PropNight/Assets/Resources/Prefabs/Killer.prefab
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f9844f0a43d1e4987862bdda64adb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

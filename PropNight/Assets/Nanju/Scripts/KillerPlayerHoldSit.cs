@@ -42,8 +42,7 @@ public class KillerPlayerHoldSit : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-
-            // 플레이어 들기
+  
             if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 3f)
             {
 

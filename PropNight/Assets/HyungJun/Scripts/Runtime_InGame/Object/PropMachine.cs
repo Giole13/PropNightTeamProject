@@ -78,12 +78,12 @@ public class PropMachine : MonoBehaviour, IInteraction
             PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
             if (_maxFixGauge <= _currentFixGauge)
             {
+                // 수리 완료시 실행 하는 함수
                 OffInteraction(gameObject);
                 IsFixDone = true;
                 ++s_fixPropMachine;
                 GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black);
                 if (5 == s_fixPropMachine) { _exitPortalScript.DoorOpen(); }
-
 
                 yield break;
             }

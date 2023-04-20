@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Photon.Pun;
 
-public class PlayerMovement : MonoBehaviour, IDamage
+public class PlayerMovement : MonoBehaviourPun, IDamage
 {
 
     private PlayerInput _playerInput;
@@ -12,7 +13,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
     private bool IsJump;
     private bool IsDoSomething = false;
     private int JumpCount;
-
+    private bool IsDoAnimation = false;
     public Animator Animator;
     public bool IsplayerCanChange = true;
     public bool IsMovePossible = true;
@@ -27,24 +28,54 @@ public class PlayerMovement : MonoBehaviour, IDamage
     public float HP;
     public GameObject Object;
 
+    public float Timer;
+
     private void Start()
     {
         JumpCount = 0;
-        _playerInput = GetComponent<PlayerInput>();
         _playerRigidBody = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();
     }
+    private void Awake()
+    {
+        _playerInput = GetComponent<PlayerInput>();
+    }
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
     private void Update()
     {
+        if (!photonView.IsMine) { return; }
 
         if (IsMovePossible)
         {
             Move();
-            Jump();
-
+            //Jump();
+            photonView.RPC("Jump", RpcTarget.All);
         }
         LeftClick();
         RightClick();
+        // if (IsDoAnimation)
+        // {
+        //     if (!IsJump)
+        //     {
+        //         Animator.SetTrigger("IsGround");
+        //     }
+        //     else
+        //     {
+        //         Animator.SetTrigger("IsJump");
+        //     }
+        //     IsDoAnimation = false;
+        // }
+
 
         if (!IsMovePossible)
         {
@@ -79,13 +110,27 @@ public class PlayerMovement : MonoBehaviour, IDamage
             _playerRigidBody.MovePosition(_playerRigidBody.position + moveDistance);
             AniSpeed = 1;
         }
+        photonView.RPC("MoveAnimation", RpcTarget.All, vertical, horizontalMove, AniSpeed);
+
+    }   // 이동
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="MoveAni">vertical ,horizon, speed</param>
+    [PunRPC]
+    public void MoveAnimation(params object[] MoveAni)
+    {
+        if (MoveAni == null || MoveAni.Length < 3) { return; }
+
+        float vertical = (float)MoveAni[0];
+        float horizontalMove = (float)MoveAni[1];
+        float AniSpeed = (float)MoveAni[2];
         Animator.SetFloat("Vertical", vertical * AniSpeed, 0.1f, Time.deltaTime);
         Animator.SetFloat("Horizontal", horizontalMove, 0.1f, Time.deltaTime);
         Animator.SetFloat("WalkSpeed", Speed);
-
-    }   // 이동
-
-    private void Jump()
+    }
+    [PunRPC]
+    public void Jump()
     {
         if (IsPlayerNotChange)
         {
@@ -93,8 +138,8 @@ public class PlayerMovement : MonoBehaviour, IDamage
             {
                 _playerRigidBody.AddForce(transform.up * JumpForce, ForceMode.Impulse);
                 IsJump = true;
+                //IsDoAnimation = true;
                 Animator.SetTrigger("IsJump");
-                Animator.SetBool("IsGround", true);
             }
         }
         else
@@ -136,7 +181,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
                     IsDoSomething = true;
                     IsMovePossible = false;
                     // 2023-04-19 / HyungJun / 실험을 위한 주석 해제
-                    Object.GetComponent<IInteraction>().OnInteraction(gameObject);
+                    Object.GetComponent<PropMachine>().photonView.RPC("OnInteraction", RpcTarget.All, gameObject);
                     Animator.SetTrigger("IsFixMachine");
                 }
                 // } 프롭머신을 고친다.
@@ -154,7 +199,11 @@ public class PlayerMovement : MonoBehaviour, IDamage
             // } 무언가 하던거를 그만한다.
         }
     }   // 마우스 왼쪽 클릭
+    // [PunRPC]
+    // public void LeftClicking()
+    // {
 
+    // }
     private void RightClick()
     {
 
@@ -169,17 +218,38 @@ public class PlayerMovement : MonoBehaviour, IDamage
         }
     }   // 생존자가 살인마한테 맞음
 
-    void OnCollisionEnter(Collision collision)
+    // void OnCollisionEnter(Collision other)
+    // {
+    //     IsJump = false;
+    //     IsDoAnimation = true;
+    //     JumpCount = 0;
+    // }   // 생존자가 땅에 닿음
+
+
+
+    void OnCollisionStay(Collision other)
     {
-        if (IsJump)
+        if (!photonView.IsMine)
         {
-            Animator.SetBool("IsGround", false);
-            IsJump = false;
-            JumpCount = 0;
+            if (IsJump)
+            {
+                Debug.Log(transform.position.y);
+            }
+            return;
         }
 
-    }   // 생존자가 땅에 닿음
 
+        if (IsJump)
+        {
+            Timer += Time.deltaTime;
+            if (Timer > 0.1f)
+            {
+                photonView.RPC("Ground", RpcTarget.All);
+                Timer = 0;
+            }
+        }
+
+    }
     private void FallDown()
     {
         if (!IsPlayerNotChange)
@@ -192,6 +262,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
         IsplayerCanChange = false;
         Player.transform.localRotation = Quaternion.Euler(90f, transform.localRotation.y, 0f);
         Player.transform.localPosition += new Vector3(0f, 0.5f, 0f);
+
     }   // 생존자가 쓰러짐
 
     public void SitOnChair()
@@ -199,16 +270,32 @@ public class PlayerMovement : MonoBehaviour, IDamage
         Status = PlayerStatus.CAUGHT;
         IsMovePossible = false;
         IsplayerCanChange = false;
-        transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        Player.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
     }   // 생존자가 최면의자에 앉혀짐
     public void Hold()
     {
-        _playerRigidBody.useGravity = false;
+        // _playerRigidBody.useGravity = false;
+        _playerRigidBody.isKinematic = true;
         Player.GetComponent<CapsuleCollider>().enabled = false;
     }   // 생존자가 쓰러지고, 살인마에게 들어올려짐
+    public void PutDown()
+    {
+        _playerRigidBody.useGravity = true;
+        Player.GetComponent<CapsuleCollider>().enabled = true;
+    }
     private void WakeUp()
     {
 
     }
 
+    [PunRPC]
+    public void Ground()
+    {
+
+        Debug.Log($"내가 마스터인가:{PhotonNetwork.IsMasterClient}");
+        Animator.SetTrigger("IsGround");
+        IsJump = false;
+        JumpCount = 0;
+
+    }
 }

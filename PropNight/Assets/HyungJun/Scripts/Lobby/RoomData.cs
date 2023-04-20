@@ -9,6 +9,8 @@ public class RoomData : MonoBehaviour
     public int PlayerCount = 0;
     public int MaxPlayers = 0;
 
+    public Button Btn;
+
     public TMPro.TMP_Text RoomDataTxt;
 
     public void UpdateInfo()

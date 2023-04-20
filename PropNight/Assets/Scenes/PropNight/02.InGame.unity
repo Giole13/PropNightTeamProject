@@ -339,7 +339,7 @@ MonoBehaviour:
     type: 3}
   PlayerCameraPrefab: {fileID: 8414922531872592003, guid: 407b409c462bfb24fb6fc63e526411e8,
     type: 3}
-  KillerPrefab: {fileID: 3624309265792849509, guid: 192d7d315a0a5374b941ce549ebce104,
+  KillerPrefab: {fileID: 2546275018660030177, guid: c56c9adfe76eadf4ea0ed33d88dc383b,
     type: 3}
 --- !u!4 &111678157
 Transform:
@@ -3272,6 +3272,7 @@ MonoBehaviour:
   DashGauge: 0
   HP: 0
   Object: {fileID: 0}
+  Timer: 0
 --- !u!54 &1179899397
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6925357405029602303}
   m_Layer: 5
   m_Name: lobbyBlock
-  m_TagString: Untagged
+  m_TagString: ROOM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,6 +190,7 @@ MonoBehaviour:
   RoomName: 123123
   PlayerCount: 0
   MaxPlayers: 0
+  Btn: {fileID: 7092535941113573798}
   RoomDataTxt: {fileID: 7092535940985930736}
 --- !u!1 &7092535940985930742
 GameObject:

@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class KillerMoveControl : MonoBehaviour
+using Photon.Pun;
+public class KillerMoveControl : MonoBehaviourPun
 {
     public float Speed;
     // 점프하는 힘
@@ -35,6 +35,9 @@ public class KillerMoveControl : MonoBehaviour
     // 살인마 이동
     public void KillerMove()
     {
+        // 포톤에서 자기자신만 움직이게 하기 위해 
+        if (!photonView.IsMine) { return; }
+
         float xMove = Input.GetAxis("Horizontal");
         float zMove = Input.GetAxis("Vertical");
         MoveDir = new Vector3(xMove, _KillerRigidbody.velocity.y, zMove);
@@ -50,6 +53,9 @@ public class KillerMoveControl : MonoBehaviour
     // 살인마 점프
     public void KillerJump()
     {
+        // 포톤에서 자기자신만 움직이게 하기 위해 
+        if (!photonView.IsMine) { return; }
+
         // 스페이드 키를 누르면 점프
         if (Input.GetKeyDown(KeyCode.Space))
         {

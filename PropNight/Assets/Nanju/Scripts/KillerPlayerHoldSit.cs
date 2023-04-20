@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class KillerPlayerHoldSit : MonoBehaviour
+public class KillerPlayerHoldSit : MonoBehaviourPun
 {
     // 플레이어 들었을때 위치값
     public Transform HoldPlayerPosition;
@@ -35,7 +36,6 @@ public class KillerPlayerHoldSit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MouseRightButton();
         RightClick();
     }
 
@@ -45,6 +45,9 @@ public class KillerPlayerHoldSit : MonoBehaviour
     // 오른쪽 마우스를 클릭시
     private void RightClick()
     {
+        // 포톤에서 자기자신만 움직이게 하기 위해 
+        if (!photonView.IsMine) { return; }
+
         if (Input.GetMouseButtonDown(1))
         {
 
@@ -89,7 +92,8 @@ public class KillerPlayerHoldSit : MonoBehaviour
             {
                 // 플레이어 오브젝트 살인마 자식으로 빼기
                 Player.transform.SetParent(null);
-                Debug.Log("자식으로 갔니?");
+                // 플레이어 놓기
+                Player.GetComponent<PlayerMovement>().PutDown();
 
                 // 1인칭 카메라 켜기
                 ThirdCamera.SetActive(false);
@@ -100,23 +104,23 @@ public class KillerPlayerHoldSit : MonoBehaviour
         }
 
     }
-    // 마우스 오른쪽 클릭시 
-    public void MouseRightButton()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            // 플레이어 들고 있는 시간 코루틴 실행
-            StartCoroutine(HoldTime());
+    // // 마우스 오른쪽 클릭시 
+    // public void MouseRightButton()
+    // {
+    //     if (Input.GetMouseButtonDown(1))
+    //     {
+    //         // 플레이어 들고 있는 시간 코루틴 실행
+    //         StartCoroutine(HoldTime());
 
-        }
-    }
+    //     }
+    // }
 
-    // 플레이어 들고 있는 시간을 주어 마우스 오른쪽 true, false 만들기
-    private IEnumerator HoldTime()
-    {
-        IsRightMouseClick = true;
-        yield return null;
-        IsRightMouseClick = false;
-    }
+    // // 플레이어 들고 있는 시간을 주어 마우스 오른쪽 true, false 만들기
+    // private IEnumerator HoldTime()
+    // {
+    //     IsRightMouseClick = true;
+    //     yield return null;
+    //     IsRightMouseClick = false;
+    // }
 
 }

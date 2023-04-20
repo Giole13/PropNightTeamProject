@@ -14,8 +14,8 @@ public class MouseLook : MonoBehaviourPun
     public PlayerMovement Player;
     public CinemachineVirtualCamera FirstVirtualCamera;
 
-    private float _maxDistance = 300f;
-    private RaycastHit _hit;
+    private float _maxDistance = 100f;
+    private RaycastHit _hit = default;
     private float _xRotation = 0f;
     private PlayerInput _playerInput;
     // Start is called before the first frame update
@@ -38,15 +38,6 @@ public class MouseLook : MonoBehaviourPun
 
             photonView.RPC("Search", RpcTarget.All);
 
-            // float mouseX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
-            // float mouseY = _playerInput.RotateY * mouseSensitivity * Time.deltaTime;
-
-            // _xRotation -= mouseY;
-            // _xRotation = Mathf.Clamp(_xRotation, -70f, 40f);
-
-            // transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-            // playerBody.Rotate(Vector3.down * mouseX * 5);
-
         }
         else
         {
@@ -59,14 +50,19 @@ public class MouseLook : MonoBehaviourPun
     [PunRPC]
     public void Search()
     {
+
         if (Physics.Raycast(transform.position, transform.forward, out _hit, _maxDistance))
         {
-            Obj = _hit.transform.gameObject;
+            Obj = _hit.collider.gameObject;
             ObjDistance = _hit.distance;
+
         }
         else
         {
             Obj = null;
         }
+
+
+
     }
 }

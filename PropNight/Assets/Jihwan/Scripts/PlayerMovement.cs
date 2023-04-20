@@ -272,8 +272,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     }   // 생존자가 최면의자에 앉혀짐
     public void Hold()
     {
-        // _playerRigidBody.useGravity = false;
-        _playerRigidBody.isKinematic = true;
+        _playerRigidBody.useGravity = false;
+        // _playerRigidBody.isKinematic = true;
         Player.GetComponent<CapsuleCollider>().enabled = false;
     }   // 생존자가 쓰러지고, 살인마에게 들어올려짐
     public void PutDown()

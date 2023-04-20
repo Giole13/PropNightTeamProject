@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using Photon.Pun;
-public class PlayerChange : MonoBehaviourPun, IPunObservable
+public class PlayerChange : MonoBehaviourPun
 {
     public MouseLook Look;
 
@@ -19,11 +19,7 @@ public class PlayerChange : MonoBehaviourPun, IPunObservable
         _playerInput = GetComponent<PlayerInput>();
         _playerMovement = GetComponent<PlayerMovement>();
     }
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
 
-
-    }
 
     private void Update()
     {
@@ -50,7 +46,6 @@ public class PlayerChange : MonoBehaviourPun, IPunObservable
     [PunRPC]
     public void Transforming()
     {
-        //if (!photonView.IsMine) { return; }
 
         if (Look.Obj == null)
         {

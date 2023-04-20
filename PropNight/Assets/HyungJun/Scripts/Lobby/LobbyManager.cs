@@ -9,14 +9,19 @@ using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    [SerializeField]
-    private TMP_Text _inputTxt;
-    [SerializeField]
-    private TMP_Text _logTxt;
-    [SerializeField]
-    private Button _loginButton;
+    [SerializeField] private TMP_Text _inputTxt;
+    [SerializeField] private TMP_Text _logTxt;
+    [SerializeField] private Button _loginButton;
+    [SerializeField] private GameObject _lobbyListWindow;
+    [SerializeField] private GameObject _loginWindow;
 
     private string _gameVersion = "1";
+
+
+    public void CreateRoomBtnClick()
+    {
+
+    }
 
     // 게임 시작과 함께 실행하는 함수
     void Start()
@@ -38,6 +43,16 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         _logTxt.text = "서버 연결 성공!!";
     }
 
+    // 서버에 접속했을 때 로비 블럭으로 이동
+    private IEnumerator JoinLobby()
+    {
+        _logTxt.text = "로비로 이동..";
+        yield return new WaitForSeconds(0.5f);
+        _loginWindow.SetActive(false);
+        _lobbyListWindow.SetActive(true);
+
+    }
+
     // 서버 연결에 실패 했을 때 실행하는 함수
     public override void OnDisconnected(DisconnectCause cause)
     {
@@ -50,6 +65,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     // 로그인 버튼을 클릭했을 때 방을 생성 또는 접속
     public void LoginBtnClick()
     {
+        // StartCoroutine(JoinLobby());
+
         _loginButton.interactable = false;
         // 서버에 접속 중인 상태
         if (PhotonNetwork.IsConnected)

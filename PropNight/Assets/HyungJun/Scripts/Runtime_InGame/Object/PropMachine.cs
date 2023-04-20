@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class PropMachine : MonoBehaviour, IInteraction
+public class PropMachine : MonoBehaviourPun, IInteraction
 {
     // 몇개를 수리했는지 알려주는 변수
     public static byte s_fixPropMachine = 0;
@@ -46,6 +47,7 @@ public class PropMachine : MonoBehaviour, IInteraction
 
 
     // 플레이어 상호작용 UI 활성화 및 게이지 증가
+    [PunRPC]
     public void OnInteraction(GameObject obj)
     {
         // if()
@@ -69,6 +71,7 @@ public class PropMachine : MonoBehaviour, IInteraction
     }
 
     // 플레이어 상호작용 UI 비 활성화 및 게이지 증가 정지
+    [PunRPC]
     public void OffInteraction(GameObject obj)
     {
         if (obj.tag == "Player")
@@ -103,6 +106,7 @@ public class PropMachine : MonoBehaviour, IInteraction
             }
         }
     }       // RaiseFixGauge()
+
 
 
     private IEnumerator FallDownFixGauge()

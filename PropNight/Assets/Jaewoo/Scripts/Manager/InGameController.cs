@@ -52,7 +52,6 @@ public class InGameController : MonoBehaviour
         {
             timeText.text = "00 : 0" + (int)uiMaxTime;
         }
-
         if (uiMaxTime <= 0f)
         {
             timeText.text = "00 : 00";

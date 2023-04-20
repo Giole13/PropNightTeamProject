@@ -27,7 +27,7 @@ public class PlayerChange : MonoBehaviourPun, IPunObservable
 
     private void Update()
     {
-        //if (!photonView.IsMine) { return; }
+        if (!photonView.IsMine) { return; }
 
         if (!_playerMovement.IsplayerCanChange)
         {

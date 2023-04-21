@@ -181,7 +181,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                     IsDoSomething = true;
                     IsMovePossible = false;
                     // 2023-04-19 / HyungJun / 실험을 위한 주석 해제
-                    Object.GetComponent<PropMachine>().photonView.RPC("OnInteraction", RpcTarget.All, gameObject);
+                    Object.GetComponent<IInteraction>().OnInteraction(gameObject);
                     Animator.SetTrigger("IsFixMachine");
                 }
                 // } 프롭머신을 고친다.
@@ -199,46 +199,47 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
             // } 무언가 하던거를 그만한다.
         }
     }   // 마우스 왼쪽 클릭
-    // [PunRPC]
-    // public void LeftClicking()
-    // {
+        // [PunRPC]
+        // public void LeftClicking()
+        // {
 
     // }
     private void RightClick()
     {
 
     }   // 마우스 오른쪽 클릭
-    [PunRPC]
-    public void GetDamage(GameObject obj)
+
+    public void GetDamage()
     {
-        HP--;
-        if (HP < 0)
+        if (PhotonNetwork.IsMasterClient)
         {
-            Animator.SetTrigger("IsFallDown");
+            HP -= 1;
+            Debug.Log("00000000");
+            photonView.RPC("ApplyUpdatedHealth", RpcTarget.Others, HP);
+            // photonView.RPC("GetDamage", RpcTarget.Others);
+        }
+        else
+        {
+
+        }
+
+        Debug.Log("!!!!!!!!");
+
+        if (HP < 0f)
+        {
+            Debug.LogFormat("폴 다운 실행 1 isMaster {0}, Hp: {1}", PhotonNetwork.IsMasterClient, HP);
             FallDown();
         }
         // 2023.04.21 / Nanju / 다른 클라이언트 체력, 데미지, 상태 동기화로 수정
-        photonView.RPC("ApplyUpdatedHealth", RpcTarget.Others, HP);
-        photonView.RPC("GetDamage", RpcTarget.Others, obj);
-        photonView.RPC("FallDown", RpcTarget.All);
-
     }   // 생존자가 살인마한테 맞음
 
     // 2023.04.21 / Nanju / 다른 클라이언트들의 체력 동기화 함수
     [PunRPC]
     public void ApplyUpdatedHealth(float _hp)
     {
+        Debug.Log("체력을 깍는 함수");
         HP = _hp;
-
     }
-
-
-
-
-
-
-
-
 
     // void OnCollisionEnter(Collision other)
     // {
@@ -246,8 +247,6 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     //     IsDoAnimation = true;
     //     JumpCount = 0;
     // }   // 생존자가 땅에 닿음
-
-
 
     void OnCollisionStay(Collision other)
     {
@@ -272,8 +271,15 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         }
 
     }
+
+    // 쓰러지는 함수
     private void FallDown()
     {
+        Debug.LogFormat("폴 다운 실행 2 isMaster {0}, Hp: {1}", PhotonNetwork.IsMasterClient, HP);
+
+
+        Animator.SetTrigger("IsFallDown");
+
         if (!IsPlayerNotChange)
         {
             Destroy(Change.ChangeObj);
@@ -284,6 +290,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         IsplayerCanChange = false;
         Player.transform.localRotation = Quaternion.Euler(90f, transform.localRotation.y, 0f);
         Player.transform.localPosition += new Vector3(0f, 0.5f, 0f);
+        // photonView.RPC("FallDown", RpcTarget.All);
+
 
     }   // 생존자가 쓰러짐
 
@@ -314,7 +322,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     public void Ground()
     {
 
-        Debug.Log($"내가 마스터인가:{PhotonNetwork.IsMasterClient}");
+
         Animator.SetTrigger("IsGround");
         IsJump = false;
         JumpCount = 0;

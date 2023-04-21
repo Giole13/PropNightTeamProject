@@ -15,7 +15,8 @@ public interface IInteraction
 
 public interface IDamage
 {
-    public void GetDamage(GameObject obj);
+
+    public void GetDamage();
 
 }
 

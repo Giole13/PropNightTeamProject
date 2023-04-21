@@ -208,6 +208,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     {
 
     }   // 마우스 오른쪽 클릭
+    [PunRPC]
     public void GetDamage(GameObject obj)
     {
         HP--;
@@ -216,7 +217,28 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
             Animator.SetTrigger("IsFallDown");
             FallDown();
         }
+        // 2023.04.21 / Nanju / 다른 클라이언트 체력, 데미지, 상태 동기화로 수정
+        photonView.RPC("ApplyUpdatedHealth", RpcTarget.Others, HP);
+        photonView.RPC("GetDamage", RpcTarget.Others, obj);
+        photonView.RPC("FallDown", RpcTarget.All);
+
     }   // 생존자가 살인마한테 맞음
+
+    // 2023.04.21 / Nanju / 다른 클라이언트들의 체력 동기화 함수
+    [PunRPC]
+    public void ApplyUpdatedHealth(float _hp)
+    {
+        HP = _hp;
+
+    }
+
+
+
+
+
+
+
+
 
     // void OnCollisionEnter(Collision other)
     // {

@@ -26,10 +26,12 @@ public class KillerAttack : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
+
         // 플레이어 충돌처리
-        if (other.gameObject.tag == "Player" && IsLeftMouseClick)
+        if (other.transform.parent.tag == "Player" && IsLeftMouseClick)
         {
-            Debug.Log("!!");
+            Debug.Log(other.gameObject.tag);
+            Debug.Log(IsLeftMouseClick);
             other.transform.parent.GetComponent<IDamage>().GetDamage(gameObject);
         }
     }

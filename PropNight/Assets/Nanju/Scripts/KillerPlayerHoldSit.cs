@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Cinemachine;
 
 public class KillerPlayerHoldSit : MonoBehaviourPun
 {
@@ -17,6 +18,9 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
     // 3인칭 카메라
     public GameObject ThirdCamera;
 
+    [SerializeField] private CinemachineVirtualCamera VirtualFirstCamera;
+    [SerializeField] private CinemachineVirtualCamera VirtualThirdCamera;
+
     [SerializeField]
     private KillerState _killerState = KillerState.IDLE;
 
@@ -30,7 +34,11 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-
+        if (photonView.IsMine)
+        {
+            VirtualFirstCamera.Priority = 20;
+            VirtualThirdCamera.Priority = 20;
+        }
     }
 
     // Update is called once per frame

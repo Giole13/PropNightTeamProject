@@ -35,7 +35,6 @@ public class KillerMoveControl : MonoBehaviourPun
     // 살인마 이동
     public void KillerMove()
     {
-        // 포톤에서 자기자신만 움직이게 하기 위해 
         if (!photonView.IsMine) { return; }
 
         float xMove = Input.GetAxis("Horizontal");
@@ -53,7 +52,6 @@ public class KillerMoveControl : MonoBehaviourPun
     // 살인마 점프
     public void KillerJump()
     {
-        // 포톤에서 자기자신만 움직이게 하기 위해 
         if (!photonView.IsMine) { return; }
 
         // 스페이드 키를 누르면 점프

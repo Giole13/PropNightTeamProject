@@ -10,8 +10,13 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
     //     throw new System.NotImplementedException();
     // }
 
+    [Tooltip("생존자 오브젝트")]
     public GameObject PlayerPrefab;
     public GameObject PlayerCameraPrefab;
+
+
+    [Tooltip("킬러 오브젝트")]
+    public GameObject KillerPrefab;
 
 
 
@@ -19,7 +24,17 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
     void Start()
     {
         // PhotonNetwork.Instantiate(PlayerCameraPrefab.name, Vector3.zero, Quaternion.identity);
-        PhotonNetwork.Instantiate(PlayerPrefab.name, Vector3.zero, Quaternion.identity);
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.Instantiate(KillerPrefab.name, Vector3.zero, Quaternion.identity);
+        }
+        else
+        {
+            PhotonNetwork.Instantiate(PlayerPrefab.name, Vector3.zero, Quaternion.identity);
+        }
+
+
     }
 
     // Update is called once per frame

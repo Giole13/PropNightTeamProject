@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProtoExitPortal : MonoBehaviour
 {
-    private bool _IsOpened = false;
+    public bool _IsOpened = false;
 
     void Start()
     {

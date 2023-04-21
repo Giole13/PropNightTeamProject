@@ -206,6 +206,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3422202587113889106, guid: edcaa6226fbd14f4b8c4c388ed14ac21,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5270588299644734945, guid: edcaa6226fbd14f4b8c4c388ed14ac21,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6798358025511451666, guid: edcaa6226fbd14f4b8c4c388ed14ac21,
         type: 3}
       propertyPath: m_RootOrder
@@ -265,6 +275,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798358025884774717, guid: edcaa6226fbd14f4b8c4c388ed14ac21,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.17371786
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798358025884774717, guid: edcaa6226fbd14f4b8c4c388ed14ac21,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000003443032
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798358025884774717, guid: edcaa6226fbd14f4b8c4c388ed14ac21,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 6.073502e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819466828789084101, guid: edcaa6226fbd14f4b8c4c388ed14ac21,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edcaa6226fbd14f4b8c4c388ed14ac21, type: 3}
@@ -2259,6 +2289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _exitPortalScript: {fileID: 329937510}
   IsFixDone: 0
+  _fixGaugeImage: {fileID: 0}
 --- !u!65 &508792353
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3348,6 +3379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _exitPortalScript: {fileID: 329937510}
   IsFixDone: 0
+  _fixGaugeImage: {fileID: 0}
 --- !u!65 &855916142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6165,6 +6197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _exitPortalScript: {fileID: 329937510}
   IsFixDone: 0
+  _fixGaugeImage: {fileID: 0}
 --- !u!65 &1533114389
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6931,6 +6964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _exitPortalScript: {fileID: 329937510}
   IsFixDone: 0
+  _fixGaugeImage: {fileID: 0}
 --- !u!65 &1737594824
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8100,7 +8134,7 @@ MonoBehaviour:
   Obj: {fileID: 0}
   ObjDistance: 0
   Player: {fileID: 0}
-  VirtualCamera: {fileID: 0}
+  FirstVirtualCamera: {fileID: 0}
 --- !u!114 &2029380602
 MonoBehaviour:
   m_ObjectHideFlags: 0

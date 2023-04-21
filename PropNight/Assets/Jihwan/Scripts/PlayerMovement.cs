@@ -180,7 +180,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                     Debug.Log(Object.name);
                     IsDoSomething = true;
                     IsMovePossible = false;
-                    //Object.GetComponent<IInteraction>().OnInteraction(gameObject);
+                    // 2023-04-19 / HyungJun / 실험을 위한 주석 해제
+                    Object.GetComponent<PropMachine>().photonView.RPC("OnInteraction", RpcTarget.All, gameObject);
                     Animator.SetTrigger("IsFixMachine");
                 }
                 // } 프롭머신을 고친다.
@@ -191,7 +192,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
             {
                 IsDoSomething = false;
                 IsMovePossible = true;
-                //Object.GetComponent<IInteraction>().OffInteraction(gameObject);
+                // 2023-04-19 / HyungJun / 실험을 위한 주석 해제
+                Object.GetComponent<IInteraction>().OffInteraction(gameObject);
                 Animator.SetTrigger("IsStop");
             }
             // } 무언가 하던거를 그만한다.
@@ -273,6 +275,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     public void Hold()
     {
         _playerRigidBody.useGravity = false;
+        // _playerRigidBody.isKinematic = true;
         Player.GetComponent<CapsuleCollider>().enabled = false;
     }   // 생존자가 쓰러지고, 살인마에게 들어올려짐
     public void PutDown()

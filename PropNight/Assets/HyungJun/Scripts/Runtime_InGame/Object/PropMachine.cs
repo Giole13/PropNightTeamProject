@@ -28,6 +28,8 @@ public class PropMachine : MonoBehaviourPun, IInteraction, IPunObservable
     [SerializeField]
     private Image _fixGaugeImage;
 
+    private GameObject _playerObj;
+
     private void Awake()
     {
         _currentFixGauge = 0f;
@@ -53,12 +55,12 @@ public class PropMachine : MonoBehaviourPun, IInteraction, IPunObservable
 
 
     // 플레이어 상호작용 UI 활성화 및 게이지 증가
-    [PunRPC]
     public void OnInteraction(GameObject obj)
     {
+        _playerObj = obj;
         // if()
         // 플레이어가 프롭머신을 작동하면
-        if (obj.tag == "Player" && !IsFixDone)
+        if (_playerObj.tag == "Player" && !IsFixDone)
         {
             // UI 출력
             // 수치 초기화 후 켜주기
@@ -67,30 +69,44 @@ public class PropMachine : MonoBehaviourPun, IInteraction, IPunObservable
 
             PlayerUi.s_instance.InteractionInfo.SetActive(true);
 
+            // 플레이어정보를 가져와서 자신이 맞는지 확인
+            // if (_playerObj.GetComponent<PlayerMovement>().photonView.IsMine) { return; }
             IsFixing = true;
-            StartCoroutine(RaiseFixGauge(obj));
+            StartCoroutine(RaiseFixGauge());
         }
-        // 킬러라면 프롭머신의 수리 진행도를 줄여주는 함수 작성
-        else if (obj.tag == "Killer" && !IsFixDone)
+        else if (_playerObj.tag == "Killer" && !IsFixDone)
         {
             StartCoroutine(FallDownFixGauge());
         }
+
+        photonView.RPC("PropMachineInteraction", RpcTarget.All);
+        // 킬러라면 프롭머신의 수리 진행도를 줄여주는 함수 작성
     }
 
-    // 플레이어 상호작용 UI 비 활성화 및 게이지 증가 정지
     [PunRPC]
-    public void OffInteraction(GameObject obj)
+    public void PropMachineInteraction()
     {
-        if (obj.tag == "Player")
+    }
+
+    [PunRPC]
+    public void StopFixPropMachine()
+    {
+        if (_playerObj.tag == "Player")
         {
             PlayerUi.s_instance.InteractionInfo.SetActive(false);
             IsFixing = false;
         }
+    }
+
+    // 플레이어 상호작용 UI 비 활성화 및 게이지 증가 정지
+    public void OffInteraction(GameObject obj)
+    {
+        photonView.RPC("StopFixPropMachine", RpcTarget.All);
         // else if (obj.tag == "")
     }
 
     // 프롭머신을 수리하는 코루틴
-    private IEnumerator RaiseFixGauge(GameObject obj)
+    private IEnumerator RaiseFixGauge()
     {
         while (IsFixing && !IsFixDone)
         {
@@ -103,7 +119,6 @@ public class PropMachine : MonoBehaviourPun, IInteraction, IPunObservable
             if (_maxFixGauge <= _currentFixGauge)
             {
                 // 수리 완료시 실행 하는 함수
-                OffInteraction(obj);
                 IsBreakPossible = false;
                 IsFixDone = true;
                 ++s_fixPropMachine;
@@ -136,9 +151,11 @@ public class PropMachine : MonoBehaviourPun, IInteraction, IPunObservable
     // 현재 프롭머신의 게이지 상태를 공유하는 함수
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+        Debug.Log("여기는 주기적으로 실행하는 부분");
         // 현재 실행하는 스크립트가 로컬일 경우 쓰기
-        if (stream.IsWriting)
+        if (PhotonNetwork.IsMasterClient)
         {
+            Debug.Log("여기는 로컬일 때");
             stream.SendNext(s_fixPropMachine);
             stream.SendNext(_currentFixGauge);
             stream.SendNext(IsFixing);
@@ -148,11 +165,13 @@ public class PropMachine : MonoBehaviourPun, IInteraction, IPunObservable
         // 다른 클라이언트라면 받기
         else
         {
+            Debug.Log("여기는 리모트일 때");
             s_fixPropMachine = (byte)stream.ReceiveNext();
             _currentFixGauge = (float)stream.ReceiveNext();
             IsFixing = (bool)stream.ReceiveNext();
             IsFixDone = (bool)stream.ReceiveNext();
             IsBreakPossible = (bool)stream.ReceiveNext();
+
         }
     }
 

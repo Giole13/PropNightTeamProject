@@ -31,17 +31,14 @@ public class MouseLook : MonoBehaviourPun
     {
         if (!photonView.IsMine) { return; }
 
-        if (Player.IsPlayerNotChange && Player.IsMovePossible)
+        if (!Player.IsPlayerNotChange || !Player.IsMovePossible || Player.IsFallDown)
         {
-
-            FirstVirtualCamera.Priority = 12;
-
-            photonView.RPC("Search", RpcTarget.All);
-
+            FirstVirtualCamera.Priority = 11;
         }
         else
         {
-            FirstVirtualCamera.Priority = 11;
+            FirstVirtualCamera.Priority = 12;
+            photonView.RPC("Search", RpcTarget.All);
 
         }
 

@@ -79,30 +79,37 @@ public class PropMachine : MonoBehaviourPun, IInteraction, IPunObservable
             StartCoroutine(FallDownFixGauge());
         }
 
-        photonView.RPC("PropMachineInteraction", RpcTarget.All);
+        // photonView.RPC("PropMachineFixGaugeUpdate", RpcTarget.All);
         // 킬러라면 프롭머신의 수리 진행도를 줄여주는 함수 작성
     }
 
+
+
+    /// <summary> 프롭머신 위쪽의 게이지바를 업데이트 하는 로직</summary>
     [PunRPC]
-    public void PropMachineInteraction()
+    public void PropMachineFixGaugeUpdate()
     {
+        _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
     }
 
-    [PunRPC]
-    public void StopFixPropMachine()
+    // [PunRPC]
+    // public void StopFixPropMachine()
+    // {
+    //     if (_playerObj.tag == "Player")
+    //     {
+    //         PlayerUi.s_instance.InteractionInfo.SetActive(false);
+    //         IsFixing = false;
+    //     }
+    // }
+
+    // 플레이어 상호작용 UI 비 활성화 및 게이지 증가 정지
+    public void OffInteraction(GameObject obj)
     {
         if (_playerObj.tag == "Player")
         {
             PlayerUi.s_instance.InteractionInfo.SetActive(false);
             IsFixing = false;
         }
-    }
-
-    // 플레이어 상호작용 UI 비 활성화 및 게이지 증가 정지
-    public void OffInteraction(GameObject obj)
-    {
-        photonView.RPC("StopFixPropMachine", RpcTarget.All);
-        // else if (obj.tag == "")
     }
 
     // 프롭머신을 수리하는 코루틴
@@ -115,7 +122,8 @@ public class PropMachine : MonoBehaviourPun, IInteraction, IPunObservable
             _currentFixGauge += 0.01f;
             PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
             // 프롭머신의 위에 존재하는 게이지바를 업데이트 하는 로직
-            _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
+            photonView.RPC("PropMachineFixGaugeUpdate", RpcTarget.All);
+            // _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
             if (_maxFixGauge <= _currentFixGauge)
             {
                 // 수리 완료시 실행 하는 함수

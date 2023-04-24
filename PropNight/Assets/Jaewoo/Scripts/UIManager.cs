@@ -5,8 +5,25 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
+    enum TopMenu
+    {
+        None = 0,
+        Play,
+        Customs,
+        Option
+    }
+
+    enum Custom
+    {
+        None = 0,
+        Charactor,
+        Avatar,
+        Banner
+    }
+    //마우스 클릭을 여부
+    public bool isClick = false;
+    public GameObject uiGameObject = default;
     private static UIManager _instance = default;
-    // private static GameManager _instance = default;
 
     public static UIManager Instance
     {
@@ -22,5 +39,12 @@ public class UIManager : MonoBehaviour
             return _instance;
         }
     }
+
+
+
+
+
+
+
 
 }

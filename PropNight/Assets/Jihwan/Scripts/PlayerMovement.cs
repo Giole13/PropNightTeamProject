@@ -228,7 +228,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         if (HP < 0f)
         {
             Debug.LogFormat("폴 다운 실행 1 isMaster {0}, Hp: {1}", PhotonNetwork.IsMasterClient, HP);
-            FallDown();
+            //FallDown();
+            photonView.RPC("FallDown", RpcTarget.All);
         }
         // 2023.04.21 / Nanju / 다른 클라이언트 체력, 데미지, 상태 동기화로 수정
     }   // 생존자가 살인마한테 맞음
@@ -273,6 +274,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     }
 
     // 쓰러지는 함수
+    [PunRPC]
     private void FallDown()
     {
         Debug.LogFormat("폴 다운 실행 2 isMaster {0}, Hp: {1}", PhotonNetwork.IsMasterClient, HP);

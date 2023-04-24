@@ -25,14 +25,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void CreateRoomBtnClick()
     {
         PhotonNetwork.CreateRoom(TxtRoomName.text
-                                , new RoomOptions { MaxPlayers = 4 });
+                                , new RoomOptions { MaxPlayers = 5 });
     }
 
     // 로그인 버튼을 클릭했을 때 방을 생성 또는 접속
     public void LoginBtnClick()
     {
         StartCoroutine(JoinLobby());
-
+        _loginButton.interactable = false;
         // _loginButton.interactable = false;
         // // 서버에 접속 중인 상태
         // if (PhotonNetwork.IsConnected)

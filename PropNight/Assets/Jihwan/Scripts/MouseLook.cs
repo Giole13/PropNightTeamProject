@@ -50,7 +50,6 @@ public class MouseLook : MonoBehaviourPun
     [PunRPC]
     public void Search()
     {
-
         if (Physics.Raycast(transform.position, transform.forward, out _hit, _maxDistance))
         {
             Obj = _hit.collider.gameObject;
@@ -61,8 +60,5 @@ public class MouseLook : MonoBehaviourPun
         {
             Obj = null;
         }
-
-
-
     }
 }

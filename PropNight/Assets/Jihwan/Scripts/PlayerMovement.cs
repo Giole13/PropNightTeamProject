@@ -181,7 +181,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                     IsDoSomething = true;
                     IsMovePossible = false;
                     // 2023-04-19 / HyungJun / 실험을 위한 주석 해제
-                    Object.GetComponent<PropMachine>().photonView.RPC("OnInteraction", RpcTarget.All, gameObject);
+                    Object.GetComponent<IInteraction>().OnInteraction(gameObject);
                     Animator.SetTrigger("IsFixMachine");
                 }
                 // } 프롭머신을 고친다.

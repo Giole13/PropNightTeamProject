@@ -4,20 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class PropMachine : MonoBehaviourPun, IInteraction
+public class PropMachine : MonoBehaviourPun, IInteraction, IPunObservable
 {
     // 몇개를 수리했는지 알려주는 변수
-    public static byte s_fixPropMachine = 0;
     private float _maxFixGauge = 1f;
 
     [SerializeField]
     private ProtoExitPortal _exitPortalScript = default;
 
+    #region 각 클라이언트가 공유해야하는 자원
+    // 현재 수리된 프롭머신의 합계
+    public static byte s_fixPropMachine = 0;
+    // 해당 프롭머신의 수리 진행도
     private float _currentFixGauge = 0f;
+    // 수리 중인지 체크하는 변수
     private bool IsFixing = false;
+    // 수리 완료 변수
     public bool IsFixDone = false;
-
+    // 해당 프롭머신이 파괴 가능한지 체크하는 변수
     public bool IsBreakPossible { get; private set; } = false;
+    #endregion 각 클라이언트가 공유해야하는 자원
 
     [SerializeField]
     private Image _fixGaugeImage;
@@ -54,6 +60,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
         // 플레이어가 프롭머신을 작동하면
         if (obj.tag == "Player" && !IsFixDone)
         {
+            // UI 출력
             // 수치 초기화 후 켜주기
             PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
             PlayerUi.s_instance.SetInterationTxt("프롭머신 수리하는 중");
@@ -91,6 +98,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
             yield return new WaitForSecondsRealtime(0.01f);
             _currentFixGauge += 0.01f;
             PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
+            // 프롭머신의 위에 존재하는 게이지바를 업데이트 하는 로직
             _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
             if (_maxFixGauge <= _currentFixGauge)
             {
@@ -122,6 +130,32 @@ public class PropMachine : MonoBehaviourPun, IInteraction
             }
         }
     }
+
+
+
+    // 현재 프롭머신의 게이지 상태를 공유하는 함수
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        // 현재 실행하는 스크립트가 로컬일 경우 쓰기
+        if (stream.IsWriting)
+        {
+            stream.SendNext(s_fixPropMachine);
+            stream.SendNext(_currentFixGauge);
+            stream.SendNext(IsFixing);
+            stream.SendNext(IsFixDone);
+            stream.SendNext(IsBreakPossible);
+        }
+        // 다른 클라이언트라면 받기
+        else
+        {
+            s_fixPropMachine = (byte)stream.ReceiveNext();
+            _currentFixGauge = (float)stream.ReceiveNext();
+            IsFixing = (bool)stream.ReceiveNext();
+            IsFixDone = (bool)stream.ReceiveNext();
+            IsBreakPossible = (bool)stream.ReceiveNext();
+        }
+    }
+
     // private void ExitPortalOpen()
     // {
 

@@ -8,12 +8,29 @@ public class KillerAttack : MonoBehaviourPun
 {
     private BoxCollider AxeCollier;
     private bool IsLeftMouseClick = false;
+
+
+
+    // 프롭머신 망치기
+    // Laycast를 불러와서 사용하기
+    public KillerCameraMove LookCamera;
+    // 프롭머신을 공격할 수 있는지 여부를 알기
+    public PropMachine AttackPropMachineCheck;
+    // 프롭머신 게이지 닳는 함수 가져오기
+    public PropMachine PropMachineGauge;
+
+    public GameObject PropMachineUI;
+    public GameObject Killer;
+
+
     // Start is called before the first frame update
     void Start()
     {
         AxeCollier = GetComponent<BoxCollider>();
         // 초기화
         this.gameObject.SetActive(true);
+        // 프롭머신 ui 초기화
+        PropMachineUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -31,13 +48,35 @@ public class KillerAttack : MonoBehaviourPun
         // 플레이어 충돌처리
         if (other.transform.parent.tag == "Player" && Input.GetMouseButtonDown(0))
         {
-            Debug.Log(other.gameObject.tag);
-            Debug.Log(IsLeftMouseClick);
-
             other.transform.parent.GetComponent<IDamage>().GetDamage();
 
         }
     }
+
+
+
+    // 프롭머신 파괴하기 위한 함수
+    [PunRPC]
+    public void PropMachineAttack()
+    {
+        // 프롭머신 파괴 가능
+        if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f && AttackPropMachineCheck.IsBreakPossible == true)
+        {
+            // ui 활성화 시키기
+            PropMachineUI.SetActive(true);
+            // 파괴한다.
+            // 프롭머신 게이지 닳는 함수 실행
+            PropMachineGauge.OnInteraction(Killer);
+        }
+        // 프롭머신이 파괴 불가능 
+        else if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f && AttackPropMachineCheck.IsBreakPossible == false)
+        {
+            /*Do nothing*/
+        }
+    }
+
+
+
 
 
     // // 마우스 왼쪽 클릭시 
@@ -60,5 +99,4 @@ public class KillerAttack : MonoBehaviourPun
     // }
 
 
-    // 일정 범위에 들면 플레이어인지 확인 후 마우스로 클릭해 공격
 }

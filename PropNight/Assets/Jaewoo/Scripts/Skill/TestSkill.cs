@@ -20,6 +20,13 @@ public class TestSkill : MonoBehaviour
             StartCoroutine(AbilityCoolTime(5f));
         }
     }
+    public void AbilityRun()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+
+        }
+    }
 
     IEnumerator AbilityCoolTime(float cool)
     {
@@ -27,11 +34,12 @@ public class TestSkill : MonoBehaviour
         while (1.0f < cool)
         {
             cool -= Time.deltaTime;
-            skillCoolImage.fillAmount = (1.0f / cool);
+            skillCoolImage.fillAmount = (1f / cool);
             yield return new WaitForFixedUpdate();
         }
         Debug.Log("코루틴끝");
     }
+
     public void RunSkill()
     {
 

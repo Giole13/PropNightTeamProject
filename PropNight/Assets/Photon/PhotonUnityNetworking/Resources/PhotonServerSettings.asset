@@ -50,7 +50,9 @@ MonoBehaviour:
   - LeftClicking
   - OffInteraction
   - OnInteraction
-  - changeobj
+  - GetDamage
+  - ApplyUpdatedHealth
+  - FallDown
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -38,9 +38,9 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
             PhotonNetwork.Instantiate(PlayerPrefab.name, Vector3.zero, Quaternion.identity);
             _playerUI.SetActive(true);
         }
-
-
     }
+
+
 
     // Update is called once per frame
     void Update()

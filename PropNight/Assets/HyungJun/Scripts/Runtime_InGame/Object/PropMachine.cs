@@ -91,23 +91,20 @@ public class PropMachine : MonoBehaviourPun, IInteraction, IPunObservable
         StartCoroutine(RaiseFixGauge());
     }
 
-    // [PunRPC]
-    // public void StopFixPropMachine()
-    // {
-    //     if (_playerObj.tag == "Player")
-    //     {
-    //         PlayerUi.s_instance.InteractionInfo.SetActive(false);
-    //         IsFixing = false;
-    //     }
-    // }
+    [PunRPC]
+    public void StopFixPropMachine(bool IsFixingValue)
+    {
+        IsFixing = IsFixingValue;
+    }
 
     // 플레이어 상호작용 UI 비 활성화 및 게이지 증가 정지
     public void OffInteraction(string tagName)
     {
         if (tagName == "Player")
         {
-            PlayerUi.s_instance.InteractionInfo.SetActive(false);
-            IsFixing = false;
+            // PlayerUi.s_instance.InteractionInfo.SetActive(false);
+            // IsFixing = false;
+            photonView.RPC("StopFixPropMachine", RpcTarget.All, false);
         }
     }
 
@@ -119,7 +116,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction, IPunObservable
             IsBreakPossible = true;
             yield return new WaitForSecondsRealtime(0.01f);
             _currentFixGauge += 0.01f;
-            PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
+            // PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
             // 프롭머신의 위에 존재하는 게이지바를 업데이트 하는 로직
             _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
             // _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;

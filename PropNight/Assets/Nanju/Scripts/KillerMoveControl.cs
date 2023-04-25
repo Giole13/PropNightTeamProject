@@ -39,14 +39,8 @@ public class KillerMoveControl : MonoBehaviourPun
 
         float xMove = Input.GetAxis("Horizontal");
         float zMove = Input.GetAxis("Vertical");
-        MoveDir = new Vector3(xMove, _KillerRigidbody.velocity.y, zMove);
 
-        // 벡터를 로컬 좌표계 기준에서 월드 좌표계 기준으로 변환한다.
-        MoveDir = transform.TransformDirection(MoveDir);
-        // _KillerRigidbody.velocity = new Vector3(xMove * Speed, _KillerRigidbody.velocity.y, zMove * Speed);
-
-        // 살인마 움직임
-        _KillerRigidbody.velocity = MoveDir;
+        transform.Translate((new Vector3(xMove, 0, zMove) * Speed) * Time.deltaTime);
     }
 
     // 살인마 점프
@@ -61,7 +55,8 @@ public class KillerMoveControl : MonoBehaviourPun
             if (IsGround)
             {
                 IsGround = false;
-                _KillerRigidbody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+                _KillerRigidbody.velocity = Vector3.up * JumpForce;
+
             }
             // 공중에 떠 있는 상태이면 점프하지 못하도록 리턴
             else
@@ -74,12 +69,12 @@ public class KillerMoveControl : MonoBehaviourPun
     // 충돌 처리
     private void OnCollisionEnter(Collision other)
     {
-        // // 땅 충돌 처리(Layer에 Ground 가 있으면)
-        // if (other.gameObject.CompareTag("Ground"))
-        // {
-        //     // IsGround를 true로 변경
-        //     IsGround = true;
-        // }
+        // 땅 충돌 처리(Layer에 Ground 가 있으면)
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            // IsGround를 true로 변경
+            IsGround = true;
+        }
     }
 
 }

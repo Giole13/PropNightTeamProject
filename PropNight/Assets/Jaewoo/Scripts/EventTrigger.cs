@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class TextMousePoint : MonoBehaviour
-, IPointerEnterHandler, IPointerExitHandler
-, IPointerUpHandler, IPointerDownHandler
+public class EventTrigger : MonoBehaviour
+
 //, IPointerClickHandler
 {
     public string uiName = string.Empty;
@@ -26,24 +25,24 @@ public class TextMousePoint : MonoBehaviour
 
     }   //Start()
 
-    public void OnPointerEnter(PointerEventData data)
+    public void OnPointerEnter()
     {
         //Debug.Log(UIManager.Instance.selectUiName);
         text.color = colorRed;
 
     }   //OnPointerEnter()
 
-    public void OnPointerExit(PointerEventData data)
+    public void OnPointerExit()
     {
         text.color = colorWhite;
     }   //OnPointerExit()
 
-    public void OnPointerUp(PointerEventData data)
+    public void OnPointerUp()
     {
         rectTransform.anchoredPosition = new Vector3(gameObject.GetComponent<RectTransform>().anchoredPosition.x, gameObject.GetComponent<RectTransform>().anchoredPosition.y + 1, 0);
     }   //OnPointerUp()
 
-    public void OnPointerDown(PointerEventData data)
+    public void OnPointerDown()
     {
         rectTransform.anchoredPosition = new Vector3(gameObject.GetComponent<RectTransform>().anchoredPosition.x, gameObject.GetComponent<RectTransform>().anchoredPosition.y - 1, 0);
     }   //OnPointerDown()
@@ -66,3 +65,4 @@ public class TextMousePoint : MonoBehaviour
 
 
 }
+

@@ -10,7 +10,7 @@ public class TextMousePoint : MonoBehaviour
 , IPointerClickHandler
 {
 
-    public GameObject gameObject = default;
+    public GameObject gameObject_ = default;
     //Color32 캐싱
     Color32 colorRed = new Color32(200, 68, 75, 255);
     Color32 colorWhite = new Color32(200, 200, 200, 200);
@@ -21,7 +21,7 @@ public class TextMousePoint : MonoBehaviour
         text = gameObject.GetComponent<TMP_Text>();
         rectTransform = gameObject.GetComponent<RectTransform>();
 
-    }
+    }   //Start()
 
     public void OnPointerEnter(PointerEventData data)
     {
@@ -45,17 +45,19 @@ public class TextMousePoint : MonoBehaviour
 
     public void OnPointerClick(PointerEventData data)
     {
-        if (UIManager.Instance.isClick == false)
-        {
+        if (gameObject.transform.Find(""))
             text.color = colorRed;
-            text.text = "> " + gameObject.GetComponent<TMP_Text>().text;
-        }
-        else
-        {
+        text.text = "> " + gameObject.GetComponent<TMP_Text>().text;
+        // if (UIManager.Instance.isClick == false)
+        // {
+        //    
+        // }
+        // else
+        // {
 
-        }
+        // }
 
-    }
+    }  // OnPointerClick()
 
 
 }

@@ -63,9 +63,13 @@ MonoBehaviour:
   - FixPropMachine
   - StopFixPropMachine
   - PropMachineInteraction
+<<<<<<< HEAD
   - PlayerHold
   - PlayerHoldDown
   - PlayerSeating
+=======
+  - PropMachineFixGaugeUpdate
+>>>>>>> 929e588dfbf2f659f1671872e56f2887f3c68736
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

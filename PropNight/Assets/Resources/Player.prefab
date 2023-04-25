@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c1af3c830085b429747df88f2fe90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsFallDown: 0
   Animator: {fileID: 6798358025511451663}
   IsplayerCanChange: 1
   IsMovePossible: 1

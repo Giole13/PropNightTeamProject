@@ -36,6 +36,7 @@ public class KillerCameraMove : MonoBehaviourPun
     void Update()
     {
         RaycastCheck();
+        CameraMoveInput();
 
     }
 

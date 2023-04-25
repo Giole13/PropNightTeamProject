@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     private bool IsJump;
     private bool IsDoSomething = false;
     private int JumpCount;
-    private bool IsDoAnimation = false;
+    public bool IsFallDown = false;
     public Animator Animator;
     public bool IsplayerCanChange = true;
     public bool IsMovePossible = true;
@@ -40,17 +40,6 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     {
         _playerInput = GetComponent<PlayerInput>();
     }
-    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-
-        }
-        else
-        {
-
-        }
-    }
     private void Update()
     {
         if (!photonView.IsMine) { return; }
@@ -60,22 +49,10 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
             Move();
             //Jump();
             photonView.RPC("Jump", RpcTarget.All);
+
         }
         LeftClick();
         RightClick();
-        // if (IsDoAnimation)
-        // {
-        //     if (!IsJump)
-        //     {
-        //         Animator.SetTrigger("IsGround");
-        //     }
-        //     else
-        //     {
-        //         Animator.SetTrigger("IsJump");
-        //     }
-        //     IsDoAnimation = false;
-        // }
-
 
         if (!IsMovePossible)
         {
@@ -100,7 +77,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         float vertical = _playerInput.MoveZ;
         float AniSpeed;
         Vector3 moveDistance = _playerInput.MoveX * transform.right * Speed * Time.deltaTime + _playerInput.MoveZ * transform.forward * Speed * Time.deltaTime;
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (_playerInput.Dash)
         {
             _playerRigidBody.MovePosition(_playerRigidBody.position + (2f * moveDistance));
             AniSpeed = 1.5f;
@@ -181,7 +158,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                     IsDoSomething = true;
                     IsMovePossible = false;
                     // 2023-04-19 / HyungJun / 실험을 위한 주석 해제
-                    Object.GetComponent<PropMachine>().photonView.RPC("OnInteraction", RpcTarget.All, gameObject);
+                    Object.GetComponent<IInteraction>().OnInteraction(gameObject.tag);
                     Animator.SetTrigger("IsFixMachine");
                 }
                 // } 프롭머신을 고친다.
@@ -193,30 +170,51 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                 IsDoSomething = false;
                 IsMovePossible = true;
                 // 2023-04-19 / HyungJun / 실험을 위한 주석 해제
-                Object.GetComponent<IInteraction>().OffInteraction(gameObject);
+                Object.GetComponent<IInteraction>().OffInteraction(gameObject.tag);
                 Animator.SetTrigger("IsStop");
             }
             // } 무언가 하던거를 그만한다.
         }
     }   // 마우스 왼쪽 클릭
-    // [PunRPC]
-    // public void LeftClicking()
-    // {
+        // [PunRPC]
+        // public void LeftClicking()
+        // {
 
     // }
     private void RightClick()
     {
 
     }   // 마우스 오른쪽 클릭
-    public void GetDamage(GameObject obj)
+
+    public void GetDamage()
     {
-        HP--;
-        if (HP < 0)
+        if (IsFallDown) { return; }
+        if (PhotonNetwork.IsMasterClient)
         {
-            Animator.SetTrigger("IsFallDown");
-            FallDown();
+            HP -= 1;
+            Debug.Log("00000000");
+            photonView.RPC("ApplyUpdatedHealth", RpcTarget.Others, HP);
+            // photonView.RPC("GetDamage", RpcTarget.Others);
         }
+
+        Debug.Log("!!!!!!!!");
+
+        if (HP < 0f)
+        {
+            Debug.LogFormat("폴 다운 실행 1 isMaster {0}, Hp: {1}", PhotonNetwork.IsMasterClient, HP);
+            //FallDown();
+            photonView.RPC("FallDown", RpcTarget.All);
+        }
+        // 2023.04.21 / Nanju / 다른 클라이언트 체력, 데미지, 상태 동기화로 수정
     }   // 생존자가 살인마한테 맞음
+
+    // 2023.04.21 / Nanju / 다른 클라이언트들의 체력 동기화 함수
+    [PunRPC]
+    public void ApplyUpdatedHealth(float _hp)
+    {
+        Debug.Log("체력을 깍는 함수");
+        HP = _hp;
+    }
 
     // void OnCollisionEnter(Collision other)
     // {
@@ -224,8 +222,6 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     //     IsDoAnimation = true;
     //     JumpCount = 0;
     // }   // 생존자가 땅에 닿음
-
-
 
     void OnCollisionStay(Collision other)
     {
@@ -250,52 +246,63 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         }
 
     }
+
+    // 쓰러지는 함수
+    [PunRPC]
     private void FallDown()
     {
+        //Debug.LogFormat("폴 다운 실행 2 isMaster {0}, Hp: {1}", PhotonNetwork.IsMasterClient, HP);
+        Animator.SetTrigger("IsFallDown");  // 애니메이션 실행
+        // { 만약 생존자가 변신중 이라면
         if (!IsPlayerNotChange)
         {
-            Destroy(Change.ChangeObj);
-            Change.Player.SetActive(true);
             IsPlayerNotChange = true;
+            Change.Player.SetActive(true);
+            Destroy(Change.ChangeObj);
         }
+        // } 만약 생존자가 변신중 이라면
+        IsFallDown = true;
+        IsMovePossible = false;
         Status = PlayerStatus.FALLDOWN;
         IsplayerCanChange = false;
         Player.transform.localRotation = Quaternion.Euler(90f, transform.localRotation.y, 0f);
-        Player.transform.localPosition += new Vector3(0f, 0.5f, 0f);
-
+        Player.transform.localPosition += new Vector3(0f, 0.5f, 0.5f);
+        // photonView.RPC("FallDown", RpcTarget.All);
     }   // 생존자가 쓰러짐
-
+    [PunRPC]
     public void SitOnChair()
     {
+        Animator.SetTrigger("IsSitOnChair");
         Status = PlayerStatus.CAUGHT;
-        IsMovePossible = false;
-        IsplayerCanChange = false;
         Player.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        photonView.RPC("SitOnChair", RpcTarget.Others);
     }   // 생존자가 최면의자에 앉혀짐
+    [PunRPC]
     public void Hold()
     {
         _playerRigidBody.useGravity = false;
         // _playerRigidBody.isKinematic = true;
         Player.GetComponent<CapsuleCollider>().enabled = false;
+        photonView.RPC("Hold", RpcTarget.Others);
     }   // 생존자가 쓰러지고, 살인마에게 들어올려짐
+    [PunRPC]
     public void PutDown()
     {
         _playerRigidBody.useGravity = true;
         Player.GetComponent<CapsuleCollider>().enabled = true;
-    }
+    }       // 생존자가 바닦에 다시 놓여짐
+    [PunRPC]
     private void WakeUp()
     {
-
-    }
+        Animator.SetTrigger("IsRevival");
+        IsFallDown = false;
+    }       // 생존자가 일어남
 
     [PunRPC]
     public void Ground()
     {
-
-        Debug.Log($"내가 마스터인가:{PhotonNetwork.IsMasterClient}");
         Animator.SetTrigger("IsGround");
         IsJump = false;
         JumpCount = 0;
-
-    }
+    }       // 바닥에 착지했는가
 }

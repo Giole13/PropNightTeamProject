@@ -66,7 +66,7 @@ public class KillerAttack : MonoBehaviourPun
             PropMachineUI.SetActive(true);
             // 파괴한다.
             // 프롭머신 게이지 닳는 함수 실행
-            PropMachineGauge.OnInteraction(Killer);
+            PropMachineGauge.OnInteraction(Killer.tag);
         }
         // 프롭머신이 파괴 불가능 
         else if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f && AttackPropMachineCheck.IsBreakPossible == false)

@@ -67,7 +67,11 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
             // 플레이어 최면의자에 앉히기
             else if (LookCamera.Obj.tag == "HypnoticChair" && _killerState == KillerState.PLAYERHOLD && LookCamera.ObjDistance < 3f)
             {
-                photonView.RPC("PlayerSeating", RpcTarget.All);
+                // photonView.RPC("PlayerSeating", RpcTarget.All);
+                Player.GetComponent<PlayerMovement>().SitOnChair();
+                LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Player.tag);
+                // 플레이어 오브젝트 살인마 자식으로 빼기
+                Player.transform.SetParent(null);
 
             }
             // 마우스 오른쪽 2번 클릭시 플레이어 원래 위치로 가기 (플레이어 놓기)
@@ -105,13 +109,13 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
     }
 
 
-    [PunRPC]
+   
     // 플레이어 최면의자에 앉히기 함수
     [PunRPC]
     public void PlayerSeating()
     {
         Player.GetComponent<PlayerMovement>().SitOnChair();
-        LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Player);
+        LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Player.tag);
         // 플레이어 오브젝트 살인마 자식으로 빼기
         Player.transform.SetParent(null);
 

@@ -79,7 +79,7 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
         }
 
     }
-
+    [PunRPC]
     // 플레이어 들기 함수
     public void PlayerHold()
     {
@@ -105,6 +105,7 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
     }
 
     // 플레이어 최면의자에 앉히기 함수
+    [PunRPC]
     public void PlayerSeating()
     {
         Player.GetComponent<PlayerMovement>().SitOnChair();
@@ -119,6 +120,7 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
     }
 
     // 들고 있는 플레이어 놓기 함수
+    [PunRPC]
     public void PlayerHoldDown()
     {
         // 플레이어 오브젝트 살인마 자식으로 빼기

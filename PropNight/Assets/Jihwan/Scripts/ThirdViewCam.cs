@@ -30,57 +30,63 @@ public class ThirdViewCam : MonoBehaviourPun
     {
         if (!photonView.IsMine) { return; }
 
-        if (Player.Status != PlayerStatus.NORMAL)
-        {
-            return;
-        }
-
         float mouseX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
         float mouseY = _playerInput.RotateY * mouseSensitivity * Time.deltaTime;
 
         _xRotation -= mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -70f, 40f);
         _yRotation -= mouseX;
-        //{ 1인칭 시점
-        if (Player.IsPlayerNotChange && Player.IsMovePossible)
-        {
-            VirtualCamera.Priority = 11;
-            float RotateX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
-            _yRotation -= RotateX;
-            PlayerObj.transform.localRotation = Quaternion.Euler(PlayerObj.transform.localRotation.x, -_yRotation, 0f);
-
-            // 2023-04-18 / HyungJun / Debug를 위한 주석처리 -> 주석 해제해도 무방
-            FirstCam.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-            PlayerObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f);
-        }
-        //} 1인칭 시점
-
         //{ 3인칭 시점
-        else
+        if (!Player.IsPlayerNotChange || !Player.IsMovePossible || Player.IsFallDown)
         {
             VirtualCamera.Priority = 12;
             FirstCam.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
             //{ 플레이어가 오브젝트로 변신한 경우
             if (!Player.IsPlayerNotChange)
             {
-                ChangeObj.ChangeObj.transform.localRotation = Quaternion.Euler(0f, _yRotation, 0f);
-                PlayerObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f);
-            }
-            if (!Player.IsMovePossible)
-            {
-                Debug.Log("!!");
-                FirstCam.localRotation = Quaternion.Euler(_xRotation, 180 - _yRotation, 0f);
+                photonView.RPC("Rotation", RpcTarget.All, _yRotation);
+
             }
             //} 플레이어가 오브젝트로 변신한 경우
             //{ 플레이어가 작업중일 경우
-            // if (!Player.IsMovePossible)
-            // {
-            //     PlayerObj.transform.localRotation = Quaternion.Euler(PlayerObj.transform.localRotation.x, -_yRotation, 0f);
-            //     return;
-            // }
+            if (!Player.IsMovePossible)
+            {
+                FirstCam.localRotation = Quaternion.Euler(_xRotation, 180 - _yRotation, 0f);
+            }
             //{ 플레이어가 작업중일 경우
+            //{ 플레이어가 쓰러진 경우
+            if (Player.IsFallDown)
+            {
+                FirstCam.localRotation = Quaternion.Euler(_xRotation, 180 - _yRotation, 0f);
+            }
+            //} 플레이어가 쓰러진 경우
         }
         //} 3인칭 시점
+        //{ 1인칭 시점
+        else
+        {
+            VirtualCamera.Priority = 11;
+            //GameObj.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+
+            float RotateX = _playerInput.RotateX * mouseSensitivity * Time.deltaTime;
+            _yRotation -= RotateX;
+            //PlayerObj.transform.localRotation = Quaternion.Euler(PlayerObj.transform.localRotation.x, -_yRotation, 0f);
+
+            // 2023-04-18 / HyungJun / Debug를 위한 주석처리 -> 주석 해제해도 무방
+            FirstCam.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+            PlayerObj.transform.localRotation = Quaternion.Euler(0f, -_yRotation, 0f);
+        }
+        //} 1인칭 시점
     }
+    [PunRPC]
+    public void Rotation(float rotation)
+    {
+        if (ChangeObj.ChangeObj != null)
+        {
+            ChangeObj.ChangeObj.transform.localRotation = Quaternion.Euler(0f, rotation, 0f);
+            PlayerObj.transform.localRotation = Quaternion.Euler(0f, -rotation, 0f);
+        }
+    }
+
 }
 

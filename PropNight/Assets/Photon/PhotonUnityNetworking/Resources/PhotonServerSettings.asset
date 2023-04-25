@@ -53,9 +53,19 @@ MonoBehaviour:
   - GetDamage
   - ApplyUpdatedHealth
   - FallDown
+  - PropMachineAttack
+  - RightClick
+  - Hold
+  - PutDown
+  - Rotation
+  - SitOnChair
+  - WakeUp
   - FixPropMachine
   - StopFixPropMachine
   - PropMachineInteraction
+  - PlayerHold
+  - PlayerHoldDown
+  - PlayerSeating
   - PropMachineFixGaugeUpdate
   DisableAutoOpenWizard: 1
   ShowSettings: 0

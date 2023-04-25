@@ -26,7 +26,6 @@ public class InGameController : MonoBehaviour
     void Update()
     {
         UiTime();
-
     }
 
     #region 게임 시간

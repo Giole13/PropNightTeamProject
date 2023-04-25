@@ -11,8 +11,8 @@ public class PlayerInput : MonoBehaviourPun
     public float RotateY { get; private set; }
     public bool Jump { get; private set; }
     public bool LeftClick { get; private set; }
-
     public bool RightClick { get; private set; }
+    public bool Dash { get; private set; }
 
     // Update is called once per frame
     void Update()
@@ -28,5 +28,6 @@ public class PlayerInput : MonoBehaviourPun
         Jump = Input.GetButtonDown("Jump");
         LeftClick = Input.GetButtonDown("Fire1");
         RightClick = Input.GetButtonDown("Fire2");
+        Dash = Input.GetKey(KeyCode.LeftShift);
     }
 }

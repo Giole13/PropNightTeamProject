@@ -31,17 +31,14 @@ public class MouseLook : MonoBehaviourPun
     {
         if (!photonView.IsMine) { return; }
 
-        if (Player.IsPlayerNotChange && Player.IsMovePossible)
+        if (!Player.IsPlayerNotChange || !Player.IsMovePossible || Player.IsFallDown)
         {
-
-            FirstVirtualCamera.Priority = 12;
-
-            photonView.RPC("Search", RpcTarget.All);
-
+            FirstVirtualCamera.Priority = 11;
         }
         else
         {
-            FirstVirtualCamera.Priority = 11;
+            FirstVirtualCamera.Priority = 12;
+            photonView.RPC("Search", RpcTarget.All);
 
         }
 
@@ -50,7 +47,6 @@ public class MouseLook : MonoBehaviourPun
     [PunRPC]
     public void Search()
     {
-
         if (Physics.Raycast(transform.position, transform.forward, out _hit, _maxDistance))
         {
             Obj = _hit.collider.gameObject;
@@ -61,8 +57,5 @@ public class MouseLook : MonoBehaviourPun
         {
             Obj = null;
         }
-
-
-
     }
 }

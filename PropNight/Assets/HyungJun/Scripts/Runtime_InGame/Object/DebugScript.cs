@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DebugScript : MonoBehaviour
 {
-    public InGameManager DebugInGamemanager;
+    // public InGameManager DebugInGamemanager;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,11 +14,14 @@ public class DebugScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // if (Input.GetKeyDown(KeyCode.P))
+        // {
+        //     InGameManager.ClientDic[]
+        // }
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        DebugInGamemanager.DictionaryCheckBtn();
-    }
+    // private void OnCollisionEnter(Collision other)
+    // {
+    //     DebugInGamemanager.DictionaryCheckBtn();
+    // }
 }

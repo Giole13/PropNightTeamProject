@@ -69,6 +69,12 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                 Animator.SetTrigger("IsStop");
             }
         }
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log(InGameManager.ClientDic[photonView.ViewID].name);
+        }
     }   // Update
 
     private void Move()

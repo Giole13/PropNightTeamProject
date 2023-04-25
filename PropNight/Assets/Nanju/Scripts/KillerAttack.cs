@@ -46,6 +46,8 @@ public class KillerAttack : MonoBehaviourPun
         if (!photonView.IsMine || !PhotonNetwork.IsMasterClient) { return; }
 
         // 플레이어 충돌처리
+        // 2023.04.25 / HyungJun / 마우스 클릭을 하기 전에 부딪힌 물체를 찾아보기 때문에 NullReferenceException 오류가 발생함
+        // Input.GetMouseButtonDown()함수를 첫번째 if문으로 올려주길 바람
         if (other.transform.parent.tag == "Player" && Input.GetMouseButtonDown(0))
         {
             other.transform.parent.GetComponent<IDamage>().GetDamage();

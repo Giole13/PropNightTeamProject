@@ -83,12 +83,21 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
         }
 
     }
+
+    // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+    // █░░░░░░░░▀█▄▀▄▀██████░▀█▄▀▄▀██████░
+    // ░░░░░░░░░░░▀█▄█▄███▀░░░ ▀██▄█▄███▀░
+
+
     [PunRPC]
     // 플레이어 들기 함수
     public void PlayerHold()
     {
         // 플레이어 스크립트 가져오기
         _playerMovementScript = LookCamera.Obj.GetComponent<PlayerMovement>();
+
+        // 2023.04.25 / HyungJun / 클라이언트 리스트를 사용해보기위한 테스트
+        // InGameManager.ClientDic[]
 
         // 플레이어의 상태가 쓰러진 상태이면
         if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)
@@ -109,7 +118,7 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
     }
 
 
-   
+
     // 플레이어 최면의자에 앉히기 함수
     [PunRPC]
     public void PlayerSeating()

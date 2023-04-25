@@ -86,7 +86,7 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
             else if (LookCamera.Obj.tag == "HypnoticChair" && _killerState == KillerState.PLAYERHOLD && LookCamera.ObjDistance < 3f)
             {
                 Player.GetComponent<PlayerMovement>().SitOnChair();
-                LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Player);
+                LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Player.tag);
                 // 플레이어 오브젝트 살인마 자식으로 빼기
                 Player.transform.SetParent(null);
 

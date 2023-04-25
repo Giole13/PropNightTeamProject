@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 855675456519875870}
   - component: {fileID: 855675456519875871}
   - component: {fileID: 855675456519875859}
-  - component: {fileID: 2436331589994775274}
+  - component: {fileID: 7896773790537148474}
   m_Layer: 0
   m_Name: ProtoPropMachine
   m_TagString: PropMachine
@@ -116,7 +116,7 @@ MonoBehaviour:
   _exitPortalScript: {fileID: 0}
   IsFixDone: 0
   _fixGaugeImage: {fileID: 1940586484478173100}
---- !u!114 &2436331589994775274
+--- !u!114 &7896773790537148474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,7 +134,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 855675456519875859}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

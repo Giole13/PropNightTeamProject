@@ -60,6 +60,12 @@ MonoBehaviour:
   - Rotation
   - SitOnChair
   - WakeUp
+<<<<<<< HEAD
+=======
+  - FixPropMachine
+  - StopFixPropMachine
+  - PropMachineInteraction
+>>>>>>> d2e8b95ab27f59422c688a65cc3d1e7639fa57c2
   - PlayerHold
   - PlayerHoldDown
   - PlayerSeating

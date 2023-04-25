@@ -25,14 +25,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void CreateRoomBtnClick()
     {
         PhotonNetwork.CreateRoom(TxtRoomName.text
-                                , new RoomOptions { MaxPlayers = 4 });
+                                , new RoomOptions { MaxPlayers = 5 });
     }
 
     // 로그인 버튼을 클릭했을 때 방을 생성 또는 접속
     public void LoginBtnClick()
     {
         StartCoroutine(JoinLobby());
-
+        _loginButton.interactable = false;
         // _loginButton.interactable = false;
         // // 서버에 접속 중인 상태
         // if (PhotonNetwork.IsConnected)
@@ -99,14 +99,21 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        Debug.Log("메롱");
+        // Debug.Log("업데이트 실행");
+        // foreach (RoomInfo roomInfo in roomList)
+        // {
+        //     Debug.Log(roomInfo.Name);
+        // }
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("ROOM"))
         {
             Destroy(obj);
         }
         foreach (RoomInfo roomInfo in roomList)
         {
+            // 해당 룸 인포의 플레이어 수가 0 이하이면 만들지 않는다.
+            if (roomInfo.PlayerCount <= 0) { continue; }
             GameObject _room = Instantiate(RoomPrefab, GridTr);
+            _room.name = roomInfo.Name;
             RoomData roomData = _room.GetComponent<RoomData>();
             roomData.RoomName = roomInfo.Name;
             roomData.MaxPlayers = roomInfo.MaxPlayers;
@@ -120,6 +127,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                 }
             );
         }
+
     }
 
     void OnClickRoom(string roomName)

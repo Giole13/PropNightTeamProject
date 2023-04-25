@@ -104,6 +104,8 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
         }
     }
 
+
+    [PunRPC]
     // 플레이어 최면의자에 앉히기 함수
     [PunRPC]
     public void PlayerSeating()

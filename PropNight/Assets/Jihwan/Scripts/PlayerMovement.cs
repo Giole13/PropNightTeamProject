@@ -295,7 +295,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     {
         Animator.SetTrigger("IsSitOnChair");
         Status = PlayerStatus.CAUGHT;
-        photonView.RPC("SitOnChair", RpcTarget.Others);
+
     }   // 생존자가 최면의자에 앉혀짐
     [PunRPC]
     public void Hold()
@@ -304,7 +304,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         // _playerRigidBody.isKinematic = true;
         Player.transform.localPosition = new Vector3(0f, 0f, 0f);
         Player.GetComponent<CapsuleCollider>().enabled = false;
-        photonView.RPC("Hold", RpcTarget.Others);
+
     }   // 생존자가 쓰러지고, 살인마에게 들어올려짐
     [PunRPC]
     public void PutDown()
@@ -325,6 +325,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         Player.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         Animator.SetTrigger("IsRevival");
         IsFallDown = false;
+        HP = 2;
     }       // 생존자가 일어남
 
     [PunRPC]

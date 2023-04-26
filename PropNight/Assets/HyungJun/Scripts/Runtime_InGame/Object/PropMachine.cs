@@ -89,7 +89,6 @@ public class PropMachine : MonoBehaviourPun, IInteraction
         // 프롭머신의 위에 게이지바 오브젝트가 플레이어를 바라봐야한다.
         if (_gaugeBarLookPlayer)
         {
-            Debug.Log("업데이트 실행중");
             _fixGaugeImage.transform.parent.LookAt(_lookTransform);
         }
 

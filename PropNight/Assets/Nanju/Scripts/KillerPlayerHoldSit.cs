@@ -27,7 +27,7 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
     private PlayerMovement _playerMovementScript = default;
 
     // Laycast를 불러와서 사용하기
-    public KillerCameraMove LookCamera;
+    private KillerCameraMove LookCamera;
 
 
 
@@ -39,7 +39,7 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
             VirtualFirstCamera.Priority = 20;
             VirtualThirdCamera.Priority = 20;
         }
-        GameManager = GameObject.Find("InGameManager").GetComponent<InGameManager>();
+        // GameManager = GameObject.Find("InGameManager").GetComponent<InGameManager>();
     }
 
     // Update is called once per frame

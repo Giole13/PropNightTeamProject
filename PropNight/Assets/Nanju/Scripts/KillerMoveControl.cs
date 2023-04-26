@@ -5,6 +5,8 @@ using Photon.Pun;
 public class KillerMoveControl : MonoBehaviourPun
 {
     public float Speed;
+    private float xMove;
+    private float zMove;
     // 점프하는 힘
     public float JumpForce;
     // _KillerRigidbody라는 변수로 Rigidbody Component를 통제한다는 뜻. 즉, Inspector가 아니라 코드에서도 통제가 가능한것
@@ -15,6 +17,13 @@ public class KillerMoveControl : MonoBehaviourPun
     // 킬러의 움직이는 방향
     private Vector3 MoveDir;
 
+    // 애니메이션 가져오기
+    private Animation Animation;
+    // 공격 여부 확인
+    private bool _atacking = false;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +31,10 @@ public class KillerMoveControl : MonoBehaviourPun
         _KillerRigidbody = GetComponent<Rigidbody>();
         IsGround = true;
         MoveDir = Vector3.zero;
+
+        // 애니메이션 초기화
+        Animation = gameObject.GetComponent<Animation>();
+
     }
 
     // Update is called once per frame
@@ -37,10 +50,47 @@ public class KillerMoveControl : MonoBehaviourPun
     {
         if (!photonView.IsMine) { return; }
 
-        float xMove = Input.GetAxis("Horizontal");
-        float zMove = Input.GetAxis("Vertical");
+        xMove = Input.GetAxis("Horizontal");
+        zMove = Input.GetAxis("Vertical");
 
         transform.Translate((new Vector3(xMove, 0, zMove) * Speed) * Time.deltaTime);
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(AttackMotion());
+        }
+        if (IsGround && !_atacking)
+        {
+            // Animation = gameObject.GetComponent<Animation>();
+            if (xMove == 0f && zMove == 0f)
+            {
+                Animation.Play("Idle");
+            }
+            else
+            {
+                Animation.Play("Walk");
+            }
+        }
+    }
+
+    private IEnumerator AttackMotion()
+    {
+        if (_atacking) { yield break; }
+        _atacking = true;
+        // 랜덤으로 Attack1, Attack2 공격하기
+        int random = Random.Range(0, 2);
+        if (random == 0)
+        {
+            Animation.Play("Attack1");
+        }
+        else if (random == 1)
+        {
+            Animation.Play("Attack2");
+        }
+        yield return new WaitForSeconds(1.7f);
+        _atacking = false;
+
     }
 
     // 살인마 점프
@@ -56,13 +106,15 @@ public class KillerMoveControl : MonoBehaviourPun
             {
                 IsGround = false;
                 _KillerRigidbody.velocity = Vector3.up * JumpForce;
-
+                Animation.Play("Run");
             }
             // 공중에 떠 있는 상태이면 점프하지 못하도록 리턴
             else
             {
                 return;
             }
+
+
         }
     }
 

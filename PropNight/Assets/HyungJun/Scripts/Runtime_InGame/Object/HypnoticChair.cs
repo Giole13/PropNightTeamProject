@@ -11,6 +11,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     public HypnoticChairState ChairState;
     //최면의자에 앉을 생존자 - Jihwan 2023.04.25
     private GameObject _player;
+    private InGameManager GameManager;
     // 처형까지의 시간 ##################### - 중요함
     private float _maxExecutionTime = 100f;
     // 현재 처형까지의 시간
@@ -25,28 +26,38 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     {
         ChairState = HypnoticChairState.IDLE;
     }
-    public void OnInteraction(string tagName)
+    private void Start()
     {
-        foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black); }
-        IsCountStart = true;
-        // { 살인자가 빈의자에 접근
-        if (tagName == "Killer" && ChairState == HypnoticChairState.IDLE)
-        {
-            photonView.RPC("SurvivorSitOnChair", RpcTarget.All, tagName);
-        }
-        // } 살인자가 빈의자에 접근
+        GameManager = GameObject.Find("InGameManager").GetComponent<InGameManager>();
+    }
+    public void OnInteraction(string ViewID)
+    {
+
 
         // { 생존자가 생존자가 앉은 의자에 접근
-        else if (tagName == "Player" && ChairState == HypnoticChairState.WORKING)
+        if (ViewID == "Player" && ChairState == HypnoticChairState.WORKING)
         {
 
         }
         // } 생존자가 생존자가 앉은 의자에 접근
 
+        // { 살인자가 빈의자에 접근
+        else if (ViewID != "Player" && ChairState == HypnoticChairState.IDLE)
+        {
+            Debug.Log(ViewID);
+            photonView.RPC("SurvivorSitOnChair", RpcTarget.All, ViewID);
+
+        }
+        // } 살인자가 빈의자에 접근
+
+
+
+
+
         // obj.transform.SetParent(transform);
 
         // PlayerObj = obj;
-        ChairState = HypnoticChairState.WORKING;
+        //ChairState = HypnoticChairState.WORKING;
         // GetComponent<Collider>().isTrigger = true;
         // Rigidbody playerRigid = PlayerObj.gameObject.GetComponent<Rigidbody>();
         // playerRigid.useGravity = false;
@@ -104,12 +115,18 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
             }
         }
     }
+
     [PunRPC]
-    public void SurvivorSitOnChair(string playerTag)
+    public void SurvivorSitOnChair(string ViewID)
     {
+        GameObject player = GameManager.FindPlayerorKiller(ViewID);
+        _player = player;
         _player.GetComponent<PlayerMovement>().SitOnChair();
         _player.transform.SetParent(null);
         _player.transform.localPosition = gameObject.transform.localPosition + new Vector3(0f, 1f, 0f);
+        ChairState = HypnoticChairState.WORKING;
+        foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black); }
+        IsCountStart = true;
 
     }   // 생존자 의자에 앉히기
 

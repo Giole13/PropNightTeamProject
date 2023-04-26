@@ -456,6 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HoldPlayerPosition: {fileID: 8109275876878371044}
   Player: {fileID: 0}
+  GameManager: {fileID: 0}
   FirstCamera: {fileID: 4274693654955961357}
   ThirdCamera: {fileID: 980579489487150126}
   VirtualFirstCamera: {fileID: 7007103368151717645}

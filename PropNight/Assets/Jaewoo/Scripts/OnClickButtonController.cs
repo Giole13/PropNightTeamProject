@@ -6,47 +6,45 @@ public class OnClickButtonController : MonoBehaviour
 {
     public GameObject topPlayObj = default;
     public GameObject topCustomObj = default;
-    public GameObject topAvatoarObj = default;
+    public GameObject topOptionObj = default;
+
+
 
     public void ClickTopPlay()
     {
 
+        Debug.Log(topPlayObj.name);
+
+        Debug.Log(gameObject.name);
+
+        topPlayObj.SetActive(true);
+        topCustomObj.SetActive(false);
+        topOptionObj.SetActive(false);
+
     }
     public void ClickTopCustom()
     {
-        if (UIManager.isButton == false)
-        {
-            UIManager.isButton = true;
-        }
 
+        topPlayObj.SetActive(false);
+        topCustomObj.SetActive(true);
+        topOptionObj.SetActive(false);
     }
     public void ClickTopOption()
     {
-        if (UIManager.isButton == false)
-        {
-            UIManager.isButton = true;
-        }
+        topPlayObj.SetActive(false);
+        topCustomObj.SetActive(false);
+        topOptionObj.SetActive(true);
     }
     public void ClickCustomCharactor()
     {
-        if (UIManager.isButton == false)
-        {
-            UIManager.isButton = true;
-        }
     }
     public void ClickCustomAvatar()
     {
-        if (UIManager.isButton == false)
-        {
-            UIManager.isButton = true;
-        }
+
     }
     public void ClickCustomBanner()
     {
-        if (UIManager.isButton == false)
-        {
-            UIManager.isButton = true;
-        }
+
     }
 
 }

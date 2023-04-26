@@ -174,6 +174,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                 }
                 // } 프롭머신을 고친다.
                 // { 최면의자에 앉은 생존자를 풀어준다
+                // 2023.04.26 / HyungJun / 의자가 작동 중일 때 플레이어가 의자에 접근한다면 실행하는 로직
                 if (Look.Obj.tag == "HypnoticChair" && Look.ObjDistance < 1)
                 {
                     Object = Look.Obj;

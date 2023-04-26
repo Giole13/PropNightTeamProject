@@ -49,31 +49,20 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
 
         }
         // } 살인자가 빈의자에 접근
-
-
-
-
-
-        // obj.transform.SetParent(transform);
-
-        // PlayerObj = obj;
-        //ChairState = HypnoticChairState.WORKING;
-        // GetComponent<Collider>().isTrigger = true;
-        // Rigidbody playerRigid = PlayerObj.gameObject.GetComponent<Rigidbody>();
-        // playerRigid.useGravity = false;
-        // playerRigid.velocity = Vector3.zero;
-        // // PlayerObj.gameObject.GetComponent<PlayerInput>().enabled = false;
-        // PlayerObj.GetComponent<PlayerInput>().enabled = false;
-        // PlayerObj.GetComponent<PlayerMovement>().SitOnChair();
-        // PlayerObj.GetComponent<PlayerChange>().enabled = false;
-        // PlayerObj.transform.position = transform.position + new Vector3(0, 2f, 0);
-
-        StartCoroutine(PlayerExecutionCountStart());
     }
+
+    [PunRPC]
+    /// <summary>탈출하는 함수</summary>
+    public void EscapeChair()
+    {
+        // 플레이어가 탈출 할 때 실행할 함수
+        // _player.GetComponent<PlayerMovement>().
+
+    }
+
 
     public void OffInteraction(string tagName)
     {
-        IsCountStart = false;
 
         // { 생존자가 생존자가 앉은 의자에 멀어짐
         if (tagName == "Player" && ChairState == HypnoticChairState.WORKING)
@@ -83,15 +72,6 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
         // } 생존자가 생존자가 앉은 의자에 멀어짐
 
         ChairState = HypnoticChairState.IDLE;
-        // PlayerObj.transform.SetParent(transform.parent);
-        // // GetComponent<Collider>().isTrigger = false;
-        // Rigidbody playerRigid = PlayerObj.gameObject.GetComponent<Rigidbody>();
-        // playerRigid.useGravity = true;
-        // playerRigid.velocity = Vector3.zero;
-        // PlayerObj.GetComponent<PlayerInput>().enabled = true;
-        // PlayerObj.GetComponent<PlayerMovement>().enabled = true;
-        // PlayerObj.GetComponent<PlayerChange>().enabled = true;
-        // PlayerObj.transform.position = transform.position + new Vector3(3f, 0, 0);
 
         // PlayerObj = default;
         foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.white); }
@@ -115,6 +95,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
             }
         }
     }
+
 
     [PunRPC]
     public void SurvivorSitOnChair(string ViewID)

@@ -21,7 +21,8 @@ public class GameObjectManager : MonoBehaviour
             if (ObjGroup.transform.GetChild(i).gameObject.tag == "Change")
             {
                 ObjDir.Add(Count, ObjGroup.transform.GetChild(i).gameObject);
-                Debug.Log($"{Count},{ObjGroup.transform.GetChild(i).gameObject.name}");
+                // 2023.04.25 / HyungJun / 개발을 위한 주석 처리
+                // Debug.Log($"{Count},{ObjGroup.transform.GetChild(i).gameObject.name}");
                 Count++;
             }
         }

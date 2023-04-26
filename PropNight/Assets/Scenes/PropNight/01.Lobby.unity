@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731715, g: 0.13414735, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2010,6 +2010,7 @@ MonoBehaviour:
   _inputTxt: {fileID: 149131156}
   _logTxt: {fileID: 2002355610}
   _loginButton: {fileID: 628745467}
+  _creatRoomBtn: {fileID: 233640322}
   _lobbyListWindow: {fileID: 2047203490}
   _loginWindow: {fileID: 442450600}
   _gameVersion: 10

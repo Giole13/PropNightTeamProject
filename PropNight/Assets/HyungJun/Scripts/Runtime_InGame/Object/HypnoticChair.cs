@@ -18,7 +18,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     private float _currentExecutionTime = 0f;
 
     private bool IsCountStart = true;
-
+    public bool IsSurvivorOut = false;
     // private GameObject PlayerObj = default;
 
 
@@ -129,7 +129,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
         ChairState = HypnoticChairState.WORKING;
         foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black); }
         IsCountStart = true;
-
+        IsSurvivorOut = false;
     }   // 생존자 의자에 앉히기
 
     [PunRPC]
@@ -139,6 +139,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
         ChairState = HypnoticChairState.IDLE;
         foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.gray); }
         IsCountStart = false;
+        IsSurvivorOut = true;
     }
 
     // private void OnCollisionEnter(Collision other)

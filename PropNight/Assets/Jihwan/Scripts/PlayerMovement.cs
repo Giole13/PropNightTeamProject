@@ -61,9 +61,15 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                 return;
             }
 
-            if (Object.GetComponent<PropMachine>().IsFixDone)
+            if (Object.tag == "PropMachine" && Object.GetComponent<PropMachine>().IsFixDone)
             {
                 //Object.GetComponent<IInteraction>().OffInteraction(gameObject);
+                IsMovePossible = true;
+                IsDoSomething = false;
+                Animator.SetTrigger("IsStop");
+            }
+            if (Object.tag == "HypnoticChair" && Object.GetComponent<HypnoticChair>().IsSurvivorOut)
+            {
                 IsMovePossible = true;
                 IsDoSomething = false;
                 Animator.SetTrigger("IsStop");

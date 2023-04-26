@@ -22,6 +22,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public TMP_InputField TxtRoomName;
 
+    // 방 만들기 버튼
     public void CreateRoomBtnClick()
     {
         PhotonNetwork.CreateRoom(TxtRoomName.text
@@ -127,7 +128,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                 }
             );
         }
-
     }
 
     void OnClickRoom(string roomName)

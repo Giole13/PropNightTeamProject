@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -139,4 +140,12 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
     // ｀ヽ、ヽヽ｀ヽ｀、｀｀ヽ｀ヽ、ヽ、ヽ｀ヽ｀ヽ
     // 、ヽ｀ヽ｀、ヽヽ｀｀、ヽ｀、ヽヽ ዽ ヽ｀｀
     // 𝓓𝓸 𝓷𝓸𝓽 𝓽𝓻𝔂 𝓽𝓸 𝓫𝓮 𝓸𝓻𝓲𝓰𝓲𝓷𝓪𝓵, 𝓳𝓾𝓼𝓽 𝓽𝓻𝔂 𝓽𝓸 𝓫𝓮 𝓰𝓸𝓸𝓭.
+
+    public GameObject FindPlayerorKiller(string ViewID)
+    {
+        int IDNumber = Int32.Parse(ViewID);
+
+        return ClientDic[IDNumber];
+
+    }
 }

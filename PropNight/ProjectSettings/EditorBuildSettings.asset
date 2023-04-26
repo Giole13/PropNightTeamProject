@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/PropNight/00.Init.unity
+    guid: 26e01bbd70badea48acb3ffb522fa3bf
+  - enabled: 1
+    path: Assets/Scenes/PropNight/01.Lobby.unity
+    guid: 728b87c2974f5d549a9e366cf9dfccea
+  - enabled: 1
+    path: Assets/Scenes/PropNight/02.InGame.unity
+    guid: 3a7ea76a1fdb2134c8e4b89d1a265917
+  - enabled: 1
+    path: Assets/Scenes/PropNight/03.Result.unity
+    guid: 0631c863746dba247a6917e0bbbfa4f9
   m_configObjects: {}

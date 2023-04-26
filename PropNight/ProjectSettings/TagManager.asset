@@ -10,6 +10,7 @@ TagManager:
   - PropMachine
   - HypnoticChair
   - Killer
+  - Ground
   layers:
   - Default
   - TransparentFX

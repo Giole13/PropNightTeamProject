@@ -12,6 +12,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_Text _inputTxt;
     [SerializeField] private TMP_Text _logTxt;
     [SerializeField] private Button _loginButton;
+    [SerializeField] private Button _creatRoomBtn;
     [SerializeField] private GameObject _lobbyListWindow;
     [SerializeField] private GameObject _loginWindow;
 
@@ -58,6 +59,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(0.5f);
         _loginWindow.SetActive(false);
         _lobbyListWindow.SetActive(true);
+        _creatRoomBtn.interactable = false;
 
         // 게임 버전 맞추기
         PhotonNetwork.GameVersion = _gameVersion;
@@ -154,6 +156,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel(Define.INGAME_SCENE_NAME);
     }
 
+    public override void OnJoinedLobby()
+    {
+        _creatRoomBtn.interactable = true;
+    }
 
 
 

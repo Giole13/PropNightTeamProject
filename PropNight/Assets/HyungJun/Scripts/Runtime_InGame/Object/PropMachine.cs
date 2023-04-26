@@ -8,7 +8,7 @@ using Photon.Pun;
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠤⠖⠚⠉⠉⠀⠀⠀⠀⠉⠉⠙⠒⠤⣄⡀⠀⠀⣀⣠⣤⣀⡀⠀⠀⠀
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠖⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢯⡀⠀⠀⠀⠉⠳⣄⠀
-// ⠀⠀⣀⠤⠔⠒⠒⠒⠦⢤⣀⢀⡴⠋⠀⠀⠀⠀⠀⠀⠀⠀⢠⣤⣄⠀⠀⠀⠀⠀⣴⢶⣄⠀⠀⠀⠉⢢⡀⠀⠀⠀⠘⡆
+// ⠀⣀⠤⠔⠒⠒⠒⠦⢤⣀⢀⡴⠋⠀⠀⠀⠀⠀⠀⠀⠀⢠⣤⣄⠀⠀⠀⠀⠀⣴⢶⣄⠀⠀⠀⠉⢢⡀⠀⠀⠀⠘⡆
 // ⢠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠈⢻⡀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡟⠀⢹⣧⠀⠀⠀⠀⣿⠀⢹⣇⠀⠀⠀⠀⠙⢦⠀⠀⠀⣧
 // ⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣦⣼⣿⡇⠀⠀⠀⢿⣿⣿⣿⡄⠀⠀⠀⠀⠈⢳⡀⢀⡟
 // ⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡸⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡿⠿⠿⣿⠀⠀⠀⠘⣿⡛⣟⣧⠀⠀⠀⠀⠀⠀⢳⠞⠀
@@ -55,6 +55,9 @@ public class PropMachine : MonoBehaviourPun, IInteraction
     [SerializeField]
     private Image _fixGaugeImage;
 
+    private Transform _lookTransform;
+
+    private bool _gaugeBarLookPlayer = false;
     // private GameObject _playerObj;
 
     private void Awake()
@@ -62,9 +65,33 @@ public class PropMachine : MonoBehaviourPun, IInteraction
         _currentFixGauge = 0f;
     }
 
+    private void Start()
+    {
+        StartCoroutine(ClientCashing());
+    }
+
+    private IEnumerator ClientCashing()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            if (InGameManager.PlayerObject != default)
+            {
+                _lookTransform = InGameManager.PlayerObject.transform;
+                _gaugeBarLookPlayer = true;
+                yield break;
+            }
+        }
+    }
+
     private void Update()
     {
         // 프롭머신의 위에 게이지바 오브젝트가 플레이어를 바라봐야한다.
+        if (_gaugeBarLookPlayer)
+        {
+            Debug.Log("업데이트 실행중");
+            _fixGaugeImage.transform.parent.LookAt(_lookTransform);
+        }
 
     }
     // 플레이어와 충돌하면 플레이어 상호작용 UI 팝업 & 상호작용 게이지 상승

@@ -12,7 +12,7 @@ public class PhotonInit : MonoBehaviourPunCallbacks
 
     public ActivePanel ActivePanelState = ActivePanel.LOGIN;
 
-    private string _gameVersion = "1.0";
+    // private string _gameVersion = "1.0";
     public string UserId = "박형준";
     public byte MaxPlayers = 20;
 

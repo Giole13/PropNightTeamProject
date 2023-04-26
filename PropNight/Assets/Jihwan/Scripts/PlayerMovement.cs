@@ -69,6 +69,12 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                 Animator.SetTrigger("IsStop");
             }
         }
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log(InGameManager.ClientDic[photonView.ViewID].name);
+        }
     }   // Update
 
     private void Move()
@@ -158,7 +164,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                     IsDoSomething = true;
                     IsMovePossible = false;
                     // 2023-04-19 / HyungJun / 실험을 위한 주석 해제
-                    Object.GetComponent<IInteraction>().OnInteraction(gameObject);
+                    Object.GetComponent<IInteraction>().OnInteraction(gameObject.tag);
                     Animator.SetTrigger("IsFixMachine");
                 }
                 // } 프롭머신을 고친다.
@@ -170,7 +176,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                 IsDoSomething = false;
                 IsMovePossible = true;
                 // 2023-04-19 / HyungJun / 실험을 위한 주석 해제
-                Object.GetComponent<IInteraction>().OffInteraction(gameObject);
+                Object.GetComponent<IInteraction>().OffInteraction(gameObject.tag);
                 Animator.SetTrigger("IsStop");
             }
             // } 무언가 하던거를 그만한다.

@@ -17,51 +17,51 @@ public class HypnoticChair : MonoBehaviour, IInteraction
 
     private bool IsCountStart = true;
 
-    private GameObject PlayerObj = default;
+    // private GameObject PlayerObj = default;
 
 
     private void Awake()
     {
         _chairState = HypnoticChairState.IDLE;
     }
-    public void OnInteraction(GameObject obj)
+    public void OnInteraction(string tagName)
     {
         foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black); }
         IsCountStart = true;
 
-        obj.transform.SetParent(transform);
+        // obj.transform.SetParent(transform);
 
-        PlayerObj = obj;
+        // PlayerObj = obj;
         _chairState = HypnoticChairState.WORKING;
         // GetComponent<Collider>().isTrigger = true;
-        Rigidbody playerRigid = PlayerObj.gameObject.GetComponent<Rigidbody>();
-        playerRigid.useGravity = false;
-        playerRigid.velocity = Vector3.zero;
-        // PlayerObj.gameObject.GetComponent<PlayerInput>().enabled = false;
-        PlayerObj.GetComponent<PlayerInput>().enabled = false;
-        PlayerObj.GetComponent<PlayerMovement>().SitOnChair();
-        PlayerObj.GetComponent<PlayerChange>().enabled = false;
-        PlayerObj.transform.position = transform.position + new Vector3(0, 2f, 0);
+        // Rigidbody playerRigid = PlayerObj.gameObject.GetComponent<Rigidbody>();
+        // playerRigid.useGravity = false;
+        // playerRigid.velocity = Vector3.zero;
+        // // PlayerObj.gameObject.GetComponent<PlayerInput>().enabled = false;
+        // PlayerObj.GetComponent<PlayerInput>().enabled = false;
+        // PlayerObj.GetComponent<PlayerMovement>().SitOnChair();
+        // PlayerObj.GetComponent<PlayerChange>().enabled = false;
+        // PlayerObj.transform.position = transform.position + new Vector3(0, 2f, 0);
 
         StartCoroutine(PlayerExecutionCountStart());
     }
 
-    public void OffInteraction(GameObject obj)
+    public void OffInteraction(string tagName)
     {
         IsCountStart = false;
 
-        PlayerObj.transform.SetParent(transform.parent);
         _chairState = HypnoticChairState.IDLE;
-        // GetComponent<Collider>().isTrigger = false;
-        Rigidbody playerRigid = PlayerObj.gameObject.GetComponent<Rigidbody>();
-        playerRigid.useGravity = true;
-        playerRigid.velocity = Vector3.zero;
-        PlayerObj.GetComponent<PlayerInput>().enabled = true;
-        PlayerObj.GetComponent<PlayerMovement>().enabled = true;
-        PlayerObj.GetComponent<PlayerChange>().enabled = true;
-        PlayerObj.transform.position = transform.position + new Vector3(3f, 0, 0);
+        // PlayerObj.transform.SetParent(transform.parent);
+        // // GetComponent<Collider>().isTrigger = false;
+        // Rigidbody playerRigid = PlayerObj.gameObject.GetComponent<Rigidbody>();
+        // playerRigid.useGravity = true;
+        // playerRigid.velocity = Vector3.zero;
+        // PlayerObj.GetComponent<PlayerInput>().enabled = true;
+        // PlayerObj.GetComponent<PlayerMovement>().enabled = true;
+        // PlayerObj.GetComponent<PlayerChange>().enabled = true;
+        // PlayerObj.transform.position = transform.position + new Vector3(3f, 0, 0);
 
-        PlayerObj = default;
+        // PlayerObj = default;
         foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.white); }
     }
 
@@ -77,8 +77,8 @@ public class HypnoticChair : MonoBehaviour, IInteraction
             if (_maxExecutionTime <= _currentExecutionTime)
             {
                 // 최대처형시간까지 잡혀있다면 플레이어의 스크립트를 전부 켜주고 플레이어 오브젝트를 꺼버린다.
-                PlayerObj.SetActive(false);
-                OffInteraction(PlayerObj);
+                // PlayerObj.SetActive(false);
+                // OffInteraction(PlayerObj);
                 yield break;
             }
         }

@@ -997,6 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6293755241fd6bd40bdb7e1c26393a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChairState: 0
 --- !u!65 &479010145
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3790,8 +3791,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8414922530335410575}
-  m_LocalRotation: {x: 0.19860081, y: 0.057437878, z: -0.011659923, w: 0.9783265}
-  m_LocalPosition: {x: 0, y: 2.29, z: -2.07}
+  m_LocalRotation: {x: 0.09623707, y: 0, z: 0, w: 0.99535847}
+  m_LocalPosition: {x: -44.040684, y: 3.1999998, z: -14.610553}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3936,6 +3937,12 @@ PrefabInstance:
       propertyPath: _playerUI
       value: 
       objectReference: {fileID: 1894958528}
+    - target: {fileID: 8942772784858904395, guid: 289446dfa7fb7734899cf7c9e38aaa1e,
+        type: 3}
+      propertyPath: KillerPrefab
+      value: 
+      objectReference: {fileID: 5015298117626810164, guid: b6893ac1fc342a34585502d0c6cd3a8a,
+        type: 3}
     - target: {fileID: 8942772784858904396, guid: 289446dfa7fb7734899cf7c9e38aaa1e,
         type: 3}
       propertyPath: m_Name

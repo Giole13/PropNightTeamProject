@@ -18,7 +18,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     private float _currentExecutionTime = 0f;
 
     private bool IsCountStart = true;
-
+    public bool IsSurvivorOut = false;
     // private GameObject PlayerObj = default;
 
 
@@ -37,7 +37,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
         // { 생존자가 생존자가 앉은 의자에 접근
         if (ViewID == "Player" && ChairState == HypnoticChairState.WORKING)
         {
-
+            photonView.RPC("ReleaseSurvivor", RpcTarget.All);
         }
         // } 생존자가 생존자가 앉은 의자에 접근
 
@@ -119,17 +119,28 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     [PunRPC]
     public void SurvivorSitOnChair(string ViewID)
     {
-        GameObject player = GameManager.FindPlayerorKiller(ViewID);
-        _player = player;
+
+        _player = GameManager.FindPlayerorKiller(ViewID);
         _player.GetComponent<PlayerMovement>().SitOnChair();
         _player.transform.SetParent(null);
-        _player.transform.localPosition = gameObject.transform.localPosition + new Vector3(0f, 1f, 0f);
+        _player.transform.localPosition = gameObject.transform.localPosition + new Vector3(0f, 0f, 0f);
+        _player.transform.localRotation = gameObject.transform.localRotation;
+
         ChairState = HypnoticChairState.WORKING;
         foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black); }
         IsCountStart = true;
-
+        IsSurvivorOut = false;
     }   // 생존자 의자에 앉히기
 
+    [PunRPC]
+    public void ReleaseSurvivor()
+    {
+        _player.GetComponent<PlayerMovement>().WakeUp();
+        ChairState = HypnoticChairState.IDLE;
+        foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.gray); }
+        IsCountStart = false;
+        IsSurvivorOut = true;
+    }
 
     // private void OnCollisionEnter(Collision other)
     // {

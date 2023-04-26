@@ -50,7 +50,7 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
 
 
     // 오른쪽 마우스를 클릭시
-    [PunRPC]
+
     private void RightClick()
     {
         // 포톤에서 자기자신만 움직이게 하기 위해 
@@ -61,20 +61,26 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
             // 플레이어 들기
             if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 3f)
             {
-                photonView.RPC("PlayerHold", RpcTarget.All);
+                // 플레이어 스크립트 가져오기
+                _playerMovementScript = LookCamera.Obj.GetComponent<PlayerMovement>();
 
+                // 플레이어의 상태가 쓰러진 상태이면
+                if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)
+                {
+                    photonView.RPC("PlayerHold", RpcTarget.All);
+                }
             }
             // 플레이어 최면의자에 앉히기
             else if (LookCamera.Obj.tag == "HypnoticChair" && _killerState == KillerState.PLAYERHOLD && LookCamera.ObjDistance < 3f)
             {
                 // photonView.RPC("PlayerSeating", RpcTarget.All);
-                Player.GetComponent<PlayerMovement>().SitOnChair();
-                LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Player.tag);
+                //Player.GetComponent<PlayerMovement>().SitOnChair();   // 최면의자 스크립트에서 실행
+                LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Player.tag);      // 플레이어의 상태를 변환하는 것은 모든 클라이언트에 적용되야 함 그래서 나머지는 최면의자 스크립트에서 실행
                 // 플레이어 오브젝트 살인마 자식으로 빼기
-                Player.transform.SetParent(null);
+                //Player.transform.SetParent(null);     // 최면의자 스크립트에서 실행
 
             }
-            // 마우스 오른쪽 2번 클릭시 플레이어 원래 위치로 가기 (플레이어 놓기)
+            // 생존자 들고있는 상태에서 오른쪽 클릭시 생존자 내려놓기
             else if (_killerState == KillerState.PLAYERHOLD)
             {
                 photonView.RPC("PlayerHoldDown", RpcTarget.All);
@@ -109,15 +115,15 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
     }
 
 
-   
+
     // 플레이어 최면의자에 앉히기 함수
     [PunRPC]
     public void PlayerSeating()
     {
         Player.GetComponent<PlayerMovement>().SitOnChair();
-        LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Player.tag);
         // 플레이어 오브젝트 살인마 자식으로 빼기
         Player.transform.SetParent(null);
+        LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Player.tag);
 
         // 1인칭 카메라 켜기
         ThirdCamera.SetActive(false);
@@ -139,15 +145,6 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
         // 3인칭 카메라 끄기
         FirstCamera.SetActive(true);
     }
-
-
-
-
-
-
-
-
-
 
 
     // // 마우스 오른쪽 클릭시 

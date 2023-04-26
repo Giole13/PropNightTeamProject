@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ROOM
+  - Change
+  - Object
+  - PropMachine
+  - HypnoticChair
+  - Killer
   layers:
   - Default
   - TransparentFX

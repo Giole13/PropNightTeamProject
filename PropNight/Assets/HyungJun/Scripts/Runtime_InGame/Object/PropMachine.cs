@@ -196,7 +196,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
     [PunRPC]
     public void FallDownFixGauge()
     {
-        StartCoroutine(FallDownFixGaugeCoroutine());
+        if (IsBreakPossible) StartCoroutine(FallDownFixGaugeCoroutine());
     }
 
 

@@ -67,24 +67,24 @@ public class KillerAttack : MonoBehaviourPun
 
 
     // 프롭머신 파괴하기 위한 함수
-    [PunRPC]
-    public void PropMachineAttack()
-    {
-        // 프롭머신 파괴 가능
-        if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f && AttackPropMachineCheck.IsBreakPossible == true)
-        {
-            // ui 활성화 시키기
-            PropMachineUI.SetActive(true);
-            // 파괴한다.
-            // 프롭머신 게이지 닳는 함수 실행
-            PropMachineGauge.OnInteraction(Killer.tag);
-        }
-        // 프롭머신이 파괴 불가능 
-        else if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f && AttackPropMachineCheck.IsBreakPossible == false)
-        {
-            /*Do nothing*/
-        }
-    }
+    // [PunRPC]
+    // public void PropMachineAttack()
+    // {
+    //     // 프롭머신 파괴 가능
+    //     if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f && AttackPropMachineCheck.IsBreakPossible == true)
+    //     {
+    //         // ui 활성화 시키기
+    //         PropMachineUI.SetActive(true);
+    //         // 파괴한다.
+    //         // 프롭머신 게이지 닳는 함수 실행
+    //         PropMachineGauge.OnInteraction(Killer.tag);
+    //     }
+    //     // 프롭머신이 파괴 불가능 
+    //     else if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f && AttackPropMachineCheck.IsBreakPossible == false)
+    //     {
+    //         /*Do nothing*/
+    //     }
+    // }
 
 
 
@@ -95,6 +95,9 @@ public class KillerAttack : MonoBehaviourPun
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // BoXCollider에 닿기만 하연 플레이어의 HP 가 닳기 때문에
+            // boxcollider 켜기
+            gameObject.GetComponent<BoxCollider>().enabled = true;
 
             // 랜덤으로 Attack1, Attack2 공격하기
             int random = Random.Range(0, 2);
@@ -106,6 +109,10 @@ public class KillerAttack : MonoBehaviourPun
             {
                 Animation.Play("Attack2");
             }
+
+            // boxcollider 끄기
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+
         }
     }
 

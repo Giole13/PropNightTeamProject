@@ -27,7 +27,7 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
     private PlayerMovement _playerMovementScript = default;
 
     // Laycast를 불러와서 사용하기
-    private KillerCameraMove LookCamera;
+    [SerializeField] private KillerCameraMove LookCamera;
 
 
 
@@ -39,6 +39,8 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
             VirtualFirstCamera.Priority = 20;
             VirtualThirdCamera.Priority = 20;
         }
+
+        // LookCamera = GetComponent<>
         // GameManager = GameObject.Find("InGameManager").GetComponent<InGameManager>();
     }
 
@@ -77,12 +79,13 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
             {
                 // photonView.RPC("PlayerSeating", RpcTarget.All);
                 //Player.GetComponent<PlayerMovement>().SitOnChair();   // 최면의자 스크립트에서 실행
-                LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Player.GetPhotonView().ViewID.ToString());      // 플레이어의 상태를 변환하는 것은 모든 클라이언트에 적용되야 함 그래서 나머지는 최면의자 스크립트에서 실행
-                                                                                                                          // 플레이어 오브젝트 살인마 자식으로 빼기
-                                                                                                                          // 1인칭 카메라 켜기
+                // 플레이어의 상태를 변환하는 것은 모든 클라이언트에 적용되야 함 그래서 나머지는 최면의자 스크립트에서 실행
+                LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Player.GetPhotonView().ViewID.ToString());
+                // 1인칭 카메라 켜기
                 ThirdCamera.SetActive(false);
                 // 3인칭 카메라 끄기
                 FirstCamera.SetActive(true);
+                // 플레이어 오브젝트 살인마 자식으로 빼기
                 //Player.transform.SetParent(null);     // 최면의자 스크립트에서 실행
 
             }

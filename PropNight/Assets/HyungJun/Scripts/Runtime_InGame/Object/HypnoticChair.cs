@@ -1,65 +1,77 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class HypnoticChair : MonoBehaviour, IInteraction
+using Photon.Pun;
+public class HypnoticChair : MonoBehaviourPun, IInteraction
 {
-    private enum HypnoticChairState
+    public enum HypnoticChairState
     {
         IDLE, WORKING
     }
-    private HypnoticChairState _chairState;
-
+    public HypnoticChairState ChairState;
+    //최면의자에 앉을 생존자 - Jihwan 2023.04.25
+    private GameObject _player;
+    private InGameManager GameManager;
     // 처형까지의 시간 ##################### - 중요함
     private float _maxExecutionTime = 100f;
     // 현재 처형까지의 시간
     private float _currentExecutionTime = 0f;
 
     private bool IsCountStart = true;
-
+    public bool IsSurvivorOut = false;
     // private GameObject PlayerObj = default;
 
 
     private void Awake()
     {
-        _chairState = HypnoticChairState.IDLE;
+        ChairState = HypnoticChairState.IDLE;
     }
-    public void OnInteraction(string tagName)
+    private void Start()
     {
-        foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black); }
-        IsCountStart = true;
-
-        // obj.transform.SetParent(transform);
-
-        // PlayerObj = obj;
-        _chairState = HypnoticChairState.WORKING;
-        // GetComponent<Collider>().isTrigger = true;
-        // Rigidbody playerRigid = PlayerObj.gameObject.GetComponent<Rigidbody>();
-        // playerRigid.useGravity = false;
-        // playerRigid.velocity = Vector3.zero;
-        // // PlayerObj.gameObject.GetComponent<PlayerInput>().enabled = false;
-        // PlayerObj.GetComponent<PlayerInput>().enabled = false;
-        // PlayerObj.GetComponent<PlayerMovement>().SitOnChair();
-        // PlayerObj.GetComponent<PlayerChange>().enabled = false;
-        // PlayerObj.transform.position = transform.position + new Vector3(0, 2f, 0);
-
-        StartCoroutine(PlayerExecutionCountStart());
+        // GameManager = GameObject.Find("InGameManager").GetComponent<InGameManager>();
     }
+    public void OnInteraction(string ViewID)
+    {
+
+
+        // { 생존자가 생존자가 앉은 의자에 접근
+        if (ViewID == "Player" && ChairState == HypnoticChairState.WORKING)
+        {
+            photonView.RPC("ReleaseSurvivor", RpcTarget.All);
+        }
+        // } 생존자가 생존자가 앉은 의자에 접근
+
+        // { 살인자가 빈의자에 접근
+        else if (ViewID != "Player" && ChairState == HypnoticChairState.IDLE)
+        {
+            Debug.Log(ViewID);
+            photonView.RPC("SurvivorSitOnChair", RpcTarget.All, ViewID);
+
+        }
+        // } 살인자가 빈의자에 접근
+    }
+
+    [PunRPC]
+    /// <summary>탈출하는 함수</summary>
+    public void EscapeChair()
+    {
+        // 플레이어가 탈출 할 때 실행할 함수
+        // _player.GetComponent<PlayerMovement>().
+
+    }
+
 
     public void OffInteraction(string tagName)
     {
-        IsCountStart = false;
 
-        _chairState = HypnoticChairState.IDLE;
-        // PlayerObj.transform.SetParent(transform.parent);
-        // // GetComponent<Collider>().isTrigger = false;
-        // Rigidbody playerRigid = PlayerObj.gameObject.GetComponent<Rigidbody>();
-        // playerRigid.useGravity = true;
-        // playerRigid.velocity = Vector3.zero;
-        // PlayerObj.GetComponent<PlayerInput>().enabled = true;
-        // PlayerObj.GetComponent<PlayerMovement>().enabled = true;
-        // PlayerObj.GetComponent<PlayerChange>().enabled = true;
-        // PlayerObj.transform.position = transform.position + new Vector3(3f, 0, 0);
+        // { 생존자가 생존자가 앉은 의자에 멀어짐
+        if (tagName == "Player" && ChairState == HypnoticChairState.WORKING)
+        {
+
+        }
+        // } 생존자가 생존자가 앉은 의자에 멀어짐
+
+        ChairState = HypnoticChairState.IDLE;
 
         // PlayerObj = default;
         foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.white); }
@@ -84,17 +96,32 @@ public class HypnoticChair : MonoBehaviour, IInteraction
         }
     }
 
-    // // Start is called before the first frame update
-    // void Start()
-    // {
 
-    // }
+    [PunRPC]
+    public void SurvivorSitOnChair(string ViewID)
+    {
 
-    // // Update is call00000000ed once per frame
-    // void Update()
-    // {
+        _player = GameManager.FindPlayerorKiller(ViewID);
+        _player.GetComponent<PlayerMovement>().SitOnChair();
+        _player.transform.SetParent(null);
+        _player.transform.localPosition = gameObject.transform.localPosition + new Vector3(0f, 0f, 0f);
+        _player.transform.localRotation = gameObject.transform.localRotation;
 
-    // }
+        ChairState = HypnoticChairState.WORKING;
+        foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black); }
+        IsCountStart = true;
+        IsSurvivorOut = false;
+    }   // 생존자 의자에 앉히기
+
+    [PunRPC]
+    public void ReleaseSurvivor()
+    {
+        _player.GetComponent<PlayerMovement>().WakeUp();
+        ChairState = HypnoticChairState.IDLE;
+        foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.gray); }
+        IsCountStart = false;
+        IsSurvivorOut = true;
+    }
 
     // private void OnCollisionEnter(Collision other)
     // {

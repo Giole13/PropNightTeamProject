@@ -67,6 +67,15 @@ MonoBehaviour:
   - PlayerHoldDown
   - PlayerSeating
   - PropMachineFixGaugeUpdate
+  - ClientDicUpdate
+  - SurvivorSitOnChair
+<<<<<<< HEAD
+  - ReleaseSurvivor
+=======
+  - PlayerExecution
+  - EscapeChair
+  - FallDownFixGauge
+>>>>>>> b98a6ff6ca4b4af54201f64aaa643c5c3c820b62
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

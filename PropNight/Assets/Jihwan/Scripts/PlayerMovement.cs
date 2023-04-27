@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     private bool IsDoSomething = false;
     private int JumpCount;
     public bool IsFallDown = false;
+    public float Stamina;
     public Animator Animator;
     public bool IsplayerCanChange = true;
     public bool IsMovePossible = true;
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
 
     private void Start()
     {
+        Stamina = 100f;
         JumpCount = 0;
         _playerRigidBody = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();
@@ -61,13 +63,25 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                 return;
             }
 
-            if (Object.GetComponent<PropMachine>().IsFixDone)
+            if (Object.tag == "PropMachine" && Object.GetComponent<PropMachine>().IsFixDone)
             {
                 //Object.GetComponent<IInteraction>().OffInteraction(gameObject);
                 IsMovePossible = true;
                 IsDoSomething = false;
                 Animator.SetTrigger("IsStop");
             }
+            if (Object.tag == "HypnoticChair" && Object.GetComponent<HypnoticChair>().IsSurvivorOut)
+            {
+                IsMovePossible = true;
+                IsDoSomething = false;
+                Animator.SetTrigger("IsStop");
+            }
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log(InGameManager.ClientDic[photonView.ViewID].name);
         }
     }   // Update
 
@@ -77,13 +91,16 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         float vertical = _playerInput.MoveZ;
         float AniSpeed;
         Vector3 moveDistance = _playerInput.MoveX * transform.right * Speed * Time.deltaTime + _playerInput.MoveZ * transform.forward * Speed * Time.deltaTime;
-        if (_playerInput.Dash)
+        if (_playerInput.Dash && Stamina > 0)
         {
+            Stamina -= Time.deltaTime * 25;
             _playerRigidBody.MovePosition(_playerRigidBody.position + (2f * moveDistance));
             AniSpeed = 1.5f;
         }
         else
         {
+            if (!_playerInput.Dash && Stamina < 100) { Stamina += Time.deltaTime * 17; }
+
             _playerRigidBody.MovePosition(_playerRigidBody.position + moveDistance);
             AniSpeed = 1;
         }
@@ -157,13 +174,27 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                     Debug.Log(Object.name);
                     IsDoSomething = true;
                     IsMovePossible = false;
-                    // 2023-04-19 / HyungJun / 실험을 위한 주석 해제
                     Object.GetComponent<IInteraction>().OnInteraction(gameObject.tag);
                     Animator.SetTrigger("IsFixMachine");
                 }
                 // } 프롭머신을 고친다.
+                // { 최면의자에 앉은 생존자를 풀어준다
+                // 2023.04.26 / HyungJun / 의자가 작동 중일 때 플레이어가 의자에 접근한다면 실행하는 로직
+                if (Look.Obj.tag == "HypnoticChair" && Look.ObjDistance < 1)
+                {
+                    Object = Look.Obj;
+                    if (Object.GetComponent<HypnoticChair>().ChairState == HypnoticChair.HypnoticChairState.WORKING)
+                    {
+                        IsDoSomething = true;
+                        IsMovePossible = false;
+                        Object.GetComponent<IInteraction>().OnInteraction(gameObject.tag);
+                        Animator.SetTrigger("IsFixMachine");
+                    }
+                }
+                // } 최면의자에 앉은 생존자를 풀어준다
             }
             // } 무언가를 해야한다.
+
             // { 무언가 하던거를 그만한다.
             else
             {
@@ -175,12 +206,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
             }
             // } 무언가 하던거를 그만한다.
         }
-    }   // 마우스 왼쪽 클릭
-        // [PunRPC]
-        // public void LeftClicking()
-        // {
+    } // 마우스 왼쪽 클릭
 
-    // }
     private void RightClick()
     {
 
@@ -274,28 +301,37 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     {
         Animator.SetTrigger("IsSitOnChair");
         Status = PlayerStatus.CAUGHT;
-        Player.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-        photonView.RPC("SitOnChair", RpcTarget.Others);
+
     }   // 생존자가 최면의자에 앉혀짐
     [PunRPC]
     public void Hold()
     {
         _playerRigidBody.useGravity = false;
         // _playerRigidBody.isKinematic = true;
+        Player.transform.localPosition = new Vector3(0f, 0f, 0f);
         Player.GetComponent<CapsuleCollider>().enabled = false;
-        photonView.RPC("Hold", RpcTarget.Others);
+
     }   // 생존자가 쓰러지고, 살인마에게 들어올려짐
     [PunRPC]
     public void PutDown()
     {
         _playerRigidBody.useGravity = true;
         Player.GetComponent<CapsuleCollider>().enabled = true;
+        Player.transform.localPosition += new Vector3(0f, 0.5f, 0.5f);
     }       // 생존자가 바닦에 다시 놓여짐
     [PunRPC]
-    private void WakeUp()
+    public void WakeUp()
     {
+        IsMovePossible = true;
+        Status = PlayerStatus.NORMAL;
+        IsplayerCanChange = true;
+        _playerRigidBody.useGravity = true;
+        Player.GetComponent<CapsuleCollider>().enabled = true;
+        Player.transform.localPosition += new Vector3(0f, 0f, 0f);
+        Player.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         Animator.SetTrigger("IsRevival");
         IsFallDown = false;
+        HP = 2;
     }       // 생존자가 일어남
 
     [PunRPC]

@@ -13,14 +13,18 @@ public class KillerAttack : MonoBehaviourPun
 
     // 프롭머신 망치기
     // Laycast를 불러와서 사용하기
-    public KillerCameraMove LookCamera;
+    private KillerCameraMove LookCamera;
     // 프롭머신을 공격할 수 있는지 여부를 알기
-    public PropMachine AttackPropMachineCheck;
+    private PropMachine AttackPropMachineCheck;
     // 프롭머신 게이지 닳는 함수 가져오기
-    public PropMachine PropMachineGauge;
+    private PropMachine PropMachineGauge;
 
     public GameObject PropMachineUI;
     public GameObject Killer;
+
+
+    // 애니메이션 가져오기
+    private Animation Animation;
 
 
     // Start is called before the first frame update
@@ -31,26 +35,33 @@ public class KillerAttack : MonoBehaviourPun
         this.gameObject.SetActive(true);
         // 프롭머신 ui 초기화
         PropMachineUI.SetActive(false);
+
+        // 애니메이션 초기화
+        Animation = gameObject.GetComponent<Animation>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        // MouseLeftButton();
     }
 
 
     // 무기 충돌 체크
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!photonView.IsMine || !PhotonNetwork.IsMasterClient) { return; }
 
         // 플레이어 충돌처리
-        if (other.transform.parent.tag == "Player" && Input.GetMouseButtonDown(0))
+        // 2023.04.25 / HyungJun / 마우스 클릭을 하기 전에 부딪힌 물체를 찾아보기 때문에 NullReferenceException 오류가 발생함
+        // Input.GetMouseButtonDown()함수를 첫번째 if문으로 올려주길 바람  [Nanju]:  완료
+
+        if (other.transform.parent.tag == "Player")
         {
             other.transform.parent.GetComponent<IDamage>().GetDamage();
 
         }
+
     }
 
 
@@ -79,16 +90,24 @@ public class KillerAttack : MonoBehaviourPun
 
 
 
-    // // 마우스 왼쪽 클릭시 
-    // public void MouseLeftButton()
-    // {
-    //     if (Input.GetMouseButtonDown(0))
-    //     {
-    //         StartCoroutine(AttackTime());
+    // 마우스 왼쪽 클릭시 
+    public void MouseLeftButton()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
 
-
-    //     }
-    // }
+            // 랜덤으로 Attack1, Attack2 공격하기
+            int random = Random.Range(0, 2);
+            if (random == 1)
+            {
+                Animation.Play("Attack1");
+            }
+            else if (random == 2)
+            {
+                Animation.Play("Attack2");
+            }
+        }
+    }
 
 
     // private IEnumerator AttackTime()

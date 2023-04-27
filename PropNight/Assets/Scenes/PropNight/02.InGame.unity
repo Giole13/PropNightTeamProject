@@ -3794,7 +3794,7 @@ PrefabInstance:
         type: 3}
       propertyPath: KillerPrefab
       value: 
-      objectReference: {fileID: 4503654036812161842, guid: 2affaff3c293f0c4a816d124d273fd39,
+      objectReference: {fileID: 5015298117626810164, guid: b6893ac1fc342a34585502d0c6cd3a8a,
         type: 3}
     - target: {fileID: 8942772784858904396, guid: 289446dfa7fb7734899cf7c9e38aaa1e,
         type: 3}

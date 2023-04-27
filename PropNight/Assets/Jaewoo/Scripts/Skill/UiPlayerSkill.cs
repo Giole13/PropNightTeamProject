@@ -11,7 +11,7 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     public GameObject playerSkillRun = default;
     public GameObject playerSkillAbility = default;
     public GameObject playerRunGagebar = default;
-
+    public PlayerInput playerInput = default;
     public bool isPlayerSkillUse = false;
     public bool isLeftShift = false;
     public bool isRun = false;
@@ -31,7 +31,6 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     {
         AbilitySkill();
         AbilityRun();
-
     }
 
     #region 플레이어스킬
@@ -48,41 +47,30 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     }
     public void AbilityRun()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (playerInput.Dash)
         {
             if (1 < fillAmountStemina)
             {
-                isRun = true;
                 UseStemina();
             }
-            else { }
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (!playerInput.Dash)
         {
-            isRun = false;
             if (fillAmountStemina < 100)
             {
                 AddStemina();
             }
-
         }
-
     }   //AbilityRun()
     public void UseStemina()
     {
-        if (isRun == true)
-        {
-            RunUseStemina();
-        }
+        RunUseStemina();
     }
 
 
     public void AddStemina()
     {
-        if (isRun)
-        {
-            RunAddStemina();
-        }
+        RunAddStemina();
     }
     #endregion
 
@@ -110,27 +98,23 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     {
         playerSkillRun.SetActive(true);
         playerRunGagebar.SetActive(true);
-        while (0 < fillAmountStemina && isRun == true)
-        {
-            playerSteminaGageBar.fillAmount = (fillAmountStemina / 100f);
-            // yield return new WaitForFixedUpdate();
-        }
+        playerSteminaGageBar.fillAmount = (fillAmountStemina / 100f);
+
     }
     public void RunAddStemina()
     {
         playerSkillRun.SetActive(false);
         float steminaHide = 0;
-        while (fillAmountStemina < 100)
+
+        steminaHide += Time.deltaTime;
+
+        playerSteminaGageBar.fillAmount = (fillAmountStemina / 100f);
+        if (1f < steminaHide)
         {
-            steminaHide += Time.deltaTime;
-            if (1f < steminaHide)
-            {
-                playerRunGagebar.SetActive(false);
-            }
-            fillAmountStemina += Time.deltaTime * 5f;
-            playerSteminaGageBar.fillAmount = (fillAmountStemina / 100f);
-            //yield return new WaitForFixedUpdate();
+            playerRunGagebar.SetActive(false);
         }
+        //yield return new WaitForFixedUpdate();
+
     }
 
 

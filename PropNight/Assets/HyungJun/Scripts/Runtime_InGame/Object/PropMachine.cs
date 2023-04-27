@@ -207,7 +207,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
         while (IsBreakPossible)
         {
             yield return new WaitForSeconds(0.01f);
-            _currentFixGauge -= 0.001f;
+            _currentFixGauge -= 0.01f;
             _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
             if (_currentFixGauge <= 0)
             {

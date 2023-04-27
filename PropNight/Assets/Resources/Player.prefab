@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsFallDown: 0
+  Stamina: 0
   Animator: {fileID: 6798358025511451663}
   IsplayerCanChange: 1
   IsMovePossible: 1

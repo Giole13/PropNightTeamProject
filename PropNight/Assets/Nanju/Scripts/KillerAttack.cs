@@ -67,25 +67,28 @@ public class KillerAttack : MonoBehaviourPun
 
 
 
-    // 프롭머신 파괴하기 위한 함수
-    // [PunRPC]
-    // public void PropMachineAttack()
-    // {
-    //     // 프롭머신 파괴 가능
-    //     if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f && AttackPropMachineCheck.IsBreakPossible == true)
-    //     {
-    //         // ui 활성화 시키기
-    //         PropMachineUI.SetActive(true);
-    //         // 파괴한다.
-    //         // 프롭머신 게이지 닳는 함수 실행
-    //         PropMachineGauge.OnInteraction(Killer.tag);
-    //     }
-    //     // 프롭머신이 파괴 불가능 
-    //     else if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f && AttackPropMachineCheck.IsBreakPossible == false)
-    //     {
-    //         /*Do nothing*/
-    //     }
-    // }
+    //프롭머신 파괴하기 위한 함수
+    [PunRPC]
+    public void PropMachineAttack()
+    {
+        // 프롭머신 파괴 가능
+        if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f)
+        {
+            // 프롭머신 게이지 닳는 함수 실행
+            LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Killer.tag);
+
+            // // ui 활성화 시키기
+            // PropMachineUI.SetActive(true);
+            // // 파괴한다.
+            // // 프롭머신 게이지 닳는 함수 실행
+            // PropMachineGauge.OnInteraction(Killer.tag);
+        }
+        // 프롭머신이 파괴 불가능 
+        else
+        {
+            /*Do nothing*/
+        }
+    }
 
 
 

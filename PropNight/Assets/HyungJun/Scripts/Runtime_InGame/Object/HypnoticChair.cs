@@ -28,7 +28,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     }
     private void Start()
     {
-        // GameManager = GameObject.Find("InGameManager").GetComponent<InGameManager>();
+        GameManager = GameObject.Find("InGameManager").GetComponent<InGameManager>();
     }
     public void OnInteraction(string ViewID)
     {

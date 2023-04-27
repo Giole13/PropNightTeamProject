@@ -19,7 +19,7 @@ public class KillerAttack : MonoBehaviourPun
     // 프롭머신 게이지 닳는 함수 가져오기
     private PropMachine PropMachineGauge;
 
-    public GameObject PropMachineUI;
+    // public GameObject PropMachineUI;
     public GameObject Killer;
 
 
@@ -104,6 +104,8 @@ public class KillerAttack : MonoBehaviourPun
             // BoXCollider에 닿기만 하연 플레이어의 HP 가 닳기 때문에
             // boxcollider 켜기
             gameObject.GetComponent<BoxCollider>().enabled = true;
+
+            PropMachineAttack();
 
             // 랜덤으로 Attack1, Attack2 공격하기
             int random = Random.Range(0, 2);

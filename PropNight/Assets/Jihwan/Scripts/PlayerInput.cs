@@ -13,7 +13,7 @@ public class PlayerInput : MonoBehaviourPun
     public bool LeftClick { get; private set; }
     public bool RightClick { get; private set; }
     public bool Dash { get; private set; }
-
+    public bool Skill { get; private set; }
     // Update is called once per frame
     void Update()
     {
@@ -29,5 +29,6 @@ public class PlayerInput : MonoBehaviourPun
         LeftClick = Input.GetButtonDown("Fire1");
         RightClick = Input.GetButtonDown("Fire2");
         Dash = Input.GetKey(KeyCode.LeftShift);
+        Skill = Input.GetKeyDown(KeyCode.E);
     }
 }

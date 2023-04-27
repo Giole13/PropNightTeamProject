@@ -13,13 +13,13 @@ public class KillerAttack : MonoBehaviourPun
 
     // 프롭머신 망치기
     // Laycast를 불러와서 사용하기
-    private KillerCameraMove LookCamera;
+    [SerializeField] private KillerCameraMove LookCamera;
     // 프롭머신을 공격할 수 있는지 여부를 알기
     private PropMachine AttackPropMachineCheck;
     // 프롭머신 게이지 닳는 함수 가져오기
     private PropMachine PropMachineGauge;
 
-    public GameObject PropMachineUI;
+    // public GameObject PropMachineUI;
     public GameObject Killer;
 
 
@@ -44,7 +44,8 @@ public class KillerAttack : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        // MouseLeftButton();
+        MouseLeftButton();
+
     }
 
 
@@ -102,6 +103,8 @@ public class KillerAttack : MonoBehaviourPun
             // BoXCollider에 닿기만 하연 플레이어의 HP 가 닳기 때문에
             // boxcollider 켜기
             gameObject.GetComponent<BoxCollider>().enabled = true;
+
+            PropMachineAttack();
 
             // 랜덤으로 Attack1, Attack2 공격하기
             int random = Random.Range(0, 2);

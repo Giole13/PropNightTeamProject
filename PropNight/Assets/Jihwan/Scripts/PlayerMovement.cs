@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     private bool IsDoSomething = false;
     private int JumpCount;
     public bool IsFallDown = false;
+    public float Stamina;
     public Animator Animator;
     public bool IsplayerCanChange = true;
     public bool IsMovePossible = true;
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
 
     private void Start()
     {
+        Stamina = 100f;
         JumpCount = 0;
         _playerRigidBody = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();
@@ -89,13 +91,16 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         float vertical = _playerInput.MoveZ;
         float AniSpeed;
         Vector3 moveDistance = _playerInput.MoveX * transform.right * Speed * Time.deltaTime + _playerInput.MoveZ * transform.forward * Speed * Time.deltaTime;
-        if (_playerInput.Dash)
+        if (_playerInput.Dash && Stamina > 0)
         {
+            Stamina -= Time.deltaTime * 25;
             _playerRigidBody.MovePosition(_playerRigidBody.position + (2f * moveDistance));
             AniSpeed = 1.5f;
         }
         else
         {
+            if (!_playerInput.Dash && Stamina < 100) { Stamina += Time.deltaTime * 17; }
+
             _playerRigidBody.MovePosition(_playerRigidBody.position + moveDistance);
             AniSpeed = 1;
         }

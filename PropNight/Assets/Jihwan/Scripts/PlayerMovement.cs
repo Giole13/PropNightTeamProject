@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
 
     private PlayerInput _playerInput;
     private Rigidbody _playerRigidBody;
+
+    private UiPlayerSkill _uiPlayerSkill;
     private bool IsJump;
     private bool IsDoSomething = false;
     private int JumpCount;
@@ -35,8 +37,15 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     {
         Stamina = 100f;
         JumpCount = 0;
+        if (photonView.IsMine)
+        {
+            _uiPlayerSkill = GameObject.Find("InGamePlayerUi").GetComponent<UiPlayerSkill>();
+            _uiPlayerSkill.playerInput = _playerInput;
+            _uiPlayerSkill.playerDashGage = this;
+        }
         _playerRigidBody = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();
+
     }
     private void Awake()
     {

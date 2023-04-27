@@ -106,6 +106,7 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     public void RunAddStemina()
     {
         playerSkillRun.SetActive(false);
+
         float steminaHide = 0;
 
         steminaHide += Time.deltaTime;

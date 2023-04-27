@@ -20,7 +20,7 @@ public class KillerMoveControl : MonoBehaviourPun
     // 애니메이션 가져오기
     private Animation Animation;
     // 공격 여부 확인
-    private bool _atacking = false;
+    private bool _attacking = false;
 
 
 
@@ -60,7 +60,7 @@ public class KillerMoveControl : MonoBehaviourPun
         {
             StartCoroutine(AttackMotion());
         }
-        if (IsGround && !_atacking)
+        if (IsGround && !_attacking)
         {
             // Animation = gameObject.GetComponent<Animation>();
             if (xMove == 0f && zMove == 0f)
@@ -76,8 +76,8 @@ public class KillerMoveControl : MonoBehaviourPun
 
     private IEnumerator AttackMotion()
     {
-        if (_atacking) { yield break; }
-        _atacking = true;
+        if (_attacking) { yield break; }
+        _attacking = true;
         // 랜덤으로 Attack1, Attack2 공격하기
         int random = Random.Range(0, 2);
         if (random == 0)
@@ -89,7 +89,7 @@ public class KillerMoveControl : MonoBehaviourPun
             Animation.Play("Attack2");
         }
         yield return new WaitForSeconds(1.7f);
-        _atacking = false;
+        _attacking = false;
 
     }
 

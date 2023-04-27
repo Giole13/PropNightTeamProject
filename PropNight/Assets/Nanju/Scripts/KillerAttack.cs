@@ -44,7 +44,16 @@ public class KillerAttack : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        MouseLeftButton();
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            photonView.RPC("MouseLeftButton", RpcTarget.All);
+
+        }
+
     }
 
 
@@ -95,42 +104,52 @@ public class KillerAttack : MonoBehaviourPun
 
 
     // 마우스 왼쪽 클릭시 
+    [PunRPC]
     public void MouseLeftButton()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            PropMachineAttack();
 
-            // BoXCollider에 닿기만 하연 플레이어의 HP 가 닳기 때문에
-            // boxcollider 켜기
-            gameObject.GetComponent<BoxCollider>().enabled = true;
 
-            PropMachineAttack();
+        // BoXCollider에 닿기만 하연 플레이어의 HP 가 닳기 때문에
+        // boxcollider 켜기
+        gameObject.GetComponent<BoxCollider>().enabled = true;
 
-            // 랜덤으로 Attack1, Attack2 공격하기
-            int random = Random.Range(0, 2);
-            if (random == 1)
-            {
-                Animation.Play("Attack1");
-            }
-            else if (random == 2)
-            {
-                Animation.Play("Attack2");
-            }
+        PropMachineAttack();
 
-            // boxcollider 끄기
-            gameObject.GetComponent<BoxCollider>().enabled = false;
+        // 랜덤으로 Attack1, Attack2 공격하기
+        // int random = Random.Range(0, 2);
+        // if (random == 1)
+        // {
+        //     Animation.Play("Attack1");
+        // }
+        // else if (random == 2)
+        // {
+        //     Animation.Play("Attack2");
+        // }
+        // Animation.Stop();   
+        StartCoroutine(AttackTime());
+        // boxcollider 끄기
 
-        }
+
+
+
     }
 
 
-    // private IEnumerator AttackTime()
-    // {
-    //     IsLeftMouseClick = true;
-    //     yield return null;
-    //     IsLeftMouseClick = false;
-    // }
+    private IEnumerator AttackTime()
+    {
+        int random = Random.Range(0, 2);
+        if (random == 1)
+        {
+            Animation.Play("Attack1");
+        }
+        else if (random == 2)
+        {
+            Animation.Play("Attack2");
+        }
+        yield return new WaitForSeconds(3f);
+        Animation.Stop();
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+    }
 
 
 }

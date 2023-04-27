@@ -1399,7 +1399,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5013230476362874822}
-  - component: {fileID: 4904972728972586850}
   - component: {fileID: 4904972728972586860}
   - component: {fileID: 4904972728972586861}
   - component: {fileID: 4904972728972586862}
@@ -1408,6 +1407,7 @@ GameObject:
   - component: {fileID: 4904972728972586849}
   - component: {fileID: 1594900295}
   - component: {fileID: 1594900296}
+  - component: {fileID: 6644335796662522378}
   m_Layer: 0
   m_Name: Killer
   m_TagString: Killer
@@ -1437,26 +1437,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &4904972728972586850
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5015298117626810164}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400012, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  m_Animations:
-  - {fileID: 7400012, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  - {fileID: 7400004, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  - {fileID: 7400002, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  - {fileID: 7400006, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  - {fileID: 7400008, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 1
 --- !u!114 &4904972728972586860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1590,6 +1570,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LookCamera: {fileID: 5016251218842535513}
   Killer: {fileID: 5015298117626810164}
+--- !u!111 &6644335796662522378
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5015298117626810164}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400012, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
+  m_Animations:
+  - {fileID: 7400012, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
+  - {fileID: 7400004, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
+  - {fileID: 7400002, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
+  - {fileID: 7400006, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
+  - {fileID: 7400008, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &5015400216744002428
 GameObject:
   m_ObjectHideFlags: 0

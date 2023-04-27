@@ -12,19 +12,21 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     public GameObject playerSkillAbility = default;
     public GameObject playerRunGagebar = default;
     public PlayerInput playerInput = default;
+    public PlayerMovement playerDashGage = default;
     public bool isPlayerSkillUse = false;
     public bool isLeftShift = false;
     public bool isRun = false;
 
     public int fillAmountAbility = 0;
     public int currentCool = 0;
-    public float fillAmountStemina = 100;
+    public float fillAmountStemina = 0;
 
     private void Start()
     {
         playerSkillRun.SetActive(false);
         playerSkillAbility.SetActive(false);
         playerRunGagebar.SetActive(false);
+        fillAmountStemina = playerDashGage.DashGauge;
     }
 
     void Update()

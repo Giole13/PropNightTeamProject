@@ -34,7 +34,8 @@ public class KillerAttack : MonoBehaviourPun
         // 초기화
         this.gameObject.SetActive(true);
         // 프롭머신 ui 초기화
-        PropMachineUI.SetActive(false);
+        // 2023.04.27 / HyungJun / 오류로 인한 주석 처리
+        // PropMachineUI.SetActive(false);
 
         // 애니메이션 초기화
         Animation = gameObject.GetComponent<Animation>();

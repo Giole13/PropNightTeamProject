@@ -9,7 +9,8 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
         IDLE, WORKING
     }
     public HypnoticChairState ChairState;
-    //최면의자에 앉을 생존자 - Jihwan 2023.04.25
+    public float Timer;
+    //최면의자에 앉을 생존자 - Jihwan 2023.04.25 
     private GameObject _player;
     private InGameManager GameManager;
     // 처형까지의 시간 ##################### - 중요함
@@ -28,6 +29,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     }
     private void Start()
     {
+        Timer = 0;
         // GameManager = GameObject.Find("InGameManager").GetComponent<InGameManager>();
     }
     public void OnInteraction(string ViewID)
@@ -67,15 +69,15 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
         // { 생존자가 생존자가 앉은 의자에 멀어짐
         if (tagName == "Player" && ChairState == HypnoticChairState.WORKING)
         {
-
+            Timer = 0;
         }
         // } 생존자가 생존자가 앉은 의자에 멀어짐
 
-        ChairState = HypnoticChairState.IDLE;
+        //ChairState = HypnoticChairState.IDLE;
 
         // PlayerObj = default;
-        foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.white); }
-    }
+        //foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.white); }
+    }   // 생존자가 의자에 앉은 생존자 구출 포기
 
 
     // 생존자가 의자에 앉혔을 때 처형까지의 시간을 카운트 하는 코루틴
@@ -116,11 +118,15 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     [PunRPC]
     public void ReleaseSurvivor()
     {
-        _player.GetComponent<PlayerMovement>().WakeUp();
-        ChairState = HypnoticChairState.IDLE;
-        foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.gray); }
-        IsCountStart = false;
-        IsSurvivorOut = true;
+        Timer += Time.deltaTime;
+        if (Timer > 3)
+        {
+            _player.GetComponent<PlayerMovement>().WakeUp();
+            ChairState = HypnoticChairState.IDLE;
+            foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.gray); }
+            IsCountStart = false;
+            IsSurvivorOut = true;
+        }
     }
 
     // private void OnCollisionEnter(Collision other)

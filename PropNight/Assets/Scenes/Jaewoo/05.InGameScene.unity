@@ -5462,7 +5462,7 @@ MonoBehaviour:
   playerSteminaGageBar: {fileID: 1453971965}
   playerSkillRun: {fileID: 391107937}
   playerSkillAbility: {fileID: 1143280660}
-  playerRunGagebar: {fileID: 1346478942}
+  playerRunGagebar: {fileID: 1453971963}
   isPlayerSkillUse: 0
   isLeftShift: 0
   fillAmountAbility: 0

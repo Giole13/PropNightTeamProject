@@ -14,6 +14,7 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
 
     public bool isPlayerSkillUse = false;
     public bool isLeftShift = false;
+    public bool isRun = false;
 
     public int fillAmountAbility = 0;
     public int currentCool = 0;
@@ -30,7 +31,7 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     {
         AbilitySkill();
         AbilityRun();
-        //AddStemina();
+
     }
 
     #region 플레이어스킬
@@ -43,39 +44,45 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
                 StartCoroutine(playerSkill(5f));
             }
         }
-        else { }
+        else {/*Do nothing*/ }
     }
     public void AbilityRun()
     {
-        if (0 < fillAmountStemina)
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            UseStemina();
+            if (1 < fillAmountStemina)
+            {
+                isRun = true;
+                UseStemina();
+            }
+            else { }
         }
-        if (fillAmountStemina < 0)
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            AddStemina();
+            isRun = false;
+            if (fillAmountStemina < 100)
+            {
+                AddStemina();
+            }
+
         }
+
     }   //AbilityRun()
     public void UseStemina()
     {
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (isRun == true)
         {
-            Debug.Log(Input.GetKeyDown(KeyCode.LeftShift));
-
-            StartCoroutine(RunUseStemina());
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            Debug.Log(Input.GetKeyUp(KeyCode.LeftShift));
-            AddStemina();
+            RunUseStemina();
         }
     }
+
+
     public void AddStemina()
     {
-
-        StartCoroutine(RunAddStemina());
-
+        if (isRun)
+        {
+            RunAddStemina();
+        }
     }
     #endregion
 
@@ -91,7 +98,6 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
             yield return new WaitForFixedUpdate();
         }
         isPlayerSkillUse = false;
-        Debug.Log(isPlayerSkillUse);
         playerSkillAbility.SetActive(false);
     }  // playerSkill()
     #endregion
@@ -100,25 +106,33 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
         isPlayerSkillUse = true;
     }   //playerSkillCool()
 
-    IEnumerator RunUseStemina()
+    public void RunUseStemina()
     {
+        playerSkillRun.SetActive(true);
         playerRunGagebar.SetActive(true);
-        while (0 < fillAmountStemina)
+        while (0 < fillAmountStemina && isRun == true)
         {
-            fillAmountStemina -= Time.deltaTime * 5f;
             playerSteminaGageBar.fillAmount = (fillAmountStemina / 100f);
-            yield return new WaitForFixedUpdate();
+            // yield return new WaitForFixedUpdate();
         }
     }
-    IEnumerator RunAddStemina()
+    public void RunAddStemina()
     {
+        playerSkillRun.SetActive(false);
+        float steminaHide = 0;
         while (fillAmountStemina < 100)
         {
+            steminaHide += Time.deltaTime;
+            if (1f < steminaHide)
+            {
+                playerRunGagebar.SetActive(false);
+            }
             fillAmountStemina += Time.deltaTime * 5f;
             playerSteminaGageBar.fillAmount = (fillAmountStemina / 100f);
-            yield return new WaitForFixedUpdate();
+            //yield return new WaitForFixedUpdate();
         }
     }
+
 
 
 }

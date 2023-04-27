@@ -43,7 +43,10 @@ public class PlayerChange : MonoBehaviourPun
             {
                 return;
             }
-
+            if (ChangeObj != null)
+            {
+                return;
+            }
             Debug.Log("!!");
             //Transforming();
             photonView.RPC("Transforming", RpcTarget.All, _gameObjManager.GetIndex(Look.Obj));

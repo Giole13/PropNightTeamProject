@@ -6,14 +6,14 @@ using Photon.Pun;
 
 public class KillerAttack : MonoBehaviourPun
 {
-    private BoxCollider AxeCollier;
+    // private BoxCollider AxeCollier;
     private bool IsLeftMouseClick = false;
 
 
 
     // 프롭머신 망치기
     // Laycast를 불러와서 사용하기
-    private KillerCameraMove LookCamera;
+    [SerializeField] private KillerCameraMove LookCamera;
     // 프롭머신을 공격할 수 있는지 여부를 알기
     private PropMachine AttackPropMachineCheck;
     // 프롭머신 게이지 닳는 함수 가져오기
@@ -30,7 +30,7 @@ public class KillerAttack : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        AxeCollier = GetComponent<BoxCollider>();
+        // AxeCollier = GetComponent<BoxCollider>();
         // 초기화
         this.gameObject.SetActive(true);
         // 프롭머신 ui 초기화
@@ -44,7 +44,7 @@ public class KillerAttack : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        // MouseLeftButton();
+        MouseLeftButton();
     }
 
 
@@ -99,6 +99,8 @@ public class KillerAttack : MonoBehaviourPun
     {
         if (Input.GetMouseButtonDown(0))
         {
+            PropMachineAttack();
+
             // BoXCollider에 닿기만 하연 플레이어의 HP 가 닳기 때문에
             // boxcollider 켜기
             gameObject.GetComponent<BoxCollider>().enabled = true;

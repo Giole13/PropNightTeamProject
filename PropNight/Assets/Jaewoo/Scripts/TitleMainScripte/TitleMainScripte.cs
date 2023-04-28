@@ -17,7 +17,6 @@ public class TitleMainScripte : MonoBehaviour
     public GameObject cautionGroup = default;
     //title CanvasGroup Object
     public GameObject titleGroup = default;
-
     //=================TMP_Text===================
     //타이틀에서 텍스트 효과의 TMP_Text
     public TMP_Text titleText = default;
@@ -48,6 +47,8 @@ public class TitleMainScripte : MonoBehaviour
     {
         mainObject.GetComponent<CanvasGroup>().alpha = 0f;
         titleGroup.GetComponent<CanvasGroup>().alpha = 0f;
+
+        // titleObject.SetActive(true);
     }
     void Update()
     {

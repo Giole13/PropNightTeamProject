@@ -30,7 +30,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     private void Start()
     {
         Timer = 0;
-        // GameManager = GameObject.Find("InGameManager").GetComponent<InGameManager>();
+        GameManager = GameObject.Find("InGameManager").GetComponent<InGameManager>();
     }
     public void OnInteraction(string ViewID)
     {
@@ -52,16 +52,6 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
         }
         // } 살인자가 빈의자에 접근
     }
-
-    [PunRPC]
-    /// <summary>탈출하는 함수</summary>
-    public void EscapeChair()
-    {
-        // 플레이어가 탈출 할 때 실행할 함수
-        // _player.GetComponent<PlayerMovement>().
-
-    }
-
 
     public void OffInteraction(string tagName)
     {

@@ -34,7 +34,6 @@ public class HpController : MonoBehaviour
             if (i < health)
             {
                 hearts[i].sprite = fullHeart;
-
             }
             else
             {
@@ -50,20 +49,18 @@ public class HpController : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+
         if (80 <= playerHp)
         {
             hearts[4].fillAmount = (playerHp - 80) / 20f;
-            //체력이 100~81까지를 1~0로 치환해야한다
         }
         if (60 <= playerHp && playerHp < 80)
         {
             hearts[3].fillAmount = (playerHp - 60) / 20f;
-            // 80~61 : 1~0
         }
         if (40 <= playerHp && playerHp < 60)
         {
             hearts[2].fillAmount = (playerHp - 40) / 20f;
-            // 60~41 : 1~0
         }
         if (20 <= playerHp && playerHp < 40)
         {
@@ -73,5 +70,26 @@ public class HpController : MonoBehaviour
         {
             hearts[0].fillAmount = (playerHp / 20f);
         }
+
+        //hp 구간 당 없애기
+        if (playerHp < 80)
+        {
+            hearts[4].fillAmount = 0f;
+        }
+        if (playerHp < 60)
+        {
+            hearts[3].fillAmount = 0f;
+        }
+        if (playerHp < 40)
+        {
+            hearts[2].fillAmount = 0f;
+        }
+        if (playerHp < 20)
+        {
+            hearts[1].fillAmount = 0f;
+        }
+
+
+
     }
 }

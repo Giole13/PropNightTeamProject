@@ -19,14 +19,13 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
 
     public int fillAmountAbility = 0;
     public int currentCool = 0;
-    public float fillAmountStemina = 0;
 
     private void Start()
     {
         playerSkillRun.SetActive(false);
         playerSkillAbility.SetActive(false);
         playerRunGagebar.SetActive(false);
-        fillAmountStemina = playerDashGage.DashGauge;
+
     }
 
     void Update()
@@ -51,14 +50,14 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     {
         if (playerInput.Dash)
         {
-            if (1 < fillAmountStemina)
+            if (1 < playerDashGage.Stamina)
             {
                 UseStemina();
             }
         }
         if (!playerInput.Dash)
         {
-            if (fillAmountStemina < 100)
+            if (playerDashGage.Stamina < 100)
             {
                 AddStemina();
             }
@@ -100,7 +99,7 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     {
         playerSkillRun.SetActive(true);
         playerRunGagebar.SetActive(true);
-        playerSteminaGageBar.fillAmount = (fillAmountStemina / 100f);
+        playerSteminaGageBar.fillAmount = (playerDashGage.Stamina / 100f);
 
     }
     public void RunAddStemina()
@@ -110,7 +109,7 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
 
         steminaHide += Time.deltaTime;
 
-        playerSteminaGageBar.fillAmount = (fillAmountStemina / 100f);
+        playerSteminaGageBar.fillAmount = (playerDashGage.Stamina / 100f);
         if (1f < steminaHide)
         {
             playerRunGagebar.SetActive(false);

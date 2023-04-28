@@ -103,6 +103,10 @@ public class TitlePhotonManager : MonoBehaviourPunCallbacks
         // _logTxt.text = "방 참가 성공!";
         // 씬 이름은 캐싱해서 가져오기
         PhotonNetwork.LoadLevel((string)ht["RoomSceneName"]);
+        // PhotonNetwork.AutomaticallySyncScene = true;
+        // PhotonNetwork.SetLevelInPropsIfSynced()
+        // PhotonNetwork.Load
+        // PhotonNetwork.AutomaticallySyncScene
     }
 
     // 방 만들기 버튼

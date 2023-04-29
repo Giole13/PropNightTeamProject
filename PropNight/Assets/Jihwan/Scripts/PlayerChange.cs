@@ -71,7 +71,7 @@ public class PlayerChange : MonoBehaviourPun
         ChangeObj.transform.SetParent(transform, true);
         ChangeObj.transform.localPosition = Vector3.zero;
         Player.SetActive(false);
-        transform.position += new Vector3(0f, ChangeObj.transform.position.y + 1, 0f);
+        transform.localPosition += new Vector3(0f, ChangeObj.transform.localPosition.y + 5, 0f);
         Debug.Log(ChangeObj.name);
     }
     [PunRPC]

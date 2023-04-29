@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 7819466828789084101}
   - component: {fileID: 6997466078270138375}
   - component: {fileID: 6769888604584483939}
+  - component: {fileID: 6916963488669322549}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -321,15 +322,19 @@ MonoBehaviour:
   IsMovePossible: 1
   IsPlayerNotChange: 1
   Status: 0
+  SurvivorSkill: {fileID: 6916963488669322549}
   Look: {fileID: 6798358025702815005}
   Change: {fileID: 6798358025511451665}
+  Object: {fileID: 0}
   Player: {fileID: 7435124439366589438}
   Speed: 2.5
   JumpForce: 5
   DashGauge: 0
   HP: 4
-  Object: {fileID: 0}
   Timer: 0
+  CoolTime: 0
+  SkillDistance: 0
+  SkillJumpCount: 0
 --- !u!114 &6798358025511451664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,6 +450,20 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
+--- !u!114 &6916963488669322549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6798358025511451671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d336854703736449ad150bfca0273a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsSkillActive: 0
+  CoolTime: 0
 --- !u!1 &6798358025702815009
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38281a39de565ec4c9f9046b3bdaff2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+  mouseSensitivity: 70
   playerBody: {fileID: 6798358025511451666}
   Obj: {fileID: 0}
   ObjDistance: 0

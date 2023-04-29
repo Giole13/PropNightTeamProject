@@ -109,16 +109,12 @@ public class TitlePhotonManager : MonoBehaviourPunCallbacks
         // PhotonNetwork.LoadLevel((string)ht["RoomSceneName"]);
         // } 2023.04.29 / HyungJun / Develop 을 위한 주석처리
 
-
-        // PhotonNetwork.AutomaticallySyncScene = true;
-        // PhotonNetwork.SetLevelInPropsIfSynced()
-        // PhotonNetwork.Load
-        // PhotonNetwork.AutomaticallySyncScene
     }
 
     // 방 만들기 버튼
     public void CreateRoomBtnClick()
     {
+
     }
 
     // 형준이 전용 디버그 방 생성

@@ -78,7 +78,7 @@ public class PropFixBar : MonoBehaviour
 
         if (stickAngle < Mathf.Abs(successBarAngle) || Mathf.Abs(perfectBarAngle - 18) < stickAngle)
         {
-            Debug.Log("ㅂㅈㄷ");
+            Debug.Log("실패");
             //실패 연결
         }
 
@@ -90,7 +90,7 @@ public class PropFixBar : MonoBehaviour
         }
         if (Mathf.Abs(perfectBarAngle) <= stickAngle && stickAngle <= Mathf.Abs(perfectBarAngle - 18))
         {
-            Debug.Log("대ㅔ성공");
+            Debug.Log("대성공");
             //대성공 연결
         }
 

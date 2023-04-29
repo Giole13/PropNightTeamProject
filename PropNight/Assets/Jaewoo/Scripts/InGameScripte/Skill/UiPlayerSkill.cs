@@ -25,7 +25,6 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
         playerSkillRun.SetActive(false);
         playerSkillAbility.SetActive(false);
         playerRunGagebar.SetActive(false);
-
     }
 
     void Update()
@@ -39,7 +38,7 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     {
         if (isPlayerSkillUse == false)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (playerInput.Skill)
             {
                 StartCoroutine(playerSkill(5f));
             }
@@ -116,7 +115,6 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
             playerRunGagebar.SetActive(false);
         }
         //yield return new WaitForFixedUpdate();
-
     }
 
 

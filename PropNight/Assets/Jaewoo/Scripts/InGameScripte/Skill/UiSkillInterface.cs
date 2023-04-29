@@ -8,8 +8,8 @@ public interface IPlayerSkill
 }
 public interface IKillerSkill
 {
-    void KillerFirstSkillCool();
-    void KillerSecondSkillLongCool();
+    void KillerShortSkillCool();
+    void KillerLongSkillLongCool();
 }
 public interface IPlayerEnumerator
 {

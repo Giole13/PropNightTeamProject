@@ -10,13 +10,24 @@ public class UiKillerSkill : MonoBehaviour, IKillerSkill, IKillerEnumverator
     private bool isKillerShortSkillUse = false;
     private bool isKillerLongSkillUse = false;
 
-    public void KillerFirstSkillCool()
+    void Update()
     {
+        KillerShortSkillCool();
+        KillerLongSkillLongCool();
+    }
+    public void KillerShortSkillCool()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
 
+        }
     }   //KillerFirstSkillCool()
-    public void KillerSecondSkillLongCool()
+    public void KillerLongSkillLongCool()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
 
+        }
     }
     public IEnumerator KillerSkillShortCool(float cool)
     {

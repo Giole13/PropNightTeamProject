@@ -101,8 +101,15 @@ public class TitlePhotonManager : MonoBehaviourPunCallbacks
         Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
 
         // _logTxt.text = "방 참가 성공!";
-        // 씬 이름은 캐싱해서 가져오기
-        PhotonNetwork.LoadLevel((string)ht["RoomSceneName"]);
+        // 씬 이름은 프로퍼티에 저장된 이름을 가져와서 로딩하기
+
+        LoadingSceneController.LoadScene((string)ht["RoomSceneName"]);
+
+        // { 2023.04.29 / HyungJun / Develop 을 위한 주석처리
+        // PhotonNetwork.LoadLevel((string)ht["RoomSceneName"]);
+        // } 2023.04.29 / HyungJun / Develop 을 위한 주석처리
+
+
         // PhotonNetwork.AutomaticallySyncScene = true;
         // PhotonNetwork.SetLevelInPropsIfSynced()
         // PhotonNetwork.Load

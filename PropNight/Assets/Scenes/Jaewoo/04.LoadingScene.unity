@@ -555,6 +555,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5015737512654503651, guid: 17665db240396004a9e74fcfccc41bcb,
+        type: 3}
+      propertyPath: m_Looping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17665db240396004a9e74fcfccc41bcb, type: 3}
 --- !u!1 &1682749089 stripped

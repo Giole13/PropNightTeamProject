@@ -2892,7 +2892,7 @@ GameObject:
   - component: {fileID: 589146074421490033}
   m_Layer: 0
   m_Name: PropMachineV2
-  m_TagString: Untagged
+  m_TagString: PropMachine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

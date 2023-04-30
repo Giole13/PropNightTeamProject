@@ -1174,7 +1174,7 @@ PrefabInstance:
     - target: {fileID: 4815190167967645164, guid: 5c4256993be692e48a371f67e0241388,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4815190167967645164, guid: 5c4256993be692e48a371f67e0241388,
         type: 3}
@@ -1912,7 +1912,7 @@ PrefabInstance:
     - target: {fileID: 3047484393252703465, guid: 2749a7b656b257d4b93de57158ba516e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3047484393252703465, guid: 2749a7b656b257d4b93de57158ba516e,
         type: 3}
@@ -2016,6 +2016,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2749a7b656b257d4b93de57158ba516e, type: 3}
+--- !u!1 &1214616331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3047484393252703469, guid: 2749a7b656b257d4b93de57158ba516e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1214616330}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1264455310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,7 +2310,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -2956,6 +2962,11 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8942772784858904393, guid: 289446dfa7fb7734899cf7c9e38aaa1e,
+        type: 3}
+      propertyPath: ObservedComponentsFoldoutOpen
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8942772784858904394, guid: 289446dfa7fb7734899cf7c9e38aaa1e,
         type: 3}
       propertyPath: m_RootOrder
@@ -3015,8 +3026,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _KillerUI
       value: 
-      objectReference: {fileID: 3047484393252703469, guid: 2749a7b656b257d4b93de57158ba516e,
-        type: 3}
+      objectReference: {fileID: 1214616331}
     - target: {fileID: 8942772784858904395, guid: 289446dfa7fb7734899cf7c9e38aaa1e,
         type: 3}
       propertyPath: _playerUI

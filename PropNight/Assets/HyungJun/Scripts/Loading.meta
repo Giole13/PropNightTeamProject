@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:PropNight/Assets/HyungJun/Scripts/Loading.meta
 guid: 66f0f1077f502ba47a696b84cb6059b4
+========
+guid: bebb386e93b57884ca874889645bd227
+>>>>>>>> 1fd43f8c27f626ac7be474d4de1aeaf27ec3adf5:PropNight/Assets/Jaewoo/Scripts/Killer.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

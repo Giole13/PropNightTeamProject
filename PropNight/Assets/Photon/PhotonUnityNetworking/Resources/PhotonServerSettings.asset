@@ -74,6 +74,7 @@ MonoBehaviour:
   - EscapeChair
   - FallDownFixGauge
   - MoveSceneProgress
+  - MouseLeftButton
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

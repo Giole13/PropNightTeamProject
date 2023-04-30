@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     private bool IsJump;
     private bool IsDoSomething = false;
     private int JumpCount;
+
+    private int _life;
     public bool IsFallDown = false;
     public float Stamina;
     public Animator Animator;
@@ -22,19 +24,23 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     public bool IsMovePossible = true;
     public bool IsPlayerNotChange = true;
     public PlayerStatus Status = PlayerStatus.NORMAL;
+    public Skill SurvivorSkill;
     public MouseLook Look;
     public PlayerChange Change;
+    public GameObject Object;
     public GameObject Player;
     public float Speed;
     public float JumpForce;
     public float DashGauge;
     public float HP;
-    public GameObject Object;
-
     public float Timer;
+    public float CoolTime;
 
+    public float SkillDistance = 0;
+    public int SkillJumpCount = 0;
     private void Start()
     {
+        _life = 2;
         Stamina = 100f;
         JumpCount = 0;
         if (photonView.IsMine)
@@ -55,6 +61,12 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     {
         if (!photonView.IsMine) { return; }
 
+        if (Status == PlayerStatus.DIE)
+        {
+            Die();
+            return;
+        }
+
         if (IsMovePossible)
         {
             Move();
@@ -64,6 +76,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         }
         LeftClick();
         RightClick();
+        ESkill();
 
         if (!IsMovePossible)
         {
@@ -85,12 +98,6 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                 IsDoSomething = false;
                 Animator.SetTrigger("IsStop");
             }
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log(InGameManager.ClientDic[photonView.ViewID].name);
         }
     }   // Update
 
@@ -151,7 +158,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
             {
                 JumpCount++;
                 _playerRigidBody.AddForce(transform.up * JumpForce, ForceMode.Impulse);
-                if (JumpCount > 1)
+                if (JumpCount > 1 + SkillJumpCount)
                 {
                     IsJump = true;
                 }
@@ -177,7 +184,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                 }
 
                 // { 프롭머신을 고친다.
-                if (Look.Obj.tag == "PropMachine" && Look.ObjDistance < 1)
+                if (Look.Obj.tag == "PropMachine" && Look.ObjDistance < 1 + SkillDistance)
                 {
                     Object = Look.Obj;
                     Debug.Log(Object.name);
@@ -189,7 +196,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                 // } 프롭머신을 고친다.
                 // { 최면의자에 앉은 생존자를 풀어준다
                 // 2023.04.26 / HyungJun / 의자가 작동 중일 때 플레이어가 의자에 접근한다면 실행하는 로직
-                if (Look.Obj.tag == "HypnoticChair" && Look.ObjDistance < 1)
+                if (Look.Obj.tag == "HypnoticChair" && Look.ObjDistance < 1 + SkillDistance)
                 {
                     Object = Look.Obj;
                     if (Object.GetComponent<HypnoticChair>().ChairState == HypnoticChair.HypnoticChairState.WORKING)
@@ -221,7 +228,31 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     {
 
     }   // 마우스 오른쪽 클릭
+    private void ESkill()
+    {
+        if (_playerInput.Skill)
+        {
+            if (CoolTime <= 0 && !SurvivorSkill.IsSkillActive)
+            {
+                SurvivorSkill.ESkill();
+                if (SurvivorSkill.IsSkillActive)
+                {
+                    CoolTime = SurvivorSkill.CoolTime;
+                    photonView.RPC("ApplyUpdatedHealth", RpcTarget.Others, HP);
+                }
 
+            }
+
+        }
+        if (CoolTime > 0)
+        {
+            CoolTime -= Time.deltaTime;
+        }
+        else
+        {
+            SurvivorSkill.IsSkillActive = false;
+        }
+    }
     public void GetDamage()
     {
         if (IsFallDown) { return; }
@@ -248,7 +279,6 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     [PunRPC]
     public void ApplyUpdatedHealth(float _hp)
     {
-        Debug.Log("체력을 깍는 함수");
         HP = _hp;
     }
 
@@ -303,6 +333,11 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         IsplayerCanChange = false;
         Player.transform.localRotation = Quaternion.Euler(90f, transform.localRotation.y, 0f);
         Player.transform.localPosition += new Vector3(0f, 0.5f, 0.5f);
+        if (_life == 0)
+        {
+            Status = PlayerStatus.DIE;
+            Player.GetComponent<CapsuleCollider>().enabled = false;
+        }
         // photonView.RPC("FallDown", RpcTarget.All);
     }   // 생존자가 쓰러짐
     [PunRPC]
@@ -310,6 +345,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     {
         Animator.SetTrigger("IsSitOnChair");
         Status = PlayerStatus.CAUGHT;
+        _life--;
 
     }   // 생존자가 최면의자에 앉혀짐
     [PunRPC]
@@ -350,4 +386,10 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         IsJump = false;
         JumpCount = 0;
     }       // 바닥에 착지했는가
+
+    // 생존자가 완전히 사망
+    public void Die()
+    {
+
+    }
 }

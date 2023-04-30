@@ -30,7 +30,11 @@ public class MouseLook : MonoBehaviourPun
     void Update()
     {
         if (!photonView.IsMine) { return; }
-
+        if (Player.Status == PlayerStatus.DIE)
+        {
+            FirstVirtualCamera.Priority = 10;
+            return;
+        }
         if (!Player.IsPlayerNotChange || !Player.IsMovePossible || Player.IsFallDown)
         {
             FirstVirtualCamera.Priority = 11;

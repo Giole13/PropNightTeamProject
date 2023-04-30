@@ -79,11 +79,12 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     {
         playerSkillAbility.SetActive(true);
         isPlayerSkillUse = true;
-        while (1.0f < cool)
+        playerSkillCoolImage.fillAmount = 0f;
+        while (playerSkillCoolImage.fillAmount < 1f)
         {
-            cool -= Time.deltaTime;
-            playerSkillCoolImage.fillAmount = (1f / cool);
-            yield return new WaitForFixedUpdate();
+            cool -= Time.smoothDeltaTime;
+            playerSkillCoolImage.fillAmount += 1 * Time.smoothDeltaTime / cool;
+            yield return null;
         }
         isPlayerSkillUse = false;
         playerSkillAbility.SetActive(false);

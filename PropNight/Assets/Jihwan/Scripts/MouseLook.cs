@@ -45,7 +45,8 @@ public class MouseLook : MonoBehaviourPun
         else
         {
             FirstVirtualCamera.Priority = 12;
-            photonView.RPC("Search", RpcTarget.All);
+            // photonView.RPC("Search", RpcTarget.All);
+            Search();
         }
 
         // { 2023.05.01 / HyungJun / 아웃라인을 위한 로직
@@ -56,17 +57,41 @@ public class MouseLook : MonoBehaviourPun
 
         // }
         // 레이를 쐈을 때 아웃라인을 보기 위한 로직
+
+        Debug.DrawRay(transform.position, transform.forward * 100, Color.red);
         if (Physics.Raycast(transform.position, transform.forward, out _hit, _maxDistance))
         {
-            _highLightTr = _hit.transform;
-            if (_highLightTr.tag == "Change")
+
+            if (_hit.transform.tag == "Change")
             {
-                _highLightTr.GetComponent<Outlinable>().enabled = true;
+                if (_highLightTr != null)
+                {
+                    _highLightTr.GetComponent<Outlinable>().enabled = false;
+                    _highLightTr = null;
+                }
+
+                _highLightTr = _hit.transform;
+
+                if (_highLightTr.GetComponent<Outlinable>() != null)
+                {
+                    _highLightTr.GetComponent<Outlinable>().enabled = true;
+                }
             }
-
-
-
+            else
+            {
+                if (_highLightTr != null)
+                {
+                    _highLightTr.GetComponent<Outlinable>().enabled = false;
+                    _highLightTr = null;
+                }
+            }
         }
+
+
+
+
+
+
 
 
 

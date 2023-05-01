@@ -1027,6 +1027,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8287164539299941545}
+  - component: {fileID: 7578630839017289009}
   m_Layer: 0
   m_Name: ORK_Ctrl_RightHandIndexEffector
   m_TagString: Untagged
@@ -1049,6 +1050,19 @@ Transform:
   m_Father: {fileID: 8286679482399167963}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: -27.112741, y: 19.483627, z: 162.45459}
+--- !u!65 &7578630839017289009
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8289221390480512303}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Center: {x: -0.1, y: 0.2, z: 0.2}
 --- !u!1 &8289228952035677703
 GameObject:
   m_ObjectHideFlags: 0
@@ -4604,6 +4618,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lookCamera: {fileID: 2860378683795151224}
   Akiban: {fileID: 8289689249280393557}
+  _coolTime: 0
+  Speed: 10
+  IsStop: 0
+  AkibanControl: {fileID: 5824309040746161930}
+  Rigid: {fileID: 0}
+  KillerRightHand: {fileID: 8289221390480512303}
 --- !u!114 &5824309040746161930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4619,6 +4639,8 @@ MonoBehaviour:
   Speed: 5
   JumpForce: 50
   IsGround: 1
+  Attacking: 0
+  IsCanControl: 1
 --- !u!114 &1500988797863068034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8454,8 +8476,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8290903903910960049}
-  m_LocalRotation: {x: 0.09623707, y: -0, z: -0, w: 0.99535847}
-  m_LocalPosition: {x: 2, y: 0.44999993, z: -11.46}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0.3}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8463,7 +8485,7 @@ Transform:
   - {fileID: 8290903903861791789}
   m_Father: {fileID: 8295354073946725171}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 11.045, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2860378683795151224
 MonoBehaviour:
   m_ObjectHideFlags: 0

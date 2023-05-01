@@ -33,6 +33,8 @@ public class AkibanAttack : MonoBehaviourPun
 
     public AkibanMoveControl AkibanControl;
     public Rigidbody Rigid;
+    public GameObject KillerRightHand;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,11 +79,15 @@ public class AkibanAttack : MonoBehaviourPun
     private IEnumerator AkibanAttackMotion()
     {
         if (AkibanControl.Attacking) { yield break; }
+        KillerRightHand.GetComponent<BoxCollider>().enabled = true;
+
         AkibanControl.Attacking = true;
 
         _animator.SetTrigger("IsAttack");
         yield return new WaitForSeconds(1.7f);
         AkibanControl.Attacking = false;
+        // BoxCollider 끄기
+        KillerRightHand.GetComponent<BoxCollider>().enabled = false;
 
     }
 

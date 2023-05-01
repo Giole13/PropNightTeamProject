@@ -22,7 +22,7 @@ public class ImpostorMoveControl : MonoBehaviourPun
     // 공격 여부 확인
     private bool _attacking = false;
 
-
+    public float SkillSpeed = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -53,13 +53,8 @@ public class ImpostorMoveControl : MonoBehaviourPun
         xMove = Input.GetAxis("Horizontal");
         zMove = Input.GetAxis("Vertical");
 
-        transform.Translate((new Vector3(xMove, 0, zMove) * Speed) * Time.deltaTime);
+        transform.Translate((new Vector3(xMove, 0, zMove) * Speed * SkillSpeed) * Time.deltaTime);
 
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(AttackMotion());
-        }
         if (IsGround && !_attacking)
         {
             // Animation = gameObject.GetComponent<Animation>();
@@ -74,24 +69,6 @@ public class ImpostorMoveControl : MonoBehaviourPun
         }
     }
 
-    private IEnumerator AttackMotion()
-    {
-        if (_attacking) { yield break; }
-        _attacking = true;
-        // 랜덤으로 Attack1, Attack2 공격하기
-        int random = Random.Range(0, 2);
-        if (random == 0)
-        {
-            Animation.Play("Attack1");
-        }
-        else if (random == 1)
-        {
-            Animation.Play("Attack2");
-        }
-        yield return new WaitForSeconds(1.7f);
-        _attacking = false;
-
-    }
 
     // 살인마 점프
     public void KillerJump()

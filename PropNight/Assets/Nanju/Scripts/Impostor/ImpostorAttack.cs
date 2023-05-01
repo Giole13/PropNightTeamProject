@@ -23,6 +23,11 @@ public class ImpostorAttack : MonoBehaviourPun
     // 애니메이션 가져오기
     private Animation Animation;
 
+    private ImpostorMoveControl ImpostorControl;
+    private bool _isSkillActive = true;
+
+    private float _coolTime = 0;
+    private bool _isCanAttack = true;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +37,7 @@ public class ImpostorAttack : MonoBehaviourPun
         // 프롭머신 ui 초기화
         // 2023.04.27 / HyungJun / 오류로 인한 주석 처리
         // PropMachineUI.SetActive(false);
-
+        ImpostorControl = gameObject.GetComponent<ImpostorMoveControl>();
         // 애니메이션 초기화
         Animation = gameObject.GetComponent<Animation>();
     }
@@ -46,7 +51,11 @@ public class ImpostorAttack : MonoBehaviourPun
         }
         if (Input.GetMouseButtonDown(0))
         {
-            photonView.RPC("MouseLeftButton", RpcTarget.All);
+            if (_isCanAttack)
+            {
+                photonView.RPC("MouseLeftButton", RpcTarget.All);
+            }
+
 
         }
 
@@ -97,6 +106,43 @@ public class ImpostorAttack : MonoBehaviourPun
 
     }
 
+
+    // E 를 누르면 그림자가 되어 스피드가 빨라지고 무적이 되는 스킬(이동만 된다.)
+    public void ImpostorAtiveSkill()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (_isSkillActive)
+            {
+                ImpostorControl.SkillSpeed = 2;
+                _isCanAttack = false;
+                float DashTime = 0f;
+                while (DashTime < 3f)
+                {
+                    if (Input.GetKeyUp(KeyCode.E)) { break; }
+                    DashTime += Time.deltaTime;
+                }
+                ImpostorControl.SkillSpeed = 1;
+                _isSkillActive = false;
+                _coolTime = 5;
+                _isCanAttack = true;
+            }
+            if (!_isSkillActive)
+            {
+                _coolTime -= Time.deltaTime;
+                if (_coolTime <= 0)
+                {
+                    _isSkillActive = true;
+                }
+            }
+            // 그림자가 된다.
+            // 스피드가 빨라진다.
+
+            // 이동만 된다.
+
+        }
+
+    }
 
     //프롭머신 파괴하기 위한 함수
     // [PunRPC]

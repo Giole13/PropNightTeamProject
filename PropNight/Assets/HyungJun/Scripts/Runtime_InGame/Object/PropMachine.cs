@@ -185,6 +185,8 @@ public class PropMachine : MonoBehaviourPun, IInteraction
                 IsFixDone = true;
                 ++s_fixPropMachine;
                 GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black);
+                // 여기서 수리 완료하면 UI에 반영하는 함수 작성 
+                InGameController.s_intance.UiPropMachineCount();
                 if (5 == s_fixPropMachine) { _exitPortalScript.DoorOpen(); }
 
                 yield break;

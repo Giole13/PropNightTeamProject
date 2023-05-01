@@ -42,7 +42,7 @@ public class ProtoExitPortal : MonoBehaviour
     {
         if (other.transform.tag == "Player" && _IsOpened)
         {
-            Gfunc.LoadScene("03.Result");
+            Gfunc.LoadScene(Define.RESULT_SCENE_NAME);
         }
     }
 

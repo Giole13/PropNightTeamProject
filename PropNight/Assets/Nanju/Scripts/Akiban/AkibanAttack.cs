@@ -4,24 +4,24 @@ using UnityEngine;
 using Photon.Pun;
 
 
-public class KillerAttack : MonoBehaviourPun
+public class AkibanAttack : MonoBehaviourPun
 {
 
     // 프롭머신 망치기
     // Laycast를 불러와서 사용하기
-    [SerializeField] private KillerCameraMove LookCamera;
+    [SerializeField] private AkibanCameraMove _lookCamera;
     // 프롭머신을 공격할 수 있는지 여부를 알기
-    private PropMachine AttackPropMachineCheck;
+    private PropMachine _attackPropMachineCheck;
     // 프롭머신 게이지 닳는 함수 가져오기
-    private PropMachine PropMachineGauge;
+    private PropMachine _propMachineGauge;
 
     // public GameObject PropMachineUI;
-    public GameObject Killer;
-    public GameObject KillerRightHand;
+    public GameObject Akiban;
+    // public GameObject KillerRightHand;
 
 
     // 애니메이션 가져오기
-    private Animation Animation;
+    private Animation _animation;
 
 
     // Start is called before the first frame update
@@ -34,7 +34,7 @@ public class KillerAttack : MonoBehaviourPun
         // PropMachineUI.SetActive(false);
 
         // 애니메이션 초기화
-        Animation = gameObject.GetComponent<Animation>();
+        _animation = gameObject.GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -64,26 +64,26 @@ public class KillerAttack : MonoBehaviourPun
     }
 
     // 공격 애니메이션 랜덤으로 나오게 하기 위한 코루틴 함수
-    private IEnumerator AttackTime()
+    private IEnumerator AkibanAttackTime()
     {
         // BoxCollider 켜기
-        KillerRightHand.GetComponent<BoxCollider>().enabled = true;
+        // KillerRightHand.GetComponent<BoxCollider>().enabled = true;
 
         int random = Random.Range(0, 2);
         if (random == 1)
         {
-            Animation.Play("Attack1");
+            _animation.Play("Attack1");
         }
         else if (random == 2)
         {
-            Animation.Play("Attack2");
+            _animation.Play("Attack2");
         }
         yield return new WaitForSeconds(2f);
 
-        Animation.Stop();
+        _animation.Stop();
 
         // BoxCollider 끄기
-        KillerRightHand.GetComponent<BoxCollider>().enabled = false;
+        // KillerRightHand.GetComponent<BoxCollider>().enabled = false;
     }
 
     // 마우스 왼쪽 클릭시 
@@ -92,7 +92,7 @@ public class KillerAttack : MonoBehaviourPun
     {
         // PropMachineAttack();
         // OnTriggerEnter(Player);
-        StartCoroutine(AttackTime());
+        StartCoroutine(AkibanAttackTime());
 
 
     }

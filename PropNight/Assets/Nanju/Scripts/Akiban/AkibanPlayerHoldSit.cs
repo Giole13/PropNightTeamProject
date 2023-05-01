@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Cinemachine;
 
-public class KillerPlayerHoldSit : MonoBehaviourPun
+public class AkibanPlayerHoldSit : MonoBehaviourPun
 {
     // 플레이어 들었을때 위치값
     public Transform HoldPlayerPosition;
@@ -27,7 +27,7 @@ public class KillerPlayerHoldSit : MonoBehaviourPun
     private PlayerMovement _playerMovementScript = default;
 
     // Laycast를 불러와서 사용하기
-    [SerializeField] private KillerCameraMove LookCamera;
+    [SerializeField] private AkibanCameraMove LookCamera;
 
 
 

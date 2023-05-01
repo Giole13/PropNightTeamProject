@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-public class KillerMoveControl : MonoBehaviourPun
+public class AkibanMoveControl : MonoBehaviourPun
 {
     public float Speed;
     private float xMove;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class KillerCameraMove : MonoBehaviourPun
+public class AkibanCameraMove : MonoBehaviourPun
 {
     // 마우스 민감도 설정
     public float mouseSensitivity = 100f;

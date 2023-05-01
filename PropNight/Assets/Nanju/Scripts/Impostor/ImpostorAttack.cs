@@ -4,12 +4,12 @@ using UnityEngine;
 using Photon.Pun;
 
 
-public class KillerAttack : MonoBehaviourPun
+public class ImpostorAttack : MonoBehaviourPun
 {
 
     // 프롭머신 망치기
     // Laycast를 불러와서 사용하기
-    [SerializeField] private KillerCameraMove LookCamera;
+    [SerializeField] private ImpostorCameraMove LookCamera;
     // 프롭머신을 공격할 수 있는지 여부를 알기
     private PropMachine AttackPropMachineCheck;
     // 프롭머신 게이지 닳는 함수 가져오기

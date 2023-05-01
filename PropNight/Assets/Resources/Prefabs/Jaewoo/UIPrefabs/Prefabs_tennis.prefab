@@ -2734,7 +2734,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2333275333454885569}
+  - component: {fileID: 4759196425548593160}
   - component: {fileID: 2333275333454885570}
   - component: {fileID: 1530245377090294915}
   - component: {fileID: 9001778051512406380}
@@ -2745,8 +2745,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &2333275333454885569
-RectTransform:
+--- !u!4 &4759196425548593160
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2755,18 +2755,13 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8723445454938232353}
   - {fileID: 1173969418787473754}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2333275333454885570
 Animator:
   serializedVersion: 5
@@ -4631,7 +4626,7 @@ Transform:
   - {fileID: 7349779329704325310}
   - {fileID: 5732817190639471311}
   - {fileID: 5321715602347276125}
-  m_Father: {fileID: 2333275333454885569}
+  m_Father: {fileID: 4759196425548593160}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2327998850512292369
@@ -5166,7 +5161,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4233409192884189440}
-  m_Father: {fileID: 2333275333454885569}
+  m_Father: {fileID: 4759196425548593160}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2487978404503025234

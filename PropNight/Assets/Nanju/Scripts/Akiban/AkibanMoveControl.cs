@@ -18,30 +18,37 @@ public class AkibanMoveControl : MonoBehaviourPun
     private Vector3 MoveDir;
 
     // 애니메이션 가져오기
-    private Animation Animation;
+    private Animator _animator;
     // 공격 여부 확인
-    private bool _attacking = false;
+    public bool Attacking = false;
 
+    private float Timer;
 
+    public bool IsCanControl = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        Timer = 0;
         // rigidboidy 컴포넌트 받아오기
         _KillerRigidbody = GetComponent<Rigidbody>();
         IsGround = true;
         MoveDir = Vector3.zero;
 
         // 애니메이션 초기화
-        Animation = gameObject.GetComponent<Animation>();
+        _animator = gameObject.GetComponent<Animator>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        KillerMove();
-        KillerJump();
+        if (IsCanControl)
+        {
+            KillerMove();
+            KillerJump();
+        }
+
 
     }
 
@@ -55,43 +62,21 @@ public class AkibanMoveControl : MonoBehaviourPun
 
         transform.Translate((new Vector3(xMove, 0, zMove) * Speed) * Time.deltaTime);
 
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(AttackMotion());
-        }
-        if (IsGround && !_attacking)
+        if (IsGround && !Attacking)
         {
             // Animation = gameObject.GetComponent<Animation>();
             if (xMove == 0f && zMove == 0f)
             {
-                Animation.Play("Idle");
+                _animator.SetBool("IsWalking", false);
             }
             else
             {
-                Animation.Play("Walk");
+                _animator.SetBool("IsWalking", true);
             }
         }
     }
 
-    private IEnumerator AttackMotion()
-    {
-        if (_attacking) { yield break; }
-        _attacking = true;
-        // 랜덤으로 Attack1, Attack2 공격하기
-        int random = Random.Range(0, 2);
-        if (random == 0)
-        {
-            Animation.Play("Attack1");
-        }
-        else if (random == 1)
-        {
-            Animation.Play("Attack2");
-        }
-        yield return new WaitForSeconds(1.7f);
-        _attacking = false;
 
-    }
 
     // 살인마 점프
     public void KillerJump()
@@ -106,7 +91,7 @@ public class AkibanMoveControl : MonoBehaviourPun
             {
                 IsGround = false;
                 _KillerRigidbody.velocity = Vector3.up * JumpForce;
-                Animation.Play("Run");
+                _animator.SetTrigger("IsJump");
             }
             // 공중에 떠 있는 상태이면 점프하지 못하도록 리턴
             else
@@ -118,15 +103,32 @@ public class AkibanMoveControl : MonoBehaviourPun
         }
     }
 
-    // 충돌 처리
-    private void OnCollisionEnter(Collision other)
+    // Ground 충돌 처리
+    private void OnCollisionStay(Collision other)
     {
-        // 땅 충돌 처리(Layer에 Ground 가 있으면)
-        if (other.gameObject.CompareTag("Ground"))
+
+        if (!IsGround)
         {
-            // IsGround를 true로 변경
-            IsGround = true;
+            Timer += Time.deltaTime;
+            if (Timer > 0.1f)
+            {
+                _animator.SetTrigger("IsGround");
+                Timer = 0;
+                // IsGround를 true로 변경
+                IsGround = true;
+            }
         }
+
+
+
+
+
     }
 
+
+    public IEnumerator JumpTime()
+    {
+        _animator.SetTrigger("IsGround");
+        yield return new WaitForSeconds(1f);
+    }
 }

@@ -1325,6 +1325,7 @@ GameObject:
   - component: {fileID: 4904972728972586848}
   - component: {fileID: 4904972728972586849}
   - component: {fileID: 1594900296}
+  - component: {fileID: 6128199980122927761}
   - component: {fileID: 6644335796662522378}
   m_Layer: 0
   m_Name: Impostor
@@ -1458,6 +1459,21 @@ MonoBehaviour:
   LookCamera: {fileID: 5016251218842535513}
   Killer: {fileID: 5015298117626810164}
   KillerRightHand: {fileID: 5015155616172372250}
+--- !u!114 &6128199980122927761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5015298117626810164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6f1df351cfa9340a22901ef9f720ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
+  JumpForce: 50
+  IsGround: 1
 --- !u!111 &6644335796662522378
 Animation:
   m_ObjectHideFlags: 0

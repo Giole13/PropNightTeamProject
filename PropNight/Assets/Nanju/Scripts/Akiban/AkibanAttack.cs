@@ -19,11 +19,20 @@ public class AkibanAttack : MonoBehaviourPun
     public GameObject Akiban;
     // public GameObject KillerRightHand;
 
-
     // 애니메이션 가져오기
-    private Animation _animation;
+    private Animator _animator;
+    // 스킬 사용 가능
+    private bool _isSkillActive = true;
+    // 돌진 스킬 쓰기 위한 쿨타임
+    [SerializeField]
+    private float _coolTime;
 
+    public float Speed;
 
+    public bool IsStop = false;
+
+    public AkibanMoveControl AkibanControl;
+    public Rigidbody Rigid;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +43,8 @@ public class AkibanAttack : MonoBehaviourPun
         // PropMachineUI.SetActive(false);
 
         // 애니메이션 초기화
-        _animation = gameObject.GetComponent<Animation>();
+        _animator = gameObject.GetComponent<Animator>();
+        Rigid = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -49,7 +59,7 @@ public class AkibanAttack : MonoBehaviourPun
             photonView.RPC("MouseLeftButton", RpcTarget.All);
 
         }
-
+        AkibanActiveSkill();
     }
 
     // 킬러 박스 콜라이더와 플레이어 충돌 함수
@@ -64,27 +74,17 @@ public class AkibanAttack : MonoBehaviourPun
     }
 
     // 공격 애니메이션 랜덤으로 나오게 하기 위한 코루틴 함수
-    private IEnumerator AkibanAttackTime()
+    private IEnumerator AkibanAttackMotion()
     {
-        // BoxCollider 켜기
-        // KillerRightHand.GetComponent<BoxCollider>().enabled = true;
+        if (AkibanControl.Attacking) { yield break; }
+        AkibanControl.Attacking = true;
 
-        int random = Random.Range(0, 2);
-        if (random == 1)
-        {
-            _animation.Play("Attack1");
-        }
-        else if (random == 2)
-        {
-            _animation.Play("Attack2");
-        }
-        yield return new WaitForSeconds(2f);
+        _animator.SetTrigger("IsAttack");
+        yield return new WaitForSeconds(1.7f);
+        AkibanControl.Attacking = false;
 
-        _animation.Stop();
-
-        // BoxCollider 끄기
-        // KillerRightHand.GetComponent<BoxCollider>().enabled = false;
     }
+
 
     // 마우스 왼쪽 클릭시 
     [PunRPC]
@@ -92,10 +92,69 @@ public class AkibanAttack : MonoBehaviourPun
     {
         // PropMachineAttack();
         // OnTriggerEnter(Player);
-        StartCoroutine(AkibanAttackTime());
+        StartCoroutine(AkibanAttackMotion());
 
 
     }
+
+
+
+    // 아키반 스킬 쓰기(E 키보드 누른경우)
+    // E 키보드를 누르면 재빠른 돌진 공격 스킬(단, 방향 전환 X)
+    public void AkibanActiveSkill()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            // 스킬 사용 가능
+            if (_isSkillActive)
+            {
+                AkibanControl.IsCanControl = false;
+                // { 스킬
+                float DashTime = 0f;
+                while (DashTime < 2f)
+                {
+
+                    Rigid.velocity += transform.forward * Time.deltaTime * Speed;
+                    DashTime += Time.deltaTime;
+                    if (IsStop)
+                    {
+                        break;
+                    }
+                }
+                StartCoroutine(AkibanAttackMotion());
+                // } 스킬
+                IsStop = false;
+                AkibanControl.IsCanControl = true;
+                _isSkillActive = false;
+                _coolTime = 5;
+            }
+
+        }
+        if (!_isSkillActive)
+        {
+            _coolTime -= Time.deltaTime;
+            if (_coolTime <= 0)
+            {
+                _isSkillActive = true;
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            IsStop = true;
+        }
+
+    }
+
+
+
+
+
+
+
 
 
     //프롭머신 파괴하기 위한 함수

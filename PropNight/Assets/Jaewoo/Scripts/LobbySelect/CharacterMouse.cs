@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CharacterMouse : MonoBehaviour
 {
+
+    public GameObject selectGroupOffObj = default;
+    public GameObject selectInformation = default;
     [SerializeField]
     private GameObject noHairKiller = default;
     [SerializeField]
@@ -26,6 +29,17 @@ public class CharacterMouse : MonoBehaviour
         healerPlayer.SetActive(false);
         psychoPlayer.SetActive(false);
         jumperPlayer.SetActive(false);
+
+        selectInformation.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            selectGroupOffObj.SetActive(true);
+            selectInformation.SetActive(false);
+        }
     }
     public void OnMouseNoHairKiller()
     {
@@ -84,6 +98,39 @@ public class CharacterMouse : MonoBehaviour
         psychoPlayer.SetActive(false);
         jumperPlayer.SetActive(true);
     }
+
+    public void OnClickRunner()
+    {
+        selectGroupOffObj.SetActive(false);
+        selectInformation.SetActive(true);
+    }
+
+    public void OnClickHealer()
+    {
+        selectGroupOffObj.SetActive(false);
+        selectInformation.SetActive(true);
+    }
+    public void OnClickPsycho()
+    {
+        selectGroupOffObj.SetActive(false);
+        selectInformation.SetActive(true);
+    }
+    public void OnClickJumper()
+    {
+        selectGroupOffObj.SetActive(false);
+        selectInformation.SetActive(true);
+    }
+    public void OnClickNoHairKiller()
+    {
+        selectGroupOffObj.SetActive(false);
+        selectInformation.SetActive(true);
+    }
+    public void OnClickHairKiller()
+    {
+        selectGroupOffObj.SetActive(false);
+        selectInformation.SetActive(true);
+    }
+
 
 
 

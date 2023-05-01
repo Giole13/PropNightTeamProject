@@ -54,7 +54,6 @@ public class CharactorManager : MonoBehaviour
     {
         UpdateCharacter(0);
         runnerPlayer.SetActive(true);
-
     }
     public void HealerSelect()
     {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KillerDataBaseObj
   m_EditorClassIdentifier: 
   character:
-  - characterName: "\uBE61\uBE61\uC774\uC544\uC800\uC528"
+  - characterName: Imporster
     abilityName: "\uADFC\uC190\uC2E4 \uBC29\uC9C0"
     abilityExpanation: "\uC778\uAC04\uC744 \uBA39\uC5B4 \uD504\uB85C\uD2F4\uC744
       \uC12D\uCDE8"

@@ -21,10 +21,10 @@ EditorBuildSettings:
     path: Assets/Scenes/PropNight/99.HyungJunDebugScene.unity
     guid: 593ab378d6ebdb6499fe5b8b4a73e720
   - enabled: 1
-    path: Assets/Scenes/Jaewoo/01.TitleMainScene.unity
+    path: Assets/Scenes/Jaewoo/01.Title.unity
     guid: 2dfb9e6f87f1bad4993ace9a6879eb8a
   - enabled: 1
-    path: Assets/Scenes/Jaewoo/03.LobbyScene.unity
+    path: Assets/Scenes/Jaewoo/03.Lobby.unity
     guid: 341acadbf8854f34498093df408e5743
   - enabled: 1
     path: Assets/Scenes/Jaewoo/04.LoadingScene.unity

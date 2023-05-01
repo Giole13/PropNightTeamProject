@@ -6,7 +6,7 @@ public class Define
 {
     public static string TITLE_MAIN_SCENE_NAME = "01.TitleMainScene";
     public static string INGAME_SCENE_NAME = "02.InGame";
-    public static string SELECT_CHARACTER_SCENE_NAME = "03.LobbyScene";
+    public static string SELECT_CHARACTER_SCENE_NAME = "03.Lobby";
     public static string LOADING_SCENE_NAME = "04.LoadingScene";
 
 

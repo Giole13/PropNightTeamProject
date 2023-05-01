@@ -146,7 +146,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
     {
         IsFixing = IsFixingValue;
         _currentFixGauge = currentValue;
-        StartCoroutine(RaiseFixGauge());
+        StartCoroutine(IncreaseFixGauge());
     }
 
     [PunRPC]
@@ -167,7 +167,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
     }
 
     // 프롭머신을 수리하는 코루틴
-    private IEnumerator RaiseFixGauge()
+    private IEnumerator IncreaseFixGauge()
     {
         while (IsFixing && !IsFixDone)
         {

@@ -7,6 +7,6 @@ public class TestLobbyStart : MonoBehaviour
 {
     public void GameStart()
     {
-        SceneManager.LoadScene("04.LoadingScene");
+        SceneManager.LoadScene(Define.INGAME_SCENE_NAME);
     }
 }

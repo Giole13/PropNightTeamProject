@@ -4,19 +4,21 @@ using UnityEngine;
 using Photon.Pun;
 public class HypnoticChair : MonoBehaviourPun, IInteraction
 {
-    public enum HypnoticChairState
-    {
-        IDLE, WORKING
-    }
+    // 의자의 상태를 구분하기 위한 Enum
+    public enum HypnoticChairState { IDLE, WORKING }
     public HypnoticChairState ChairState;
     public float Timer;
     //최면의자에 앉을 생존자 - Jihwan 2023.04.25 
     private GameObject _player;
     private InGameManager GameManager;
+
+    [SerializeField] private Transform _sitPosition;
+
     // 처형까지의 시간 ##################### - 중요함
     private float _maxExecutionTime = 100f;
     // 현재 처형까지의 시간
     private float _currentExecutionTime = 0f;
+
 
     private bool IsCountStart = true;
     public bool IsSurvivorOut = false;
@@ -89,6 +91,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     }
 
 
+    // 살인마가 플레이어를 의자에 앉히는 함수
     [PunRPC]
     public void SurvivorSitOnChair(string ViewID)
     {
@@ -96,7 +99,8 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
         _player = GameManager.FindPlayerorKiller(ViewID);
         _player.GetComponent<PlayerMovement>().SitOnChair();
         _player.transform.SetParent(null);
-        _player.transform.localPosition = gameObject.transform.localPosition + new Vector3(0f, 0f, 0f);
+        // 2023.04.30 / HyungJun / 앉는 위치의 포지션값을 받아와서 적용함
+        _player.transform.localPosition = _sitPosition.localPosition + new Vector3(0f, 0f, 0f);
         _player.transform.localRotation = gameObject.transform.localRotation;
 
         ChairState = HypnoticChairState.WORKING;

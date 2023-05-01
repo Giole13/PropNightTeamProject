@@ -41,6 +41,7 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
 
         if (PhotonNetwork.IsMasterClient)
         {
+            Debug.Log("마스터 클라이언트라면 실행");
             // 마스터 클라이언트라면 살인마로 결정
             PlayerObject = PhotonNetwork.Instantiate(KillerPrefab.name, Vector3.zero, Quaternion.identity);
             _KillerUI.SetActive(true);
@@ -51,7 +52,7 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
             PlayerObject = PhotonNetwork.Instantiate(PlayerPrefab.name, Vector3.zero, Quaternion.identity);
             _playerUI.SetActive(true);
         }
-        // 
+        // 클라이언트 딕셔너리에 자기 자신의 오브젝트 추가
         photonView.RPC("ClientDicUpdate", RpcTarget.All);
     }
 

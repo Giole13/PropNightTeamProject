@@ -118,11 +118,6 @@ public class AkibanMoveControl : MonoBehaviourPun
                 IsGround = true;
             }
         }
-
-
-
-
-
     }
 
 

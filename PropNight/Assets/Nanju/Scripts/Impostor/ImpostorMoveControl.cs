@@ -98,12 +98,10 @@ public class ImpostorMoveControl : MonoBehaviourPun
     // 충돌 처리
     private void OnCollisionEnter(Collision other)
     {
-        // 땅 충돌 처리(Layer에 Ground 가 있으면)
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            // IsGround를 true로 변경
-            IsGround = true;
-        }
+
+        // IsGround를 true로 변경
+        IsGround = true;
+
     }
 
 }

@@ -334,7 +334,9 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         Player.transform.localPosition += new Vector3(0f, 0.5f, 0.5f);
         if (_life == 0)
         {
-            StatusManager.SurvivorDie();
+            // StatusManager.SurvivorDie();
+            // 2023.05.02 / HyungJun / 플레이어가 죽으면 모든 클라이언트의 스테이터스매니저에 살아있는 생존자 카운트를 1 줄인다.
+            StatusManager.GetComponent<PhotonView>().RPC("SurvivorDie", RpcTarget.All);
             Status = PlayerStatus.DIE;
             Player.GetComponent<CapsuleCollider>().enabled = false;
         }

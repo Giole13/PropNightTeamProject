@@ -137,7 +137,6 @@ public class ImpostorAttack : MonoBehaviourPun
             }
             // 그림자가 된다.
             // 스피드가 빨라진다.
-
             // 이동만 된다.
 
         }

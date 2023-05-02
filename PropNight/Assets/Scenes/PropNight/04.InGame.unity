@@ -38,11 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-<<<<<<< HEAD:PropNight/Assets/Scenes/PropNight/04.InGame.unity
   m_IndirectSpecularColor: {r: 0.088346824, g: 0.095294386, b: 0.09778763, a: 1}
-=======
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
->>>>>>> b0db7dde4fd5d5d7f43fca3a88306c366e79a646:PropNight/Assets/Scenes/PropNight/02.InGame.unity
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -671,96 +667,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: cd3e58ed6acc07d4bb64501c8b09eddf, type: 3}
 --- !u!4 &336617982 stripped
 Transform:
-<<<<<<< HEAD:PropNight/Assets/Scenes/PropNight/04.InGame.unity
   m_CorrespondingSourceObject: {fileID: 4320843944724075952, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
-=======
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410087039}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &410087042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410087039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
---- !u!1 &448194509
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 448194511}
-  - component: {fileID: 448194510}
-  m_Layer: 0
-  m_Name: GameStatusManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &448194510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448194509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b11efef83609470498aabb15d0b65ef8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SurvivorID: 00000000000000000000000000000000
-  SurvivorLife: 02000000020000000200000002000000
-  IsSurvivorCanDie: 00000000
-  SurvivorMemberNumber: 0
-  PropMachineCount: 5
-  IsCanEscape: 0
---- !u!4 &448194511
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448194509}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &479010143 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4051586927751632685, guid: 55bd5454ffa67e54abc2d35c0c29add3,
->>>>>>> b0db7dde4fd5d5d7f43fca3a88306c366e79a646:PropNight/Assets/Scenes/PropNight/02.InGame.unity
     type: 3}
   m_PrefabInstance: {fileID: 336617981}
   m_PrefabAsset: {fileID: 0}

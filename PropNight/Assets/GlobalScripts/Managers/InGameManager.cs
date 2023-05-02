@@ -23,14 +23,17 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
     [SerializeField] private GameObject _KillerUI;
 
 
-    [Tooltip("생존자 오브젝트")] public GameObject PlayerPrefab;
-    [Tooltip("킬러 오브젝트")] public GameObject KillerPrefab;
+    [Tooltip("생존자 오브젝트")] public GameObject[] PlayerPrefab;
+    [Tooltip("킬러 오브젝트")] public GameObject[] KillerPrefab;
 
     // 현재 클라이언트의 플레이어블 캐릭터 오브젝트
     public static GameObject PlayerObject = default;
     // 모든 클라이언트의 오브젝트가 담겨져 있는 딕셔너리
     public static Dictionary<int, GameObject> ClientDic = new Dictionary<int, GameObject>();
 
+    private void Awake()
+    {
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -41,16 +44,16 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
 
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("마스터 클라이언트라면 실행");
             // 마스터 클라이언트라면 살인마로 결정
-            PlayerObject = PhotonNetwork.Instantiate(KillerPrefab.name, Vector3.zero, Quaternion.identity);
+            PlayerObject = PhotonNetwork.Instantiate(KillerPrefab[DataContainer.KillerSelectNumber].name, Vector3.zero, Quaternion.identity);
             _KillerUI.SetActive(true);
         }
         else
         {
             // 게스트 클라이언트라면 생존자로 결정
-            PlayerObject = PhotonNetwork.Instantiate(PlayerPrefab.name, Vector3.zero, Quaternion.identity);
+            PlayerObject = PhotonNetwork.Instantiate(PlayerPrefab[DataContainer.PlayerSelectNumber].name, Vector3.zero, Quaternion.identity);
             _playerUI.SetActive(true);
+            // PlayerObject = PhotonNetwork.Instantiate(PlayerPrefab.name, Vector3.zero, Quaternion.identity);
         }
         // 클라이언트 딕셔너리에 자기 자신의 오브젝트 추가
         photonView.RPC("ClientDicUpdate", RpcTarget.All);

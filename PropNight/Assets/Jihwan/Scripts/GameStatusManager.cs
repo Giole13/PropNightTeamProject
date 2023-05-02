@@ -16,6 +16,8 @@ public class GameStatusManager : MonoBehaviourPun
     public int PropMachineCount = 5;
 
     public bool IsCanEscape = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,8 @@ public class GameStatusManager : MonoBehaviourPun
             }
         }
     }
+
+
     [PunRPC]
     public void PropMachineFix()
     {
@@ -54,6 +58,8 @@ public class GameStatusManager : MonoBehaviourPun
             IsCanEscape = true;
         }
     }
+
+
     [PunRPC]
     public void SurvivorDie()
     {

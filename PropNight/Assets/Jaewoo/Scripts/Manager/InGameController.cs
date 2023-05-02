@@ -5,14 +5,15 @@ using TMPro;
 
 public class InGameController : MonoBehaviour
 {
-    // public static InGameController s_inGameController = null;
-    // public static InGameController s_intance
-    // {
-    //     get 
-    //     {
-    //         return s_intance;
-    //     }
-    // }
+    private static InGameController s_inGameController = null;
+    public static InGameController s_intance
+    {
+        get
+        {
+            return s_inGameController;
+        }
+    }
+
     public float uiMaxTime = 600f;
     public int uiTimeMin = 0;
     public int uiTimeSec = 0;
@@ -31,6 +32,8 @@ public class InGameController : MonoBehaviour
 
     void Awake()
     {
+        s_inGameController = this;
+
         propMachineText.text = uiPropMachineCount + "/5";
         uiMaxTime = 600f;
         uiPropMachineCount = 0;

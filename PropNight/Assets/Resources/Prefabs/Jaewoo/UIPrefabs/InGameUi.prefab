@@ -1127,8 +1127,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6219ffb7fd2e34c95f6575c331df6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillCoolImage: {fileID: 6903308321112620744}
-  fillAmount: 0
+  playerSkillCoolImage: {fileID: 0}
+  playerSteminaGageBar: {fileID: 0}
+  playerSkillRun: {fileID: 0}
+  playerSkillAbility: {fileID: 0}
+  playerRunGagebar: {fileID: 0}
+  playerInput: {fileID: 0}
+  playerDashGage: {fileID: 0}
+  isPlayerSkillUse: 0
+  isLeftShift: 0
+  isRun: 0
+  fillAmountAbility: 0
+  currentCool: 0
 --- !u!1 &6903308320514925955
 GameObject:
   m_ObjectHideFlags: 0

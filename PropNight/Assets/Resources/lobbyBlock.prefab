@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomName: 123123
+  SceneName: 
   PlayerCount: 0
   MaxPlayers: 0
   Btn: {fileID: 7092535941113573798}

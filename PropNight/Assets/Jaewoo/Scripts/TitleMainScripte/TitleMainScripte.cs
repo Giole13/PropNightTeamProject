@@ -45,10 +45,10 @@ public class TitleMainScripte : MonoBehaviour
     public bool isCautionEnd = false;
     void Start()
     {
+        titleObject.SetActive(true);
+
         mainObject.GetComponent<CanvasGroup>().alpha = 0f;
         titleGroup.GetComponent<CanvasGroup>().alpha = 0f;
-
-        // titleObject.SetActive(true);
     }
     void Update()
     {

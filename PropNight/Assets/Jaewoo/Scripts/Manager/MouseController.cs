@@ -5,17 +5,35 @@ using UnityEngine.UI;
 using TMPro;
 public class MouseController : MonoBehaviour
 {
+    #region CustomGroup
     public GameObject charObj = default;
     public GameObject avaObj = default;
     public GameObject benObj = default;
     public TMP_Text characterText = default;
     public TMP_Text avatorText = default;
     public TMP_Text bennerText = default;
-    Color32 inMouse = new Color32(200, 79, 80, 255);
-    Color32 outMouse = new Color32(255, 255, 255, 255);
+
     public bool isUseChar = false;
     public bool isUseAva = false;
     public bool isUseBen = false;
+    #endregion
+
+    #region OptionGroup
+    public GameObject screenObj = default;
+    public GameObject keyBoardObj = default;
+    public GameObject soundObj = default;
+    public TMP_Text screenText = default;
+    public TMP_Text keyBoardText = default;
+    public TMP_Text soundText = default;
+
+    public bool isUseScreen = false;
+    public bool isUseKeyBoard = false;
+    public bool isUseSound = false;
+    #endregion
+
+    Color32 inMouse = new Color32(200, 79, 80, 255);
+    Color32 outMouse = new Color32(255, 255, 255, 255);
+
     void Start()
     {
         charObj.SetActive(true);
@@ -46,14 +64,14 @@ public class MouseController : MonoBehaviour
     }
     public void OnMouseExitAva()
     {
-        if (isUseChar == false)
+        if (isUseAva == false)
         {
             avatorText.color = outMouse;
         }
     }
     public void OnMouseExitBen()
     {
-        if (isUseChar == false)
+        if (isUseBen == false)
         {
             bennerText.color = outMouse;
         }
@@ -70,13 +88,15 @@ public class MouseController : MonoBehaviour
             characterText.color = inMouse;
             avatorText.color = outMouse;
             bennerText.color = outMouse;
+            isUseAva = false;
+            isUseBen = false;
         }
 
     }
     public void OnMouseClickAva()
     {
-        isUseChar = true;
-        if (isUseChar == true)
+        isUseAva = true;
+        if (isUseAva == true)
         {
             charObj.SetActive(false);
             avaObj.SetActive(true);
@@ -84,13 +104,15 @@ public class MouseController : MonoBehaviour
             characterText.color = outMouse;
             avatorText.color = inMouse;
             bennerText.color = outMouse;
+            isUseChar = false;
+            isUseBen = false;
         }
     }
 
     public void OnMouseClickBen()
     {
-        isUseChar = true;
-        if (isUseChar == true)
+        isUseBen = true;
+        if (isUseBen == true)
         {
             charObj.SetActive(false);
             avaObj.SetActive(false);
@@ -98,7 +120,90 @@ public class MouseController : MonoBehaviour
             characterText.color = outMouse;
             avatorText.color = outMouse;
             bennerText.color = inMouse;
+            isUseChar = false;
+            isUseAva = false;
+        }
+    }
+
+    public void OnMouseScreen()
+    {
+        screenText.color = inMouse;
+    }
+    public void OnMouseKeyBoard()
+    {
+        keyBoardText.color = inMouse;
+    }
+    public void OnMouseSound()
+    {
+        soundText.color = inMouse;
+    }
+
+    public void OnMouseScreenExit()
+    {
+        if (isUseScreen == false)
+        {
+            screenText.color = outMouse;
         }
 
+    }
+    public void OnMouseKeyBoardExit()
+    {
+        if (isUseKeyBoard == false)
+        {
+            keyBoardText.color = outMouse;
+        }
+    }
+    public void OnMouseSoundExit()
+    {
+        if (isUseSound == false)
+        {
+            soundText.color = outMouse;
+        }
+    }
+
+    public void OnMouseClickScreen()
+    {
+        isUseScreen = true;
+        if (isUseScreen == true)
+        {
+            screenObj.SetActive(true);
+            keyBoardObj.SetActive(false);
+            soundObj.SetActive(false);
+            screenText.color = inMouse;
+            keyBoardText.color = outMouse;
+            soundText.color = outMouse;
+            isUseKeyBoard = false;
+            isUseSound = false;
+        }
+    }
+    public void OnMouseClickKeyBoard()
+    {
+        isUseKeyBoard = true;
+        if (isUseKeyBoard == true)
+        {
+            screenObj.SetActive(false);
+            keyBoardObj.SetActive(true);
+            soundObj.SetActive(false);
+            screenText.color = outMouse;
+            keyBoardText.color = inMouse;
+            soundText.color = outMouse;
+            isUseScreen = false;
+            isUseSound = false;
+        }
+    }
+    public void OnMouseClickSound()
+    {
+        isUseSound = true;
+        if (isUseSound == true)
+        {
+            screenObj.SetActive(false);
+            keyBoardObj.SetActive(false);
+            soundObj.SetActive(true);
+            screenText.color = outMouse;
+            keyBoardText.color = outMouse;
+            soundText.color = inMouse;
+            isUseScreen = false;
+            isUseKeyBoard = false;
+        }
     }
 }

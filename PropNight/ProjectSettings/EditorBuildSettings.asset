@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/PropNight/04.InGame.unity
     guid: 3a7ea76a1fdb2134c8e4b89d1a265917
   - enabled: 1
-    path: Assets/Scenes/PropNight/05.ResultScene.unity
+    path: Assets/Scenes/PropNight/05.ResultScene (Lagacy).unity
     guid: 9d8d6caa6ebde47418b330adbc944535
   - enabled: 1
     path: Assets/Scenes/PropNight/99.HyungJunDebugScene.unity

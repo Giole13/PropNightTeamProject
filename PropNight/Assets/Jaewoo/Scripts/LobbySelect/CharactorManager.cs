@@ -46,6 +46,10 @@ public class CharactorManager : MonoBehaviourPun
         killerSprites[1] = Resources.Load<Sprite>("skills/icons_skills_alchemy");
         killerSprites[2] = Resources.Load<Sprite>("skills/icons_skills_revive");
         killerSprites[3] = Resources.Load<Sprite>("skills/icons_skills_acrobat");
+
+
+        KillerGridGroup.SetActive(false);
+        PlayerGridGroup.SetActive(false);
     }
     void Start()
     {

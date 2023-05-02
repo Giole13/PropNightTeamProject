@@ -17,7 +17,7 @@ public class SelectCharacterSceneManager : MonoBehaviourPun
     {
         // 게임 시작 버튼을 활성화 한다.
         StartBtn.SetActive(true);
-        ReadyBtn.SetActive(false);
+        // ReadyBtn.SetActive(false);
     }
 
     // 게임시작 버튼
@@ -31,6 +31,8 @@ public class SelectCharacterSceneManager : MonoBehaviourPun
     [PunRPC]
     public void MoveSceneProgress()
     {
+
+
         // 게임 시작 버튼을 누르면 60초의 카운트 다운이 시작되고 준비 됨 버튼을 활성화 한다.
         // StartBtn.SetActive(false);
         // ReadyBtn.SetActive(true);

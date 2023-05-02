@@ -51,7 +51,7 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
         else
         {
             // 게스트 클라이언트라면 생존자로 결정
-            PlayerObject = PhotonNetwork.Instantiate(KillerPrefab[DataContainer.PlayerSelectNumber].name, Vector3.zero, Quaternion.identity);
+            PlayerObject = PhotonNetwork.Instantiate(PlayerPrefab[DataContainer.PlayerSelectNumber].name, Vector3.zero, Quaternion.identity);
             _playerUI.SetActive(true);
             // PlayerObject = PhotonNetwork.Instantiate(PlayerPrefab.name, Vector3.zero, Quaternion.identity);
         }

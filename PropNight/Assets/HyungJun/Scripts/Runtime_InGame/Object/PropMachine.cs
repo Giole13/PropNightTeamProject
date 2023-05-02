@@ -34,7 +34,7 @@ using Photon.Pun;
 public class PropMachine : MonoBehaviourPun, IInteraction
 {
     // 몇개를 수리했는지 알려주는 변수
-    private float _maxFixGauge = 1f;
+    private float _maxFixGauge = 30f;
 
     [SerializeField]
     private ProtoExitPortal _exitPortalScript = default;
@@ -51,7 +51,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
     // 해당 프롭머신이 파괴 가능한지 체크하는 변수
     public bool IsBreakPossible { get; private set; } = false;
     #endregion 각 클라이언트가 공유해야하는 자원
-
+    public PropFixBar propFixBar = default;
     [SerializeField]
     private Image _fixGaugeImage;
 
@@ -59,10 +59,12 @@ public class PropMachine : MonoBehaviourPun, IInteraction
 
     private bool _gaugeBarLookPlayer = false;
     // private GameObject _playerObj;
+    private bool _IsTiming = false;
 
     private void Awake()
     {
         _currentFixGauge = 0f;
+        propFixBar = GetComponent<PropFixBar>();
     }
 
     private void Start()
@@ -171,13 +173,27 @@ public class PropMachine : MonoBehaviourPun, IInteraction
     {
         while (IsFixing && !IsFixDone)
         {
+            int random = Random.Range(5, 8);
             IsBreakPossible = true;
-            yield return new WaitForSecondsRealtime(0.01f);
-            _currentFixGauge += 0.01f;
+            // yield return new WaitForSecondsRealtime(0.01f);
+            // _currentFixGauge += 0.01f;
+            yield return null;
+            _currentFixGauge += Time.smoothDeltaTime;
             // PlayerUi.s_instance.FixingPropMachine(_currentFixGauge / _maxFixGauge);
             // 프롭머신의 위에 존재하는 게이지바를 업데이트 하는 로직
             _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
             // _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
+            if (_currentFixGauge < 0)
+            {
+                _currentFixGauge = 0;
+            }
+            if (_IsTiming == false)
+            {
+                _IsTiming = true;
+
+                StartCoroutine(TimingBar(random));
+
+            }
             if (_maxFixGauge <= _currentFixGauge)
             {
                 // 수리 완료시 실행 하는 함수
@@ -191,6 +207,8 @@ public class PropMachine : MonoBehaviourPun, IInteraction
 
                 yield break;
             }
+
+
         }
     }       // RaiseFixGauge()
 
@@ -252,5 +270,14 @@ public class PropMachine : MonoBehaviourPun, IInteraction
     // {
 
     // }
+
+
+    IEnumerator TimingBar(int a)
+    {
+        propFixBar.SkillCheck(_currentFixGauge);
+        _currentFixGauge = propFixBar.SkillCheck(_currentFixGauge);
+        yield return new WaitForSeconds(a);
+        _IsTiming = false;
+    }
 
 }       // class PropMachine

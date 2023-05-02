@@ -1474,6 +1474,7 @@ MonoBehaviour:
   Speed: 5
   JumpForce: 50
   IsGround: 1
+  SkillSpeed: 1
 --- !u!111 &6644335796662522378
 Animation:
   m_ObjectHideFlags: 0

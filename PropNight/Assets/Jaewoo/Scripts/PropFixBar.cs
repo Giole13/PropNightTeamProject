@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class PropFixBar : MonoBehaviour
 {
@@ -34,26 +35,25 @@ public class PropFixBar : MonoBehaviour
     public float perfectBarAngle = default;
     public float textFadeOut = default;
     public float textFadeIn = default;
-
+    public float returnGuage = default;
     void Start()
     {
         propMachineFixedCheck.SetActive(false);
-
     }
 
-    public void SkillCheck()
+    public float SkillCheck(float guage)
     {
         propMachineFixedCheck.SetActive(true);
         circleBar.fillAmount = 0f;
-        StartCoroutine(SkillCheckRoutine());
+        StartCoroutine(SkillCheckRoutine(guage));
 
-
+        return returnGuage;
         // stick.localEulerAngles = new Vector3(0, 0, 0);
         // successStick.localEulerAngles = new Vector3(0, 0, 0);
         // perfectStick.localEulerAngles = new Vector3(0, 0, 0);
     }
 
-    IEnumerator SkillCheckRoutine()
+    IEnumerator SkillCheckRoutine(float guage)
     {
         timingValue_ = 0;
         barAmount = 0;
@@ -78,22 +78,22 @@ public class PropFixBar : MonoBehaviour
 
         if (stickAngle < Mathf.Abs(successBarAngle) || Mathf.Abs(perfectBarAngle - 18) < stickAngle)
         {
-            Debug.Log("실패");
+            guage -= 5f;
             //실패 연결
         }
 
         if (Mathf.Abs(successBarAngle) <= stickAngle && stickAngle < Mathf.Abs(successBarAngle - 36))
         {
-            Debug.Log("성공");
+            guage += 5f;
             //성공 연결
 
         }
         if (Mathf.Abs(perfectBarAngle) <= stickAngle && stickAngle <= Mathf.Abs(perfectBarAngle - 18))
         {
-            Debug.Log("대성공");
+            guage += 10f;
             //대성공 연결
         }
-
+        returnGuage = guage;
         propMachineFixedCheck.SetActive(false);
     }
 

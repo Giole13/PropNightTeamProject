@@ -2890,6 +2890,7 @@ GameObject:
   - component: {fileID: 5498292542467504139}
   - component: {fileID: 8217782007829728339}
   - component: {fileID: 589146074421490033}
+  - component: {fileID: 1771289062795179600}
   m_Layer: 0
   m_Name: PropMachineV2
   m_TagString: PropMachine
@@ -4110,6 +4111,38 @@ MonoBehaviour:
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
+--- !u!114 &1771289062795179600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4320843944724075955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1371a915a53b940a62a2f3180bc0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  propMachineFixedCheck: {fileID: 0}
+  circleBar: {fileID: 0}
+  circleSuccess: {fileID: 0}
+  circlePerfect: {fileID: 0}
+  stick: {fileID: 0}
+  successStick: {fileID: 0}
+  perfectStick: {fileID: 0}
+  timingValue: 0
+  timingValue_: 0
+  barAmount: 0
+  stickAngle: 0
+  minSuccess: 0
+  maxSuccess: 0
+  minPerfect: 0
+  maxPerfect: 0
+  successBarAngle: 0
+  perfectBarAngle: 0
+  textFadeOut: 0
+  textFadeIn: 0
+  returnGuage: 0
 --- !u!1 &4320843944920578003
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ public class AkibanAttack : MonoBehaviourPun
     public AkibanMoveControl AkibanControl;
     public Rigidbody Rigid;
     public GameObject KillerRightHand;
+    public GameObject Killer;
 
     // Start is called before the first frame update
     void Start()
@@ -96,7 +97,7 @@ public class AkibanAttack : MonoBehaviourPun
     [PunRPC]
     public void MouseLeftButton()
     {
-        // PropMachineAttack();
+        PropMachineAttack();
         // OnTriggerEnter(Player);
         StartCoroutine(AkibanAttackMotion());
 
@@ -164,21 +165,21 @@ public class AkibanAttack : MonoBehaviourPun
 
 
     //프롭머신 파괴하기 위한 함수
-    // [PunRPC]
-    // public void PropMachineAttack()
-    // {
-    //     // 프롭머신 파괴 가능
-    //     if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f)
-    //     {
-    //         // 프롭머신 게이지 닳는 함수 실행
-    //         LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Killer.tag);
-    //     }
-    //     // 프롭머신이 파괴 불가능 
-    //     else
-    //     {
-    //         /*Do nothing*/
-    //     }
-    // }
+    [PunRPC]
+    public void PropMachineAttack()
+    {
+        // 프롭머신 파괴 가능
+        if (_lookCamera.Obj.tag == "PropMachine" && _lookCamera.ObjDistance < 3f)
+        {
+            // 프롭머신 게이지 닳는 함수 실행
+            _lookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Killer.tag);
+        }
+        // 프롭머신이 파괴 불가능 
+        else
+        {
+            /*Do nothing*/
+        }
+    }
 
 
 

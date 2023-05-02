@@ -8,14 +8,14 @@ using Photon.Pun;
 public class PlayerMovement : MonoBehaviourPun, IDamage
 {
 
-    private PlayerInput _playerInput;
-    private Rigidbody _playerRigidBody;
+    private PlayerInput _playerInput;       // 키보드 입력
+    private Rigidbody _playerRigidBody;     // Rigidbody
 
-    private UiPlayerSkill _uiPlayerSkill;
-    private bool IsJump;
-    private bool IsDoSomething = false;
-    private int JumpCount;
-
+    private UiPlayerSkill _uiPlayerSkill;       // 생존자 UI
+    private bool IsJump;                    // 점프할 수 있는가
+    private bool IsDoSomething = false;     //무언가를 하고 있는가
+    private int JumpCount;                  // 점프가능 횟수
+    private GameStatusManager StatusManager;
     private int _life;
     public bool IsFallDown = false;
     public float Stamina;
@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         }
         _playerRigidBody = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();
+        StatusManager = GameObject.Find("GameStatusManager").GetComponent<GameStatusManager>();
 
     }
     private void Awake()
@@ -120,7 +121,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
             _playerRigidBody.MovePosition(_playerRigidBody.position + moveDistance);
             AniSpeed = 1;
         }
-        photonView.RPC("MoveAnimation", RpcTarget.All, vertical, horizontalMove, AniSpeed);
+        //photonView.RPC("MoveAnimation", RpcTarget.All, vertical, horizontalMove, AniSpeed);
+        MoveAnimation(vertical, horizontalMove, AniSpeed);
 
     }   // 이동
     /// <summary>
@@ -259,12 +261,9 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         if (PhotonNetwork.IsMasterClient)
         {
             HP -= 1;
-            Debug.Log("00000000");
             photonView.RPC("ApplyUpdatedHealth", RpcTarget.Others, HP);
             // photonView.RPC("GetDamage", RpcTarget.Others);
         }
-
-        Debug.Log("!!!!!!!!");
 
         if (HP < 0f)
         {
@@ -335,6 +334,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         Player.transform.localPosition += new Vector3(0f, 0.5f, 0.5f);
         if (_life == 0)
         {
+            StatusManager.SurvivorDie();
             Status = PlayerStatus.DIE;
             Player.GetComponent<CapsuleCollider>().enabled = false;
         }
@@ -343,10 +343,10 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     [PunRPC]
     public void SitOnChair()
     {
+        StatusManager.photonView.RPC("SurvivorFallDown", RpcTarget.All, gameObject.GetPhotonView().ViewID);
         Animator.SetTrigger("IsSitOnChair");
         Status = PlayerStatus.CAUGHT;
         _life--;
-
     }   // 생존자가 최면의자에 앉혀짐
     [PunRPC]
     public void Hold()

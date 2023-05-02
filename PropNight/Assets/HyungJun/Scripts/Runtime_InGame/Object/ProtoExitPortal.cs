@@ -25,16 +25,23 @@ public class ProtoExitPortal : MonoBehaviour
     // ⠀⠀⠀⠀⠀⠀⠀⠈⠛⠻⠿⠿⠿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀
 
     public bool _IsOpened = false;
-
+    private GameStatusManager StatusManager;
     void Start()
     {
-
+        StatusManager = GameObject.Find("GameStatusManager").GetComponent<GameStatusManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (StatusManager.IsCanEscape)
+        {
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
+        else
+        {
+            gameObject.GetComponent<BoxCollider>().enabled = true;
+        }
     }
 
     // 플레이어와 충돌하면 결과화면을 보여준다.

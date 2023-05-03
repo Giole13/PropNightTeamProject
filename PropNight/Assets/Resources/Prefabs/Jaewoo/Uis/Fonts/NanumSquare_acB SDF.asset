@@ -6760,10 +6760,6 @@ MonoBehaviour:
     m_Y: 499
     m_Width: 61
     m_Height: 12
-  - m_X: 0
-    m_Y: 510
-    m_Width: 511
-    m_Height: 1
   - m_X: 269
     m_Y: 350
     m_Width: 7

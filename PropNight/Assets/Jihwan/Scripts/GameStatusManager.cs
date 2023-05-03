@@ -33,6 +33,13 @@ public class GameStatusManager : MonoBehaviourPun
     {
         _dc = GameObject.Find("DataContainer").GetComponent<DataContainer>();
         // Debug.Log(_dc);
+        // 작동 안함 -> 코루틴으로 설정해야함.
+        // StartCoroutine(CashingSurviorID());
+    }
+
+    private IEnumerator CashingSurviorID()
+    {
+        yield return new WaitForSeconds(1f);
         int Count = 0;
         foreach (var obj in GameObject.FindGameObjectsWithTag("Player"))
         {
@@ -77,7 +84,10 @@ public class GameStatusManager : MonoBehaviourPun
     public void SurvivorDie()
     {
         SurvivorMemberNumber--;
-
+        Debug.Log("여기서 생존자 수 감소");
+        Debug.Log("여기서 씬 이동");
+        Debug.Log(PhotonNetwork.IsMasterClient);
+        Debug.Log(SurvivorMemberNumber);
         // 2023.05.02 / HyungJun / 마스터 클라이언트이고 생존한 플레이어가 0명이면 살인마인 경우만 승리
         if (PhotonNetwork.IsMasterClient && SurvivorMemberNumber == 0)
         {
@@ -90,7 +100,8 @@ public class GameStatusManager : MonoBehaviourPun
     [PunRPC]
     public void SceneMove()
     {
-        SceneManager.LoadScene(Define.RESULT_SCENE_NAME);
+        Debug.Log("씬을 이동합니다.");
+        PhotonNetwork.LoadLevel(Define.RESULT_SCENE_NAME);
     }
 
     // public void

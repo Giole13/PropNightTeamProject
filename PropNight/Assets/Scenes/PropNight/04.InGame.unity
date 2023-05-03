@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1291031, g: 0.14081612, b: 0.1544541, a: 1}
+  m_IndirectSpecularColor: {r: 0.12910299, g: 0.14081603, b: 0.15445377, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -130,6 +130,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1280349572}
     m_Modifications:
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: stick
+      value: 
+      objectReference: {fileID: 793684882}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: circleBar
+      value: 
+      objectReference: {fileID: 793684883}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: perfectStick
+      value: 
+      objectReference: {fileID: 793684880}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: successStick
+      value: 
+      objectReference: {fileID: 793684881}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: propMachineFixedCheck
+      value: 
+      objectReference: {fileID: 793684884}
     - target: {fileID: 2416226832655790885, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
       propertyPath: sceneViewId
@@ -588,6 +613,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1280349572}
     m_Modifications:
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: stick
+      value: 
+      objectReference: {fileID: 793684882}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: circleBar
+      value: 
+      objectReference: {fileID: 793684883}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: perfectStick
+      value: 
+      objectReference: {fileID: 793684880}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: successStick
+      value: 
+      objectReference: {fileID: 793684881}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: propMachineFixedCheck
+      value: 
+      objectReference: {fileID: 793684884}
     - target: {fileID: 2416226832655790885, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
       propertyPath: sceneViewId
@@ -1333,6 +1383,42 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 793684878}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &793684880 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8943439602198262656, guid: 5c4256993be692e48a371f67e0241388,
+    type: 3}
+  m_PrefabInstance: {fileID: 793684878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &793684881 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5791765317782357752, guid: 5c4256993be692e48a371f67e0241388,
+    type: 3}
+  m_PrefabInstance: {fileID: 793684878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &793684882 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5374113649296305837, guid: 5c4256993be692e48a371f67e0241388,
+    type: 3}
+  m_PrefabInstance: {fileID: 793684878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &793684883 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2026364157528423510, guid: 5c4256993be692e48a371f67e0241388,
+    type: 3}
+  m_PrefabInstance: {fileID: 793684878}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &793684884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9065487123652964225, guid: 5c4256993be692e48a371f67e0241388,
+    type: 3}
+  m_PrefabInstance: {fileID: 793684878}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &805044693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,6 +1854,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1280349572}
     m_Modifications:
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: stick
+      value: 
+      objectReference: {fileID: 793684882}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: circleBar
+      value: 
+      objectReference: {fileID: 793684883}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: perfectStick
+      value: 
+      objectReference: {fileID: 793684880}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: successStick
+      value: 
+      objectReference: {fileID: 793684881}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: propMachineFixedCheck
+      value: 
+      objectReference: {fileID: 793684884}
     - target: {fileID: 2416226832655790885, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
       propertyPath: sceneViewId
@@ -2073,6 +2184,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1280349572}
     m_Modifications:
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: stick
+      value: 
+      objectReference: {fileID: 793684882}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: circleBar
+      value: 
+      objectReference: {fileID: 793684883}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: perfectStick
+      value: 
+      objectReference: {fileID: 793684880}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: successStick
+      value: 
+      objectReference: {fileID: 793684881}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: propMachineFixedCheck
+      value: 
+      objectReference: {fileID: 793684884}
     - target: {fileID: 2416226832655790885, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
       propertyPath: sceneViewId
@@ -2288,6 +2424,7 @@ MonoBehaviour:
   SurvivorLife: 02000000020000000200000002000000
   IsSurvivorCanDie: 00000000
   SurvivorMemberNumber: 0
+  ExitMemberNumber: 0
   PropMachineCount: 5
   IsCanEscape: 0
 --- !u!4 &1924756028
@@ -4073,6 +4210,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1280349572}
     m_Modifications:
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: stick
+      value: 
+      objectReference: {fileID: 793684882}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: circleBar
+      value: 
+      objectReference: {fileID: 793684883}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: perfectStick
+      value: 
+      objectReference: {fileID: 793684880}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: successStick
+      value: 
+      objectReference: {fileID: 793684881}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: propMachineFixedCheck
+      value: 
+      objectReference: {fileID: 793684884}
     - target: {fileID: 2416226832655790885, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
       propertyPath: sceneViewId

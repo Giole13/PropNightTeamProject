@@ -77,6 +77,7 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
             // 플레이어 최면의자에 앉히기
             else if (LookCamera.Obj.tag == "HypnoticChair" && _killerState == KillerState.PLAYERHOLD && LookCamera.ObjDistance < 3f)
             {
+                Debug.Log("살인마가 의자에 접근함");
                 // photonView.RPC("PlayerSeating", RpcTarget.All);
                 //Player.GetComponent<PlayerMovement>().SitOnChair();   // 최면의자 스크립트에서 실행
                 // 플레이어의 상태를 변환하는 것은 모든 클라이언트에 적용되야 함 그래서 나머지는 최면의자 스크립트에서 실행

@@ -56,9 +56,11 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        HoldUiCheck();
-        SitUiCheck();
-        PlayerHoldDownCheck();
+
+        // 2023.05.04 / HyungJun / 디버그를 위한 주석처리
+        // HoldUiCheck();
+        // SitUiCheck();
+        // PlayerHoldDownCheck();
         RightClick();
     }
 

@@ -18,7 +18,9 @@ public class UiKillerSkill : MonoBehaviour, IKillerSkill, IKillerEnumverator
     void Update()
     {
         KillerShortSkillCool();
-        KillerLongSkillLongCool();
+
+        // 2023.05.04 / HyungJun / 디버그를 위한 주석처리
+        // KillerLongSkillLongCool();
     }
     public void KillerShortSkillCool()
     {

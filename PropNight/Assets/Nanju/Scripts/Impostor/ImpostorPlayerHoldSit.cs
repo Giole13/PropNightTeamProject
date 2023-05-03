@@ -75,7 +75,6 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
         if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 5f)
         {
             _playerMovementScript = LookCamera.Obj.GetComponent<PlayerMovement>();
-
             if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)
             {
                 // Ui 오브젝트 가져오기 (활성화)

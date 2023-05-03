@@ -4663,6 +4663,8 @@ MonoBehaviour:
   VirtualThirdCamera: {fileID: 8290903903861791788}
   _killerState: 0
   LookCamera: {fileID: 2860378683795151224}
+  IsAkibanPlayerDownCheck: 0
+  IsAkibanPlayerSitCheck: 0
 --- !u!114 &1014398471129690272
 MonoBehaviour:
   m_ObjectHideFlags: 0

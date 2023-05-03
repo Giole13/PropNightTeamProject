@@ -29,6 +29,10 @@ public class AkibanPlayerHoldSit : MonoBehaviourPun
     // Laycast를 불러와서 사용하기
     [SerializeField] private AkibanCameraMove LookCamera;
 
+    // 플레이어가 쓰러진것을 확인
+    public bool IsAkibanPlayerDownCheck = false;
+    // 최면의자에 앉히는 것을 확인
+    public bool IsAkibanPlayerSitCheck = false;
 
 
     // Start is called before the first frame update
@@ -47,10 +51,46 @@ public class AkibanPlayerHoldSit : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        HoldUiCheck();
+        SitUiCheck();
         RightClick();
     }
 
+    //  플레이어어 쓰러진 상태를 ui 한테 보내주기 위한 함수
+    public void HoldUiCheck()
+    {
+        // 포톤에서 자기자신만 움직이게 하기 위해 
+        if (!photonView.IsMine) { return; }
 
+        if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 3f)
+        {
+            if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)
+            {
+                // Ui 오브젝트 가져오기 (활성화)
+                IsAkibanPlayerDownCheck = true;
+                return;
+            }
+        }
+
+        IsAkibanPlayerDownCheck = false;
+
+    }
+
+    // 플레이어를 최면의자에 앉힌 것을 보내주기 위한 함수(UI)
+    public void SitUiCheck()
+    {
+        // 포톤에서 자기자신만 움직이게 하기 위해 
+        if (!photonView.IsMine) { return; }
+
+        if (LookCamera.Obj.tag == "HypnoticChair" && _killerState == KillerState.PLAYERHOLD && LookCamera.ObjDistance < 3f)
+        {
+            // Ui 오브젝트 가져오기 (활성화)
+            IsAkibanPlayerSitCheck = true;
+            return;
+
+        }
+        IsAkibanPlayerSitCheck = false;
+    }
 
 
     // 오른쪽 마우스를 클릭시

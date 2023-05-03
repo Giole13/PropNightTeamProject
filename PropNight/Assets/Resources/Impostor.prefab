@@ -1374,6 +1374,8 @@ MonoBehaviour:
   VirtualFirstCamera: {fileID: 5016251218937469310}
   VirtualThirdCamera: {fileID: 5016251220576895739}
   _killerState: 0
+  IsImpostorPlayerDownCheck: 0
+  IsImpostorPlayerSitCheck: 0
   LookCamera: {fileID: 5016251218842535513}
 --- !u!54 &4904972728972586862
 Rigidbody:
@@ -1472,7 +1474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  JumpForce: 50
+  JumpForce: 5
   IsGround: 1
   SkillSpeed: 1
 --- !u!111 &6644335796662522378

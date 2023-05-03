@@ -107,6 +107,7 @@ public class AkibanPlayerHoldSit : MonoBehaviourPun
 
         if (_killerState == KillerState.PLAYERHOLD && Input.GetMouseButtonDown(0))
         {
+            _killerState = KillerState.IDLE;
             IsPlayerHoldDownCheck = true;
             return;
         }

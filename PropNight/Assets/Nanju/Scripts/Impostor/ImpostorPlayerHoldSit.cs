@@ -69,7 +69,9 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
     {
         // 포톤에서 자기자신만 움직이게 하기 위해 
         if (!photonView.IsMine) { return; }
+        // 아무 것도 보지 않았을때 예외 처리
         if (LookCamera.Obj == null) { return; }
+
         if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 3f)
         {
             if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)
@@ -110,6 +112,7 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
 
         if (_killerState == KillerState.PLAYERHOLD && Input.GetMouseButtonDown(0))
         {
+            _killerState = KillerState.IDLE;
             IsPlayerHoldDownCheck = true;
             return;
         }

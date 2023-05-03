@@ -18688,7 +18688,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4161756585414577596}
-  m_LocalRotation: {x: 0.17371786, y: 0.0000000034430787, z: -6.073593e-10, w: 0.98479545}
+  m_LocalRotation: {x: 0.17371786, y: 0.0000000034430823, z: -6.0735916e-10, w: 0.98479545}
   m_LocalPosition: {x: 0, y: 2.41, z: -5.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18983,8 +18983,8 @@ Transform:
   m_GameObject: {fileID: 4161756586047946900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4161756586419821952}
   - {fileID: 51729009885328221}
@@ -19041,6 +19041,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c1af3c830085b429747df88f2fe90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPropMachineCheck: 0
+  IsChairCheck: 0
   IsFallDown: 0
   Stamina: 0
   Animator: {fileID: 4161756586047946892}

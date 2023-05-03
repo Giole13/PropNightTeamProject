@@ -70,13 +70,13 @@ public class ImpostorAttack : MonoBehaviourPun
         {
             if (_isCanAttack)
             {
+                PlayerAttackCheck();
                 photonView.RPC("MouseLeftButton", RpcTarget.All);
             }
 
 
         }
         PropmachinAttacCheck();
-        PlayerAttackCheck();
     }
 
     // 프롭머신 망치는 상태 ui에게 보내주기 함수
@@ -144,7 +144,7 @@ public class ImpostorAttack : MonoBehaviourPun
         }
         yield return new WaitForSeconds(2f);
 
-        Animation.Stop();
+        // Animation.Stop();
 
         // BoxCollider 끄기
         KillerRightHand.GetComponent<BoxCollider>().enabled = false;

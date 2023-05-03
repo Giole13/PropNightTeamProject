@@ -1042,14 +1042,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8289221390480512303}
-  m_LocalRotation: {x: -0.056972697, y: 0.32349664, z: 0.9444976, w: 0.005322626}
-  m_LocalPosition: {x: 0.63385403, y: 1.030699, z: 0.07279038}
+  m_LocalRotation: {x: -0.11790093, y: 0.6828332, z: 0.7187499, w: -0.05689298}
+  m_LocalPosition: {x: 0.657, y: 0.783, z: 0.121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8286679482399167963}
   m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: -27.112741, y: 19.483627, z: 162.45459}
+  m_LocalEulerAnglesHint: {x: -75.502, y: -80.881, z: 255.896}
 --- !u!65 &7578630839017289009
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1061,7 +1061,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Size: {x: 0.2, y: 0.5, z: 0.2}
   m_Center: {x: -0.1, y: 0.2, z: 0.2}
 --- !u!1 &8289228952035677703
 GameObject:
@@ -4557,7 +4557,7 @@ GameObject:
   - component: {fileID: 2076205356064009317}
   - component: {fileID: 4926686754160669832}
   m_Layer: 0
-  m_Name: Assasin
+  m_Name: Akiban
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4572,8 +4572,8 @@ Transform:
   m_GameObject: {fileID: 8289689249280393557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.15, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8286754648345077137}
   - {fileID: 8286679482399167963}
@@ -4617,13 +4617,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lookCamera: {fileID: 2860378683795151224}
+  Killer: {fileID: 0}
   Akiban: {fileID: 8289689249280393557}
   _coolTime: 0
   Speed: 10
   IsStop: 0
   AkibanControl: {fileID: 5824309040746161930}
+  uiKillerPoint: {fileID: 0}
   Rigid: {fileID: 0}
   KillerRightHand: {fileID: 8289221390480512303}
+  IsPropmachineAttackCheck: 0
+  IsPlayerAttackCheck: 0
 --- !u!114 &5824309040746161930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4663,6 +4667,9 @@ MonoBehaviour:
   VirtualThirdCamera: {fileID: 8290903903861791788}
   _killerState: 0
   LookCamera: {fileID: 2860378683795151224}
+  IsAkibanPlayerDownCheck: 0
+  IsAkibanPlayerSitCheck: 0
+  IsPlayerHoldDownCheck: 0
 --- !u!114 &1014398471129690272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8445,7 +8452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8290903903898826805}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.31, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0.18, y: 1.5, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []

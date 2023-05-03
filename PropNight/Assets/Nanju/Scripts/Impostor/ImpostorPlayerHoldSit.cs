@@ -29,6 +29,7 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
     // Laycast를 불러와서 사용하기
     [SerializeField] private ImpostorCameraMove LookCamera;
 
+    private UiKillerPoint _killerPoint;
 
     // 플레이어가 쓰러진것을 확인
     public bool IsImpostorPlayerDownCheck = false;
@@ -42,6 +43,8 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
     {
         if (photonView.IsMine)
         {
+            _killerPoint = GameObject.Find("InGameKillerUi").GetComponent<UiKillerPoint>();
+            //_killerPoint.;
             VirtualFirstCamera.Priority = 20;
             VirtualThirdCamera.Priority = 20;
         }

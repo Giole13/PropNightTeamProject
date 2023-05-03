@@ -144,8 +144,7 @@ public class ImpostorAttack : MonoBehaviourPun
     [PunRPC]
     public void MouseLeftButton()
     {
-        // PropMachineAttack();
-        // OnTriggerEnter(Player);
+        PropMachineAttack();
         StartCoroutine(AttackTime());
 
 

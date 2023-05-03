@@ -10,6 +10,7 @@ public class AkibanAttack : MonoBehaviourPun
     // 프롭머신 망치기
     // Laycast를 불러와서 사용하기
     [SerializeField] private AkibanCameraMove _lookCamera;
+    public GameObject Killer;
     // 프롭머신을 공격할 수 있는지 여부를 알기
     private PropMachine _attackPropMachineCheck;
     // 프롭머신 게이지 닳는 함수 가져오기
@@ -96,8 +97,7 @@ public class AkibanAttack : MonoBehaviourPun
     [PunRPC]
     public void MouseLeftButton()
     {
-        // PropMachineAttack();
-        // OnTriggerEnter(Player);
+        PropMachineAttack();
         StartCoroutine(AkibanAttackMotion());
 
 
@@ -164,21 +164,21 @@ public class AkibanAttack : MonoBehaviourPun
 
 
     //프롭머신 파괴하기 위한 함수
-    // [PunRPC]
-    // public void PropMachineAttack()
-    // {
-    //     // 프롭머신 파괴 가능
-    //     if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f)
-    //     {
-    //         // 프롭머신 게이지 닳는 함수 실행
-    //         LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Killer.tag);
-    //     }
-    //     // 프롭머신이 파괴 불가능 
-    //     else
-    //     {
-    //         /*Do nothing*/
-    //     }
-    // }
+    [PunRPC]
+    public void PropMachineAttack()
+    {
+        // 프롭머신 파괴 가능
+        if (_lookCamera.Obj.tag == "PropMachine" && _lookCamera.ObjDistance < 3f)
+        {
+            // 프롭머신 게이지 닳는 함수 실행
+            _lookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Killer.tag);
+        }
+        // 프롭머신이 파괴 불가능 
+        else
+        {
+            /*Do nothing*/
+        }
+    }
 
 
 

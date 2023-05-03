@@ -33,8 +33,10 @@ public class AkibanAttack : MonoBehaviourPun
     public bool IsStop = false;
 
     public AkibanMoveControl AkibanControl;
+    public UiKillerPoint uiKillerPoint;
     public Rigidbody Rigid;
     public GameObject KillerRightHand;
+
     // 프롭머신 망치는 상태 ui에게 보내주기
     public bool IsPropmachineAttackCheck = false;
 
@@ -44,6 +46,12 @@ public class AkibanAttack : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        if (photonView.IsMine)
+        {
+            uiKillerPoint = GameObject.Find("InGameKillerUi").GetComponent<UiKillerPoint>();
+            uiKillerPoint.akibanAttack = this;
+
+        }
         // 초기화
         this.gameObject.SetActive(true);
         // 프롭머신 ui 초기화

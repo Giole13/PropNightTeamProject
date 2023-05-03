@@ -35,7 +35,7 @@ public class UiKillerPoint : MonoBehaviour
     {
         //0 = 좌클릭, 1 = 우클릭
         mouseImageIcon[0] = Resources.Load<Sprite>("UiIcon/MouseIcon-removebg-preview");
-        mouseImageIcon[1] = Resources.Load<Sprite>("UiIcon/MouseIcon-removebg-preview");
+        mouseImageIcon[1] = Resources.Load<Sprite>("UiIcon/Mious-removebg-preview");
         killerPointer.SetActive(false);
         attackImage = killerAttackPointer.GetComponent<Image>();
 
@@ -66,8 +66,9 @@ public class UiKillerPoint : MonoBehaviour
             pointerText.text = "들기";
             killerPointer.transform.localPosition = fallDownVector3;
             mouseImage.sprite = mouseImageIcon[1];
+            return;
         }
-        else { killerPointer.SetActive(false); }
+
 
         if (akibanPlayerHoldSit.IsPlayerHoldDownCheck == true)//playerMovement.Status == PlayerStatus.CAUGHT)
         {
@@ -75,8 +76,9 @@ public class UiKillerPoint : MonoBehaviour
             pointerText.text = "내려놓기";
             killerPointer.transform.localPosition = caughtlVector3;
             mouseImage.sprite = mouseImageIcon[1];
+            return;
         }
-        else { killerPointer.SetActive(false); }
+
 
         if (akibanPlayerHoldSit.IsAkibanPlayerSitCheck == true)//playerMovement.Status == PlayerStatus.CAUGHT && !testLook)
         {
@@ -84,8 +86,9 @@ public class UiKillerPoint : MonoBehaviour
             pointerText.text = "최면의자에 놓기";
             killerPointer.transform.localPosition = chairVector3;
             mouseImage.sprite = mouseImageIcon[1];
+            return;
         }
-        else { killerPointer.SetActive(false); }
+
 
         if (akibanAttack.IsPropmachineAttackCheck == true)
         {
@@ -93,8 +96,10 @@ public class UiKillerPoint : MonoBehaviour
             pointerText.text = "부수기";
             killerPointer.transform.localPosition = caughtlVector3;
             mouseImage.sprite = mouseImageIcon[0];
+            return;
         }
-        else { killerPointer.SetActive(false); }
+        killerPointer.SetActive(false);
+
 
         if (akibanAttack.IsPlayerAttackCheck == true)
         {
@@ -110,26 +115,29 @@ public class UiKillerPoint : MonoBehaviour
             pointerText.text = "들기";
             killerPointer.transform.localPosition = fallDownVector3;
             mouseImage.sprite = mouseImageIcon[1];
+            return;
         }
-        else { killerPointer.SetActive(false); }
-
-        if (impostorPlayerHoldSit.IsPlayerHoldDownCheck)//playerMovement.Status == PlayerStatus.CAUGHT)
-        {
-            killerPointer.SetActive(true);
-            pointerText.text = "내려놓기";
-            killerPointer.transform.localPosition = caughtlVector3;
-            mouseImage.sprite = mouseImageIcon[1];
-        }
-        else { killerPointer.SetActive(false); }
-
         if (impostorPlayerHoldSit.IsImpostorPlayerSitCheck == true)//playerMovement.Status == PlayerStatus.CAUGHT && !testLook)
         {
             killerPointer.SetActive(true);
             pointerText.text = "최면의자에 놓기";
             killerPointer.transform.localPosition = chairVector3;
             mouseImage.sprite = mouseImageIcon[1];
+            return;
         }
-        else { killerPointer.SetActive(false); }
+
+        if (impostorPlayerHoldSit.IsPlayerHoldDownCheck == true)//playerMovement.Status == PlayerStatus.CAUGHT)
+        {
+            killerPointer.SetActive(true);
+            pointerText.text = "내려놓기";
+            killerPointer.transform.localPosition = caughtlVector3;
+            mouseImage.sprite = mouseImageIcon[1];
+            return;
+        }
+
+
+
+
 
         if (impostorAttack.IsPropmachineAttackCheck == true)
         {
@@ -137,8 +145,9 @@ public class UiKillerPoint : MonoBehaviour
             pointerText.text = "부수기";
             killerPointer.transform.localPosition = caughtlVector3;
             mouseImage.sprite = mouseImageIcon[0];
+            return;
         }
-        else { killerPointer.SetActive(false); }
+        killerPointer.SetActive(false);
 
         if (impostorAttack.IsPlayerAttackCheck == true)
         {
@@ -159,9 +168,7 @@ public class UiKillerPoint : MonoBehaviour
 
         while (fadeOut < 1f)
         {
-
             fadeOut += Time.deltaTime;
-            Debug.Log(fadeOut);
             attackImage.color = new Color(1, 1, 1, 1f - fadeOut);
             yield return null;
         }

@@ -42,11 +42,8 @@ public class CharactorManager : MonoBehaviourPun
         sprites[2] = Resources.Load<Sprite>("skills/icons_skills_revive");
         sprites[3] = Resources.Load<Sprite>("skills/icons_skills_acrobat");
 
-        killerSprites[0] = Resources.Load<Sprite>("skills/icons_skills_machine");
-        killerSprites[1] = Resources.Load<Sprite>("skills/icons_skills_alchemy");
-        killerSprites[2] = Resources.Load<Sprite>("skills/icons_skills_revive");
-        killerSprites[3] = Resources.Load<Sprite>("skills/icons_skills_acrobat");
-
+        killerSprites[0] = Resources.Load<Sprite>("skills/Thief_Assassination");
+        killerSprites[1] = Resources.Load<Sprite>("skills/Samurai_Ilseom");
 
         KillerGridGroup.SetActive(false);
         PlayerGridGroup.SetActive(false);
@@ -121,7 +118,7 @@ public class CharactorManager : MonoBehaviourPun
         characterName.text = character.characterName;
         abilityName.text = character.abilityName;
         abilityExpanation.text = character.abilityExpanation;
-        abilityImage.sprite = sprites[selectedKiller];
+        abilityImage.sprite = killerSprites[selectedKiller];
     }
 
     public void NoHairKiller()

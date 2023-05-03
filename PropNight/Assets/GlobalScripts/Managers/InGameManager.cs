@@ -135,7 +135,7 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
     // Update is called once per frame
     void Update()
     {
-
+        // 승리 패배 판정을 해야함
     }
 
     // 난 우울할 때..빗속에서 『깡』을 춰...

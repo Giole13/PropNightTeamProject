@@ -41,7 +41,8 @@ public class PropMachine : MonoBehaviourPun, IInteraction
 
     #region 각 클라이언트가 공유해야하는 자원
     // 현재 수리된 프롭머신의 합계
-    public static byte s_fixPropMachine = 0;
+    private GameStatusManager StatusManager;
+    //public static byte s_fixPropMachine = 0;
     // 해당 프롭머신의 수리 진행도
     private float _currentFixGauge = 0f;
     // 수리 중인지 체크하는 변수
@@ -69,6 +70,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
 
     private void Start()
     {
+        StatusManager = GameObject.Find("GameStatusManager").GetComponent<GameStatusManager>();
         StartCoroutine(ClientCashing());
     }
 
@@ -199,11 +201,10 @@ public class PropMachine : MonoBehaviourPun, IInteraction
                 // 수리 완료시 실행 하는 함수
                 IsBreakPossible = false;
                 IsFixDone = true;
-                ++s_fixPropMachine;
-                // GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black);
-                // 여기서 수리 완료하면 UI에 반영하는 함수 작성 
-                InGameController.s_intance.UiPropMachineCount();
-                if (5 == s_fixPropMachine) { _exitPortalScript.DoorOpen(); }
+                //++s_fixPropMachine;
+                StatusManager.photonView.RPC("PropMachineFix", RpcTarget.All);
+                GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black);
+                //if (5 == s_fixPropMachine) { _exitPortalScript.DoorOpen(); }
 
                 yield break;
             }

@@ -83,6 +83,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
             if (_maxExecutionTime <= _currentExecutionTime)
             {
                 // 최대처형시간까지 잡혀있다면 플레이어의 스크립트를 전부 켜주고 플레이어 오브젝트를 꺼버린다.
+                // 2023.05.02 / Jihwan / player Die
                 // PlayerObj.SetActive(false);
                 // OffInteraction(PlayerObj);
                 yield break;

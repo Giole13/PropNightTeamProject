@@ -413,6 +413,13 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     }
     public void UICheck()
     {
+        if (Look.Obj == null)
+        {
+            IsPropMachineCheck = false;
+            IsChairCheck = false;
+            return;
+        }
+
         if (Look.Obj.tag == "PropMachine" && Look.ObjDistance < 1 + SkillDistance)
         {
             if (Look.Obj.GetComponent<PropMachine>().IsFixDone == false)
@@ -433,5 +440,6 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         }
         IsPropMachineCheck = false;
         IsChairCheck = false;
+
     }
 }

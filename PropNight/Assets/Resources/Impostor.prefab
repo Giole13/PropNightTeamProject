@@ -1045,7 +1045,7 @@ GameObject:
   - component: {fileID: 5013591576287636122}
   - component: {fileID: 4932937773311462442}
   m_Layer: 0
-  m_Name: Ghoul:Tube1
+  m_Name: ImpostorBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1086,7 +1086,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
+  - {fileID: 2100000, guid: 06fce5c91d87b6544a768dbadbaea2d4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

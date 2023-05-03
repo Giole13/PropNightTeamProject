@@ -29,6 +29,7 @@ public class ExitDoorPortal : MonoBehaviour
     {
         // OpenPortal();
         _gsm = GameObject.Find("GameStatusManager").GetComponent<GameStatusManager>();
+        ExitPortal.Stop();
     }
 
     // Update is called once per frame

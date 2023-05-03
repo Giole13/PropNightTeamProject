@@ -19,13 +19,7 @@ public class UiKillerPoint : MonoBehaviour
     private float fadeIn = default;
     private float fadeOut = default;
 
-    bool testLook = false;
-    bool test1 = false;
-    bool test2 = false;
-    bool test3 = false;
-    bool test4 = false;
-    //공격시
-    bool test5 = false;
+
 
     Vector3 fallDownVector3 = new Vector3(0, -350, 0);
     Vector3 caughtlVector3 = new Vector3(0, -200, 0);
@@ -146,14 +140,10 @@ public class UiKillerPoint : MonoBehaviour
         }
     }
 
-    public void AttackPointer()
-    {
-        test5 = true;
-    }
+
 
     IEnumerator KillerAttackPointer()
     {
-        test5 = false;
         attackImage.color = new Color(1, 1, 1, 1);
         fadeOut = 0f;
 
@@ -165,10 +155,6 @@ public class UiKillerPoint : MonoBehaviour
             attackImage.color = new Color(1, 1, 1, 1f - fadeOut);
             yield return null;
         }
-
-
-
-
 
     }
 }

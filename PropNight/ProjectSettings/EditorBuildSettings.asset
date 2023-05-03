@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/PropNight/00.Init.unity
     guid: 26e01bbd70badea48acb3ffb522fa3bf
   - enabled: 1
-    path: Assets/Scenes/PropNight/01.Lobby (Lagacy).unity
-    guid: 728b87c2974f5d549a9e366cf9dfccea
-  - enabled: 1
     path: Assets/Scenes/PropNight/01.TitleMainScene.unity
     guid: 17c4b3b3fa1613f499736c90f72f2a1b
   - enabled: 1
@@ -21,15 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PropNight/03.CharacterSelect.unity
     guid: 008e8958e81392a4da68036454a2118c
   - enabled: 1
-    path: Assets/Scenes/PropNight/03.Result (Lagacy).unity
-    guid: 0631c863746dba247a6917e0bbbfa4f9
-  - enabled: 1
     path: Assets/Scenes/PropNight/04.InGame.unity
     guid: 3a7ea76a1fdb2134c8e4b89d1a265917
   - enabled: 1
-    path: Assets/Scenes/PropNight/05.ResultScene (Lagacy).unity
-    guid: 9d8d6caa6ebde47418b330adbc944535
-  - enabled: 1
-    path: Assets/Scenes/PropNight/99.HyungJunDebugScene.unity
-    guid: 593ab378d6ebdb6499fe5b8b4a73e720
+    path: Assets/Scenes/PropNight/06.ResultScene.unity
+    guid: ea235b5ff191e304da6bead987dec180
   m_configObjects: {}

@@ -14,10 +14,12 @@ public class ImpostorAttack : MonoBehaviourPun
     private PropMachine AttackPropMachineCheck;
     // 프롭머신 게이지 닳는 함수 가져오기
     private PropMachine PropMachineGauge;
+    public UiKillerPoint uiKillerPoint;
 
     // public GameObject PropMachineUI;
     public GameObject Killer;
     public GameObject KillerRightHand;
+
 
 
     // 애니메이션 가져오기
@@ -29,9 +31,24 @@ public class ImpostorAttack : MonoBehaviourPun
     private float _coolTime = 0;
     private bool _isCanAttack = true;
 
+
+    // 프롭머신 망치는 상태 ui에게 보내주기
+    public bool IsPropmachineAttackCheck = false;
+
+    // 플레이어 공격하는 상태 ui에게 보내주기
+    public bool IsPlayerAttackCheck = false;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        if (photonView.IsMine)
+        {
+            uiKillerPoint = GameObject.Find("InGameKillerUi").GetComponent<UiKillerPoint>();
+            uiKillerPoint.impostorAttack = this;
+
+        }
         // 초기화
         this.gameObject.SetActive(true);
         // 프롭머신 ui 초기화
@@ -58,8 +75,46 @@ public class ImpostorAttack : MonoBehaviourPun
 
 
         }
+        PropmachinAttacCheck();
+        PlayerAttackCheck();
+    }
+
+    // 프롭머신 망치는 상태 ui에게 보내주기 함수
+    public void PropmachinAttacCheck()
+    {
+        // 포톤에서 자기자신만 움직이게 하기 위해 
+        if (!photonView.IsMine) { return; }
+        if (LookCamera.Obj == null) { return; }
+
+        if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f)
+        {
+            IsPropmachineAttackCheck = true;
+            return;
+
+        }
+        IsPropmachineAttackCheck = false;
+    }
+
+
+    // 플레이어를 공격하는 상태 ui에게 보내주는 함수
+    public void PlayerAttackCheck()
+    {
+        // 포톤에서 자기자신만 움직이게 하기 위해 
+        if (!photonView.IsMine) { return; }
+        if (LookCamera.Obj == null) { return; }
+
+        if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 3f && Input.GetMouseButtonDown(0))
+        {
+            IsPlayerAttackCheck = true;
+            return;
+
+        }
+        IsPlayerAttackCheck = false;
 
     }
+
+
+
 
     // 킬러 박스 콜라이더와 플레이어 충돌 함수
     private void OnTriggerEnter(Collider other)
@@ -99,8 +154,7 @@ public class ImpostorAttack : MonoBehaviourPun
     [PunRPC]
     public void MouseLeftButton()
     {
-        // PropMachineAttack();
-        // OnTriggerEnter(Player);
+        PropMachineAttack();
         StartCoroutine(AttackTime());
 
 
@@ -145,21 +199,21 @@ public class ImpostorAttack : MonoBehaviourPun
     }
 
     //프롭머신 파괴하기 위한 함수
-    // [PunRPC]
-    // public void PropMachineAttack()
-    // {
-    //     // 프롭머신 파괴 가능
-    //     if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f)
-    //     {
-    //         // 프롭머신 게이지 닳는 함수 실행
-    //         LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Killer.tag);
-    //     }
-    //     // 프롭머신이 파괴 불가능 
-    //     else
-    //     {
-    //         /*Do nothing*/
-    //     }
-    // }
+    [PunRPC]
+    public void PropMachineAttack()
+    {
+        // 프롭머신 파괴 가능
+        if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f)
+        {
+            // 프롭머신 게이지 닳는 함수 실행
+            LookCamera.Obj.GetComponent<IInteraction>().OnInteraction(Killer.tag);
+        }
+        // 프롭머신이 파괴 불가능 
+        else
+        {
+            /*Do nothing*/
+        }
+    }
 
 
 

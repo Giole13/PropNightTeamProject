@@ -25,20 +25,26 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
     [SerializeField] private KillerState _killerState = KillerState.IDLE;
 
     private PlayerMovement _playerMovementScript = default;
+
+    // Laycast를 불러와서 사용하기
+    [SerializeField] private ImpostorCameraMove LookCamera;
+
+    private UiKillerPoint _killerPoint;
+
     // 플레이어가 쓰러진것을 확인
     public bool IsImpostorPlayerDownCheck = false;
     // 최면의자에 앉히는 것을 확인
     public bool IsImpostorPlayerSitCheck = false;
-    // Laycast를 불러와서 사용하기
-    [SerializeField] private ImpostorCameraMove LookCamera;
-
-
+    // 플레이어 놓기 확인
+    public bool IsPlayerHoldDownCheck = false;
 
     // Start is called before the first frame update
     void Start()
     {
         if (photonView.IsMine)
         {
+            _killerPoint = GameObject.Find("InGameKillerUi").GetComponent<UiKillerPoint>();
+            _killerPoint.impostorPlayerHoldSit = this;
             VirtualFirstCamera.Priority = 20;
             VirtualThirdCamera.Priority = 20;
         }
@@ -52,6 +58,7 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
     {
         HoldUiCheck();
         SitUiCheck();
+        PlayerHoldDownCheck();
         RightClick();
     }
 
@@ -62,7 +69,7 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
     {
         // 포톤에서 자기자신만 움직이게 하기 위해 
         if (!photonView.IsMine) { return; }
-
+        if (LookCamera.Obj == null) { return; }
         if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 3f)
         {
             if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)
@@ -73,6 +80,7 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
             }
         }
 
+
         IsImpostorPlayerDownCheck = false;
 
     }
@@ -82,6 +90,7 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
     {
         // 포톤에서 자기자신만 움직이게 하기 위해 
         if (!photonView.IsMine) { return; }
+        if (LookCamera.Obj == null) { return; }
 
         if (LookCamera.Obj.tag == "HypnoticChair" && _killerState == KillerState.PLAYERHOLD && LookCamera.ObjDistance < 3f)
         {
@@ -91,6 +100,20 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
 
         }
         IsImpostorPlayerSitCheck = false;
+    }
+
+    // 플레이어 놓기를 보내주기 위한 함수(ui)
+    public void PlayerHoldDownCheck()
+    {
+        // 포톤에서 자기자신만 움직이게 하기 위해 
+        if (!photonView.IsMine) { return; }
+
+        if (_killerState == KillerState.PLAYERHOLD && Input.GetMouseButtonDown(0))
+        {
+            IsPlayerHoldDownCheck = true;
+            return;
+        }
+        IsPlayerHoldDownCheck = false;
     }
 
 
@@ -103,6 +126,8 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
 
         if (Input.GetMouseButtonDown(1))
         {
+            if (LookCamera.Obj == null) { return; }
+
             // 플레이어 들기
             if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 3f)
             {
@@ -118,6 +143,7 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
             // 플레이어 최면의자에 앉히기
             else if (LookCamera.Obj.tag == "HypnoticChair" && _killerState == KillerState.PLAYERHOLD && LookCamera.ObjDistance < 3f)
             {
+                Debug.Log("살인마가 의자에 접근함");
                 // photonView.RPC("PlayerSeating", RpcTarget.All);
                 //Player.GetComponent<PlayerMovement>().SitOnChair();   // 최면의자 스크립트에서 실행
                 // 플레이어의 상태를 변환하는 것은 모든 클라이언트에 적용되야 함 그래서 나머지는 최면의자 스크립트에서 실행

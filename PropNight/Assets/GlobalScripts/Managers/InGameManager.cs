@@ -101,12 +101,14 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
         {
             ClientDic.Add(obj.GetPhotonView().ViewID, obj);
             StatusManager.SurvivorID[Count] = obj.GetPhotonView().ViewID;
+            Count++;
             // if (_player.GetPhotonView().ViewID == obj.GetPhotonView().ViewID)
             // {
 
             // }
         }
         StatusManager.SurvivorMemberNumber = Count;
+        Debug.Log("총 생존자 수" + StatusManager.SurvivorMemberNumber);
     }
 
 

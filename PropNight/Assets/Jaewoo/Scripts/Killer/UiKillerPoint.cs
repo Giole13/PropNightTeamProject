@@ -5,11 +5,15 @@ using TMPro;
 using UnityEngine.UI;
 public class UiKillerPoint : MonoBehaviour
 {
+    private AkibanPlayerHoldSit akibanPlayerHoldSit;
+    private ImpostorPlayerHoldSit impostorPlayerHoldSit;
+    public Image mouseImage = default;
     public GameObject killerPointer = default;
     public GameObject killerAttackPointer = default;
     public TMP_Text pointerText = default;
     private PlayerMovement _playerMovement = default;
     Image attackImage = default;
+    public Sprite[] mouseImageIcon = new Sprite[2];
 
     private float fadeIn = default;
     private float fadeOut = default;
@@ -28,6 +32,9 @@ public class UiKillerPoint : MonoBehaviour
 
     void Start()
     {
+        //0 = 좌클릭, 1 = 우클릭
+        mouseImageIcon[0] = Resources.Load<Sprite>("UiIcon/MouseIcon-removebg-preview");
+        mouseImageIcon[1] = Resources.Load<Sprite>("UiIcon/MouseIcon-removebg-preview");
         killerPointer.SetActive(false);
         attackImage = killerAttackPointer.GetComponent<Image>();
 
@@ -41,92 +48,46 @@ public class UiKillerPoint : MonoBehaviour
     }
     public void KillerPointer()
     {
-        if (test1 == true)//playerMovement.Status == PlayerStatus.FALLDOWN)
+        if (akibanPlayerHoldSit.IsAkibanPlayerDownCheck == true ||
+        impostorPlayerHoldSit.IsImpostorPlayerDownCheck == true)//playerMovement.Status == PlayerStatus.FALLDOWN)
         {
             killerPointer.SetActive(true);
             pointerText.text = "들기";
             killerPointer.transform.localPosition = fallDownVector3;
+            mouseImage.sprite = mouseImageIcon[1];
         }
+        else { killerPointer.SetActive(false); }
         if (test2 == true)//playerMovement.Status == PlayerStatus.CAUGHT)
         {
             killerPointer.SetActive(true);
             pointerText.text = "내려놓기";
             killerPointer.transform.localPosition = caughtlVector3;
+            mouseImage.sprite = mouseImageIcon[1];
         }
-        if (test3 == true)//playerMovement.Status == PlayerStatus.CAUGHT && !testLook)
+        else { killerPointer.SetActive(false); }
+        if (akibanPlayerHoldSit.IsAkibanPlayerSitCheck == true ||
+        impostorPlayerHoldSit.IsImpostorPlayerSitCheck == true)//playerMovement.Status == PlayerStatus.CAUGHT && !testLook)
         {
             killerPointer.SetActive(true);
             pointerText.text = "최면의자에 놓기";
             killerPointer.transform.localPosition = chairVector3;
+            mouseImage.sprite = mouseImageIcon[1];
         }
+        else { killerPointer.SetActive(false); }
         if (test4 == true)
         {
             killerPointer.SetActive(true);
             pointerText.text = "부수기";
             killerPointer.transform.localPosition = caughtlVector3;
+            mouseImage.sprite = mouseImageIcon[0];
         }
+        else { killerPointer.SetActive(false); }
 
         if (test5 == true)
         {
             StartCoroutine(KillerAttackPointer());
         }
     }
-
-    #region 테스트 확인
-    //버튼 확인용
-    public void fallDown()
-    {
-        test1 = true;
-        //playerMovement.Status = PlayerStatus.FALLDOWN;
-    }
-    public void caught()
-    {
-        test2 = true;
-        // playerMovement.Status = PlayerStatus.CAUGHT;
-    }
-    public void chair()
-    {
-        test3 = true;
-        // playerMovement.Status = PlayerStatus.CAUGHT;
-        //testLook = true;
-    }
-    public void propMachineBrocken()
-    {
-        test4 = true;
-        // playerMovement.Status = PlayerStatus.CAUGHT;
-        //testLook = true;
-    }
-
-    public void fallDownN()
-    {
-        test1 = false;
-        killerPointer.SetActive(false);
-        //killerPointer.SetActive(false);
-        //playerMovement.Status = 0;
-    }
-    public void caughtN()
-    {
-        test2 = false;
-        killerPointer.SetActive(false);
-        // killerPointer.SetActive(false);
-        //playerMovement.Status = 0;
-    }
-    public void chairN()
-    {
-        test3 = false;
-        killerPointer.SetActive(false);
-        //playerMovement.Status = 0;
-        //testLook = false;
-        //killerPointer.SetActive(false);
-    }
-    public void propMachineBrockenN()
-    {
-        test4 = false;
-        killerPointer.SetActive(false);
-        // playerMovement.Status = PlayerStatus.CAUGHT;
-        //testLook = true;
-    }
-    #endregion
 
     public void AttackPointer()
     {

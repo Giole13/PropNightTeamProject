@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     private int JumpCount;                  // 점프가능 횟수
     private GameStatusManager StatusManager;
     private int _life;
+    public bool IsPropMachineCheck = false;
+    public bool IsChairCheck = false;
     public bool IsFallDown = false;
     public float Stamina;
     public Animator Animator;
@@ -47,7 +49,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         {
             _uiPlayerSkill = GameObject.Find("InGamePlayerUi").GetComponent<UiPlayerSkill>();
             _uiPlayerSkill.playerInput = _playerInput;
-            _uiPlayerSkill.playerDashGage = this;
+            _uiPlayerSkill.Player = this;
         }
         _playerRigidBody = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();
@@ -75,6 +77,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
             photonView.RPC("Jump", RpcTarget.All);
 
         }
+        UICheck();
         LeftClick();
         RightClick();
         ESkill();
@@ -210,6 +213,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
                     }
                 }
                 // } 최면의자에 앉은 생존자를 풀어준다
+                SurvivorRevive();
             }
             // } 무언가를 해야한다.
 
@@ -393,5 +397,41 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     public void Die()
     {
 
+    }
+    // 쓰러진 생존자를 살리는 함수
+    public void SurvivorRevive()
+    {
+        if (Look.Obj.tag == "Player" && Look.ObjDistance < 1 + SkillDistance)
+        {
+
+            Object = Look.Obj;
+            if (Object.GetComponent<PlayerMovement>().Status == PlayerStatus.FALLDOWN)
+            {
+                Object.GetComponent<PlayerMovement>().photonView.RPC("WakeUp", RpcTarget.All);
+            }
+        }
+    }
+    public void UICheck()
+    {
+        if (Look.Obj.tag == "PropMachine" && Look.ObjDistance < 1 + SkillDistance)
+        {
+            if (Look.Obj.GetComponent<PropMachine>().IsFixDone == false)
+            {
+                IsPropMachineCheck = true;
+                IsChairCheck = false;
+                return;
+            }
+        }
+        if (Look.Obj.tag == "HypnoticChair" && Look.ObjDistance < 1 + SkillDistance)
+        {
+            if (Look.Obj.GetComponent<HypnoticChair>().ChairState == HypnoticChair.HypnoticChairState.WORKING)
+            {
+                IsPropMachineCheck = false;
+                IsChairCheck = true;
+                return;
+            }
+        }
+        IsPropMachineCheck = false;
+        IsChairCheck = false;
     }
 }

@@ -9,7 +9,7 @@ public interface IPlayerSkill
 public interface IKillerSkill
 {
     void KillerShortSkillCool();
-    void KillerLongSkillLongCool();
+
 }
 public interface IPlayerEnumerator
 {
@@ -19,6 +19,6 @@ public interface IPlayerEnumerator
 public interface IKillerEnumverator
 {
     IEnumerator KillerSkillShortCool(float cool);
-    IEnumerator KillerSkillLongCool(float cool);
+
 }
 

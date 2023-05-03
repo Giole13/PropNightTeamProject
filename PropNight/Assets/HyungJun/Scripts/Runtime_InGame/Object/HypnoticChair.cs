@@ -86,6 +86,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
 
             if (_maxExecutionTime <= _currentExecutionTime)
             {
+                Debug.Log("처형");
                 // 최대처형시간까지 잡혀있다면 생존자 카운트를 하나 줄인다.
                 // PlayerObj.SetActive(false);
                 // OffInteraction(PlayerObj);

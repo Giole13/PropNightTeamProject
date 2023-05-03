@@ -77,7 +77,6 @@ public class GameStatusManager : MonoBehaviourPun
     public void SurvivorDie()
     {
         SurvivorMemberNumber--;
-
         // 2023.05.02 / HyungJun / 마스터 클라이언트이고 생존한 플레이어가 0명이면 살인마인 경우만 승리
         if (PhotonNetwork.IsMasterClient && SurvivorMemberNumber == 0)
         {
@@ -90,7 +89,8 @@ public class GameStatusManager : MonoBehaviourPun
     [PunRPC]
     public void SceneMove()
     {
-        SceneManager.LoadScene(Define.RESULT_SCENE_NAME);
+        Debug.Log("씬을 이동합니다.");
+        PhotonNetwork.LoadLevel(Define.RESULT_SCENE_NAME);
     }
 
     // public void

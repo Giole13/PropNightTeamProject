@@ -35,6 +35,11 @@ public class AkibanAttack : MonoBehaviourPun
     public AkibanMoveControl AkibanControl;
     public Rigidbody Rigid;
     public GameObject KillerRightHand;
+    // 프롭머신 망치는 상태 ui에게 보내주기
+    public bool IsPropmachineAttackCheck = false;
+
+    // 플레이어 공격하는 상태 ui에게 보내주기
+    public bool IsPlayerAttackCheck = false;
 
     // Start is called before the first frame update
     void Start()
@@ -63,8 +68,42 @@ public class AkibanAttack : MonoBehaviourPun
 
         }
         AkibanActiveSkill();
+        PropmachinAttacCheck();
+        PlayerAttackCheck();
     }
 
+
+    // 프롭머신 망치는 상태 ui에게 보내주기 함수
+    public void PropmachinAttacCheck()
+    {
+        // 포톤에서 자기자신만 움직이게 하기 위해 
+        if (!photonView.IsMine) { return; }
+
+        if (_lookCamera.Obj.tag == "PropMachine" && _lookCamera.ObjDistance < 3f)
+        {
+            IsPropmachineAttackCheck = true;
+            return;
+
+        }
+        IsPropmachineAttackCheck = false;
+    }
+
+
+    // 플레이어를 공격하는 상태 ui에게 보내주는 함수
+    public void PlayerAttackCheck()
+    {
+        // 포톤에서 자기자신만 움직이게 하기 위해 
+        if (!photonView.IsMine) { return; }
+
+        if (_lookCamera.Obj.tag == "Player" && _lookCamera.ObjDistance < 3f && Input.GetMouseButtonDown(0))
+        {
+            IsPlayerAttackCheck = true;
+            return;
+
+        }
+        IsPlayerAttackCheck = false;
+
+    }
     // 킬러 박스 콜라이더와 플레이어 충돌 함수
     private void OnTriggerEnter(Collider other)
     {

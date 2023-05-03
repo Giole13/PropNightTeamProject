@@ -29,10 +29,13 @@ public class AkibanPlayerHoldSit : MonoBehaviourPun
     // Laycast를 불러와서 사용하기
     [SerializeField] private AkibanCameraMove LookCamera;
 
+    private UiKillerPoint _killerPoint;
     // 플레이어가 쓰러진것을 확인
     public bool IsAkibanPlayerDownCheck = false;
     // 최면의자에 앉히는 것을 확인
     public bool IsAkibanPlayerSitCheck = false;
+    // 플레이어 놓기 확인
+    public bool IsPlayerHoldDownCheck = false;
 
 
     // Start is called before the first frame update
@@ -40,6 +43,8 @@ public class AkibanPlayerHoldSit : MonoBehaviourPun
     {
         if (photonView.IsMine)
         {
+            _killerPoint = GameObject.Find("InGameKillerUi").GetComponent<UiKillerPoint>();
+            _killerPoint.akibanPlayerHoldSit = this;
             VirtualFirstCamera.Priority = 20;
             VirtualThirdCamera.Priority = 20;
         }
@@ -92,7 +97,19 @@ public class AkibanPlayerHoldSit : MonoBehaviourPun
         IsAkibanPlayerSitCheck = false;
     }
 
+    // 플레이어 놓기를 보내주기 위한 함수(ui)
+    public void PlayerHoldDownCheck()
+    {
+        // 포톤에서 자기자신만 움직이게 하기 위해 
+        if (!photonView.IsMine) { return; }
 
+        if (_killerState == KillerState.PLAYERHOLD && Input.GetMouseButtonDown(0))
+        {
+            IsPlayerHoldDownCheck = true;
+            return;
+        }
+        IsPlayerHoldDownCheck = false;
+    }
     // 오른쪽 마우스를 클릭시
 
     private void RightClick()

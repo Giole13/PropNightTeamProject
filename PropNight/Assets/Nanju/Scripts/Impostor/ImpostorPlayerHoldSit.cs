@@ -44,7 +44,7 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
         if (photonView.IsMine)
         {
             _killerPoint = GameObject.Find("InGameKillerUi").GetComponent<UiKillerPoint>();
-            //_killerPoint.;
+            _killerPoint.impostorPlayerHoldSit = this;
             VirtualFirstCamera.Priority = 20;
             VirtualThirdCamera.Priority = 20;
         }

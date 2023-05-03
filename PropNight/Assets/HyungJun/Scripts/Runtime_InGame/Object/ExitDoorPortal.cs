@@ -40,9 +40,14 @@ public class ExitDoorPortal : MonoBehaviour
 
     // 플레이어와 부딫히면 탈출 카운트를 1 올린다.
     // 결과창을 보여준다.
-    private void OnTriggerEnter(Collider other)
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.transform.parent.tag == "Player") { _gsm.SurvivorExit(); }
+    // }
+
+    public void PlayerEscape()
     {
-        if (other.transform.parent.tag == "Player") { _gsm.SurvivorExit(); }
+        _gsm.SurvivorExit();
     }
 
 

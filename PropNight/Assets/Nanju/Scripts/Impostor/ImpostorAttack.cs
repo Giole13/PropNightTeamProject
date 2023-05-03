@@ -14,10 +14,12 @@ public class ImpostorAttack : MonoBehaviourPun
     private PropMachine AttackPropMachineCheck;
     // 프롭머신 게이지 닳는 함수 가져오기
     private PropMachine PropMachineGauge;
+    public UiKillerPoint uiKillerPoint;
 
     // public GameObject PropMachineUI;
     public GameObject Killer;
     public GameObject KillerRightHand;
+
 
 
     // 애니메이션 가져오기
@@ -41,6 +43,12 @@ public class ImpostorAttack : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        if (photonView.IsMine)
+        {
+            uiKillerPoint = GameObject.Find("InGameKillerUi").GetComponent<UiKillerPoint>();
+            uiKillerPoint.impostorAttack = this;
+
+        }
         // 초기화
         this.gameObject.SetActive(true);
         // 프롭머신 ui 초기화
@@ -76,6 +84,7 @@ public class ImpostorAttack : MonoBehaviourPun
     {
         // 포톤에서 자기자신만 움직이게 하기 위해 
         if (!photonView.IsMine) { return; }
+        if (LookCamera.Obj == null) { return; }
 
         if (LookCamera.Obj.tag == "PropMachine" && LookCamera.ObjDistance < 3f)
         {
@@ -92,6 +101,7 @@ public class ImpostorAttack : MonoBehaviourPun
     {
         // 포톤에서 자기자신만 움직이게 하기 위해 
         if (!photonView.IsMine) { return; }
+        if (LookCamera.Obj == null) { return; }
 
         if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 3f && Input.GetMouseButtonDown(0))
         {

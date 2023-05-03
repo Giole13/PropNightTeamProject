@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class UiKillerPoint : MonoBehaviour
 {
     public AkibanPlayerHoldSit akibanPlayerHoldSit;
+    public AkibanAttack akibanAttack;
     public ImpostorPlayerHoldSit impostorPlayerHoldSit;
+    public ImpostorAttack impostorAttack;
     public Image mouseImage = default;
     public GameObject killerPointer = default;
     public GameObject killerAttackPointer = default;
     public TMP_Text pointerText = default;
-    private PlayerMovement _playerMovement = default;
     Image attackImage = default;
     public Sprite[] mouseImageIcon = new Sprite[2];
 
@@ -38,18 +39,28 @@ public class UiKillerPoint : MonoBehaviour
         killerPointer.SetActive(false);
         attackImage = killerAttackPointer.GetComponent<Image>();
 
-        _playerMovement = GetComponent<PlayerMovement>();
         attackImage.color = new Color(1, 1, 1, 0);
 
     }
     void Update()
     {
-        KillerPointer();
+        WhatKiller();
     }
-    public void KillerPointer()
+    public void WhatKiller()
     {
-        if (akibanPlayerHoldSit.IsAkibanPlayerDownCheck == true ||
-        impostorPlayerHoldSit.IsImpostorPlayerDownCheck == true)//playerMovement.Status == PlayerStatus.FALLDOWN)
+        if (impostorPlayerHoldSit == null)
+        {
+            AkibanPointer();
+        }
+        if (akibanPlayerHoldSit == null)
+        {
+            ImpostorPointer();
+        }
+    }
+
+    public void AkibanPointer()
+    {
+        if (akibanPlayerHoldSit.IsAkibanPlayerDownCheck == true)//playerMovement.Status == PlayerStatus.FALLDOWN)
         {
             killerPointer.SetActive(true);
             pointerText.text = "들기";
@@ -57,7 +68,8 @@ public class UiKillerPoint : MonoBehaviour
             mouseImage.sprite = mouseImageIcon[1];
         }
         else { killerPointer.SetActive(false); }
-        if (test2 == true)//playerMovement.Status == PlayerStatus.CAUGHT)
+
+        if (akibanPlayerHoldSit.IsPlayerHoldDownCheck == true)//playerMovement.Status == PlayerStatus.CAUGHT)
         {
             killerPointer.SetActive(true);
             pointerText.text = "내려놓기";
@@ -65,8 +77,8 @@ public class UiKillerPoint : MonoBehaviour
             mouseImage.sprite = mouseImageIcon[1];
         }
         else { killerPointer.SetActive(false); }
-        if (akibanPlayerHoldSit.IsAkibanPlayerSitCheck == true ||
-        impostorPlayerHoldSit.IsImpostorPlayerSitCheck == true)//playerMovement.Status == PlayerStatus.CAUGHT && !testLook)
+
+        if (akibanPlayerHoldSit.IsAkibanPlayerSitCheck == true)//playerMovement.Status == PlayerStatus.CAUGHT && !testLook)
         {
             killerPointer.SetActive(true);
             pointerText.text = "최면의자에 놓기";
@@ -74,7 +86,8 @@ public class UiKillerPoint : MonoBehaviour
             mouseImage.sprite = mouseImageIcon[1];
         }
         else { killerPointer.SetActive(false); }
-        if (test4 == true)
+
+        if (akibanAttack.IsPropmachineAttackCheck == true)
         {
             killerPointer.SetActive(true);
             pointerText.text = "부수기";
@@ -83,7 +96,51 @@ public class UiKillerPoint : MonoBehaviour
         }
         else { killerPointer.SetActive(false); }
 
-        if (test5 == true)
+        if (akibanAttack.IsPlayerAttackCheck == true)
+        {
+            StartCoroutine(KillerAttackPointer());
+        }
+    }
+
+    public void ImpostorPointer()
+    {
+        if (impostorPlayerHoldSit.IsImpostorPlayerDownCheck == true)//playerMovement.Status == PlayerStatus.FALLDOWN)
+        {
+            killerPointer.SetActive(true);
+            pointerText.text = "들기";
+            killerPointer.transform.localPosition = fallDownVector3;
+            mouseImage.sprite = mouseImageIcon[1];
+        }
+        else { killerPointer.SetActive(false); }
+
+        if (impostorPlayerHoldSit.IsPlayerHoldDownCheck)//playerMovement.Status == PlayerStatus.CAUGHT)
+        {
+            killerPointer.SetActive(true);
+            pointerText.text = "내려놓기";
+            killerPointer.transform.localPosition = caughtlVector3;
+            mouseImage.sprite = mouseImageIcon[1];
+        }
+        else { killerPointer.SetActive(false); }
+
+        if (impostorPlayerHoldSit.IsImpostorPlayerSitCheck == true)//playerMovement.Status == PlayerStatus.CAUGHT && !testLook)
+        {
+            killerPointer.SetActive(true);
+            pointerText.text = "최면의자에 놓기";
+            killerPointer.transform.localPosition = chairVector3;
+            mouseImage.sprite = mouseImageIcon[1];
+        }
+        else { killerPointer.SetActive(false); }
+
+        if (impostorAttack.IsPropmachineAttackCheck == true)
+        {
+            killerPointer.SetActive(true);
+            pointerText.text = "부수기";
+            killerPointer.transform.localPosition = caughtlVector3;
+            mouseImage.sprite = mouseImageIcon[0];
+        }
+        else { killerPointer.SetActive(false); }
+
+        if (impostorAttack.IsPlayerAttackCheck == true)
         {
             StartCoroutine(KillerAttackPointer());
         }

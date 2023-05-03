@@ -66,6 +66,7 @@ public class AkibanPlayerHoldSit : MonoBehaviourPun
     {
         // 포톤에서 자기자신만 움직이게 하기 위해 
         if (!photonView.IsMine) { return; }
+        if (LookCamera.Obj == null) { return; }
 
         if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 3f)
         {
@@ -86,6 +87,7 @@ public class AkibanPlayerHoldSit : MonoBehaviourPun
     {
         // 포톤에서 자기자신만 움직이게 하기 위해 
         if (!photonView.IsMine) { return; }
+        if (LookCamera.Obj == null) { return; }
 
         if (LookCamera.Obj.tag == "HypnoticChair" && _killerState == KillerState.PLAYERHOLD && LookCamera.ObjDistance < 3f)
         {
@@ -119,6 +121,8 @@ public class AkibanPlayerHoldSit : MonoBehaviourPun
 
         if (Input.GetMouseButtonDown(1))
         {
+            if (LookCamera.Obj == null) { return; }
+
             // 플레이어 들기
             if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 3f)
             {

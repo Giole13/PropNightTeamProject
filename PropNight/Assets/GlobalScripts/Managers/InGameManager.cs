@@ -21,6 +21,7 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
 
     [SerializeField] private GameObject _playerUI;
     [SerializeField] private GameObject _KillerUI;
+    [SerializeField] private ExitDoorPortal _exitDoorPortal;
 
 
     [Tooltip("생존자 오브젝트")] public GameObject[] PlayerPrefab;
@@ -108,6 +109,7 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
             // }
         }
         StatusManager.SurvivorMemberNumber = Count;
+        StatusManager.SurvivorMaxNumber = Count;
         Debug.Log("총 생존자 수" + StatusManager.SurvivorMemberNumber);
     }
 

@@ -11,6 +11,7 @@ TagManager:
   - HypnoticChair
   - Killer
   - Ground
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

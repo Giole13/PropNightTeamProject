@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: KillerDataBaseObj
   m_EditorClassIdentifier: 
   character:
-  - characterName: Imporster
-    abilityName: "\uB3CC \uC9C4"
-    abilityExpanation: "\uC778\uAC04\uC744 \uBA39\uC5B4 \uD504\uB85C\uD2F4\uC744
-      \uC12D\uCDE8"
-  - characterName: "\uB204\uAD6C\uC2DC\uC8E0"
-    abilityName: "\uB2F9\uC2E0\uC740 \uB204\uAD6C\uC2DC\uC8E0.."
-    abilityExpanation: "\uC5B4..."
+  - characterName: "\uC784\uD3EC\uC2A4\uD130"
+    abilityName: "\uC720\uB839\uD654"
+    abilityExpanation: "\uBE60\uB978\uC774\uB3D9\uC744 \uD558\uC9C0\uB9CC \uACF5\uACA9\uC744
+      \uBABB\uD568"
+  - characterName: "\uC544\uCE74\uBC18"
+    abilityName: "\uADF8\uB9BC\uC790 \uB3CC\uC9C4"
+    abilityExpanation: "\uC804\uBC29\uC744 \uBE60\uB974\uAC8C \uB3CC\uC9C4\uD569\uB2C8\uB2E4"

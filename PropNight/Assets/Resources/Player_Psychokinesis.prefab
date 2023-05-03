@@ -99,7 +99,7 @@ MonoBehaviour:
   IsMovePossible: 1
   IsPlayerNotChange: 1
   Status: 0
-  SurvivorSkill: {fileID: 0}
+  SurvivorSkill: {fileID: 5199853270519324622}
   Look: {fileID: 5019689987487137852}
   Change: {fileID: 5019689986731641136}
   Object: {fileID: 0}

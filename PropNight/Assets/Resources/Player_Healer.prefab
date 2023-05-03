@@ -18752,6 +18752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c1af3c830085b429747df88f2fe90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPropMachineCheck: 0
+  IsChairCheck: 0
   IsFallDown: 0
   Stamina: 0
   Animator: {fileID: 3989394915806572236}
@@ -18771,6 +18773,7 @@ MonoBehaviour:
   Timer: 0
   CoolTime: 0
   SkillDistance: 0
+  SkillJumpCount: 0
 --- !u!114 &3989394915806572243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18899,6 +18902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsSkillActive: 0
+  CoolTime: 0
 --- !u!1 &3989394916144804348
 GameObject:
   m_ObjectHideFlags: 0

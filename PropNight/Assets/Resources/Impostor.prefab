@@ -1374,9 +1374,10 @@ MonoBehaviour:
   VirtualFirstCamera: {fileID: 5016251218937469310}
   VirtualThirdCamera: {fileID: 5016251220576895739}
   _killerState: 0
+  LookCamera: {fileID: 5016251218842535513}
   IsImpostorPlayerDownCheck: 0
   IsImpostorPlayerSitCheck: 0
-  LookCamera: {fileID: 5016251218842535513}
+  IsPlayerHoldDownCheck: 0
 --- !u!54 &4904972728972586862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1461,6 +1462,8 @@ MonoBehaviour:
   LookCamera: {fileID: 5016251218842535513}
   Killer: {fileID: 5015298117626810164}
   KillerRightHand: {fileID: 5015155616172372250}
+  IsPropmachineAttackCheck: 0
+  IsPlayerAttackCheck: 0
 --- !u!114 &6128199980122927761
 MonoBehaviour:
   m_ObjectHideFlags: 0

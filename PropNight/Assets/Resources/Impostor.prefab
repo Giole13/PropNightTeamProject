@@ -1045,7 +1045,7 @@ GameObject:
   - component: {fileID: 5013591576287636122}
   - component: {fileID: 4932937773311462442}
   m_Layer: 0
-  m_Name: Ghoul:Tube1
+  m_Name: ImpostorBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1086,7 +1086,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
+  - {fileID: 2100000, guid: 06fce5c91d87b6544a768dbadbaea2d4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1375,6 +1375,9 @@ MonoBehaviour:
   VirtualThirdCamera: {fileID: 5016251220576895739}
   _killerState: 0
   LookCamera: {fileID: 5016251218842535513}
+  IsImpostorPlayerDownCheck: 0
+  IsImpostorPlayerSitCheck: 0
+  IsPlayerHoldDownCheck: 0
 --- !u!54 &4904972728972586862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1459,6 +1462,8 @@ MonoBehaviour:
   LookCamera: {fileID: 5016251218842535513}
   Killer: {fileID: 5015298117626810164}
   KillerRightHand: {fileID: 5015155616172372250}
+  IsPropmachineAttackCheck: 0
+  IsPlayerAttackCheck: 0
 --- !u!114 &6128199980122927761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1472,7 +1477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  JumpForce: 50
+  JumpForce: 5
   IsGround: 1
   SkillSpeed: 1
 --- !u!111 &6644335796662522378

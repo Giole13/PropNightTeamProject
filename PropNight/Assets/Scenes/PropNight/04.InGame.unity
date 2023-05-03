@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15927589, g: 0.19070785, b: 0.26457697, a: 1}
+  m_IndirectSpecularColor: {r: 0.1291031, g: 0.14081612, b: 0.1544541, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1586,6 +1586,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3047484393252703464, guid: 2749a7b656b257d4b93de57158ba516e,
+        type: 3}
+      propertyPath: mouseImage
+      value: 
+      objectReference: {fileID: 1214616332}
     - target: {fileID: 3047484393252703465, guid: 2749a7b656b257d4b93de57158ba516e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1699,7 +1704,7 @@ PrefabInstance:
     - target: {fileID: 3047484393252703469, guid: 2749a7b656b257d4b93de57158ba516e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2749a7b656b257d4b93de57158ba516e, type: 3}
@@ -1709,6 +1714,68 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1214616330}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1214616332 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3047484392012860680, guid: 2749a7b656b257d4b93de57158ba516e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1214616330}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1216526096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216526098}
+  - component: {fileID: 1216526097}
+  m_Layer: 0
+  m_Name: InGameUiController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1216526097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216526096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c389fb3d3d67414bbae9907ed791d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inGameCharactorData: {fileID: 0}
+  characterDB: {fileID: 0}
+  killerDB: {fileID: 0}
+  characterName: {fileID: 0}
+  abilityName: {fileID: 0}
+  abilityImage: {fileID: 0}
+--- !u!4 &1216526098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216526096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1264455310
 GameObject:
   m_ObjectHideFlags: 0

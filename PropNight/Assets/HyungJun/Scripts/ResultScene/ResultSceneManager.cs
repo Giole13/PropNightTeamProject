@@ -28,7 +28,7 @@ public class ResultSceneManager : MonoBehaviour
     private IEnumerator ShowResult()
     {
         if (_dc.IsGameVictory) Win.SetActive(true);
-        else Lose.SetActive(false);
+        else Lose.SetActive(true);
 
         yield return new WaitForSeconds(3f);
 

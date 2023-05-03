@@ -31,7 +31,8 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
     public GameStatusManager StatusManager;
     // 모든 클라이언트의 오브젝트가 담겨져 있는 딕셔너리
     public static Dictionary<int, GameObject> ClientDic = new Dictionary<int, GameObject>();
-
+    public SpwanPoint SpwanPoints;
+    public int Count = 0;
     private void Awake()
     {
     }
@@ -58,6 +59,7 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
         }
         // 클라이언트 딕셔너리에 자기 자신의 오브젝트 추가
         photonView.RPC("ClientDicUpdate", RpcTarget.All);
+        PlayerObject.transform.localPosition = SpwanPoints.points[(PlayerObject.GetPhotonView().ViewID / 1000) - 1].localPosition;
     }
 
     /// <summary>모든 클라이언트에서 리스트를 업데이트 하는 함수</summary>

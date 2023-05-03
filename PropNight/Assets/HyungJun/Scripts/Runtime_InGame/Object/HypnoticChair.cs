@@ -20,9 +20,6 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     // 현재 처형까지의 시간
     private float _currentExecutionTime = 0f;
 
-
-
-
     private bool IsCountStart = true;
     public bool IsSurvivorOut = false;
     // private GameObject PlayerObj = default;
@@ -79,6 +76,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     // 생존자가 의자에 앉혔을 때 처형까지의 시간을 카운트 하는 코루틴
     private IEnumerator PlayerExecutionCountStart()
     {
+        _currentExecutionTime = 0f;
         while (IsCountStart)
         {
             yield return new WaitForSeconds(0.01f);
@@ -86,12 +84,13 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
 
             if (_maxExecutionTime <= _currentExecutionTime)
             {
-                Debug.Log("처형");
+                // Debug.Log("처형");
                 // 최대처형시간까지 잡혀있다면 생존자 카운트를 하나 줄인다.
-                // PlayerObj.SetActive(false);
-                // OffInteraction(PlayerObj);
-                // _player.
-                _gsm.GetComponent<PhotonView>().RPC("SurvivorDie", RpcTarget.All);
+                _player.SetActive(false);
+                IsCountStart = false;
+                IsSurvivorOut = true;
+                ChairState = HypnoticChairState.IDLE;
+                _gsm.SurvivorDie();
                 yield break;
             }
         }
@@ -117,6 +116,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
         StartCoroutine(PlayerExecutionCountStart());
     }   // 생존자 의자에 앉히기
 
+    // 생존자를 풀어주는 함수
     [PunRPC]
     public void ReleaseSurvivor()
     {

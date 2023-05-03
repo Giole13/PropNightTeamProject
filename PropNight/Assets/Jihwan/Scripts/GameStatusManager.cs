@@ -63,7 +63,6 @@ public class GameStatusManager : MonoBehaviourPun
     }
 
 
-    [PunRPC]
     public void PropMachineFix()
     {
         PropMachineCount--;
@@ -87,6 +86,7 @@ public class GameStatusManager : MonoBehaviourPun
         }
     }
 
+
     // 씬을 이동시키는 함수
     [PunRPC]
     public void SceneMove()
@@ -95,5 +95,6 @@ public class GameStatusManager : MonoBehaviourPun
     }
 
     // public void
+
 
 }

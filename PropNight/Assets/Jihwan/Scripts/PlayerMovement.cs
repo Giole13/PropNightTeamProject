@@ -129,7 +129,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     /// 
     /// </summary>
     /// <param name="MoveAni">vertical ,horizon, speed</param>
-    [PunRPC]
+
     public void MoveAnimation(params object[] MoveAni)
     {
         if (MoveAni == null || MoveAni.Length < 3) { return; }

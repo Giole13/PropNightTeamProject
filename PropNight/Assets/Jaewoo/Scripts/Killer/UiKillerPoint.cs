@@ -5,8 +5,8 @@ using TMPro;
 using UnityEngine.UI;
 public class UiKillerPoint : MonoBehaviour
 {
-    private AkibanPlayerHoldSit akibanPlayerHoldSit;
-    private ImpostorPlayerHoldSit impostorPlayerHoldSit;
+    public AkibanPlayerHoldSit akibanPlayerHoldSit;
+    public ImpostorPlayerHoldSit impostorPlayerHoldSit;
     public Image mouseImage = default;
     public GameObject killerPointer = default;
     public GameObject killerAttackPointer = default;

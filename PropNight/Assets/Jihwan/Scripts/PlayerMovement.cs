@@ -345,7 +345,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     [PunRPC]
     public void SitOnChair()
     {
-        StatusManager.photonView.RPC("SurvivorFallDown", RpcTarget.All, gameObject.GetPhotonView().ViewID);
+        StatusManager.GetComponent<PhotonView>().RPC("SurvivorFallDown", RpcTarget.All, gameObject.GetPhotonView().ViewID);
         Animator.SetTrigger("IsSitOnChair");
         Status = PlayerStatus.CAUGHT;
         _life--;

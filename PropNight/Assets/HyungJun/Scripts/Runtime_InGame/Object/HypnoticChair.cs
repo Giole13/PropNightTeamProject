@@ -11,13 +11,16 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     //최면의자에 앉을 생존자 - Jihwan 2023.04.25 
     private GameObject _player;
     private InGameManager GameManager;
+    private GameStatusManager _gsm;
 
     [SerializeField] private Transform _sitPosition;
 
     // 처형까지의 시간 ##################### - 중요함
-    private float _maxExecutionTime = 100f;
+    private float _maxExecutionTime = 3f;
     // 현재 처형까지의 시간
     private float _currentExecutionTime = 0f;
+
+
 
 
     private bool IsCountStart = true;
@@ -31,6 +34,7 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     }
     private void Start()
     {
+        _gsm = GameObject.Find("GameStatusManager").GetComponent<GameStatusManager>();
         Timer = 0;
         GameManager = GameObject.Find("InGameManager").GetComponent<InGameManager>();
     }
@@ -82,9 +86,11 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
 
             if (_maxExecutionTime <= _currentExecutionTime)
             {
-                // 최대처형시간까지 잡혀있다면 플레이어의 스크립트를 전부 켜주고 플레이어 오브젝트를 꺼버린다.
+                // 최대처형시간까지 잡혀있다면 생존자 카운트를 하나 줄인다.
                 // PlayerObj.SetActive(false);
                 // OffInteraction(PlayerObj);
+                // _player.
+                _gsm.GetComponent<PhotonView>().RPC("SurvivorDie", RpcTarget.All);
                 yield break;
             }
         }
@@ -95,18 +101,19 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
     [PunRPC]
     public void SurvivorSitOnChair(string ViewID)
     {
-
         _player = GameManager.FindPlayerorKiller(ViewID);
         _player.GetComponent<PlayerMovement>().SitOnChair();
         _player.transform.SetParent(null);
         // 2023.04.30 / HyungJun / 앉는 위치의 포지션값을 받아와서 적용함
-        _player.transform.localPosition = _sitPosition.localPosition + new Vector3(0f, 0f, 0f);
-        _player.transform.localRotation = gameObject.transform.localRotation;
+        _player.transform.position = _sitPosition.position + new Vector3(0f, 0f, 0f);
+        // _player.transform.rotation = gameObject.transform.rotation;
 
         ChairState = HypnoticChairState.WORKING;
-        foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black); }
+        // 2023.05.03 / HyungJun / 버그로 인한 비활성화
+        // foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black); }
         IsCountStart = true;
         IsSurvivorOut = false;
+        StartCoroutine(PlayerExecutionCountStart());
     }   // 생존자 의자에 앉히기
 
     [PunRPC]
@@ -117,7 +124,8 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
         {
             _player.GetComponent<PlayerMovement>().WakeUp();
             ChairState = HypnoticChairState.IDLE;
-            foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.gray); }
+            // 2023.05.03 / HyungJun / 버그로 인한 비활성화
+            // foreach (Transform _obj in transform) { _obj.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.gray); }
             IsCountStart = false;
             IsSurvivorOut = true;
         }

@@ -595,8 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13af1da6a07a270498fbc3d0a32a2a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSelectNumber: 0
-  KillerSelectNumber: 0
+  IsGameVictory: 0
 --- !u!4 &147744470
 Transform:
   m_ObjectHideFlags: 0
@@ -936,7 +935,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 1
+  sceneViewId: 100
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &278409046

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15927589, g: 0.19070785, b: 0.26457697, a: 1}
+  m_IndirectSpecularColor: {r: 0.15927604, g: 0.19070809, b: 0.2645774, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4359,9 +4359,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90a71a4e4ca4e3047944908ddc5039bf, type: 3}
---- !u!1 &2113260378 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 378875822792274666, guid: 90a71a4e4ca4e3047944908ddc5039bf,
+--- !u!114 &2113260378 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5827712270930479092, guid: 90a71a4e4ca4e3047944908ddc5039bf,
     type: 3}
   m_PrefabInstance: {fileID: 2113260377}
   m_PrefabAsset: {fileID: 0}
@@ -4644,11 +4644,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 5000
-  field of view: 40
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
   orthographic: 0
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -4671,8 +4671,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8414922530335410575}
-  m_LocalRotation: {x: 0.09623707, y: 0, z: 0, w: 0.99535847}
-  m_LocalPosition: {x: -7.37, y: 5.3, z: 10.3}
+  m_LocalRotation: {x: 0.17371786, y: 0.0000000034430823, z: -6.0735916e-10, w: 0.98479545}
+  m_LocalPosition: {x: 0, y: 4.01, z: -5.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4896,7 +4896,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PlayerPrefab.Array.data[0]
       value: 
-      objectReference: {fileID: 6798358025511451671, guid: edcaa6226fbd14f4b8c4c388ed14ac21,
+      objectReference: {fileID: 4161756586047946900, guid: 1d251ef3f5c0eed469fbcba57a6a6c02,
         type: 3}
     - target: {fileID: 8942772784858904395, guid: 289446dfa7fb7734899cf7c9e38aaa1e,
         type: 3}
@@ -4914,7 +4914,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PlayerPrefab.Array.data[3]
       value: 
-      objectReference: {fileID: 4161756586047946900, guid: 1d251ef3f5c0eed469fbcba57a6a6c02,
+      objectReference: {fileID: 267984439021369030, guid: 06060e09f6323a74e81ef6b883fde816,
         type: 3}
     - target: {fileID: 8942772784858904396, guid: 289446dfa7fb7734899cf7c9e38aaa1e,
         type: 3}

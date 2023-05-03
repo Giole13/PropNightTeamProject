@@ -186,8 +186,8 @@ public class PropMachine : MonoBehaviourPun, IInteraction
                 IsBreakPossible = false;
                 IsFixDone = true;
                 //++s_fixPropMachine;
-                StatusManager.photonView.RPC("PropMachineFix", RpcTarget.All);
-                GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black);
+                StatusManager.PropMachineFix();
+                //GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black);
                 //if (5 == s_fixPropMachine) { _exitPortalScript.DoorOpen(); }
 
                 yield break;

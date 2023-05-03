@@ -19,13 +19,7 @@ public class GameStatusManager : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        int Count = 0;
-        foreach (var obj in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            SurvivorID[Count] = obj.GetPhotonView().ViewID;
-            Count++;
-        }
-        SurvivorMemberNumber = Count;
+
     }
 
     [PunRPC]
@@ -45,7 +39,8 @@ public class GameStatusManager : MonoBehaviourPun
             }
         }
     }
-    [PunRPC]
+
+
     public void PropMachineFix()
     {
         PropMachineCount--;
@@ -59,5 +54,6 @@ public class GameStatusManager : MonoBehaviourPun
     {
         SurvivorMemberNumber--;
     }
+
 
 }

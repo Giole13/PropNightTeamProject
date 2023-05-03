@@ -28,6 +28,7 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
 
     // 현재 클라이언트의 플레이어블 캐릭터 오브젝트
     public static GameObject PlayerObject = default;
+    public GameStatusManager StatusManager;
     // 모든 클라이언트의 오브젝트가 담겨져 있는 딕셔너리
     public static Dictionary<int, GameObject> ClientDic = new Dictionary<int, GameObject>();
 
@@ -93,14 +94,17 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
             // }
         }
         // }
+        int Count = 0;
         foreach (var obj in GameObject.FindGameObjectsWithTag("Player"))
         {
             ClientDic.Add(obj.GetPhotonView().ViewID, obj);
+            StatusManager.SurvivorID[Count] = obj.GetPhotonView().ViewID;
             // if (_player.GetPhotonView().ViewID == obj.GetPhotonView().ViewID)
             // {
 
             // }
         }
+        StatusManager.SurvivorMemberNumber = Count;
     }
 
 

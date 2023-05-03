@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.088346824, g: 0.095294386, b: 0.09778763, a: 1}
+  m_IndirectSpecularColor: {r: 0.1291031, g: 0.14081612, b: 0.1544541, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2254,6 +2254,79 @@ Transform:
   m_Father: {fileID: 1280349572}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 65.968, z: 0}
+--- !u!1 &1924756026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1924756028}
+  - component: {fileID: 1924756027}
+  - component: {fileID: 1924756029}
+  m_Layer: 0
+  m_Name: GameStatusManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1924756027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924756026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11efef83609470498aabb15d0b65ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SurvivorID: 00000000000000000000000000000000
+  SurvivorLife: 02000000020000000200000002000000
+  IsSurvivorCanDie: 00000000
+  SurvivorMemberNumber: 0
+  PropMachineCount: 5
+  IsCanEscape: 0
+--- !u!4 &1924756028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924756026}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 47.700134, y: 6.564777, z: 1.9331799}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1924756029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924756026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1222
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!4 &2041252321 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 450530, guid: f5dae46d58bbe2c42b95113ad170ac2c,
@@ -4345,6 +4418,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8289689249280393557, guid: 9da9fe1ab80c3f045b844fff340399f6,
         type: 3}
+    - target: {fileID: 8942772784858904395, guid: 289446dfa7fb7734899cf7c9e38aaa1e,
+        type: 3}
+      propertyPath: StatusManager
+      value: 
+      objectReference: {fileID: 1924756027}
     - target: {fileID: 8942772784858904395, guid: 289446dfa7fb7734899cf7c9e38aaa1e,
         type: 3}
       propertyPath: KillerPrefab.Array.size

@@ -18771,6 +18771,7 @@ MonoBehaviour:
   Timer: 0
   CoolTime: 0
   SkillDistance: 0
+  SkillJumpCount: 0
 --- !u!114 &3989394915806572243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18899,6 +18900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsSkillActive: 0
+  CoolTime: 0
 --- !u!1 &3989394916144804348
 GameObject:
   m_ObjectHideFlags: 0

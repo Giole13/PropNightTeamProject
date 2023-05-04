@@ -56,9 +56,11 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        HoldUiCheck();
-        SitUiCheck();
-        PlayerHoldDownCheck();
+
+        // 2023.05.04 / HyungJun / 디버그를 위한 주석처리
+        // HoldUiCheck();
+        // SitUiCheck();
+        // PlayerHoldDownCheck();
         RightClick();
     }
 
@@ -74,6 +76,7 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
 
         if (LookCamera.Obj.tag == "Player" && LookCamera.ObjDistance < 3f)
         {
+            _playerMovementScript = LookCamera.Obj.GetComponent<PlayerMovement>();
             if (_playerMovementScript.Status == PlayerStatus.FALLDOWN)
             {
                 // Ui 오브젝트 가져오기 (활성화)
@@ -110,12 +113,13 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
         // 포톤에서 자기자신만 움직이게 하기 위해 
         if (!photonView.IsMine) { return; }
 
-        if (_killerState == KillerState.PLAYERHOLD && Input.GetMouseButtonDown(0))
+        if (_killerState == KillerState.PLAYERHOLD)
         {
             _killerState = KillerState.IDLE;
             IsPlayerHoldDownCheck = true;
             return;
         }
+
         IsPlayerHoldDownCheck = false;
     }
 
@@ -229,7 +233,7 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
         Player.transform.SetParent(null);
         // 플레이어 놓기
         Player.GetComponent<PlayerMovement>().PutDown();
-
+        _killerState = KillerState.IDLE;
         // 1인칭 카메라 켜기
         ThirdCamera.SetActive(false);
         // 3인칭 카메라 끄기

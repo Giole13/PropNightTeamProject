@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
 
-public class SelectCharacterSceneManager : MonoBehaviourPun
+public class SelectCharacterSceneManager : MonoBehaviourPun, IPunObservable
 {
     public TMP_Text CountDownTxt;
 
@@ -49,12 +49,9 @@ public class SelectCharacterSceneManager : MonoBehaviourPun
     [PunRPC]
     public void GameStartCountUp()
     {
-        _gameStartReadyCount++;
+        if (PhotonNetwork.IsMasterClient) { _gameStartReadyCount++; }
 
-        for (int i = 0; i < _gameStartReadyCount; i++)
-        {
-            PlayerReadyImage[i].gameObject.SetActive(true);
-        }
+
 
     }
 
@@ -116,5 +113,23 @@ public class SelectCharacterSceneManager : MonoBehaviourPun
             yield return new WaitForSecondsRealtime(1f);
         }
         LoadingSceneController.MoveScene();
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            stream.SendNext(_gameStartReadyCount);
+        }
+        else
+        {
+            _gameStartReadyCount = (int)stream.ReceiveNext();
+        }
+
+
+        for (int i = 0; i < _gameStartReadyCount; i++)
+        {
+            PlayerReadyImage[i].gameObject.SetActive(true);
+        }
     }
 }

@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class HpController : MonoBehaviour
 {
 
-    public int health = 100;
-    public int playerHp = 100;
-    public int numOfHeart;
+    public PlayerMovement playerMovement = default;
+    public float health = 100;
+    public float playerHp = 100;
+    public float numOfHeart;
     public int maxHealth;
 
     public Image[] hearts;
@@ -17,7 +18,8 @@ public class HpController : MonoBehaviour
 
     void Awake()
     {
-        health = 100;
+        health = playerMovement.HP;
+        //health = 100;
         maxHealth = 100;
         //하트 ui 개수
         numOfHeart = (health / 20);
@@ -69,6 +71,10 @@ public class HpController : MonoBehaviour
         if (0 <= playerHp && playerHp < 20)
         {
             hearts[0].fillAmount = (playerHp / 20f);
+        }
+        if (playerHp < 0)
+        {
+            hearts[0].fillAmount = 0;
         }
 
         //hp 구간 당 없애기

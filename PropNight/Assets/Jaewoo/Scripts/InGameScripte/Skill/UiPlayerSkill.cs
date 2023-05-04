@@ -13,15 +13,41 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     public GameObject playerRunGagebar = default;
     public PlayerInput playerInput = default;
     public PlayerMovement Player = default;
+    public InGameManager inGameManager = default;
     public bool isPlayerSkillUse = false;
     public bool isLeftShift = false;
     public bool isRun = false;
 
-    public int fillAmountAbility = 0;
-    public int currentCool = 0;
+    private int howPlayer = 0;
+    private int playerCool = 0;
+
 
     private void Start()
     {
+        switch (DataContainer.PlayerSelectNumber)
+        {
+            case 0:
+                //러너
+                howPlayer = 0;
+                playerCool = 10;
+                break;
+            case 1:
+                //힐러
+                howPlayer = 0;
+                playerCool = 15;
+                break;
+            case 2:
+                //과학자
+                howPlayer = 1;
+                break;
+            case 3:
+                //점퍼
+                howPlayer = 1;
+
+                break;
+            default:
+                break;
+        }
         playerSkillRun.SetActive(false);
         playerSkillAbility.SetActive(false);
         playerRunGagebar.SetActive(false);
@@ -40,7 +66,15 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
         {
             if (playerInput.Skill)
             {
-                StartCoroutine(playerSkill(5f));
+                if (howPlayer == 0)
+                {
+                    StartCoroutine(playerSkill(playerCool));
+                }
+                else if (howPlayer == 1)
+                {
+
+                }
+
             }
         }
         else {/*Do nothing*/ }

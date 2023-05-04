@@ -13,6 +13,7 @@ public class InGameCharactorData : MonoBehaviour
     public Sprite[] suviverIcon = new Sprite[4];
     //인게임에 캐릭터 나올시 프리팹을 비교해 스킬과 이름 뜨게 하기중
 
+    public InGameManager inGameManager;
     public CharacterDataBase characterDB;
     public CharacterDataBase killerDB;
 
@@ -31,6 +32,7 @@ public class InGameCharactorData : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+
         //생존자와 살인마 아이콘 리소스
         suviverIcon[0] = Resources.Load<Sprite>("UiIcon/Icon/Runner-removebg-preview");
         suviverIcon[1] = Resources.Load<Sprite>("UiIcon/Icon/Healer-removebg-preview");
@@ -50,29 +52,35 @@ public class InGameCharactorData : MonoBehaviour
     }
     void Start()
     {
-        switch (gameObject.name)
+        switch (DataContainer.PlayerSelectNumber)
         {
-            case "Player_Runner":
+            case 0:
                 selectedPlayer = 0;
                 break;
-            case "Player_Healer":
+            case 1:
                 selectedPlayer = 1;
                 break;
-            case "Player_Psychokinesis":
+            case 2:
                 selectedPlayer = 2;
                 break;
-            case "Player_SuperJumper":
+            case 3:
                 selectedPlayer = 3;
                 break;
-            case "Impostor":
+            default:
+                break;
+        }
+        switch (DataContainer.KillerSelectNumber)
+        {
+            case 0:
                 selectedKiller = 0;
                 break;
-            case "Assasin":
+            case 1:
                 selectedKiller = 1;
                 break;
             default:
                 break;
         }
+
 
         //마스터일때
         if (PhotonNetwork.IsMasterClient)
@@ -100,8 +108,8 @@ public class InGameCharactorData : MonoBehaviour
         CharacterData character = killerDB.GetCharacter(selectedKiller);
         killerName.text = character.characterName;
         killerAbilityName.text = character.abilityName;
-        killerImage.sprite = killerIcon[selectedPlayer];
-        killerAibilityImage.sprite = killerSkill[selectedPlayer];
+        killerImage.sprite = killerIcon[selectedKiller];
+        killerAibilityImage.sprite = killerSkill[selectedKiller];
     }
     // Update is called once per frame
 }

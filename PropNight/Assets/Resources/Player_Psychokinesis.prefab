@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c1af3c830085b429747df88f2fe90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPropMachineCheck: 0
+  IsChairCheck: 0
   IsFallDown: 0
   Stamina: 0
   Animator: {fileID: 5019689986731641134}

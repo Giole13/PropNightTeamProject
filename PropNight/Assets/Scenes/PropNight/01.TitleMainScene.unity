@@ -10281,7 +10281,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 160128248}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -47187,8 +47187,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285889162
-  m_fontColor: {r: 0.5411765, g: 0.4784314, b: 0.45882356, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -47766,7 +47766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &999035947
 RectTransform:
   m_ObjectHideFlags: 0
@@ -73502,7 +73502,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1800781521}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -88322,19 +88322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noHairKiller: {fileID: 615925650}
   runnerPlayer: {fileID: 854739860}
-  ifPlayertrue: {fileID: 0}
-  playerPrefabs:
-  - {fileID: 854739860}
-  - {fileID: 613603006}
-  - {fileID: 36339722}
-  - {fileID: 538368128}
-  killerPrefabs:
-  - {fileID: 615925650}
-  - {fileID: 1957072012}
   PlayerGridGroup: {fileID: 1679182109}
   KillerGridGroup: {fileID: 1309494585}
-  parent: {fileID: 0}
-  destoryObj: {fileID: 0}
   characterDB: {fileID: 11400000, guid: a3e3f08d73f82cb4fbb5f9f2e6ed27e3, type: 2}
   killierDB: {fileID: 11400000, guid: 355f504a231017d44870e159c0aa65ef, type: 2}
   characterName: {fileID: 1747881904}

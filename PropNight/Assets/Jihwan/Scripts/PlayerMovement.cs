@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     public int SkillJumpCount = 0;
     private void Start()
     {
+        HP = 100;
         _life = 2;
         Stamina = 100f;
         JumpCount = 0;
@@ -264,7 +265,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         if (IsFallDown) { return; }
         if (PhotonNetwork.IsMasterClient)
         {
-            HP -= 1;
+            HP -= 35;
             photonView.RPC("ApplyUpdatedHealth", RpcTarget.Others, HP);
             // photonView.RPC("GetDamage", RpcTarget.Others);
         }
@@ -382,7 +383,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         Player.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         Animator.SetTrigger("IsRevival");
         IsFallDown = false;
-        HP = 2;
+        HP = 50;
     }       // 생존자가 일어남
 
     [PunRPC]

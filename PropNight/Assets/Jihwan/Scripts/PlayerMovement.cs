@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     public int SkillJumpCount = 0;
     private void Start()
     {
+        HP = 100;
         _life = 2;
         Stamina = 100f;
         JumpCount = 0;
@@ -266,7 +267,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         if (IsFallDown) { return; }
         if (PhotonNetwork.IsMasterClient)
         {
-            HP -= 1;
+            HP -= 35;
             photonView.RPC("ApplyUpdatedHealth", RpcTarget.Others, HP);
             // photonView.RPC("GetDamage", RpcTarget.Others);
         }
@@ -380,11 +381,11 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         IsplayerCanChange = true;
         _playerRigidBody.useGravity = true;
         Player.GetComponent<CapsuleCollider>().enabled = true;
-        Player.transform.localPosition += new Vector3(0f, 0f, 0f);
+        Player.transform.localPosition = new Vector3(0f, 0f, 0f);
         Player.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         Animator.SetTrigger("IsRevival");
         IsFallDown = false;
-        HP = 2;
+        HP = 50;
     }       // 생존자가 일어남
 
     [PunRPC]
@@ -403,10 +404,10 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     // 쓰러진 생존자를 살리는 함수
     public void SurvivorRevive()
     {
-        if (Look.Obj.tag == "Player" && Look.ObjDistance < 1 + SkillDistance)
+        if (Look.Obj.tag == "Player" && Look.ObjDistance < 3 + SkillDistance)
         {
 
-            Object = Look.Obj;
+            Object = Look.Obj.transform.parent.gameObject;
             if (Object.GetComponent<PlayerMovement>().Status == PlayerStatus.FALLDOWN)
             {
                 Object.GetComponent<PlayerMovement>().photonView.RPC("WakeUp", RpcTarget.All);

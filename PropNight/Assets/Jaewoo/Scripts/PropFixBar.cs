@@ -68,7 +68,7 @@ public class PropFixBar : MonoBehaviour
 
         while (circleBar.fillAmount < 0.4f && !Input.GetKeyDown(KeyCode.Space))
         {
-            timingValue_ += Time.deltaTime * 70;
+            timingValue_ += Time.deltaTime * 20;
             barAmount = (timingValue_ * 0.01f) * 0.5f;
             circleBar.fillAmount = barAmount;
             stickAngle = barAmount * 360;

@@ -11,17 +11,14 @@ public class CharactorManager : MonoBehaviourPun
     private GameObject noHairKiller = default;
     [SerializeField]
     private GameObject runnerPlayer = default;
-    public GameObject ifPlayertrue;
-    public GameObject[] playerPrefabs = new GameObject[4];
-    public GameObject[] killerPrefabs = new GameObject[2];
+
 
     // 플레이어 선택 창
     public GameObject PlayerGridGroup = default;
     // 살인마 선택 창
     public GameObject KillerGridGroup = default;
 
-    public Transform parent;
-    public GameObject destoryObj;
+
     public CharacterDataBase characterDB;
     public CharacterDataBase killierDB;
     public TMP_Text characterName;

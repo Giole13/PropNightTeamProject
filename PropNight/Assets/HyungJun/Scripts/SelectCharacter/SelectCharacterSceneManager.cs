@@ -38,7 +38,7 @@ public class SelectCharacterSceneManager : MonoBehaviourPun
         StartBtn.SetActive(true);
 
         // ReadyBtn.SetActive(false);
-        photonView.RPC("GameStartCountUp", RpcTarget.AllBuffered);
+        photonView.RPC("GameStartCountUp", RpcTarget.All);
 
 
 
@@ -49,9 +49,13 @@ public class SelectCharacterSceneManager : MonoBehaviourPun
     [PunRPC]
     public void GameStartCountUp()
     {
-        PlayerReadyImage[_gameStartReadyCount].gameObject.SetActive(true);
-
         _gameStartReadyCount++;
+
+        for (int i = 0; i < _gameStartReadyCount; i++)
+        {
+            PlayerReadyImage[i].gameObject.SetActive(true);
+        }
+
     }
 
     // 준비완료 카운트 ++

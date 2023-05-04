@@ -17895,7 +17895,7 @@ GameObject:
   - component: {fileID: 51729009885328222}
   m_Layer: 0
   m_Name: Geometry
-  m_TagString: Player
+  m_TagString: Players
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

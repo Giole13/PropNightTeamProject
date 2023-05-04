@@ -402,7 +402,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     // 쓰러진 생존자를 살리는 함수
     public void SurvivorRevive()
     {
-        if (Look.Obj.tag == "Player" && Look.ObjDistance < 3 + SkillDistance)
+        if (Look.Obj.tag == "Players" && Look.ObjDistance < 3 + SkillDistance)
         {
 
             Object = Look.Obj.transform.parent.gameObject;

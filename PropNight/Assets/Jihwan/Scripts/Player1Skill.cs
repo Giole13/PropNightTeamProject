@@ -9,7 +9,7 @@ public class Player1Skill : Skill
     private void Start()
     {
         IsSkillActive = false;
-        CoolTime = 3;
+        CoolTime = 15;
         Player = GetComponent<PlayerMovement>();
     }
     override public void ESkill()

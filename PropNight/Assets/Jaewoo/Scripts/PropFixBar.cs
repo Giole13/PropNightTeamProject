@@ -16,6 +16,7 @@ public class PropFixBar : MonoBehaviour
     public Image circleSuccess;
     //완벽한 성공 칸 이미지
     public Image circlePerfect;
+    public Image warningImage;
 
 
     public RectTransform stick;
@@ -39,18 +40,17 @@ public class PropFixBar : MonoBehaviour
     void Start()
     {
         propMachineFixedCheck.SetActive(false);
+        warningImage.gameObject.SetActive(false);
+        warningImage.color = new Color(0, 0, 0, 0);
     }
 
     public float SkillCheck(float guage)
     {
         propMachineFixedCheck.SetActive(true);
         circleBar.fillAmount = 0f;
-        StartCoroutine(SkillCheckRoutine(guage));
+        StartCoroutine(Warning(guage));
 
         return returnGuage;
-        // stick.localEulerAngles = new Vector3(0, 0, 0);
-        // successStick.localEulerAngles = new Vector3(0, 0, 0);
-        // perfectStick.localEulerAngles = new Vector3(0, 0, 0);
     }
 
     IEnumerator SkillCheckRoutine(float guage)
@@ -82,19 +82,32 @@ public class PropFixBar : MonoBehaviour
             //실패 연결
         }
 
-        if (Mathf.Abs(successBarAngle) <= stickAngle && stickAngle < Mathf.Abs(successBarAngle - 36))
+        else if (Mathf.Abs(successBarAngle) <= stickAngle && stickAngle < Mathf.Abs(successBarAngle - 36))
         {
             guage += 5f;
             //성공 연결
 
         }
-        if (Mathf.Abs(perfectBarAngle) <= stickAngle && stickAngle <= Mathf.Abs(perfectBarAngle - 18))
+        else if (Mathf.Abs(perfectBarAngle) <= stickAngle && stickAngle <= Mathf.Abs(perfectBarAngle - 18))
         {
             guage += 10f;
             //대성공 연결
         }
         returnGuage = guage;
         propMachineFixedCheck.SetActive(false);
+    }
+    IEnumerator Warning(float guage)
+    {
+        float imageTime = 0;
+        warningImage.gameObject.SetActive(true);
+        while (imageTime < 1)
+        {
+            warningImage.color = new Color(1, 1, 1, 1 - imageTime);
+            imageTime += Time.smoothDeltaTime;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(SkillCheckRoutine(guage));
     }
 
 }

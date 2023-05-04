@@ -152,6 +152,11 @@ PrefabInstance:
       objectReference: {fileID: 793684881}
     - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
+      propertyPath: warningImage
+      value: 
+      objectReference: {fileID: 434399038}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
       propertyPath: propMachineFixedCheck
       value: 
       objectReference: {fileID: 793684884}
@@ -635,6 +640,11 @@ PrefabInstance:
       objectReference: {fileID: 793684881}
     - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
+      propertyPath: warningImage
+      value: 
+      objectReference: {fileID: 434399038}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
       propertyPath: propMachineFixedCheck
       value: 
       objectReference: {fileID: 793684884}
@@ -721,6 +731,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 336617981}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &434399038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2786558907352961971, guid: 5c4256993be692e48a371f67e0241388,
+    type: 3}
+  m_PrefabInstance: {fileID: 793684878}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &753824313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -930,6 +952,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1485211475489601044, guid: 5c4256993be692e48a371f67e0241388,
+        type: 3}
+      propertyPath: warningImage
+      value: 
+      objectReference: {fileID: 434399038}
     - target: {fileID: 2112942533801282872, guid: 5c4256993be692e48a371f67e0241388,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1314,6 +1341,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632594700740351717, guid: 5c4256993be692e48a371f67e0241388,
+        type: 3}
+      propertyPath: playerHp
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7969956732425295624, guid: 5c4256993be692e48a371f67e0241388,
         type: 3}
@@ -1819,6 +1851,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  inGameManager: {fileID: 0}
   characterDB: {fileID: 11400000, guid: a3e3f08d73f82cb4fbb5f9f2e6ed27e3, type: 2}
   killerDB: {fileID: 11400000, guid: 355f504a231017d44870e159c0aa65ef, type: 2}
   characterName: {fileID: 1660177465}
@@ -2009,6 +2042,11 @@ PrefabInstance:
       propertyPath: successStick
       value: 
       objectReference: {fileID: 793684881}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: warningImage
+      value: 
+      objectReference: {fileID: 434399038}
     - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
       propertyPath: propMachineFixedCheck
@@ -2502,6 +2540,11 @@ PrefabInstance:
       propertyPath: successStick
       value: 
       objectReference: {fileID: 793684881}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: warningImage
+      value: 
+      objectReference: {fileID: 434399038}
     - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
       propertyPath: propMachineFixedCheck
@@ -4525,6 +4568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef8d9da8fb1fc24799c99b29ef48975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EDP: {fileID: 0}
 --- !u!1001 &2286830442180460589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4632,6 +4676,11 @@ PrefabInstance:
       propertyPath: successStick
       value: 
       objectReference: {fileID: 793684881}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: warningImage
+      value: 
+      objectReference: {fileID: 434399038}
     - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
       propertyPath: propMachineFixedCheck

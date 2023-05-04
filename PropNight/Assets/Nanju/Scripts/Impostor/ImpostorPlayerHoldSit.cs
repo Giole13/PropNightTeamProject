@@ -58,9 +58,9 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
     {
 
         // 2023.05.04 / HyungJun / 디버그를 위한 주석처리
-        // HoldUiCheck();
-        // SitUiCheck();
-        // PlayerHoldDownCheck();
+        HoldUiCheck();
+        SitUiCheck();
+        PlayerHoldDownCheck();
         RightClick();
     }
 

@@ -1124,11 +1124,10 @@ MonoBehaviour:
   playerRunGagebar: {fileID: 4815190168487424152}
   playerInput: {fileID: 0}
   Player: {fileID: 0}
+  inGameManager: {fileID: 0}
   isPlayerSkillUse: 0
   isLeftShift: 0
   isRun: 0
-  fillAmountAbility: 0
-  currentCool: 0
 --- !u!114 &5632594700740351717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,6 +1140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b98c0abc814d2e4ba562d9fac483937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
   health: 4
   playerHp: 100
   numOfHeart: 4
@@ -3888,6 +3888,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4815190167967645164}
     m_Modifications:
+    - target: {fileID: 1892734018353541720, guid: eb8f4c969c1f5cc4b8bb06be515cdf59,
+        type: 3}
+      propertyPath: warningImage
+      value: 
+      objectReference: {fileID: 2786558907352961971}
     - target: {fileID: 5681309464918880905, guid: eb8f4c969c1f5cc4b8bb06be515cdf59,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4000,6 +4005,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb8f4c969c1f5cc4b8bb06be515cdf59, type: 3}
+--- !u!114 &2786558907352961971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2914683244897097727, guid: eb8f4c969c1f5cc4b8bb06be515cdf59,
+    type: 3}
+  m_PrefabInstance: {fileID: 1069834125560939596}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4611897827108026053 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5681309464918880905, guid: eb8f4c969c1f5cc4b8bb06be515cdf59,

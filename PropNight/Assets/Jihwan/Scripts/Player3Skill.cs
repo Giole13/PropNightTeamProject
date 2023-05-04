@@ -9,7 +9,7 @@ public class Player3Skill : Skill
     void Start()
     {
         IsSkillActive = false;
-        CoolTime = 4;
+        CoolTime = 10;
         Player = GetComponent<PlayerMovement>();
     }
 

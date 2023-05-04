@@ -46,6 +46,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         _life = 2;
         Stamina = 100f;
         JumpCount = 0;
+        // 2023.05.04 / HyungJun / 플레이어 속도 수정
+        Speed = 5f;
         if (photonView.IsMine)
         {
             _uiPlayerSkill = GameObject.Find("InGamePlayerUi").GetComponent<UiPlayerSkill>();
@@ -402,7 +404,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     // 쓰러진 생존자를 살리는 함수
     public void SurvivorRevive()
     {
-        if (Look.Obj.tag == "Player" && Look.ObjDistance < 3 + SkillDistance)
+        if (Look.Obj.tag == "Players" && Look.ObjDistance < 3 + SkillDistance)
         {
 
             Object = Look.Obj.transform.parent.gameObject;

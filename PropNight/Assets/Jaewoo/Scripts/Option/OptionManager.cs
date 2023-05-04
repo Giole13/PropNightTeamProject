@@ -21,6 +21,8 @@ public class OptionManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
+
+
     Resolution[] resolutions;
     public TMP_Dropdown resolutionDropdown;
     public TMP_Text windowText = default;
@@ -32,7 +34,6 @@ public class OptionManager : MonoBehaviour
 
     void Start()
     {
-
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -55,6 +56,7 @@ public class OptionManager : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
+        Screen.SetResolution(1920, 1080, true);
     }
 
 

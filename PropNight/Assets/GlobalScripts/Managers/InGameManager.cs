@@ -61,6 +61,8 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
         // 클라이언트 딕셔너리에 자기 자신의 오브젝트 추가
         photonView.RPC("ClientDicUpdate", RpcTarget.All);
         PlayerObject.transform.localPosition = SpwanPoints.points[(PlayerObject.GetPhotonView().ViewID / 1000) - 1].localPosition;
+
+        Cursor.visible = false;
     }
 
     /// <summary>모든 클라이언트에서 리스트를 업데이트 하는 함수</summary>

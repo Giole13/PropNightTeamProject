@@ -27,6 +27,9 @@ public class ImpostorMoveControl : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        // 2023.05.04 / HyungJun / 살인마 이동속도 수정
+        Speed = 10f;
+
         // rigidboidy 컴포넌트 받아오기
         _KillerRigidbody = GetComponent<Rigidbody>();
         IsGround = true;

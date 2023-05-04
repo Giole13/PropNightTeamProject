@@ -12,6 +12,7 @@ TagManager:
   - Killer
   - Ground
   - SpawnPoint
+  - Players
   layers:
   - Default
   - TransparentFX

@@ -205,12 +205,22 @@ public class PropMachine : MonoBehaviourPun, IInteraction
 
             }
             photonView.RPC("PropMachineFixGaugeUpdate", RpcTarget.All, _currentFixGauge, true);
+
+            // ======================================================
+            // ========= 프롭머신이 수리가 끝났을 때 실행하는 로직 ========
+            // ======================================================
             if (_maxFixGauge <= _currentFixGauge)
             {
                 IsBreakPossible = false;
                 IsFixDone = true;
                 //++s_fixPropMachine;
-                StatusManager.PropMachineFix();
+                // 모든 클라이언트 반영으로 수정
+                StatusManager.GetComponent<PhotonView>().RPC("PropMachineFix", RpcTarget.All);
+                // 여기에 수리된 프롭머신의 수 반영
+                // InGameController
+                photonView.RPC("PropMachineFixedUiUpdate", RpcTarget.All);
+
+                // PropMachineFix();
                 //GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black);
                 // if (5 == s_fixPropMachine)
                 // {
@@ -219,10 +229,10 @@ public class PropMachine : MonoBehaviourPun, IInteraction
 
                 yield break;
             }
-
-
         }
     }       // RaiseFixGauge()
+
+    [PunRPC] public void PropMachineFixedUiUpdate() => InGameController.s_intance.UiPropMachineCount();
 
 
     [PunRPC]

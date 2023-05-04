@@ -134,17 +134,19 @@ public class ImpostorAttack : MonoBehaviourPun
         KillerRightHand.GetComponent<BoxCollider>().enabled = true;
 
         int random = Random.Range(0, 2);
-        if (random == 1)
+        // 2023.05.04 / HyungJun / Random.Range(0, 2) 함수의 시작값은 이상 값이고 최대 값은 미만 값이다.
+        // 0은 포함하고 2는 포함하지 않는다. -> 0, 1 의 랜덤 값 -> 로직 수정
+        if (random == 0)
         {
             Animation.Play("Attack1");
         }
-        else if (random == 2)
+        else if (random == 1)
         {
             Animation.Play("Attack2");
         }
         yield return new WaitForSeconds(2f);
 
-        // Animation.Stop();
+        Animation.Stop();
 
         // BoxCollider 끄기
         KillerRightHand.GetComponent<BoxCollider>().enabled = false;

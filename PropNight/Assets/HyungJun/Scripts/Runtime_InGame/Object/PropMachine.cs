@@ -132,7 +132,10 @@ public class PropMachine : MonoBehaviourPun, IInteraction
 
             // 플레이어정보를 가져와서 자신이 맞는지 확인
             // if (_playerObj.GetComponent<PlayerMovement>().photonView.IsMine) { return; }
-            photonView.RPC("PropMachineFixGaugeUpdate", RpcTarget.All, _currentFixGauge, true);
+            // ====== 20230504  Jihwan ========
+            IsFixing = true;
+            StartCoroutine(IncreaseFixGauge());
+            //photonView.RPC("PropMachineFixGaugeUpdate", RpcTarget.All, _currentFixGauge, true);
         }
         else if (tagName == "Killer" && !IsFixDone)
         {
@@ -148,9 +151,11 @@ public class PropMachine : MonoBehaviourPun, IInteraction
     [PunRPC]
     public void PropMachineFixGaugeUpdate(float currentValue, bool IsFixingValue)
     {
-        IsFixing = IsFixingValue;
+        //IsFixing = IsFixingValue;
         _currentFixGauge = currentValue;
-        StartCoroutine(IncreaseFixGauge());
+        _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
+        Debug.Log(_currentFixGauge);
+        //StartCoroutine(IncreaseFixGauge());
     }
 
     [PunRPC]
@@ -196,6 +201,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
                 StartCoroutine(TimingBar(random));
 
             }
+            photonView.RPC("PropMachineFixGaugeUpdate", RpcTarget.All, _currentFixGauge, true);
             if (_maxFixGauge <= _currentFixGauge)
             {
                 // 수리 완료시 실행 하는 함수

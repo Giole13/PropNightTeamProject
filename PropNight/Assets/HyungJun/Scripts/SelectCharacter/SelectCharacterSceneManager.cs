@@ -12,6 +12,8 @@ public class SelectCharacterSceneManager : MonoBehaviourPun
     public GameObject StartBtn;
     public GameObject ReadyBtn;
 
+    public Image[] PlayerReadyImage;
+
     // 현재 준비완료 카운트
     private int _clientReadyCount;
 
@@ -26,19 +28,39 @@ public class SelectCharacterSceneManager : MonoBehaviourPun
 
     private void Start()
     {
+        foreach (Image objImage in PlayerReadyImage)
+        {
+            objImage.color = Color.gray;
+            objImage.gameObject.SetActive(false);
+        }
+
         // 게임 시작 버튼을 활성화 한다.
         StartBtn.SetActive(true);
 
         // ReadyBtn.SetActive(false);
         photonView.RPC("GameStartCountUp", RpcTarget.AllBuffered);
 
+
+
+
     }
 
     // 게임 시작 조건 변수 ++
-    [PunRPC] public void GameStartCountUp() => _gameStartReadyCount++;
+    [PunRPC]
+    public void GameStartCountUp()
+    {
+        PlayerReadyImage[_gameStartReadyCount].gameObject.SetActive(true);
+
+        _gameStartReadyCount++;
+    }
 
     // 준비완료 카운트 ++
-    [PunRPC] public void ReadyCountUp() => _clientReadyCount++;
+    [PunRPC]
+    public void ReadyCountUp()
+    {
+        PlayerReadyImage[_clientReadyCount].color = Color.red;
+        _clientReadyCount++;
+    }
 
 
     // 게임시작 버튼

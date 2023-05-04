@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character:
   - characterName: "\uB7EC\uB108"
-    abilityName: Last Spurt
+    abilityName: "\uC2A4\uD37C\uD2B8"
     abilityExpanation: "\uC2A4\uD0DC\uBBF8\uB108\uB97C \uBC18\uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
   - characterName: "\uD790\uB7EC"
     abilityName: Heal
     abilityExpanation: "\uCCB4\uB825\uC744  \uD55C \uCE78 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
   - characterName: "\uCD08\uB2A5\uB825\uC790"
-    abilityName: Remote
+    abilityName: "\uC6D0\uACA9 \uC870\uC791"
     abilityExpanation: "\uC6D0\uACA9 \uC870\uC791\uC744 \uD569\uB2C8\uB2E4"
   - characterName: "\uC810\uD37C"
     abilityName: Up!

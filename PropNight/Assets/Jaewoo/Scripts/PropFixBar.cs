@@ -41,12 +41,11 @@ public class PropFixBar : MonoBehaviour
     {
         propMachineFixedCheck.SetActive(false);
         warningImage.gameObject.SetActive(false);
-        warningImage.color = new Color(0, 0, 0, 0);
+
     }
 
     public float SkillCheck(float guage)
     {
-        propMachineFixedCheck.SetActive(true);
         circleBar.fillAmount = 0f;
         StartCoroutine(Warning(guage));
 
@@ -57,7 +56,7 @@ public class PropFixBar : MonoBehaviour
     {
         timingValue_ = 0;
         barAmount = 0;
-
+        propMachineFixedCheck.SetActive(true);
         //성공 대성공 앵글 초기화
         successBarAngle = Random.Range(-20, -80);
 
@@ -98,15 +97,22 @@ public class PropFixBar : MonoBehaviour
     }
     IEnumerator Warning(float guage)
     {
-        float imageTime = 0;
-        warningImage.gameObject.SetActive(true);
-        while (imageTime < 1)
-        {
-            warningImage.color = new Color(1, 1, 1, 1 - imageTime);
-            imageTime += Time.smoothDeltaTime;
-        }
 
-        yield return new WaitForSeconds(0.1f);
+        float imageTime = 0;
+        warningImage.color = new Color(1, 1, 1, 1);
+        warningImage.gameObject.SetActive(true);
+
+        while (imageTime < 2f)
+        {
+
+            imageTime += Time.deltaTime;
+
+            warningImage.color = new Color(1f, 1f, 1f, 1f - (imageTime / 2f));
+
+        }
+        yield return null;
+        warningImage.gameObject.SetActive(false);
+
         StartCoroutine(SkillCheckRoutine(guage));
     }
 

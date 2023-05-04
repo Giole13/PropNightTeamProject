@@ -34,7 +34,7 @@ using Photon.Pun;
 public class PropMachine : MonoBehaviourPun, IInteraction
 {
     // 몇개를 수리했는지 알려주는 변수
-    private float _maxFixGauge = 3f;
+    private float _maxFixGauge = 30f;
 
     // [SerializeField]
     // private ProtoExitPortal _exitPortalScript = default;

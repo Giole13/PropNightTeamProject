@@ -16,11 +16,19 @@ public class GameStatusManager : MonoBehaviourPun
     public int[] SurvivorLife = new int[4] { 2, 2, 2, 2 };
     // 생존자 생존 여부
     public bool[] IsSurvivorCanDie = new bool[4] { false, false, false, false };
+
     // 생존하고 있는 캐릭터 수
     public int SurvivorMemberNumber;
+
     // 탈출한 캐릭터 수
     public int ExitMemberNumber;
+
+    // 현재 게임의 최대 생존자 수
+    public int SurvivorMaxNumber;
+
+    // 고쳐야할 프롭머신 개수
     public int PropMachineCount = 5;
+    public int PropMachineCurrentFixCount = 0;
 
     public bool IsCanEscape = false;
 
@@ -47,6 +55,7 @@ public class GameStatusManager : MonoBehaviourPun
             Count++;
         }
         SurvivorMemberNumber = Count;
+
     }
 
 
@@ -69,12 +78,14 @@ public class GameStatusManager : MonoBehaviourPun
         }
     }
 
-
+    [PunRPC]
     public void PropMachineFix()
     {
         PropMachineCount--;
         if (PropMachineCount == 0)
         {
+            // 5개를 다 고친다면 문을 열어버린다.
+            ExitDoorPortal.s__instance.OpenPortal();
             IsCanEscape = true;
         }
     }
@@ -95,6 +106,26 @@ public class GameStatusManager : MonoBehaviourPun
             photonView.RPC("SceneMove", RpcTarget.All);
         }
     }
+
+    // 플레이어가 탈출할 때 실행하는 함수
+    public void SurvivorExit()
+    {
+        ExitMemberNumber++;
+        // 만약 탈풀한 플레이어가 최대 플레이어와 같거나 많을 때
+        // if (!PhotonNetwork.IsMasterClient)
+        // {
+        // 승리결과창 반영해주는 변수
+        _dc.IsGameVictory = true;
+        SceneMove();
+        if (SurvivorMaxNumber <= ExitMemberNumber)
+        {
+            // 생존자가 모두 탈출한다면 살인마도 씬 이동
+            photonView.RPC("SceneMove", RpcTarget.MasterClient);
+        }
+        // photonView.RPC("SceneMove", RpcTarget.All);
+        // }
+    }
+
 
     // 씬을 이동시키는 함수
     [PunRPC]

@@ -77,6 +77,7 @@ public class InGameController : MonoBehaviour
     #endregion
 
     #region 프롭머쉰카운트
+    // 2023.05.04 / HyungJun / 이 친구를 다른 PhotonView가 붙어있는 친구에서 불러주면 된다.
     public void UiPropMachineCount()
     {
         uiPropMachineCount++;

@@ -30,6 +30,10 @@ public class AkibanMoveControl : MonoBehaviourPun
     void Start()
     {
         Timer = 0;
+
+        // 2023.05.04 / HyungJun / 살인마 이동속도 수정
+        Speed = 10f;
+
         // rigidboidy 컴포넌트 받아오기
         _KillerRigidbody = GetComponent<Rigidbody>();
         IsGround = true;

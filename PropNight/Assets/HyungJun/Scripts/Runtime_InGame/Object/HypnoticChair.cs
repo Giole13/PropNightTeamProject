@@ -106,7 +106,8 @@ public class HypnoticChair : MonoBehaviourPun, IInteraction
         _player.transform.SetParent(null);
         // 2023.04.30 / HyungJun / 앉는 위치의 포지션값을 받아와서 적용함
         _player.transform.position = _sitPosition.position + new Vector3(0f, 0f, 0f);
-        // _player.transform.rotation = gameObject.transform.rotation;
+        _player.transform.rotation = Quaternion.Euler(0f, gameObject.transform.rotation.z, 0f);
+        // gameObject.transform.rotation;
 
         ChairState = HypnoticChairState.WORKING;
         // 2023.05.03 / HyungJun / 버그로 인한 비활성화

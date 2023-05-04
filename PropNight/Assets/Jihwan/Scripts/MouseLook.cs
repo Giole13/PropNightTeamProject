@@ -105,6 +105,7 @@ public class MouseLook : MonoBehaviourPun
         {
             Obj = _hit.collider.gameObject;
             ObjDistance = _hit.distance;
+
             //! 맞은 오브젝트의 태그가 Change 라면 아웃라인 활성화
             // if (Obj.tag == "Change")
             // {

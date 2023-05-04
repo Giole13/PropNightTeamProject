@@ -190,6 +190,8 @@ public class PropMachine : MonoBehaviourPun, IInteraction
             {
                 _currentFixGauge = 0;
             }
+
+            // 타이밍바를 팝업하는 로직
             if (_IsTiming == false)
             {
                 _IsTiming = true;
@@ -197,9 +199,10 @@ public class PropMachine : MonoBehaviourPun, IInteraction
                 StartCoroutine(TimingBar(random));
 
             }
+
+            // 수리 완료시 실행 하는 로직
             if (_maxFixGauge <= _currentFixGauge)
             {
-                // 수리 완료시 실행 하는 함수
                 IsBreakPossible = false;
                 IsFixDone = true;
                 //++s_fixPropMachine;

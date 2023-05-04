@@ -39,6 +39,7 @@ public class GameStatusManager : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        ExitMemberNumber = 0;
         _dc = GameObject.Find("DataContainer").GetComponent<DataContainer>();
         // Debug.Log(_dc);
         // 작동 안함 -> 코루틴으로 설정해야함.
@@ -95,10 +96,6 @@ public class GameStatusManager : MonoBehaviourPun
     public void SurvivorDie()
     {
         SurvivorMemberNumber--;
-        Debug.Log("여기서 생존자 수 감소");
-        Debug.Log("여기서 씬 이동");
-        Debug.Log(PhotonNetwork.IsMasterClient);
-        Debug.Log(SurvivorMemberNumber);
         // 2023.05.02 / HyungJun / 마스터 클라이언트이고 생존한 플레이어가 0명이면 살인마인 경우만 승리
         if (PhotonNetwork.IsMasterClient && SurvivorMemberNumber == 0)
         {
@@ -117,6 +114,8 @@ public class GameStatusManager : MonoBehaviourPun
         // 승리결과창 반영해주는 변수
         _dc.IsGameVictory = true;
         SceneMove();
+        Debug.Log(SurvivorMaxNumber);
+        Debug.Log(ExitMemberNumber);
         if (SurvivorMaxNumber <= ExitMemberNumber)
         {
             // 생존자가 모두 탈출한다면 살인마도 씬 이동

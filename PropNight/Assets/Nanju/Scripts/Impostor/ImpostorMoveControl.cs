@@ -20,7 +20,7 @@ public class ImpostorMoveControl : MonoBehaviourPun
     // 애니메이션 가져오기
     private Animation Animation;
     // 공격 여부 확인
-    private bool _attacking = false;
+    public bool _attacking = false;
 
     public float SkillSpeed = 1;
 
@@ -86,7 +86,14 @@ public class ImpostorMoveControl : MonoBehaviourPun
             {
                 IsGround = false;
                 _KillerRigidbody.velocity = Vector3.up * JumpForce;
-                Animation.Play("Run");
+                if (!_attacking)
+                {
+                    Animation.Play("Run");
+                }
+                else
+                {
+                    /* Do nothing */
+                }
             }
             // 공중에 떠 있는 상태이면 점프하지 못하도록 리턴
             else

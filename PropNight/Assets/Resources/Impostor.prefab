@@ -1480,6 +1480,7 @@ MonoBehaviour:
   Speed: 5
   JumpForce: 5
   IsGround: 1
+  _attacking: 0
   SkillSpeed: 1
 --- !u!111 &6644335796662522378
 Animation:

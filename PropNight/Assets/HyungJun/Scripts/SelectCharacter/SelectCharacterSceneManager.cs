@@ -69,7 +69,7 @@ public class SelectCharacterSceneManager : MonoBehaviourPun, IPunObservable
     {
         // 선택한 캐릭터의 정보를 가져와서 캐싱해야한다.
 
-        photonView.RPC("ReadyCountUp", RpcTarget.All);
+        photonView.RPC("ReadyCountUp", RpcTarget.AllBuffered);
         photonView.RPC("MoveSceneProgress", RpcTarget.All);
         StartBtn.GetComponent<Button>().interactable = false;
     }
@@ -80,7 +80,6 @@ public class SelectCharacterSceneManager : MonoBehaviourPun, IPunObservable
         // 게임 시작 버튼을 누르면 60초의 카운트 다운이 시작되고 준비 됨 버튼을 활성화 한다.
         // StartBtn.SetActive(false);
         // ReadyBtn.SetActive(true);
-
 
         // 게임 시작을 누르면 준비완료 카운트 +1
         if (_gameStartReadyCount <= _clientReadyCount)

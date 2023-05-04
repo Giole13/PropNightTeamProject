@@ -4641,7 +4641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  JumpForce: 50
+  JumpForce: 5
   IsGround: 1
   Attacking: 0
   IsCanControl: 1

@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         _life = 2;
         Stamina = 100f;
         JumpCount = 0;
+        // 2023.05.04 / HyungJun / 플레이어 속도 수정
+        Speed = 5f;
         if (photonView.IsMine)
         {
             _uiPlayerSkill = GameObject.Find("InGamePlayerUi").GetComponent<UiPlayerSkill>();

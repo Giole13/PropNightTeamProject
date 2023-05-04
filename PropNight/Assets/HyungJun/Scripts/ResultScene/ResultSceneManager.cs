@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class ResultSceneManager : MonoBehaviour
+
+public class ResultSceneManager : MonoBehaviourPunCallbacks
 {
     public GameObject WinWait = default;
 
@@ -15,6 +18,9 @@ public class ResultSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         WinWait.SetActive(false);
         Win.SetActive(false);
         Lose.SetActive(false);
@@ -37,9 +43,14 @@ public class ResultSceneManager : MonoBehaviour
         WinWait.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    // 로비로 돌아가는 함수
+    public void BacktoLobby()
     {
+        SceneManager.LoadSceneAsync(Define.TITLE_MAIN_SCENE_NAME);
 
+        // 방을 나가는 함수
+        PhotonNetwork.LeaveRoom();
     }
+
+
 }

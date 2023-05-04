@@ -141,7 +141,7 @@ namespace EPOOutline
 
         [SerializeField]
         private ComplexMaskingMode complexMaskingMode;
-        
+
         [SerializeField]
         private OutlinableDrawingMode drawingMode = OutlinableDrawingMode.Normal;
 
@@ -163,7 +163,7 @@ namespace EPOOutline
 
         [SerializeField]
         private OutlineProperties frontParameters = new OutlineProperties();
-        
+
 #pragma warning restore CS0649
 
         public RenderStyle RenderStyle
@@ -249,7 +249,7 @@ namespace EPOOutline
                 return backParameters;
             }
         }
-        
+
         public bool NeedFillMask
         {
             get
@@ -292,7 +292,7 @@ namespace EPOOutline
         {
             outlineTargets.Remove(target);
         }
-        
+
         public OutlineTarget this[int index]
         {
             get
@@ -388,7 +388,7 @@ namespace EPOOutline
         {
             outlinables.Remove(this);
         }
-        
+
         public static void GetAllActiveOutlinables(Camera camera, List<Outlinable> outlinablesList)
         {
             outlinablesList.Clear();
@@ -423,7 +423,7 @@ namespace EPOOutline
 
         private bool MatchingMode(Renderer renderer, RenderersAddingMode mode)
         {
-            return 
+            return
                 (!(renderer is MeshRenderer) && !(renderer is SkinnedMeshRenderer) && !(renderer is SpriteRenderer) && (mode & RenderersAddingMode.Others) != RenderersAddingMode.None) ||
                 (renderer is MeshRenderer && (mode & RenderersAddingMode.MeshRenderer) != RenderersAddingMode.None) ||
                 (renderer is SpriteRenderer && (mode & RenderersAddingMode.SpriteRenderer) != RenderersAddingMode.None) ||

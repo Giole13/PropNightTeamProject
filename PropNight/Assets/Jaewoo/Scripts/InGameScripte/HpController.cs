@@ -7,33 +7,32 @@ public class HpController : MonoBehaviour
 {
 
     public PlayerMovement playerMovement = default;
-    public float health = 100;
-    public float playerHp = 100;
+
+
     public float numOfHeart;
-    public int maxHealth;
+    public float maxHealth;
 
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
-    void Awake()
+    void Start()
     {
-        health = playerMovement.HP;
-        //health = 100;
+
         maxHealth = 100;
         //하트 ui 개수
-        numOfHeart = (health / 20);
+        numOfHeart = (maxHealth / 20);
     }
     // Update is called once per frame
     void Update()
     {
-        if (numOfHeart < health)
+        if (numOfHeart < maxHealth)
         {
-            health = numOfHeart;
+            maxHealth = numOfHeart;
         }
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i < health)
+            if (i < maxHealth)
             {
                 hearts[i].sprite = fullHeart;
             }
@@ -52,45 +51,56 @@ public class HpController : MonoBehaviour
             }
         }
 
-        if (80 <= playerHp)
+        if (80 <= playerMovement.HP)
         {
-            hearts[4].fillAmount = (playerHp - 80) / 20f;
+            hearts[4].fillAmount = (playerMovement.HP - 80) / 20f;
+            hearts[3].fillAmount = 1;
+            hearts[2].fillAmount = 1;
+            hearts[1].fillAmount = 1;
+            hearts[0].fillAmount = 1;
         }
-        if (60 <= playerHp && playerHp < 80)
+        if (60 <= playerMovement.HP && playerMovement.HP < 80)
         {
-            hearts[3].fillAmount = (playerHp - 60) / 20f;
+            hearts[3].fillAmount = (playerMovement.HP - 60) / 20f;
+            hearts[2].fillAmount = 1;
+            hearts[1].fillAmount = 1;
+            hearts[0].fillAmount = 1;
         }
-        if (40 <= playerHp && playerHp < 60)
+        if (40 <= playerMovement.HP && playerMovement.HP < 60)
         {
-            hearts[2].fillAmount = (playerHp - 40) / 20f;
+            hearts[2].fillAmount = (playerMovement.HP - 40) / 20f;
+            hearts[1].fillAmount = 1;
+            hearts[0].fillAmount = 1;
         }
-        if (20 <= playerHp && playerHp < 40)
+        if (20 <= playerMovement.HP && playerMovement.HP < 40)
         {
-            hearts[1].fillAmount = (playerHp - 20) / 20f;
+            hearts[1].fillAmount = (playerMovement.HP - 20) / 20f;
+
+            hearts[0].fillAmount = 1;
         }
-        if (0 <= playerHp && playerHp < 20)
+        if (0 <= playerMovement.HP && playerMovement.HP < 20)
         {
-            hearts[0].fillAmount = (playerHp / 20f);
+            hearts[0].fillAmount = (playerMovement.HP / 20f);
         }
-        if (playerHp < 0)
+        if (playerMovement.HP < 0)
         {
             hearts[0].fillAmount = 0;
         }
 
         //hp 구간 당 없애기
-        if (playerHp < 80)
+        if (playerMovement.HP < 80)
         {
             hearts[4].fillAmount = 0f;
         }
-        if (playerHp < 60)
+        if (playerMovement.HP < 60)
         {
             hearts[3].fillAmount = 0f;
         }
-        if (playerHp < 40)
+        if (playerMovement.HP < 40)
         {
             hearts[2].fillAmount = 0f;
         }
-        if (playerHp < 20)
+        if (playerMovement.HP < 20)
         {
             hearts[1].fillAmount = 0f;
         }

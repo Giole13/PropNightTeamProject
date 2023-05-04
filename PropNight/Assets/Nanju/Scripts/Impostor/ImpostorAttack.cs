@@ -76,6 +76,7 @@ public class ImpostorAttack : MonoBehaviourPun
 
 
         }
+        ImpostorAtiveSkill();
         PropmachinAttacCheck();
     }
 
@@ -180,7 +181,7 @@ public class ImpostorAttack : MonoBehaviourPun
                 }
                 ImpostorControl.SkillSpeed = 1;
                 _isSkillActive = false;
-                _coolTime = 5;
+                _coolTime = 8;
                 _isCanAttack = true;
             }
             if (!_isSkillActive)

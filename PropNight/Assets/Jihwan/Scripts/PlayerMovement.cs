@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     private Rigidbody _playerRigidBody;     // Rigidbody
 
     private UiPlayerSkill _uiPlayerSkill;       // 생존자 UI
+    private HpController _hpController;
     private bool IsJump;                    // 점프할 수 있는가
     private bool IsDoSomething = false;     //무언가를 하고 있는가
     private int JumpCount;                  // 점프가능 횟수
@@ -53,6 +54,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
             _uiPlayerSkill = GameObject.Find("InGamePlayerUi").GetComponent<UiPlayerSkill>();
             _uiPlayerSkill.playerInput = _playerInput;
             _uiPlayerSkill.Player = this;
+            _hpController = GameObject.Find("InGamePlayerUi").GetComponent<HpController>();
+            _hpController.playerMovement = this;
         }
         _playerRigidBody = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();

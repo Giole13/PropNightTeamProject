@@ -87,8 +87,6 @@ public class AkibanAttack : MonoBehaviourPun
         // 포톤에서 자기자신만 움직이게 하기 위해 
         if (!photonView.IsMine) { return; }
         if (_lookCamera.Obj == null) { return; }
-
-
         if (_lookCamera.Obj.tag == "PropMachine" && _lookCamera.ObjDistance < 3f)
         {
             IsPropmachineAttackCheck = true;
@@ -105,7 +103,6 @@ public class AkibanAttack : MonoBehaviourPun
         // 포톤에서 자기자신만 움직이게 하기 위해 
         if (!photonView.IsMine) { return; }
         if (_lookCamera.Obj == null) { return; }
-
         if (_lookCamera.Obj.tag == "Player" && _lookCamera.ObjDistance < 3f && Input.GetMouseButtonDown(0))
         {
             IsPlayerAttackCheck = true;
@@ -182,7 +179,7 @@ public class AkibanAttack : MonoBehaviourPun
                 IsStop = false;
                 AkibanControl.IsCanControl = true;
                 _isSkillActive = false;
-                _coolTime = 5;
+                _coolTime = 10;
             }
 
         }

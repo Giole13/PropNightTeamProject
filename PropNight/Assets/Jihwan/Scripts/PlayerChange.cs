@@ -69,6 +69,7 @@ public class PlayerChange : MonoBehaviourPun
         // ChangeObj = PhotonNetwork.InstantiateSceneObject("Look.Obj", transform.position, Quaternion.identity);
         ChangeObj = Instantiate(_gameObjManager.GetObj(index), transform.position, Quaternion.identity);
         ChangeObj.transform.SetParent(transform, true);
+        ChangeObj.tag = "Untagged";
         ChangeObj.transform.localPosition = Vector3.zero;
         Player.SetActive(false);
         transform.localPosition += new Vector3(0f, ChangeObj.transform.localPosition.y + 5, 0f);

@@ -58,6 +58,7 @@ public class AkibanPlayerHoldSit : MonoBehaviourPun
     {
         HoldUiCheck();
         SitUiCheck();
+        PlayerHoldDownCheck();
         RightClick();
     }
 

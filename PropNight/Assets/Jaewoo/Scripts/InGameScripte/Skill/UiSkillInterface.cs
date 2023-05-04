@@ -8,7 +8,7 @@ public interface IPlayerSkill
 }
 public interface IKillerSkill
 {
-    void KillerShortSkillCool();
+    void KillerShortSkillCool(float cool);
 
 }
 public interface IPlayerEnumerator

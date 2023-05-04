@@ -34,10 +34,10 @@ using Photon.Pun;
 public class PropMachine : MonoBehaviourPun, IInteraction
 {
     // 몇개를 수리했는지 알려주는 변수
-    private float _maxFixGauge = 30f;
+    private float _maxFixGauge = 3f;
 
-    [SerializeField]
-    private ProtoExitPortal _exitPortalScript = default;
+    // [SerializeField]
+    // private ProtoExitPortal _exitPortalScript = default;
 
     #region 각 클라이언트가 공유해야하는 자원
     // 현재 수리된 프롭머신의 합계
@@ -61,6 +61,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
     private bool _gaugeBarLookPlayer = false;
     // private GameObject _playerObj;
     private bool _IsTiming = false;
+
 
     private void Awake()
     {
@@ -194,6 +195,8 @@ public class PropMachine : MonoBehaviourPun, IInteraction
             {
                 _currentFixGauge = 0;
             }
+
+            // 타이밍바를 팝업하는 로직
             if (_IsTiming == false)
             {
                 _IsTiming = true;
@@ -204,13 +207,15 @@ public class PropMachine : MonoBehaviourPun, IInteraction
             photonView.RPC("PropMachineFixGaugeUpdate", RpcTarget.All, _currentFixGauge, true);
             if (_maxFixGauge <= _currentFixGauge)
             {
-                // 수리 완료시 실행 하는 함수
                 IsBreakPossible = false;
                 IsFixDone = true;
                 //++s_fixPropMachine;
                 StatusManager.PropMachineFix();
                 //GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.black);
-                //if (5 == s_fixPropMachine) { _exitPortalScript.DoorOpen(); }
+                // if (5 == s_fixPropMachine)
+                // {
+                //     _exitPortalScript.DoorOpen();
+                // }
 
                 yield break;
             }

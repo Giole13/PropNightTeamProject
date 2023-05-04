@@ -71,6 +71,7 @@ public class SelectCharacterSceneManager : MonoBehaviourPun, IPunObservable
 
         photonView.RPC("ReadyCountUp", RpcTarget.All);
         photonView.RPC("MoveSceneProgress", RpcTarget.All);
+        StartBtn.GetComponent<Button>().interactable = false;
     }
 
     [PunRPC]
@@ -80,7 +81,6 @@ public class SelectCharacterSceneManager : MonoBehaviourPun, IPunObservable
         // StartBtn.SetActive(false);
         // ReadyBtn.SetActive(true);
 
-        StartBtn.GetComponent<Button>().interactable = false;
 
         // 게임 시작을 누르면 준비완료 카운트 +1
         if (_gameStartReadyCount <= _clientReadyCount)

@@ -296,9 +296,9 @@ public class PropMachine : MonoBehaviourPun, IInteraction
 
     IEnumerator TimingBar(int a)
     {
-        propFixBar.SkillCheck(_currentFixGauge);
-        _currentFixGauge = propFixBar.SkillCheck(_currentFixGauge);
         yield return new WaitForSeconds(a);
+        //propFixBar.SkillCheck(_currentFixGauge);
+        _currentFixGauge = propFixBar.SkillCheck(_currentFixGauge);
         _IsTiming = false;
     }
 

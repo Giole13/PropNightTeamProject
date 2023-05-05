@@ -4673,7 +4673,7 @@ GameObject:
   - component: {fileID: 4926686754160669832}
   m_Layer: 0
   m_Name: Akiban
-  m_TagString: Untagged
+  m_TagString: Killer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4740,6 +4740,7 @@ MonoBehaviour:
   IsStop: 0
   AkibanControl: {fileID: 5824309040746161930}
   uiKillerPoint: {fileID: 0}
+  uiKillerSkill: {fileID: 0}
   Rigid: {fileID: 0}
   KillerRightHand: {fileID: 8289221390480512303}
   IsPropmachineAttackCheck: 0

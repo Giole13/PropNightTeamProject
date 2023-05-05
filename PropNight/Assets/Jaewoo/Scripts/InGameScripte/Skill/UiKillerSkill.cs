@@ -18,14 +18,14 @@ public class UiKillerSkill : MonoBehaviour, IKillerSkill, IKillerEnumverator
         switch (DataContainer.KillerSelectNumber)
         {
             case 0:
-                //러너
-                howKiller = 0;
-                killerCool = 8;
+                // 임포스터
+                howKiller = 0f;
+                killerCool = 8f;
                 break;
             case 1:
-                //힐러
-                howKiller = 1;
-                killerCool = 15;
+                // 아키반
+                howKiller = 1f;
+                killerCool = 15f;
                 break;
             default:
                 break;
@@ -57,23 +57,39 @@ public class UiKillerSkill : MonoBehaviour, IKillerSkill, IKillerEnumverator
 
     }   //KillerFirstSkillCool()
 
+    // public IEnumerator KillerSkillShortCool(float cool)
+    // {
+    //     isKillerShortSkillUse = true;
+    //     if (isKillerShortSkillUse == true)
+    //     {
+    //         killerSkillShortCoolImage.fillAmount = 0f;
+    //         while (killerSkillShortCoolImage.fillAmount < 1f)
+    //         {
+    //             cool -= 0.01f;
+    //             yield return new WaitForSeconds(0.01f);
+    //             killerSkillShortCoolImage.fillAmount += 0.01f / cool;
+    //         }
+    //         isKillerShortSkillUse = false;
+
+    //     }
+    // }   //KillerSkillShortCool()
+
     public IEnumerator KillerSkillShortCool(float cool)
     {
+        float CoolTime = cool;
+        float Timer = 0;
         isKillerShortSkillUse = true;
         if (isKillerShortSkillUse == true)
         {
             killerSkillShortCoolImage.fillAmount = 0f;
-            while (killerSkillShortCoolImage.fillAmount < 1f)
+            while (Timer <= CoolTime)
             {
-
-                cool -= Time.smoothDeltaTime;
-                killerSkillShortCoolImage.fillAmount += 1 * Time.smoothDeltaTime / cool;
-                yield return null;
-
+                Timer += 0.01f;
+                yield return new WaitForSeconds(0.01f);
+                killerSkillShortCoolImage.fillAmount = Timer / CoolTime;
             }
             isKillerShortSkillUse = false;
 
         }
-    }   //KillerSkillShortCool()
-
+    }   //KillerSkillShortCool() 
 }

@@ -180,31 +180,37 @@ public class ImpostorAttack : MonoBehaviourPun
             {
                 ImpostorControl.SkillSpeed = 2;
                 _isCanAttack = false;
-                float DashTime = 0f;
-                while (DashTime < 3f)
-                {
-                    if (Input.GetKeyUp(KeyCode.E)) { break; }
-                    DashTime += Time.deltaTime;
-                }
-                ImpostorControl.SkillSpeed = 1;
-                _isSkillActive = false;
-                _coolTime = 8;
-                _isCanAttack = true;
-            }
-            if (!_isSkillActive)
-            {
-                _coolTime -= Time.deltaTime;
-                if (_coolTime <= 0)
-                {
-                    _isSkillActive = true;
-                }
+                StartCoroutine(SkillCoolTimeRunning());
             }
             // 그림자가 된다.
             // 스피드가 빨라진다.
 
             // 이동만 된다.
-
         }
+        if (!_isSkillActive)
+        {
+            _coolTime -= Time.deltaTime;
+            if (_coolTime <= 0)
+            {
+                Debug.Log("쿨타임 초기화");
+                _isSkillActive = true;
+            }
+        }
+    }
+
+    private IEnumerator SkillCoolTimeRunning()
+    {
+        _coolTime = 8f;
+        _isSkillActive = false;
+        float DashTime = 0f;
+        while (DashTime < 3f)
+        {
+            // if (Input.GetKeyUp(KeyCode.E)) { break; }
+            yield return null;
+            DashTime += Time.deltaTime;
+        }
+        ImpostorControl.SkillSpeed = 1;
+        _isCanAttack = true;
 
     }
 

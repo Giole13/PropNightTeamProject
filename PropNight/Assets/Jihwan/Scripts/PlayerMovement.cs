@@ -392,6 +392,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     public void Ground()
     {
         Animator.SetTrigger("IsGround");
+        Animator.SetTrigger("IsGround");
         IsJump = false;
         JumpCount = 0;
     }       // 바닥에 착지했는가

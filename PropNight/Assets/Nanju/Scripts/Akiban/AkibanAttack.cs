@@ -166,26 +166,12 @@ public class AkibanAttack : MonoBehaviourPun
             if (_isSkillActive)
             {
                 AkibanControl.IsCanControl = false;
+                _coolTime = 10;
                 // { 스킬
-                float DashTime = 0f;
-                while (DashTime < 2f)
-                {
-
-                    Rigid.velocity += transform.forward * Time.deltaTime * Speed;
-                    DashTime += Time.deltaTime;
-                    if (IsStop)
-                    {
-                        break;
-                    }
-                }
+                StartCoroutine(SkillCoolTimeRunning());
                 StartCoroutine(AkibanAttackMotion());
                 // } 스킬
-                IsStop = false;
-                AkibanControl.IsCanControl = true;
-                _isSkillActive = false;
-                _coolTime = 10;
             }
-
         }
         if (!_isSkillActive)
         {
@@ -195,6 +181,19 @@ public class AkibanAttack : MonoBehaviourPun
                 _isSkillActive = true;
             }
         }
+    }
+
+    private IEnumerator SkillCoolTimeRunning()
+    {
+        float DashTime = 0f;
+        while (DashTime < 2f)
+        {
+            Rigid.velocity += transform.forward * Time.deltaTime * Speed;
+            yield return null;
+            DashTime += Time.deltaTime;
+        }
+        AkibanControl.IsCanControl = true;
+        _isSkillActive = false;
     }
 
     private void OnCollisionEnter(Collision other)

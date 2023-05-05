@@ -124,6 +124,7 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
             yield return null;
             //yield return new WaitForSeconds(0.01f);
             playerSkillCoolImage.fillAmount = 1 - Player.CoolTime / playerCool;
+            if (playerSkillCoolImage.fillAmount == 1) { break; }
         }
         playerSkillAbility.SetActive(false);
         isPlayerSkillUse = false;

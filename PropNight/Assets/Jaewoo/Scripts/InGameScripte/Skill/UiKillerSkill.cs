@@ -22,12 +22,12 @@ public class UiKillerSkill : MonoBehaviour, IKillerSkill, IKillerEnumverator
             case 0:
                 //임포스터
                 howKiller = 0;
-                killerCool = 8;
+                killerCool = 8f;
                 break;
             case 1:
                 //아키반
                 howKiller = 1;
-                killerCool = 15;
+                killerCool = 10f;
                 break;
             default:
                 break;
@@ -55,7 +55,7 @@ public class UiKillerSkill : MonoBehaviour, IKillerSkill, IKillerEnumverator
                 }
                 else if (howKiller == 1)
                 {
-                    //킬러
+                    // 아키반
                     StartCoroutine(KillerSkillShortCool(cool));
                 }
             }

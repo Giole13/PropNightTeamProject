@@ -155,7 +155,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
         //IsFixing = IsFixingValue;
         _currentFixGauge = currentValue;
         _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
-        Debug.Log(_currentFixGauge);
+
         //StartCoroutine(IncreaseFixGauge());
     }
 

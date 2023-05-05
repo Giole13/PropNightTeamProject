@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+
 public class ImpostorMoveControl : MonoBehaviourPun
 {
     public float Speed;
@@ -28,7 +29,7 @@ public class ImpostorMoveControl : MonoBehaviourPun
     void Start()
     {
         // 2023.05.04 / HyungJun / 살인마 이동속도 수정
-        Speed = 10f;
+        // Speed = 10f;
 
         // rigidboidy 컴포넌트 받아오기
         _KillerRigidbody = GetComponent<Rigidbody>();

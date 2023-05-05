@@ -108,19 +108,24 @@ public class GameStatusManager : MonoBehaviourPun
     public void SurvivorExit()
     {
         ExitMemberNumber++;
+        _dc.IsGameVictory = true;
+
         // 만약 탈풀한 플레이어가 최대 플레이어와 같거나 많을 때
         // if (!PhotonNetwork.IsMasterClient)
         // {
         // 승리결과창 반영해주는 변수
-        _dc.IsGameVictory = true;
-        SceneMove();
-        Debug.Log(SurvivorMaxNumber);
-        Debug.Log(ExitMemberNumber);
+
         if (SurvivorMaxNumber <= ExitMemberNumber)
         {
             // 생존자가 모두 탈출한다면 살인마도 씬 이동
             photonView.RPC("SceneMove", RpcTarget.MasterClient);
         }
+
+        Debug.Log(SurvivorMaxNumber);
+        Debug.Log(ExitMemberNumber);
+
+
+        SceneMove();
         // photonView.RPC("SceneMove", RpcTarget.All);
         // }
     }

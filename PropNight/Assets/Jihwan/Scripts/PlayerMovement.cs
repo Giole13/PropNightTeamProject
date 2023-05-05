@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         LeftClick();
         RightClick();
         ESkill();
+        DefenseLogic();
 
         if (!IsMovePossible)
         {
@@ -448,5 +449,12 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         IsPropMachineCheck = false;
         IsChairCheck = false;
 
+    }
+    public void DefenseLogic()
+    {
+        if (transform.localPosition.y < -10)
+        {
+            transform.localPosition += new Vector3(0f, 12f, 0f);
+        }
     }
 }

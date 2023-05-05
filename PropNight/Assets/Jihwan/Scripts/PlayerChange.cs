@@ -72,7 +72,7 @@ public class PlayerChange : MonoBehaviourPun
         ChangeObj.tag = "Untagged";
         ChangeObj.transform.localPosition = Vector3.zero;
         Player.SetActive(false);
-        transform.localPosition += new Vector3(0f, ChangeObj.transform.localPosition.y + 5, 0f);
+        transform.localPosition += new Vector3(0f, ChangeObj.transform.localPosition.y + 1, 0f);
         Debug.Log(ChangeObj.name);
     }
     [PunRPC]

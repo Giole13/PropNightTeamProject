@@ -6,7 +6,7 @@ using Photon.Pun;
 
 public class PropFixBar : MonoBehaviour
 {
-
+    private PropMachine _propMachine = default;
     public GameObject propMachineFixedCheck;
     public GameObject warnintObj;
 
@@ -14,10 +14,10 @@ public class PropFixBar : MonoBehaviour
     //막대기 
     public Image circleBar;
     //성공 칸 이미지
-    public Image circleSuccess;
-    //완벽한 성공 칸 이미지
-    public Image circlePerfect;
-    public Image warningImage;
+    // public Image circleSuccess;
+    // //완벽한 성공 칸 이미지
+    // public Image circlePerfect;
+    // public Image warningImage;
 
 
     public RectTransform stick;
@@ -43,20 +43,17 @@ public class PropFixBar : MonoBehaviour
         propMachineFixedCheck.SetActive(false);
         warnintObj.SetActive(false);
 
-
+        _propMachine = GetComponent<PropMachine>();
     }
 
-    public float SkillCheck(float guage)
+    public void SkillCheck()
     {
         circleBar.fillAmount = 0f;
 
 
-        StartCoroutine(Warning(guage));
-
-
-        return returnGuage;
+        StartCoroutine(Warning());
     }
-    IEnumerator Warning(float guage)
+    IEnumerator Warning()
     {
         warnintObj.SetActive(true);
         warnintObj.GetComponent<CanvasGroup>().alpha = 1;
@@ -70,14 +67,14 @@ public class PropFixBar : MonoBehaviour
         }
         warnintObj.SetActive(false);
 
-        StartCoroutine(SkillCheckRoutine(guage));
+        StartCoroutine(SkillCheckRoutine());
 
 
 
 
     }
 
-    IEnumerator SkillCheckRoutine(float guage)
+    IEnumerator SkillCheckRoutine()
     {
         timingValue_ = 0;
         barAmount = 0;
@@ -102,23 +99,30 @@ public class PropFixBar : MonoBehaviour
 
         if (stickAngle < Mathf.Abs(successBarAngle) || Mathf.Abs(perfectBarAngle - 18) < stickAngle)
         {
-            guage = -5f;
+            returnGuage = -5f;
             //실패 연결
         }
 
         else if (Mathf.Abs(successBarAngle) <= stickAngle && stickAngle < Mathf.Abs(successBarAngle - 36))
         {
-            guage = +5f;
+            returnGuage = +5f;
             //성공 연결
 
         }
         else if (Mathf.Abs(perfectBarAngle) <= stickAngle && stickAngle <= Mathf.Abs(perfectBarAngle - 18))
         {
-            guage = +10f;
+            returnGuage = +10f;
             //대성공 연결
         }
-        returnGuage = guage;
         propMachineFixedCheck.SetActive(false);
+
+        // 게이지바 반영
+        if (_propMachine != null)
+        {
+            _propMachine._currentFixGauge += returnGuage;
+            _propMachine.photonView.RPC("UpdateFixBar", RpcTarget.All);
+            _propMachine._IsTiming = false;
+        }
     }
 
 

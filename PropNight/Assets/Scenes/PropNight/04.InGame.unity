@@ -2809,6 +2809,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1485211475489601044, guid: 5c4256993be692e48a371f67e0241388,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485211475489601044, guid: 5c4256993be692e48a371f67e0241388,
+        type: 3}
       propertyPath: warnintObj
       value: 
       objectReference: {fileID: 157582277}

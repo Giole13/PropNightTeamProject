@@ -4673,7 +4673,7 @@ GameObject:
   - component: {fileID: 4926686754160669832}
   m_Layer: 0
   m_Name: Akiban
-  m_TagString: Untagged
+  m_TagString: Killer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

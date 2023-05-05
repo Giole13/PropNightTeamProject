@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14200316, g: 0.15933135, b: 0.20885243, a: 1}
+  m_IndirectSpecularColor: {r: 0.16642709, g: 0.19839242, b: 0.27501187, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -206,6 +206,11 @@ PrefabInstance:
       propertyPath: circleBar
       value: 
       objectReference: {fileID: 793684883}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: warnintObj
+      value: 
+      objectReference: {fileID: 157582277}
     - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
       propertyPath: perfectStick
@@ -789,6 +794,12 @@ Transform:
   m_Father: {fileID: 1280349572}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 65.968, z: 0}
+--- !u!1 &157582277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4201073662644936549, guid: 5c4256993be692e48a371f67e0241388,
+    type: 3}
+  m_PrefabInstance: {fileID: 793684878}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &199738479
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1183,11 @@ PrefabInstance:
       propertyPath: circleBar
       value: 
       objectReference: {fileID: 793684883}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: warnintObj
+      value: 
+      objectReference: {fileID: 157582277}
     - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
       propertyPath: perfectStick
@@ -1864,7 +1880,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 793684878}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 157582277}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -2791,6 +2807,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1485211475489601044, guid: 5c4256993be692e48a371f67e0241388,
+        type: 3}
+      propertyPath: warnintObj
+      value: 
+      objectReference: {fileID: 157582277}
     - target: {fileID: 1485211475489601044, guid: 5c4256993be692e48a371f67e0241388,
         type: 3}
       propertyPath: warningImage
@@ -4801,6 +4822,11 @@ PrefabInstance:
       objectReference: {fileID: 793684883}
     - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
+      propertyPath: warnintObj
+      value: 
+      objectReference: {fileID: 157582277}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
       propertyPath: perfectStick
       value: 
       objectReference: {fileID: 793684880}
@@ -6166,6 +6192,11 @@ PrefabInstance:
       propertyPath: circleBar
       value: 
       objectReference: {fileID: 793684883}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: warnintObj
+      value: 
+      objectReference: {fileID: 157582277}
     - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
       propertyPath: perfectStick
@@ -61822,6 +61853,11 @@ PrefabInstance:
       propertyPath: circleBar
       value: 
       objectReference: {fileID: 793684883}
+    - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
+        type: 3}
+      propertyPath: warnintObj
+      value: 
+      objectReference: {fileID: 157582277}
     - target: {fileID: 1771289062795179600, guid: cd3e58ed6acc07d4bb64501c8b09eddf,
         type: 3}
       propertyPath: perfectStick

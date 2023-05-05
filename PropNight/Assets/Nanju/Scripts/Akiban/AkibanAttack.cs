@@ -26,7 +26,7 @@ public class AkibanAttack : MonoBehaviourPun
     private bool _isSkillActive = true;
     // 돌진 스킬 쓰기 위한 쿨타임
     [SerializeField]
-    private float _coolTime;
+    public float _coolTime;
 
     public float Speed;
 
@@ -34,6 +34,7 @@ public class AkibanAttack : MonoBehaviourPun
 
     public AkibanMoveControl AkibanControl;
     public UiKillerPoint uiKillerPoint;
+    public UiKillerSkill uiKillerSkill;
     public Rigidbody Rigid;
     public GameObject KillerRightHand;
 
@@ -48,8 +49,11 @@ public class AkibanAttack : MonoBehaviourPun
     {
         if (photonView.IsMine)
         {
+
             uiKillerPoint = GameObject.Find("InGameKillerUi").GetComponent<UiKillerPoint>();
             uiKillerPoint.akibanAttack = this;
+            uiKillerSkill = GameObject.Find("InGameKillerUi").GetComponent<UiKillerSkill>();
+            uiKillerSkill.akibanAttack = this;
 
         }
         // 초기화

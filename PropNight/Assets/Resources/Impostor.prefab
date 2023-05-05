@@ -1577,8 +1577,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LookCamera: {fileID: 5016251218842535513}
   uiKillerPoint: {fileID: 0}
+  uiKillerSkill: {fileID: 0}
   Killer: {fileID: 5015298117626810164}
   KillerRightHand: {fileID: 5015155616172372250}
+  _coolTime: 0
   IsPropmachineAttackCheck: 0
   IsPlayerAttackCheck: 0
 --- !u!114 &6128199980122927761

@@ -15,7 +15,7 @@ public class ImpostorAttack : MonoBehaviourPun
     // 프롭머신 게이지 닳는 함수 가져오기
     private PropMachine PropMachineGauge;
     public UiKillerPoint uiKillerPoint;
-
+    public UiKillerSkill uiKillerSkill;
     // public GameObject PropMachineUI;
     public GameObject Killer;
     public GameObject KillerRightHand;
@@ -28,7 +28,7 @@ public class ImpostorAttack : MonoBehaviourPun
     private ImpostorMoveControl ImpostorControl;
     private bool _isSkillActive = true;
 
-    private float _coolTime = 0;
+    public float _coolTime = 0;
     private bool _isCanAttack = true;
 
 
@@ -47,7 +47,8 @@ public class ImpostorAttack : MonoBehaviourPun
         {
             uiKillerPoint = GameObject.Find("InGameKillerUi").GetComponent<UiKillerPoint>();
             uiKillerPoint.impostorAttack = this;
-
+            uiKillerSkill = GameObject.Find("InGameKillerUi").GetComponent<UiKillerSkill>();
+            uiKillerSkill.impostorAttack = this;
         }
         // 초기화
         this.gameObject.SetActive(true);

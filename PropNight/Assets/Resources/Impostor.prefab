@@ -1631,7 +1631,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b17c08f744fbf8e4eb405de812a52ff5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 79a864218a7576a4aa63d7eabed15e5f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1644,7 +1644,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 12
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1654,21 +1654,48 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.012452095
+      outSlope: -0.012452095
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0.78463507
+    - serializedVersion: 3
+      time: 0.35917157
+      value: 0.9496155
+      inSlope: -0.20691195
+      outSlope: -0.20691195
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.25513238
+      outWeight: 0.5393542
+    - serializedVersion: 3
+      time: 0.64429224
+      value: 0.82621
+      inSlope: -0.9260354
+      outSlope: -0.9260354
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.58120215
+      outWeight: 0.60926664
+    - serializedVersion: 3
+      time: 0.8324992
+      value: 0.43055725
+      inSlope: -3.173033
+      outSlope: -3.173033
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2856691
+      outWeight: 0.40930137
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.6667841
+      outSlope: -0.6667841
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.9901092
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -1677,7 +1704,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

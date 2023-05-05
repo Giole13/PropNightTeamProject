@@ -8,6 +8,7 @@ public class PropFixBar : MonoBehaviour
 {
 
     public GameObject propMachineFixedCheck;
+    public GameObject warnintObj;
 
     [Header("이미지")]
     //막대기 
@@ -40,16 +41,40 @@ public class PropFixBar : MonoBehaviour
     void Start()
     {
         propMachineFixedCheck.SetActive(false);
-        warningImage.gameObject.SetActive(false);
+        warnintObj.SetActive(false);
+
 
     }
 
     public float SkillCheck(float guage)
     {
         circleBar.fillAmount = 0f;
+
+
         StartCoroutine(Warning(guage));
 
+
         return returnGuage;
+    }
+    IEnumerator Warning(float guage)
+    {
+        warnintObj.SetActive(true);
+        warnintObj.GetComponent<CanvasGroup>().alpha = 1;
+        float imageTime = 1;
+        while (0 < imageTime)
+        {
+            imageTime -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            warnintObj.GetComponent<CanvasGroup>().alpha = imageTime;
+
+        }
+        warnintObj.SetActive(false);
+
+        StartCoroutine(SkillCheckRoutine(guage));
+
+
+
+
     }
 
     IEnumerator SkillCheckRoutine(float guage)
@@ -95,25 +120,6 @@ public class PropFixBar : MonoBehaviour
         returnGuage = guage;
         propMachineFixedCheck.SetActive(false);
     }
-    IEnumerator Warning(float guage)
-    {
 
-        float imageTime = 0;
-        warningImage.color = new Color(1, 1, 1, 1);
-        warningImage.gameObject.SetActive(true);
-
-        while (imageTime < 2f)
-        {
-
-            imageTime += Time.deltaTime;
-
-            warningImage.color = new Color(1f, 1f, 1f, 1f - (imageTime / 2f));
-
-        }
-        yield return null;
-        warningImage.gameObject.SetActive(false);
-
-        StartCoroutine(SkillCheckRoutine(guage));
-    }
 
 }

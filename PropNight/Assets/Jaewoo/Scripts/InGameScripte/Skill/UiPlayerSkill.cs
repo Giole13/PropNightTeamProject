@@ -68,7 +68,10 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
             {
                 if (howPlayer == 0)
                 {
-                    StartCoroutine(playerSkill(playerCool));
+                    if (Player.Stamina < 100)
+                    {
+                        StartCoroutine(playerSkill(playerCool));
+                    }
                 }
                 else if (howPlayer == 1)
                 {
@@ -111,17 +114,19 @@ public class UiPlayerSkill : MonoBehaviour, IPlayerSkill, IPlayerEnumerator
     #region IEnumerator 모음
     public IEnumerator playerSkill(float cool)
     {
+        float playerCool = cool;
+
         playerSkillAbility.SetActive(true);
         isPlayerSkillUse = true;
-        playerSkillCoolImage.fillAmount = 0f;
-        while (playerSkillCoolImage.fillAmount < 1f)
+        playerSkillCoolImage.fillAmount = 1f;
+        while (0 < playerSkillCoolImage.fillAmount)
         {
-            cool -= Time.smoothDeltaTime;
-            playerSkillCoolImage.fillAmount += 1 * Time.smoothDeltaTime / cool;
             yield return null;
+            //yield return new WaitForSeconds(0.01f);
+            playerSkillCoolImage.fillAmount = 1 - Player.CoolTime / playerCool;
         }
-        isPlayerSkillUse = false;
         playerSkillAbility.SetActive(false);
+        isPlayerSkillUse = false;
     }  // playerSkill()
     #endregion
     public void playerSkillCool()

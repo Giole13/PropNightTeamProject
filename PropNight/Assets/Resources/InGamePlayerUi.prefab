@@ -1141,8 +1141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
-  health: 4
-  playerHp: 100
   numOfHeart: 4
   maxHealth: 0
   hearts:
@@ -4011,12 +4009,30 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1069834125560939596}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4201073662644936549}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4201073662644936549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3789187845119662889, guid: eb8f4c969c1f5cc4b8bb06be515cdf59,
+    type: 3}
+  m_PrefabInstance: {fileID: 1069834125560939596}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &4570648058532681819
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4201073662644936549}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!224 &4611897827108026053 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5681309464918880905, guid: eb8f4c969c1f5cc4b8bb06be515cdf59,

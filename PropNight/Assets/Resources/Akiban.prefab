@@ -4740,6 +4740,7 @@ MonoBehaviour:
   IsStop: 0
   AkibanControl: {fileID: 5824309040746161930}
   uiKillerPoint: {fileID: 0}
+  uiKillerSkill: {fileID: 0}
   Rigid: {fileID: 0}
   KillerRightHand: {fileID: 8289221390480512303}
   IsPropmachineAttackCheck: 0

@@ -63,17 +63,6 @@ public class UiKillerPoint : MonoBehaviour
             return;
         }
 
-
-        if (akibanPlayerHoldSit.IsPlayerHoldDownCheck == true)//playerMovement.Status == PlayerStatus.CAUGHT)
-        {
-            killerPointer.SetActive(true);
-            pointerText.text = "내려놓기";
-            killerPointer.transform.localPosition = caughtlVector3;
-            mouseImage.sprite = mouseImageIcon[1];
-            return;
-        }
-
-
         if (akibanPlayerHoldSit.IsAkibanPlayerSitCheck == true)//playerMovement.Status == PlayerStatus.CAUGHT && !testLook)
         {
             killerPointer.SetActive(true);
@@ -83,6 +72,14 @@ public class UiKillerPoint : MonoBehaviour
             return;
         }
 
+        if (akibanPlayerHoldSit.IsPlayerHoldDownCheck == true)//playerMovement.Status == PlayerStatus.CAUGHT)
+        {
+            killerPointer.SetActive(true);
+            pointerText.text = "내려놓기";
+            killerPointer.transform.localPosition = caughtlVector3;
+            mouseImage.sprite = mouseImageIcon[1];
+            return;
+        }
 
         if (akibanAttack.IsPropmachineAttackCheck == true)
         {

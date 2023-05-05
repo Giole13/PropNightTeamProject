@@ -260,7 +260,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
             }
 
         }
-        if (CoolTime > 0)
+        // 2023.05.05 / HyungJun / 잠시 수정
+        if (CoolTime >= 0)
         {
             CoolTime -= Time.deltaTime;
         }

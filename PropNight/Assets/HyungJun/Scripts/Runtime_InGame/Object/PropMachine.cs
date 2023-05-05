@@ -150,7 +150,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
 
     /// <summary> 프롭머신 위쪽의 게이지바를 업데이트 하는 로직</summary>
     [PunRPC]
-    public void PropMachineFixGaugeUpdate(float currentValue, bool IsFixingValue)
+    public void PropMachineFixGaugeUpdate(float currentValue)
     {
         //IsFixing = IsFixingValue;
         _currentFixGauge = currentValue;
@@ -172,6 +172,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
         {
             // PlayerUi.s_instance.InteractionInfo.SetActive(false);
             // IsFixing = false;
+            _IsTiming = true;
             photonView.RPC("StopFixPropMachine", RpcTarget.All, false);
         }
     }
@@ -204,7 +205,8 @@ public class PropMachine : MonoBehaviourPun, IInteraction
                 StartCoroutine(TimingBar(random));
 
             }
-            photonView.RPC("PropMachineFixGaugeUpdate", RpcTarget.All, _currentFixGauge, true);
+            // 프롭머신의 게이지 바를 반영하는 함수
+            photonView.RPC("PropMachineFixGaugeUpdate", RpcTarget.All, _currentFixGauge);
 
             // ======================================================
             // ========= 프롭머신이 수리가 끝났을 때 실행하는 로직 ========
@@ -213,6 +215,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
             {
                 IsBreakPossible = false;
                 IsFixDone = true;
+                _IsTiming = true;
                 //++s_fixPropMachine;
                 // 모든 클라이언트 반영으로 수정
                 StatusManager.GetComponent<PhotonView>().RPC("PropMachineFix", RpcTarget.All);
@@ -299,6 +302,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
         yield return new WaitForSeconds(a);
         //propFixBar.SkillCheck(_currentFixGauge);
         _currentFixGauge += propFixBar.SkillCheck(_currentFixGauge);
+        photonView.RPC("PropMachineFixGaugeUpdate", RpcTarget.All, _currentFixGauge);
         _IsTiming = false;
     }
 

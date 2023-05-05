@@ -7,7 +7,7 @@ using Photon.Pun;
 
 public class PlayerMovement : MonoBehaviourPun, IDamage
 {
-
+    [SerializeField] private ParticleSystem _bloodEffect;
     private PlayerInput _playerInput;       // 키보드 입력
     private Rigidbody _playerRigidBody;     // Rigidbody
 
@@ -41,6 +41,9 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
 
     public float SkillDistance = 0;
     public int SkillJumpCount = 0;
+
+
+
     private void Start()
     {
         HP = 100;
@@ -269,9 +272,12 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     public void GetDamage()
     {
         if (IsFallDown) { return; }
+
+
         if (PhotonNetwork.IsMasterClient)
         {
             HP -= 35;
+            photonView.RPC("BloodEffectPlayer", RpcTarget.All);
             photonView.RPC("ApplyUpdatedHealth", RpcTarget.Others, HP);
             // photonView.RPC("GetDamage", RpcTarget.Others);
         }
@@ -284,6 +290,10 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         }
         // 2023.04.21 / Nanju / 다른 클라이언트 체력, 데미지, 상태 동기화로 수정
     }   // 생존자가 살인마한테 맞음
+
+    // 2023.05.05 / HyungJun / 피가 튀는 애니메이션 재생
+    [PunRPC] public void BloodEffectPlayer() => _bloodEffect.Play();
+
 
     // 2023.04.21 / Nanju / 다른 클라이언트들의 체력 동기화 함수
     [PunRPC]

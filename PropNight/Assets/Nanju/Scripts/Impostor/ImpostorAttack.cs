@@ -24,7 +24,7 @@ public class ImpostorAttack : MonoBehaviourPun
 
     // 애니메이션 가져오기
     private Animation Animation;
-
+    [SerializeField]
     private ImpostorMoveControl ImpostorControl;
     private bool _isSkillActive = true;
 
@@ -178,32 +178,35 @@ public class ImpostorAttack : MonoBehaviourPun
         {
             if (_isSkillActive)
             {
+
                 ImpostorControl.SkillSpeed = 2;
                 _isCanAttack = false;
                 float DashTime = 0f;
-                while (DashTime < 3f)
+                while (DashTime < 30f)
                 {
-                    if (Input.GetKeyUp(KeyCode.E)) { break; }
-                    DashTime += Time.deltaTime;
+                    Debug.Log(DashTime);
+                    DashTime += 0.01f;
+
                 }
                 ImpostorControl.SkillSpeed = 1;
                 _isSkillActive = false;
                 _coolTime = 8;
                 _isCanAttack = true;
             }
-            if (!_isSkillActive)
-            {
-                _coolTime -= Time.deltaTime;
-                if (_coolTime <= 0)
-                {
-                    _isSkillActive = true;
-                }
-            }
+
             // 그림자가 된다.
             // 스피드가 빨라진다.
 
             // 이동만 된다.
 
+        }
+        if (!_isSkillActive)
+        {
+            _coolTime -= Time.deltaTime;
+            if (_coolTime <= 0)
+            {
+                _isSkillActive = true;
+            }
         }
 
     }

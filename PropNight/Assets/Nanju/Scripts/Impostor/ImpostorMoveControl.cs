@@ -22,14 +22,14 @@ public class ImpostorMoveControl : MonoBehaviourPun
     // 공격 여부 확인
     public bool _attacking = false;
 
-    public float SkillSpeed = 1;
+    public float SkillSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
         // 2023.05.04 / HyungJun / 살인마 이동속도 수정
         Speed = 10f;
-
+        SkillSpeed = 1;
         // rigidboidy 컴포넌트 받아오기
         _KillerRigidbody = GetComponent<Rigidbody>();
         IsGround = true;

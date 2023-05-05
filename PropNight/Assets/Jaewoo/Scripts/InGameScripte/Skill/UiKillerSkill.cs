@@ -59,17 +59,17 @@ public class UiKillerSkill : MonoBehaviour, IKillerSkill, IKillerEnumverator
 
     public IEnumerator KillerSkillShortCool(float cool)
     {
+        float CoolTime = cool;
+        float Timer = 0;
         isKillerShortSkillUse = true;
         if (isKillerShortSkillUse == true)
         {
             killerSkillShortCoolImage.fillAmount = 0f;
-            while (killerSkillShortCoolImage.fillAmount < 1f)
+            while (Timer <= CoolTime)
             {
-
-                cool -= Time.smoothDeltaTime;
-                killerSkillShortCoolImage.fillAmount += 1 * Time.smoothDeltaTime / cool;
-                yield return null;
-
+                Timer += 0.01f;
+                yield return new WaitForSeconds(0.01f);
+                killerSkillShortCoolImage.fillAmount = Timer / CoolTime;
             }
             isKillerShortSkillUse = false;
 

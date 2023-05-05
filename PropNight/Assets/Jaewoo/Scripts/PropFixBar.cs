@@ -77,19 +77,19 @@ public class PropFixBar : MonoBehaviour
 
         if (stickAngle < Mathf.Abs(successBarAngle) || Mathf.Abs(perfectBarAngle - 18) < stickAngle)
         {
-            guage -= 5f;
+            guage = -5f;
             //실패 연결
         }
 
         else if (Mathf.Abs(successBarAngle) <= stickAngle && stickAngle < Mathf.Abs(successBarAngle - 36))
         {
-            guage += 5f;
+            guage = +5f;
             //성공 연결
 
         }
         else if (Mathf.Abs(perfectBarAngle) <= stickAngle && stickAngle <= Mathf.Abs(perfectBarAngle - 18))
         {
-            guage += 10f;
+            guage = +10f;
             //대성공 연결
         }
         returnGuage = guage;

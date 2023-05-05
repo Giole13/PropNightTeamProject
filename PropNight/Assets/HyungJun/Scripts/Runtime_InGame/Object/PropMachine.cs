@@ -155,7 +155,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
         //IsFixing = IsFixingValue;
         _currentFixGauge = currentValue;
         _fixGaugeImage.fillAmount = _currentFixGauge / _maxFixGauge;
-        Debug.Log(_currentFixGauge);
+
         //StartCoroutine(IncreaseFixGauge());
     }
 
@@ -298,7 +298,7 @@ public class PropMachine : MonoBehaviourPun, IInteraction
     {
         yield return new WaitForSeconds(a);
         //propFixBar.SkillCheck(_currentFixGauge);
-        _currentFixGauge = propFixBar.SkillCheck(_currentFixGauge);
+        _currentFixGauge += propFixBar.SkillCheck(_currentFixGauge);
         _IsTiming = false;
     }
 

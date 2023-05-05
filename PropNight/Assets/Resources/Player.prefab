@@ -316,6 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c1af3c830085b429747df88f2fe90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bloodEffect: {fileID: 5582763290252643108}
   IsPropMachineCheck: 0
   IsChairCheck: 0
   IsFallDown: 0
@@ -639,7 +640,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6798358025884774719}
-  m_LocalRotation: {x: 0.17371786, y: 0.0000000034430823, z: -6.0735916e-10, w: 0.98479545}
+  m_LocalRotation: {x: 0.17371787, y: -0.000000029550456, z: 0.000000005212699, w: 0.98479545}
   m_LocalPosition: {x: 0, y: 2.41, z: -5.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19560,6 +19561,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9f38e3e878407041805eff8496bd057, type: 3}
+--- !u!198 &5582763290252643108 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3563469976464276729, guid: b9f38e3e878407041805eff8496bd057,
+    type: 3}
+  m_PrefabInstance: {fileID: 8937965973189015517}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5582763290252643111 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3563469976464276730, guid: b9f38e3e878407041805eff8496bd057,

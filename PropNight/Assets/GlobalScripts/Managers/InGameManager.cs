@@ -62,7 +62,7 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
         photonView.RPC("ClientDicUpdate", RpcTarget.All);
         PlayerObject.transform.position = SpwanPoints.points[(PlayerObject.GetPhotonView().ViewID / 1000) - 1].position;
 
-        _dc.ClientObject = PlayerObject;
+        // DataContainer.ClientObject = PlayerObject;
 
         Cursor.visible = false;
     }

@@ -146,7 +146,7 @@ public class SelectCharacterSceneManager : MonoBehaviourPun, IPunObservable
     {
         for (int i = 5; 0 < i; i--)
         {
-            CountDownTxt.text = string.Format("00:0" + i);
+            CountDownTxt.text = string.Format("00 : 0" + i);
             yield return new WaitForSecondsRealtime(1f);
         }
         LoadingSceneController.MoveScene();

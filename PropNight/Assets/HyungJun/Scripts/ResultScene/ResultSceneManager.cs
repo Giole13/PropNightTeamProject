@@ -14,6 +14,8 @@ public class ResultSceneManager : MonoBehaviourPunCallbacks
 
     private DataContainer _dc = default;
 
+    [SerializeField] private GameObject _camera = default;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,10 @@ public class ResultSceneManager : MonoBehaviourPunCallbacks
         else Lose.SetActive(true);
 
         yield return new WaitForSeconds(3f);
+
+
+        Instantiate(_dc.ClientObject, new Vector3(0f, -1f, -8f), Quaternion.identity);
+
 
         Win.SetActive(false);
         Lose.SetActive(false);

@@ -14,6 +14,8 @@ public class DataContainer : MonoBehaviour
     // 로컬의 승리와 패배를 구분하는 변수
     public bool IsGameVictory = false;
 
+    public GameObject ClientObject = default;
+
 
     void Start()
     {
@@ -29,11 +31,6 @@ public class DataContainer : MonoBehaviour
 
 
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
 
 }

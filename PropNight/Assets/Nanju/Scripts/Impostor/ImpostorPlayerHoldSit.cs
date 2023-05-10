@@ -172,11 +172,6 @@ public class ImpostorPlayerHoldSit : MonoBehaviourPun
 
     }
 
-    // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-    // █░░░░░░░░▀█▄▀▄▀██████░▀█▄▀▄▀██████░
-    // ░░░░░░░░░░░▀█▄█▄███▀░░░ ▀██▄█▄███▀░
-
-
     [PunRPC]
     // 플레이어 들기 함수
     public void PlayerHold(string ViewID)

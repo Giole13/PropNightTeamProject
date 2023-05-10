@@ -203,13 +203,6 @@ public class AkibanAttack : MonoBehaviourPun
     }
 
 
-
-
-
-
-
-
-
     //프롭머신 파괴하기 위한 함수
     [PunRPC]
     public void PropMachineAttack()

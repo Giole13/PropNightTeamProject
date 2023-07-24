@@ -14,6 +14,11 @@ public class ResultSceneManager : MonoBehaviourPunCallbacks
 
     private DataContainer _dc = default;
 
+    [SerializeField] private GameObject _camera = default;
+
+    [SerializeField] private GameObject[] KillerList;
+    [SerializeField] private GameObject[] PlayerList;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +42,18 @@ public class ResultSceneManager : MonoBehaviourPunCallbacks
         else Lose.SetActive(true);
 
         yield return new WaitForSeconds(3f);
+
+        // if (PhotonNetwork.IsMasterClient)
+        // {
+        //     Instantiate(KillerList[DataContainer.KillerSelectNumber], new Vector3(0f, -1f, -8f), Quaternion.identity);
+        // }
+        // else
+        // {
+        //     Instantiate(PlayerList[DataContainer.PlayerSelectNumber], new Vector3(0f, -1f, -8f), Quaternion.identity);
+        // }
+        // Instantiate(DataContainer.ClientObject, new Vector3(0f, -1f, -8f), Quaternion.identity);
+        // obj.GetComponent<Rigidbody>().isKinematic = true;
+
 
         Win.SetActive(false);
         Lose.SetActive(false);

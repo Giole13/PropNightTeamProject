@@ -21,44 +21,55 @@ public class OptionManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-
-
-    Resolution[] resolutions;
-    public TMP_Dropdown resolutionDropdown;
+    //public TMP_Dropdown resolutionDropdown;
     public TMP_Text windowText = default;
     public AudioMixer audioMixer;
     public Slider masterSlider;
     public Slider bgmSlider;
     public Slider sfxSlider;
+    public TMP_Dropdown resolutiondropdown;
+    private int resolutionNum;
 
-
-    void Start()
+    FullScreenMode screenMode;
+    List<Resolution> resolutions = new List<Resolution>();
+    public void InitUi()
     {
-        resolutions = Screen.resolutions;
-
-        resolutionDropdown.ClearOptions();
-
-        List<string> options = new List<string>();
-
-        int currentResolutionIndex = 0;
-        for (int i = 0; i < resolutions.Length; i++)
+        for (int i = 0; i < Screen.resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
+            resolutions.Add(Screen.resolutions[i]);
+        }
+        resolutiondropdown.options.Clear();
 
-            if (resolutions[i].width == Screen.currentResolution.width &&
-            resolutions[i].height == Screen.currentResolution.height)
+        int optionNum = 0;
+        foreach (Resolution size in resolutions)
+        {
+            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
+            option.text = size.width + " x " + size.height;
+            resolutiondropdown.options.Add(option);
+
+            if (size.width == Screen.width && size.height == Screen.height)
             {
-                currentResolutionIndex = i;
+                resolutiondropdown.value = optionNum;
+                optionNum++;
             }
         }
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
-
-        Screen.SetResolution(1920, 1080, true);
+        resolutiondropdown.RefreshShownValue();
+    }
+    public void DropboxOptionChange(int change)
+    {
+        resolutionNum = change;
     }
 
+    public void OkBtnClick()
+    {
+        Screen.SetResolution(resolutions[resolutionNum].width,
+        resolutions[resolutionNum].height, screenMode);
+    }
+    void Start()
+    {
+
+        InitUi();
+    }
 
     public void MasterVolume()
     {
@@ -83,11 +94,6 @@ public class OptionManager : MonoBehaviour
         windowText.text = "창 화면";
     }
 
-    public void SizeChange(int resolutionIndex)
-    {
 
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-    }
 
 }

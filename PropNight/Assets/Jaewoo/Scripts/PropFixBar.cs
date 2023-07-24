@@ -6,17 +6,18 @@ using Photon.Pun;
 
 public class PropFixBar : MonoBehaviour
 {
-
+    private PropMachine _propMachine = default;
     public GameObject propMachineFixedCheck;
+    public GameObject warnintObj;
 
     [Header("이미지")]
     //막대기 
     public Image circleBar;
     //성공 칸 이미지
-    public Image circleSuccess;
-    //완벽한 성공 칸 이미지
-    public Image circlePerfect;
-    public Image warningImage;
+    // public Image circleSuccess;
+    // //완벽한 성공 칸 이미지
+    // public Image circlePerfect;
+    // public Image warningImage;
 
 
     public RectTransform stick;
@@ -40,19 +41,40 @@ public class PropFixBar : MonoBehaviour
     void Start()
     {
         propMachineFixedCheck.SetActive(false);
-        warningImage.gameObject.SetActive(false);
+        warnintObj.SetActive(false);
 
+        _propMachine = GetComponent<PropMachine>();
     }
 
-    public float SkillCheck(float guage)
+    public void SkillCheck()
     {
         circleBar.fillAmount = 0f;
-        StartCoroutine(Warning(guage));
 
-        return returnGuage;
+
+        StartCoroutine(Warning());
+    }
+    IEnumerator Warning()
+    {
+        warnintObj.SetActive(true);
+        warnintObj.GetComponent<CanvasGroup>().alpha = 1;
+        float imageTime = 1;
+        while (0 < imageTime)
+        {
+            imageTime -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            warnintObj.GetComponent<CanvasGroup>().alpha = imageTime;
+
+        }
+        warnintObj.SetActive(false);
+
+        StartCoroutine(SkillCheckRoutine());
+
+
+
+
     }
 
-    IEnumerator SkillCheckRoutine(float guage)
+    IEnumerator SkillCheckRoutine()
     {
         timingValue_ = 0;
         barAmount = 0;
@@ -77,43 +99,31 @@ public class PropFixBar : MonoBehaviour
 
         if (stickAngle < Mathf.Abs(successBarAngle) || Mathf.Abs(perfectBarAngle - 18) < stickAngle)
         {
-            guage = -5f;
+            returnGuage = -5f;
             //실패 연결
         }
 
         else if (Mathf.Abs(successBarAngle) <= stickAngle && stickAngle < Mathf.Abs(successBarAngle - 36))
         {
-            guage = +5f;
+            returnGuage = +5f;
             //성공 연결
 
         }
         else if (Mathf.Abs(perfectBarAngle) <= stickAngle && stickAngle <= Mathf.Abs(perfectBarAngle - 18))
         {
-            guage = +10f;
+            returnGuage = +10f;
             //대성공 연결
         }
-        returnGuage = guage;
         propMachineFixedCheck.SetActive(false);
-    }
-    IEnumerator Warning(float guage)
-    {
 
-        float imageTime = 0;
-        warningImage.color = new Color(1, 1, 1, 1);
-        warningImage.gameObject.SetActive(true);
-
-        while (imageTime < 2f)
+        // 게이지바 반영
+        if (_propMachine != null)
         {
-
-            imageTime += Time.deltaTime;
-
-            warningImage.color = new Color(1f, 1f, 1f, 1f - (imageTime / 2f));
-
+            _propMachine._currentFixGauge += returnGuage;
+            _propMachine.photonView.RPC("UpdateFixBar", RpcTarget.All);
+            _propMachine._IsTiming = false;
         }
-        yield return null;
-        warningImage.gameObject.SetActive(false);
-
-        StartCoroutine(SkillCheckRoutine(guage));
     }
+
 
 }

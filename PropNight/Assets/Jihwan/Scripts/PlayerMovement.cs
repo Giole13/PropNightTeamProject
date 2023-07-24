@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     public PlayerChange Change;
     public GameObject Object;
     public GameObject Player;
+    public AudioClip scream;
+    public AudioSource myScream;
     public float Speed;
     public float JumpForce;
     public float DashGauge;
@@ -41,8 +43,6 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
 
     public float SkillDistance = 0;
     public int SkillJumpCount = 0;
-
-
 
     private void Start()
     {
@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
     }
     private void Awake()
     {
+        myScream = GetComponent<AudioSource>();
         _playerInput = GetComponent<PlayerInput>();
     }
     private void Update()
@@ -260,7 +261,8 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
             }
 
         }
-        if (CoolTime > 0)
+        // 2023.05.05 / HyungJun / 잠시 수정
+        if (CoolTime >= 0)
         {
             CoolTime -= Time.deltaTime;
         }
@@ -278,6 +280,7 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
         {
             HP -= 35;
             photonView.RPC("BloodEffectPlayer", RpcTarget.All);
+            photonView.RPC("ScreamSound", RpcTarget.All);
             photonView.RPC("ApplyUpdatedHealth", RpcTarget.Others, HP);
             // photonView.RPC("GetDamage", RpcTarget.Others);
         }
@@ -293,6 +296,11 @@ public class PlayerMovement : MonoBehaviourPun, IDamage
 
     // 2023.05.05 / HyungJun / 피가 튀는 애니메이션 재생
     [PunRPC] public void BloodEffectPlayer() => _bloodEffect.Play();
+    [PunRPC]
+    public void ScreamSound()
+    {
+        myScream.PlayOneShot(scream);
+    }
 
 
     // 2023.04.21 / Nanju / 다른 클라이언트들의 체력 동기화 함수

@@ -109,7 +109,7 @@ public class AkibanPlayerHoldSit : MonoBehaviourPun
 
         if (_killerState == KillerState.PLAYERHOLD)
         {
-            _killerState = KillerState.IDLE;
+            // _killerState = KillerState.IDLE;
             IsPlayerHoldDownCheck = true;
             return;
         }

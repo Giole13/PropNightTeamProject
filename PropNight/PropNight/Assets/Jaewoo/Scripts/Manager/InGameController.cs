@@ -87,7 +87,7 @@ public class InGameController : MonoBehaviour
         }
         if (uiPropMachineCount == 5)
         {
-            propMachineText.text = "출구를 찾아라";
+            propMachineText.text = "문이 열렸습니다.";
         }
     }   //UiPropMachineCount
     #endregion 

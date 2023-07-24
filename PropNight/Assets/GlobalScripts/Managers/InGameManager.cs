@@ -34,13 +34,13 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
     public static Dictionary<int, GameObject> ClientDic = new Dictionary<int, GameObject>();
     public SpwanPoint SpwanPoints;
     public int Count = 0;
-    private void Awake()
-    {
-    }
+    private DataContainer _dc = default;
 
-    // Start is called before the first frame update
     void Start()
     {
+        _dc = GameObject.Find("DataContainer").GetComponent<DataContainer>();
+
+
         _playerUI.SetActive(false);
         _KillerUI.SetActive(false);
         // PhotonNetwork.Instantiate(PlayerCameraPrefab.name, Vector3.zero, Quaternion.identity);
@@ -60,7 +60,9 @@ public class InGameManager : MonoBehaviourPunCallbacks /*, IPunObservable*/
         }
         // 클라이언트 딕셔너리에 자기 자신의 오브젝트 추가
         photonView.RPC("ClientDicUpdate", RpcTarget.All);
-        PlayerObject.transform.localPosition = SpwanPoints.points[(PlayerObject.GetPhotonView().ViewID / 1000) - 1].localPosition;
+        PlayerObject.transform.position = SpwanPoints.points[(PlayerObject.GetPhotonView().ViewID / 1000) - 1].position;
+
+        // DataContainer.ClientObject = PlayerObject;
 
         Cursor.visible = false;
     }

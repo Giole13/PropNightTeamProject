@@ -15,7 +15,7 @@ public class ImpostorAttack : MonoBehaviourPun
     // 프롭머신 게이지 닳는 함수 가져오기
     private PropMachine PropMachineGauge;
     public UiKillerPoint uiKillerPoint;
-
+    public UiKillerSkill uiKillerSkill;
     // public GameObject PropMachineUI;
     public GameObject Killer;
     public GameObject KillerRightHand;
@@ -28,7 +28,7 @@ public class ImpostorAttack : MonoBehaviourPun
     private ImpostorMoveControl ImpostorControl;
     private bool _isSkillActive = true;
 
-    private float _coolTime = 0;
+    public float _coolTime = 0;
     private bool _isCanAttack = true;
 
 
@@ -47,7 +47,8 @@ public class ImpostorAttack : MonoBehaviourPun
         {
             uiKillerPoint = GameObject.Find("InGameKillerUi").GetComponent<UiKillerPoint>();
             uiKillerPoint.impostorAttack = this;
-
+            uiKillerSkill = GameObject.Find("InGameKillerUi").GetComponent<UiKillerSkill>();
+            uiKillerSkill.impostorAttack = this;
         }
         // 초기화
         this.gameObject.SetActive(true);
@@ -134,19 +135,19 @@ public class ImpostorAttack : MonoBehaviourPun
         // BoxCollider 켜기
         KillerRightHand.GetComponent<BoxCollider>().enabled = true;
 
-        int random = Random.Range(0, 2);
+        // int random = Random.Range(0, 2);
         // 2023.05.04 / HyungJun / 임포스터의 Update에서 주기적으로 실행하는 Idle을 잠시 멈추기 위한 변수 추가
         ImpostorControl._attacking = true;
         // 2023.05.04 / HyungJun / Random.Range(0, 2) 함수의 시작값은 이상 값이고 최대 값은 미만 값이다.
         // 0은 포함하고 2는 포함하지 않는다. -> 0, 1 의 랜덤 값 -> 로직 수정
-        if (random == 0)
-        {
-            Animation.Play("Attack1");
-        }
-        else if (random == 1)
-        {
-            Animation.Play("Attack2");
-        }
+        // if (random == 0)
+        // {
+        Animation.Play("Attack1");
+        // }
+        // else if (random == 1)
+        // {
+        //     Animation.Play("Attack2");
+        // }
         yield return new WaitForSeconds(1.6666f);
         // 1프레임당 0.041666...초
         // 24 프레임당 1초
@@ -198,7 +199,6 @@ public class ImpostorAttack : MonoBehaviourPun
             // 스피드가 빨라진다.
 
             // 이동만 된다.
-
         }
         if (!_isSkillActive)
         {

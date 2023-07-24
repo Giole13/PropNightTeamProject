@@ -18678,6 +18678,7 @@ GameObject:
   - component: {fileID: 584989948085304004}
   - component: {fileID: 3816460666984091296}
   - component: {fileID: 5959475858556225061}
+  - component: {fileID: 1777504081286803107}
   m_Layer: 6
   m_Name: Player_Healer
   m_TagString: Player
@@ -18768,6 +18769,8 @@ MonoBehaviour:
   Change: {fileID: 3989394915806572242}
   Object: {fileID: 0}
   Player: {fileID: 1021029965433014589}
+  scream: {fileID: 8300000, guid: b3b1874cbc9d5124a96b59f4b20fadc5, type: 3}
+  myScream: {fileID: 1777504081286803107}
   Speed: 2.5
   JumpForce: 5
   DashGauge: 0
@@ -18905,6 +18908,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsSkillActive: 0
   CoolTime: 0
+--- !u!82 &1777504081286803107
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3989394915806572244}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b3b1874cbc9d5124a96b59f4b20fadc5, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3989394916144804348
 GameObject:
   m_ObjectHideFlags: 0
@@ -19061,7 +19160,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3989394916238615548}
-  m_LocalRotation: {x: 0.21697761, y: -0.00000001679646, z: 0.000000003733398, w: 0.9761766}
+  m_LocalRotation: {x: 0.2169776, y: 0.000000011289964, z: -0.0000000025094529, w: 0.9761766}
   m_LocalPosition: {x: 0, y: 2.41, z: -5.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19427,7 +19526,7 @@ PrefabInstance:
     - target: {fileID: 3563469976089265179, guid: b9f38e3e878407041805eff8496bd057,
         type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3563469976089265179, guid: b9f38e3e878407041805eff8496bd057,
         type: 3}
@@ -19437,7 +19536,7 @@ PrefabInstance:
     - target: {fileID: 3563469976166273931, guid: b9f38e3e878407041805eff8496bd057,
         type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3563469976166273931, guid: b9f38e3e878407041805eff8496bd057,
         type: 3}
@@ -19452,7 +19551,7 @@ PrefabInstance:
     - target: {fileID: 3563469976464276729, guid: b9f38e3e878407041805eff8496bd057,
         type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3563469976464276729, guid: b9f38e3e878407041805eff8496bd057,
         type: 3}

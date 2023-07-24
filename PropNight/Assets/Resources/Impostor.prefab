@@ -1434,14 +1434,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5013230476362874822}
-  - component: {fileID: 4904972728972586861}
   - component: {fileID: 4904972728972586862}
   - component: {fileID: 4904972728972586863}
   - component: {fileID: 4904972728972586848}
   - component: {fileID: 4904972728972586849}
+  - component: {fileID: 4904972728972586861}
   - component: {fileID: 1594900296}
   - component: {fileID: 6128199980122927761}
   - component: {fileID: 6644335796662522378}
+  - component: {fileID: 2751146656484325359}
   m_Layer: 0
   m_Name: Impostor
   m_TagString: Killer
@@ -1469,31 +1470,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4904972728972586861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5015298117626810164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee02edf9323d8664bbfd5555a1620d19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HoldPlayerPosition: {fileID: 5016251219675599463}
-  Player: {fileID: 0}
-  GameManager: {fileID: 8942772784858904395, guid: 289446dfa7fb7734899cf7c9e38aaa1e,
-    type: 3}
-  FirstCamera: {fileID: 5016251218937469296}
-  ThirdCamera: {fileID: 5016251220576895741}
-  VirtualFirstCamera: {fileID: 5016251218937469310}
-  VirtualThirdCamera: {fileID: 5016251220576895739}
-  _killerState: 0
-  LookCamera: {fileID: 5016251218842535513}
-  IsImpostorPlayerDownCheck: 0
-  IsImpostorPlayerSitCheck: 0
-  IsPlayerHoldDownCheck: 0
 --- !u!54 &4904972728972586862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1563,6 +1539,31 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &4904972728972586861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5015298117626810164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee02edf9323d8664bbfd5555a1620d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoldPlayerPosition: {fileID: 5016251219675599463}
+  Player: {fileID: 0}
+  GameManager: {fileID: 8942772784858904395, guid: 289446dfa7fb7734899cf7c9e38aaa1e,
+    type: 3}
+  FirstCamera: {fileID: 5016251218937469296}
+  ThirdCamera: {fileID: 5016251220576895741}
+  VirtualFirstCamera: {fileID: 5016251218937469310}
+  VirtualThirdCamera: {fileID: 5016251220576895739}
+  _killerState: 0
+  LookCamera: {fileID: 5016251218842535513}
+  IsImpostorPlayerDownCheck: 0
+  IsImpostorPlayerSitCheck: 0
+  IsPlayerHoldDownCheck: 0
 --- !u!114 &1594900296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1577,9 +1578,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LookCamera: {fileID: 5016251218842535513}
   uiKillerPoint: {fileID: 0}
+  uiKillerSkill: {fileID: 0}
   Killer: {fileID: 5015298117626810164}
   KillerRightHand: {fileID: 5015155616172372250}
+<<<<<<< HEAD
   ImpostorControl: {fileID: 0}
+=======
+  _coolTime: 0
+>>>>>>> ed4d3490b5089e74f0517b54e0575335c0e4f46d
   IsPropmachineAttackCheck: 0
   IsPlayerAttackCheck: 0
 --- !u!114 &6128199980122927761
@@ -1619,6 +1625,129 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!82 &2751146656484325359
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5015298117626810164}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 79a864218a7576a4aa63d7eabed15e5f, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 12
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.012452095
+      outSlope: -0.012452095
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.78463507
+    - serializedVersion: 3
+      time: 0.35917157
+      value: 0.9496155
+      inSlope: -0.20691195
+      outSlope: -0.20691195
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.25513238
+      outWeight: 0.5393542
+    - serializedVersion: 3
+      time: 0.64429224
+      value: 0.82621
+      inSlope: -0.9260354
+      outSlope: -0.9260354
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.58120215
+      outWeight: 0.60926664
+    - serializedVersion: 3
+      time: 0.8324992
+      value: 0.43055725
+      inSlope: -3.173033
+      outSlope: -3.173033
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2856691
+      outWeight: 0.40930137
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.6667841
+      outSlope: -0.6667841
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.9901092
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5015400216744002428
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,7 +2530,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5016251218937469296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

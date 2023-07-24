@@ -5,27 +5,29 @@ using UnityEngine.UI;
 
 public class UiKillerSkill : MonoBehaviour, IKillerSkill, IKillerEnumverator
 {
+    public AkibanAttack akibanAttack = default;
+    public ImpostorAttack impostorAttack = default;
     public Image killerSkillShortCoolImage = default;
     public Image killerSkillLongCoolImage = default;
     private bool isKillerShortSkillUse = false;
     private bool isKillerLongSkillUse = false;
     private float currentCoolTime;
     private float howKiller;
-    private float killerCool;
+    public float killerCool;
 
     void Start()
     {
         switch (DataContainer.KillerSelectNumber)
         {
             case 0:
-                //러너
+                //임포스터
                 howKiller = 0;
-                killerCool = 8;
+                killerCool = 8f;
                 break;
             case 1:
-                //힐러
+                //아키반
                 howKiller = 1;
-                killerCool = 15;
+                killerCool = 10f;
                 break;
             default:
                 break;
@@ -34,29 +36,34 @@ public class UiKillerSkill : MonoBehaviour, IKillerSkill, IKillerEnumverator
     }
     void Update()
     {
+        KillerShortSkillCool(killerCool);
         //임포스터면
-        if (howKiller == 0)
-        {
-            KillerShortSkillCool(killerCool);
-        }
-        else if (howKiller == 1)
-        {
-            KillerShortSkillCool(killerCool);
-        }
 
     }
     public void KillerShortSkillCool(float cool)
     {
+
         if (isKillerShortSkillUse == false)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                StartCoroutine(KillerSkillShortCool(cool));
+                if (howKiller == 0)
+                {
+                    //임포
+                    StartCoroutine(KillerSkillCool(cool));
+
+                }
+                else if (howKiller == 1)
+                {
+                    // 아키반
+                    StartCoroutine(KillerSkillShortCool(cool));
+                }
             }
         }
 
     }   //KillerFirstSkillCool()
 
+    //아키반
     public IEnumerator KillerSkillShortCool(float cool)
     {
         float CoolTime = cool;
@@ -76,4 +83,23 @@ public class UiKillerSkill : MonoBehaviour, IKillerSkill, IKillerEnumverator
         }
     }   //KillerSkillShortCool()
 
+    //임포
+    public IEnumerator KillerSkillCool(float cool)
+    {
+        isKillerShortSkillUse = true;
+        if (isKillerShortSkillUse == true)
+        {
+            float killerCool = cool;
+            killerSkillShortCoolImage.fillAmount = 1f;
+
+            while (0 < killerSkillShortCoolImage.fillAmount)
+            {
+                yield return null;
+                //yield return new WaitForSeconds(0.01f);
+                killerSkillShortCoolImage.fillAmount = 1 - impostorAttack._coolTime / killerCool;
+            }
+            isKillerShortSkillUse = false;
+
+        }
+    }   //KillerSkillShortCool() 
 }

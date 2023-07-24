@@ -13,6 +13,7 @@ TagManager:
   - Ground
   - SpawnPoint
   - Players
+  - SoundArea
   layers:
   - Default
   - TransparentFX

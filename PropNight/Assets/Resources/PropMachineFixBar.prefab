@@ -584,6 +584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5681309464918880905}
   - component: {fileID: 1892734018353541720}
+  - component: {fileID: 5182861704342782917}
   m_Layer: 0
   m_Name: PropMachineFixBar
   m_TagString: Untagged
@@ -626,9 +627,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   propMachineFixedCheck: {fileID: 8293313816973863885}
+  warnintObj: {fileID: 0}
   circleBar: {fileID: 1353269080785041434}
   circleSuccess: {fileID: 0}
   circlePerfect: {fileID: 0}
+  warningImage: {fileID: 0}
   stick: {fileID: 4921448800905915105}
   successStick: {fileID: 6825393968398647988}
   perfectStick: {fileID: 8270203856279222220}
@@ -645,3 +648,15 @@ MonoBehaviour:
   textFadeOut: 0
   textFadeIn: 0
   returnGuage: 0
+--- !u!225 &5182861704342782917
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9195751480690894992}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

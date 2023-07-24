@@ -19,6 +19,11 @@ public class SelectCharacterSceneManager : MonoBehaviourPun, IPunObservable
 
     // 게임 시작 조건 준비완료 카운트
     private int _gameStartReadyCount;
+    private float uiMaxTime = 60f;
+    private int uiTimeMin = 0;
+    private int uiTimeSec = 0;
+
+    private bool _gameStarted = false;
 
     private void Awake()
     {
@@ -39,11 +44,42 @@ public class SelectCharacterSceneManager : MonoBehaviourPun, IPunObservable
 
         // ReadyBtn.SetActive(false);
         photonView.RPC("GameStartCountUp", RpcTarget.All);
-
-
-
-
     }
+    private void Update()
+    {
+        UiTime();
+    }
+
+    public void UiTime()
+    {
+        if (_gameStarted) { return; }
+        uiMaxTime -= Time.deltaTime;
+        // if (600f < uiMaxTime)
+        // {
+        //     uiMaxTime = 600f;
+        // }
+        if (60f <= uiMaxTime)
+        {
+            uiTimeMin = (int)uiMaxTime / 60;
+            uiTimeSec = (int)uiMaxTime % 60;
+            CountDownTxt.text = uiTimeMin.ToString("00") + " : " + uiTimeSec.ToString("00");
+        }
+
+        if (uiMaxTime < 60f)
+        {
+            CountDownTxt.text = "00 : " + (int)uiMaxTime;
+        }
+        if (uiMaxTime < 10f)
+        {
+            CountDownTxt.text = "00 : 0" + (int)uiMaxTime;
+        }
+        if (uiMaxTime <= 0f)
+        {
+            CountDownTxt.text = "00 : 00";
+            MoveNextScene();
+        }
+    }   //UiTime()
+
 
     // 게임 시작 조건 변수 ++
     [PunRPC]
@@ -81,9 +117,11 @@ public class SelectCharacterSceneManager : MonoBehaviourPun, IPunObservable
         // StartBtn.SetActive(false);
         // ReadyBtn.SetActive(true);
 
+
         // 게임 시작을 누르면 준비완료 카운트 +1
         if (_gameStartReadyCount <= _clientReadyCount)
         {
+            _gameStarted = true;
             StartCoroutine(StartGameCountDown());
         }
 
@@ -108,7 +146,7 @@ public class SelectCharacterSceneManager : MonoBehaviourPun, IPunObservable
     {
         for (int i = 5; 0 < i; i--)
         {
-            CountDownTxt.text = string.Format("00:0" + i);
+            CountDownTxt.text = string.Format("00 : 0" + i);
             yield return new WaitForSecondsRealtime(1f);
         }
         LoadingSceneController.MoveScene();
